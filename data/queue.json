@@ -40,14 +40,14 @@
   {
    "order": 6,
    "name": "p-a1-35b-q4",
-   "kind": "tiny (~10 min, saturo)",
+   "kind": "benchmark di Pietro: agente, duro, lungo",
    "why": "Benchmark di Pietro (duro n=8 per set, agente, lungo 64K) su A1-35B Q4: confrontabile con i suoi numeri del Mac",
    "repo": "InternScience/Agents-A1-Q4_K_M-GGUF"
   },
   {
    "order": 7,
    "name": "p-flashnext-ref",
-   "kind": "tiny (~10 min, saturo)",
+   "kind": "benchmark di Pietro: agente, duro",
    "why": "Benchmark di Pietro sul riferimento Flash-Next (Strata), stessi parametri di p-a1-35b-q4",
    "repo": null
   },

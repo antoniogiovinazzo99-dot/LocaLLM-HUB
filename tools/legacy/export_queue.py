@@ -16,6 +16,8 @@ WHY = json.loads((ROOT / 'data' / 'queue_notes.json').read_text(encoding='utf-8'
 def kind(x):
     if x.get('harness'):
         return 'agente reale (' + ', '.join(x['harness']) + ')'
+    if x.get('pietro'):
+        return 'benchmark di Pietro: ' + ', '.join(x['pietro'])
     if x.get('speed_only'):
         return 'velocita (~3 min)'
     if x.get('arm'):
