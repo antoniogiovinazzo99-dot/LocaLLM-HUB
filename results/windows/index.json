@@ -1,0 +1,755 @@
+{
+ "platform": "windows",
+ "count": 33,
+ "experiments": [
+  {
+   "id": "2026-11-09-yt-qwen38-27b-iq2xxs",
+   "file": "results/windows/2026-11-09-yt-qwen38-27b-iq2xxs.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-suite-s",
+   "status": "ok",
+   "title": "yt-qwen38-27b-iq2xxs",
+   "summary": "Qualita tiny 68.3, indice d uso suite s 49.1, agente-mini 83.3%, 20.3 t/s a un flusso.",
+   "model": "Qwen3.8-27B-GGUF",
+   "quant": "UD-IQ2_XXS",
+   "size_gb": 7.3,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 20.3,
+    "q_medio": 68.3,
+    "indice_uso": 49.1,
+    "agente_mini": 83.3
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-yt-lfm25-24b-a2b",
+   "file": "results/windows/2026-11-09-yt-lfm25-24b-a2b.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-suite-s",
+   "status": "ok",
+   "title": "yt-lfm25-24b-a2b",
+   "summary": "Qualita tiny 27.8, indice d uso suite s 14.0, agente-mini 50.0%, 52.8 t/s a un flusso.",
+   "model": "LFM2.5-24B-A2B-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 14.5,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 52.8,
+    "q_medio": 27.8,
+    "indice_uso": 14.0,
+    "agente_mini": 50.0
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-yt-flint-40b-iq3xxs",
+   "file": "results/windows/2026-11-09-yt-flint-40b-iq3xxs.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-suite-s",
+   "status": "ok",
+   "title": "yt-flint-40b-iq3xxs",
+   "summary": "Qualita tiny 69.5, indice d uso suite s 40.6, agente-mini 83.3%, 41.5 t/s a un flusso.",
+   "model": "flint-GGUF",
+   "quant": "UD-IQ3_XXS",
+   "size_gb": 14.5,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 41.5,
+    "q_medio": 69.5,
+    "indice_uso": 40.6,
+    "agente_mini": 83.3
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-yt-bolt-74b",
+   "file": "results/windows/2026-11-09-yt-bolt-74b.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-suite-s",
+   "status": "ok",
+   "title": "yt-bolt-74b",
+   "summary": "Qualita tiny 87.8, indice d uso suite s 53.8, agente-mini 83.3%, 19.2 t/s a un flusso.",
+   "model": "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+   "quant": null,
+   "size_gb": 22.0,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 19.2,
+    "q_medio": 87.8,
+    "indice_uso": 53.8,
+    "agente_mini": 83.3
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-sp-27b-xxs-dspine",
+   "file": "results/windows/2026-11-09-sp-27b-xxs-dspine.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-tiny",
+   "status": "failed",
+   "title": "sp-27b-xxs-dspine",
+   "summary": "Test fallito: timed out. FALLITO: il server del fork llama-dspine si pianta (timeout dopo ~2 ore). Nessun numero su DSpine.",
+   "model": "Qwen3.8-27B-GGUF",
+   "quant": "UD-IQ2_XXS",
+   "size_gb": 7.3,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "speculative"
+   ]
+  },
+  {
+   "id": "2026-11-09-sp-27b-xxs-dflash2",
+   "file": "results/windows/2026-11-09-sp-27b-xxs-dflash2.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "speculative",
+   "status": "ok",
+   "title": "sp-27b-xxs-dflash2",
+   "summary": "32.3 t/s a un flusso, 33.0 t/s medi su 4 tipi di prompt, accettazione drafter sul codice 37.8%. DFlash2 su IQ2_XXS, ctx 8K, drafter Q4: +63% rispetto al base (33,0 vs 20,2 t/s). Sul codice resta lento (25,6) perche l accettazione cala.",
+   "model": "Qwen3.8-27B-GGUF",
+   "quant": "UD-IQ2_XXS",
+   "size_gb": 7.3,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 32.3,
+    "tps_media": 33.0,
+    "draft_acceptance_pct": 37.8
+   },
+   "tags": [
+    "speculative"
+   ]
+  },
+  {
+   "id": "2026-11-09-sp-27b-xxs-base",
+   "file": "results/windows/2026-11-09-sp-27b-xxs-base.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "speed",
+   "status": "ok",
+   "title": "sp-27b-xxs-base",
+   "summary": "20.3 t/s a un flusso, 20.2 t/s medi su 4 tipi di prompt.",
+   "model": "Qwen3.8-27B-GGUF",
+   "quant": "UD-IQ2_XXS",
+   "size_gb": 7.3,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 20.3,
+    "tps_media": 20.2
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-sharp-spark-4b",
+   "file": "results/windows/2026-11-09-sharp-spark-4b.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-tiny",
+   "status": "ok",
+   "title": "sharp-spark-4b",
+   "summary": "Qualita tiny 68.4, 68.4 t/s a un flusso.",
+   "model": "Sharp-Spark-X2.5-4B-GGUF",
+   "quant": "Q6_K_XL",
+   "size_gb": 3.6,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 68.4,
+    "q_medio": 68.4,
+    "prompt_tps": 481.5
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-qwen3.8-27b-iq3",
+   "file": "results/windows/2026-11-09-qwen3.8-27b-iq3.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-tiny",
+   "status": "ok",
+   "title": "qwen3.8-27b-iq3",
+   "summary": "Qualita tiny 90.0, 5.6 t/s a un flusso.",
+   "model": "Qwen3.8-27B-GGUF",
+   "quant": "UD-IQ3_XXS",
+   "size_gb": 10.9,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 5.6,
+    "q_medio": 90.0,
+    "humaneval": 93.9,
+    "prompt_tps": 34.2
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-otel-2.0-decision-26b-a4b-4bit",
+   "file": "results/windows/2026-11-09-otel-2.0-decision-26b-a4b-4bit.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-tiny",
+   "status": "ok",
+   "title": "otel-2.0-decision-26b-a4b-4bit",
+   "summary": "Qualita tiny 93.2, 29.3 t/s a un flusso.",
+   "model": "OTel-2.0-Decision-26B-A4B-4bit",
+   "quant": "Q4_K_M",
+   "size_gb": 16.8,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 29.3,
+    "q_medio": 93.2,
+    "humaneval": 96.3,
+    "prompt_tps": 61.8
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-ornith-1.5-9b-arm",
+   "file": "results/windows/2026-11-09-ornith-1.5-9b-arm.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "armature",
+   "status": "ok",
+   "title": "ornith-1.5-9b-arm",
+   "summary": "Qualita tiny 75.8, 51.6 t/s a un flusso, armature: migliore sc5 98.0%. Armature su matematica (100 domande): voto su 5 98% in 10,8 min, programma eseguito (PAL) 83-86% in 0,8 min. Manca ancora la base senza armatura sugli stessi 100.",
+   "model": "Ornith-1.5-9B-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 5.8,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 51.6,
+    "q_medio": 75.8,
+    "humaneval": 78.0,
+    "prompt_tps": 514.9
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-ornith-1.5-35b-a3b",
+   "file": "results/windows/2026-11-09-ornith-1.5-35b-a3b.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-tiny",
+   "status": "ok",
+   "title": "ornith-1.5-35b-a3b",
+   "summary": "Qualita tiny 90.4, 34.6 t/s a un flusso.",
+   "model": "Ornith-1.5-35B-A3B-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.7,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 34.6,
+    "q_medio": 90.4,
+    "humaneval": 89.0,
+    "prompt_tps": 63.6
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-op-qwen38-27b-iq2s-dspine",
+   "file": "results/windows/2026-11-09-op-qwen38-27b-iq2s-dspine.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-tiny",
+   "status": "failed",
+   "title": "op-qwen38-27b-iq2s-dspine",
+   "summary": "Test fallito: [WinError 10054] Connessione in corso interrotta forzatamente dall'host remoto. FALLITO: connessione chiusa dal server del fork llama-dspine. Primo tentativo, IQ2_S + drafter Q8 + contesto 32K saturava la VRAM.",
+   "model": "Qwen3.8-27B-GGUF",
+   "quant": "UD-IQ2_S",
+   "size_gb": 8.4,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "speculative"
+   ]
+  },
+  {
+   "id": "2026-11-09-op-qwen38-27b-iq2s-dflash2",
+   "file": "results/windows/2026-11-09-op-qwen38-27b-iq2s-dflash2.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "speculative",
+   "status": "ok",
+   "title": "op-qwen38-27b-iq2s-dflash2",
+   "summary": "14.6 t/s a un flusso, 12.0 t/s medi su 4 tipi di prompt, accettazione drafter sul codice 36.6%. Peggiora (12 vs 20 t/s): VRAM piena e accettazione del drafter solo 37%. Rifatto in sp-27b-xxs-dflash2 con IQ2_XXS e ctx 8K.",
+   "model": "Qwen3.8-27B-GGUF",
+   "quant": "UD-IQ2_S",
+   "size_gb": 8.4,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 14.6,
+    "tps_media": 12.0,
+    "draft_acceptance_pct": 36.6
+   },
+   "tags": [
+    "speculative"
+   ]
+  },
+  {
+   "id": "2026-11-09-op-qwen38-27b-iq2s-base",
+   "file": "results/windows/2026-11-09-op-qwen38-27b-iq2s-base.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "speed",
+   "status": "ok",
+   "title": "op-qwen38-27b-iq2s-base",
+   "summary": "19.9 t/s a un flusso, 20.0 t/s medi su 4 tipi di prompt.",
+   "model": "Qwen3.8-27B-GGUF",
+   "quant": "UD-IQ2_S",
+   "size_gb": 8.4,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 19.9,
+    "tps_media": 20.0
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-op-ornith35-mtp-imini",
+   "file": "results/windows/2026-11-09-op-ornith35-mtp-imini.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "speculative",
+   "status": "ok",
+   "title": "op-ornith35-mtp-imini",
+   "summary": "43.6 t/s a un flusso, 38.5 t/s medi su 4 tipi di prompt, accettazione drafter sul codice 47.9%. MTP piu lento del no-MTP (38,5 vs 43,9 t/s medi) con accettazione 48%.",
+   "model": "Ornith-1.5-35B-A3B-APEX-MTP-GGUF",
+   "quant": null,
+   "size_gb": 14.4,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 43.6,
+    "tps_media": 38.5,
+    "draft_acceptance_pct": 47.9
+   },
+   "tags": [
+    "speculative"
+   ]
+  },
+  {
+   "id": "2026-11-09-op-ornith35-mtp-compact",
+   "file": "results/windows/2026-11-09-op-ornith35-mtp-compact.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "speculative",
+   "status": "ok",
+   "title": "op-ornith35-mtp-compact",
+   "summary": "39.5 t/s a un flusso, 35.7 t/s medi su 4 tipi di prompt, accettazione drafter sul codice 44.0%.",
+   "model": "Ornith-1.5-35B-A3B-APEX-MTP-GGUF",
+   "quant": null,
+   "size_gb": 17.4,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 39.5,
+    "tps_media": 35.7,
+    "draft_acceptance_pct": 44.0
+   },
+   "tags": [
+    "speculative"
+   ]
+  },
+  {
+   "id": "2026-11-09-op-ornith35-imini-nomtp",
+   "file": "results/windows/2026-11-09-op-ornith35-imini-nomtp.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "speed",
+   "status": "ok",
+   "title": "op-ornith35-imini-nomtp",
+   "summary": "44.6 t/s a un flusso, 43.9 t/s medi su 4 tipi di prompt.",
+   "model": "Ornith-1.5-35B-A3B-APEX-MTP-GGUF",
+   "quant": null,
+   "size_gb": 14.4,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 44.6,
+    "tps_media": 43.9
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-op-flashnext-ref-serio2",
+   "file": "results/windows/2026-11-09-op-flashnext-ref-serio2.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-suite-s",
+   "status": "ok",
+   "title": "op-flashnext-ref-serio2",
+   "summary": "Qualita tiny 85.4, indice d uso suite s 68.4, agente-mini 83.3%, 31.6 t/s a un flusso. Riferimento Flash-Next rieseguito con budget alto: il numero da usare per i confronti seri (il primo giro aveva campioni troppo piccoli).",
+   "model": "op-flashnext-ref-serio2",
+   "quant": null,
+   "size_gb": null,
+   "engine": "strata",
+   "ref": true,
+   "headline": {
+    "decode_tps_1": 31.6,
+    "q_medio": 85.4,
+    "indice_uso": 68.4,
+    "agente_mini": 83.3
+   },
+   "tags": [
+    "reference"
+   ]
+  },
+  {
+   "id": "2026-11-09-op-flashnext-ref-p10",
+   "file": "results/windows/2026-11-09-op-flashnext-ref-p10.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-suite-s",
+   "status": "ok",
+   "title": "op-flashnext-ref-p10",
+   "summary": "Qualita tiny 90.8, indice d uso suite s 64.9, agente-mini 75.0%, 31.1 t/s a un flusso. Primo giro del riferimento con budget basso: molte parti con 3-12 campioni, poco affidabile. Vedi op-flashnext-ref-serio2.",
+   "model": "op-flashnext-ref-p10",
+   "quant": null,
+   "size_gb": null,
+   "engine": "strata",
+   "ref": true,
+   "headline": {
+    "decode_tps_1": 31.1,
+    "q_medio": 90.8,
+    "indice_uso": 64.9,
+    "agente_mini": 75.0
+   },
+   "tags": [
+    "reference"
+   ]
+  },
+  {
+   "id": "2026-11-09-op-flashnext-p15",
+   "file": "results/windows/2026-11-09-op-flashnext-p15.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-suite-s",
+   "status": "ok",
+   "title": "op-flashnext-p15",
+   "summary": "Qualita tiny 77.9, indice d uso suite s 61.0, agente-mini 66.7%, 47.0 t/s a un flusso.",
+   "model": "op-flashnext-p15",
+   "quant": null,
+   "size_gb": null,
+   "engine": "strata",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 47.0,
+    "q_medio": 77.9,
+    "indice_uso": 61.0,
+    "agente_mini": 66.7
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-op-agents-a1-4b-np1",
+   "file": "results/windows/2026-11-09-op-agents-a1-4b-np1.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "speed",
+   "status": "ok",
+   "title": "op-agents-a1-4b-np1",
+   "summary": "76.8 t/s a un flusso, 76.8 t/s medi su 4 tipi di prompt.",
+   "model": "Agents-A1-4B-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 2.7,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 76.8,
+    "tps_media": 76.8
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-mimo-v2.6-9b",
+   "file": "results/windows/2026-11-09-mimo-v2.6-9b.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "armature",
+   "status": "ok",
+   "title": "mimo-v2.6-9b",
+   "summary": "Qualita tiny 74.0, 50.5 t/s a un flusso, armature: migliore sc5 97.0%.",
+   "model": "MiMo-V2.6-Distill-Qwen-9B-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 5.8,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 50.5,
+    "q_medio": 74.0,
+    "prompt_tps": 517.0
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-flashnext-v3-ref2",
+   "file": "results/windows/2026-11-09-flashnext-v3-ref2.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-tiny",
+   "status": "ok",
+   "title": "flashnext-v3-ref2",
+   "summary": "Qualita tiny 85.4, 35.5 t/s a un flusso.",
+   "model": "flashnext-v3-ref2",
+   "quant": null,
+   "size_gb": null,
+   "engine": "strata",
+   "ref": true,
+   "headline": {
+    "decode_tps_1": 35.5,
+    "q_medio": 85.4,
+    "humaneval": 95.1,
+    "prompt_tps": 15.6
+   },
+   "tags": [
+    "reference"
+   ]
+  },
+  {
+   "id": "2026-11-09-agents-a1-35b-q4-serio",
+   "file": "results/windows/2026-11-09-agents-a1-35b-q4-serio.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-suite-s",
+   "status": "ok",
+   "title": "agents-a1-35b-q4-serio",
+   "summary": "Qualita tiny 93.8, indice d uso suite s 69.1, agente-mini 83.3%, 36.6 t/s a un flusso. Pari a Flash-Next sulla Suite S (69,1 vs 68,4) e sull agente (83%), alla stessa velocita. Intelligenza pari, non meglio.",
+   "model": "Agents-A1-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.2,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 36.6,
+    "q_medio": 93.8,
+    "indice_uso": 69.1,
+    "agente_mini": 83.3
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-agents-a1-35b-q4",
+   "file": "results/windows/2026-11-09-agents-a1-35b-q4.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-tiny",
+   "status": "ok",
+   "title": "agents-a1-35b-q4",
+   "summary": "Qualita tiny 93.8, 36.9 t/s a un flusso.",
+   "model": "Agents-A1-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.2,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 36.9,
+    "q_medio": 93.8,
+    "humaneval": 91.5,
+    "prompt_tps": 41.1
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-agents-a1-35b-iq2m-serio",
+   "file": "results/windows/2026-11-09-agents-a1-35b-iq2m-serio.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-suite-s",
+   "status": "ok",
+   "title": "agents-a1-35b-iq2m-serio",
+   "summary": "Qualita tiny 87.1, indice d uso suite s 60.6, agente-mini 50.0%, 51.8 t/s a un flusso. Suite S + agente-mini. Rispetto al Q4 perde circa 8 punti di indice d uso e scende al 50% sull agente: IQ2_M non e un sostituto del Q4.",
+   "model": "Agents-A1-IQ2_M-GGUF",
+   "quant": "IQ2_M",
+   "size_gb": 11.7,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 51.8,
+    "q_medio": 87.1,
+    "indice_uso": 60.6,
+    "agente_mini": 50.0
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-agents-a1-35b-iq2m",
+   "file": "results/windows/2026-11-09-agents-a1-35b-iq2m.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-tiny",
+   "status": "ok",
+   "title": "agents-a1-35b-iq2m",
+   "summary": "Qualita tiny 91.2, 52.5 t/s a un flusso. Il tiny dice 91,2 ma la Suite S (agents-a1-35b-iq2m-serio) dice 60,6: il tiny e quasi saturo e non vede il costo della compressione a 2 bit.",
+   "model": "Agents-A1-IQ2_M-GGUF",
+   "quant": "IQ2_M",
+   "size_gb": 11.7,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 52.5,
+    "q_medio": 91.2,
+    "humaneval": 85.4,
+    "prompt_tps": 136.5
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-08-ornith-1.5-9b",
+   "file": "results/windows/2026-11-08-ornith-1.5-9b.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-08",
+   "category": "quality-tiny",
+   "status": "ok",
+   "title": "ornith-1.5-9b",
+   "summary": "Qualita tiny 77.3, 51.4 t/s a un flusso.",
+   "model": "Ornith-1.5-9B-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 5.8,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 51.4,
+    "q_medio": 77.3,
+    "humaneval": 78.0,
+    "prompt_tps": 524.4
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-08-flashnext-v3-ref",
+   "file": "results/windows/2026-11-08-flashnext-v3-ref.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-08",
+   "category": "quality-tiny",
+   "status": "failed",
+   "title": "flashnext-v3-ref",
+   "summary": "Test fallito: server uscito in avvio.",
+   "model": "flashnext-v3-ref",
+   "quant": null,
+   "size_gb": null,
+   "engine": "strata",
+   "ref": true,
+   "headline": {},
+   "tags": [
+    "reference"
+   ]
+  },
+  {
+   "id": "2026-11-08-agents-a1-4b-b",
+   "file": "results/windows/2026-11-08-agents-a1-4b-b.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-08",
+   "category": "quality-tiny",
+   "status": "ok",
+   "title": "agents-a1-4b-b",
+   "summary": "Qualita tiny 72.4, 75.9 t/s a un flusso.",
+   "model": "Agents-A1-4B-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 2.7,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 75.9,
+    "q_medio": 72.4,
+    "humaneval": 75.6,
+    "prompt_tps": 462.0
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-08-agents-a1-4b-arm",
+   "file": "results/windows/2026-11-08-agents-a1-4b-arm.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-08",
+   "category": "armature",
+   "status": "ok",
+   "title": "agents-a1-4b-arm",
+   "summary": "Qualita tiny 72.7, 74.5 t/s a un flusso, armature: migliore sc5 96.0%. Con armatura peggiora: 72,7 vs 77,6 della base, il codice scende da 58 a 42.",
+   "model": "Agents-A1-4B-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 2.7,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 74.5,
+    "q_medio": 72.7,
+    "humaneval": 76.8,
+    "prompt_tps": 482.2
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-08-agents-a1-4b",
+   "file": "results/windows/2026-11-08-agents-a1-4b.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-08",
+   "category": "quality-tiny",
+   "status": "ok",
+   "title": "agents-a1-4b",
+   "summary": "Qualita tiny 77.6.",
+   "model": "Agents-A1-4B-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 2.7,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "q_medio": 77.6,
+    "humaneval": 76.8,
+    "prompt_tps": 585.4
+   },
+   "tags": []
+  }
+ ]
+}

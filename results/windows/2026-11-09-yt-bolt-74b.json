@@ -1,0 +1,70 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-yt-bolt-74b",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "quality-suite-s",
+ "status": "ok",
+ "title": "yt-bolt-74b",
+ "reference": false,
+ "model": {
+  "name": "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+  "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+  "file": "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB.gguf",
+  "quant": null,
+  "size_gb": 22.0
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "suite-s+agente-mini",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 19.2,
+  "decode_tps_4": 18.7,
+  "prompt_tps": 67.7,
+  "mmlu": 69.2,
+  "arc": 90.3,
+  "gsm": 100.0,
+  "code12": 91.7,
+  "q_medio": 87.8,
+  "invented_words_pct": 0.22,
+  "load_s": 19.6,
+  "indice_uso": 53.8,
+  "math": 50.0,
+  "hep": 75.0,
+  "lcb": 0.0,
+  "lavori": 79.9,
+  "suite_s_samples": {
+   "math": "18/30",
+   "hep": "8/30",
+   "lcb": "4/8",
+   "lavori": "8/8"
+  },
+  "agente_mini": 83.3,
+  "agente_parziale": 83.3,
+  "agente_turni_medi": 5.0,
+  "agente_chiamate_non_valide": 0
+ },
+ "notes": "Lungo contesto (lungo) a 0 per tutti i modelli: sospetto bug del test (max_tokens=40, 1 campione), non fidarsi di quella colonna. NoCodeAbode: 30.5 t/s su 12GB+32GB con 14GB RAM liberi, 24/24 in Claude Code. Con 16GB RAM il file da 22GB paginera' da SSD: misura onesta del muro.",
+ "tags": [],
+ "summary": "Qualita tiny 87.8, indice d uso suite s 53.8, agente-mini 83.3%, 19.2 t/s a un flusso."
+}

@@ -1,0 +1,54 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-op-qwen38-27b-iq2s-base",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "speed",
+ "status": "ok",
+ "title": "op-qwen38-27b-iq2s-base",
+ "reference": false,
+ "model": {
+  "name": "Qwen3.8-27B-GGUF",
+  "repo": "unsloth/Qwen3.8-27B-GGUF",
+  "file": "Qwen3.8-27B-UD-IQ2_S.gguf",
+  "quant": "UD-IQ2_S",
+  "size_gb": 8.4
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "speed-4-prompts",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 19.9,
+  "tps_media": 20.0,
+  "load_s": 7.1,
+  "tps_by_type": {
+   "codice": 19.9,
+   "storia": 20.0,
+   "ragionamento": 20.0,
+   "json": 20.0
+  }
+ },
+ "notes": "Controllo appaiato senza drafter",
+ "tags": [],
+ "summary": "19.9 t/s a un flusso, 20.0 t/s medi su 4 tipi di prompt."
+}

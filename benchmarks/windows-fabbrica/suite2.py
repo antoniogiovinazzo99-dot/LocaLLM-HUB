@@ -1,0 +1,28 @@
+"""12 harder tasks with edge-case tests, to separate configurations on quality."""
+TASKS = [
+ ("calc(expr): valuta un'espressione aritmetica in stringa con interi, + - * /, parentesi e spazi, rispettando precedenza; / e divisione reale; meno unario ammesso (es. '-(2+3)*2'). Vietato usare eval, exec o ast.",
+  "assert f('1 + 2 * 3')==7 and f('(1+2)*3')==9 and f('-(2+3)*2')==-10 and abs(f('7/2')-3.5)<1e-9 and f('2*(3+(4-1))*2')==24 and f('10-2-3')==5", "calc"),
+ ("word_break(s, words): True se s si puo segmentare in una sequenza di parole della lista words (riusabili).",
+  "assert f('leetcode',['leet','code']) and f('applepenapple',['apple','pen']) and not f('catsandog',['cats','dog','sand','and','cat']) and f('',['a']) and not f('aaab',['a','aa'])", "word_break"),
+ ("longest_valid_parentheses(s): lunghezza della piu lunga sottostringa di parentesi tonde ben formata.",
+  "assert f('(()')==2 and f(')()())')==4 and f('')==0 and f('()(()')==2 and f('()(())')==6 and f('))((')==0", "longest_valid_parentheses"),
+ ("decode_ways(s): numero di modi di decodificare una stringa di cifre con A=1..Z=26; stringhe con zeri non decodificabili danno 0.",
+  "assert f('12')==2 and f('226')==3 and f('06')==0 and f('10')==1 and f('100')==0 and f('2101')==1 and f('11106')==2", "decode_ways"),
+ ("is_match(s, p): regex con '.' (qualsiasi carattere) e '*' (zero o piu del precedente) che deve coprire tutta la stringa.",
+  "assert not f('aa','a') and f('aa','a*') and f('ab','.*') and f('aab','c*a*b') and not f('mississippi','mis*is*p*.') and f('','a*b*')", "is_match"),
+ ("coin_change(coins, amount): minimo numero di monete per formare amount, -1 se impossibile.",
+  "assert f([1,2,5],11)==3 and f([2],3)==-1 and f([1],0)==0 and f([186,419,83,408],6249)==20 and f([3,7],5)==-1", "coin_change"),
+ ("knapsack(weights, values, cap): valore massimo dello zaino 0/1 con capacita cap.",
+  "assert f([1,3,4,5],[1,4,5,7],7)==9 and f([],[],10)==0 and f([5],[10],4)==0 and f([2,2,2],[3,3,3],5)==6", "knapsack"),
+ ("median_two_sorted(a, b): mediana dell'unione di due liste ordinate (float).",
+  "assert f([1,3],[2])==2.0 and f([1,2],[3,4])==2.5 and f([],[1])==1.0 and f([0,0],[0,0])==0.0 and f([1,2,3,4,5],[6,7])==4.0", "median_two_sorted"),
+ ("lex_topo(n, edges): ordine topologico lessicograficamente minimo dei nodi 0..n-1 dati archi (u,v) che significano u prima di v; lista vuota se c'e un ciclo.",
+  "assert f(4,[(1,0),(2,0),(3,1)])==[2,3,1,0] and f(3,[])==[0,1,2] and f(2,[(0,1),(1,0)])==[] and f(5,[(4,0),(3,0),(0,1)])==[2,3,4,0,1]", "lex_topo"),
+ ("max_events(intervals): massimo numero di intervalli [s,e) non sovrapposti selezionabili (intervalli che si toccano solo agli estremi sono compatibili).",
+  "assert f([(1,3),(2,4),(3,5)])==2 and f([])==0 and f([(1,2),(2,3),(3,4)])==3 and f([(1,10),(2,3),(4,5),(6,7)])==3", "max_events"),
+ ("int_to_words(n): numero intero 0..999999 in parole inglesi minuscole separate da spazi, senza 'and' (es. 1234 -> 'one thousand two hundred thirty four').",
+  "assert f(0)=='zero' and f(13)=='thirteen' and f(105)=='one hundred five' and f(1234)=='one thousand two hundred thirty four' and f(1000000-1)=='nine hundred ninety nine thousand nine hundred ninety nine' and f(20000)=='twenty thousand'", "int_to_words"),
+ ("kelly_fraction(p, b): frazione di Kelly ottimale per una scommessa che paga b volte la puntata con probabilita p; restituisce 0.0 se il valore atteso non e positivo.",
+  "assert abs(f(0.6,1)-0.2)<1e-9 and f(0.5,1)==0.0 and abs(f(0.25,4)-0.0625)<1e-9 and f(0.1,2)==0.0", "kelly_fraction"),
+]
+PROMPT = "Scrivi soltanto codice Python valido, senza Markdown e senza spiegazioni. Implementa la funzione {}"

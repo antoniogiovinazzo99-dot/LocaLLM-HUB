@@ -1,0 +1,50 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-otel-2.0-decision-26b-a4b-4bit",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "quality-tiny",
+ "status": "ok",
+ "title": "otel-2.0-decision-26b-a4b-4bit",
+ "reference": false,
+ "model": {
+  "name": "OTel-2.0-Decision-26B-A4B-4bit",
+  "repo": "farbodtavakkoli/OTel-2.0-Decision-26B-A4B-4bit",
+  "file": "OTel-2.0-Decision-26B-A4B-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 16.8
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 29.3,
+  "decode_tps_4": 10.5,
+  "prompt_tps": 61.8,
+  "mmlu": 74.5,
+  "arc": 98.1,
+  "gsm": 100.0,
+  "code12": 100.0,
+  "humaneval": 96.3,
+  "q_medio": 93.2,
+  "invented_words_pct": 0.0,
+  "needle_64k": 1,
+  "load_s": 22.2
+ },
+ "notes": "",
+ "tags": [],
+ "summary": "Qualita tiny 93.2, 29.3 t/s a un flusso."
+}

@@ -1,0 +1,56 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-sp-27b-xxs-base",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "speed",
+ "status": "ok",
+ "title": "sp-27b-xxs-base",
+ "reference": false,
+ "model": {
+  "name": "Qwen3.8-27B-GGUF",
+  "repo": "unsloth/Qwen3.8-27B-GGUF",
+  "file": "Qwen3.8-27B-UD-IQ2_XXS.gguf",
+  "quant": "UD-IQ2_XXS",
+  "size_gb": 7.3
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0",
+   "-c",
+   "8192"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "speed-4-prompts",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 20.3,
+  "tps_media": 20.2,
+  "load_s": 6.6,
+  "tps_by_type": {
+   "codice": 20.3,
+   "storia": 20.2,
+   "ragionamento": 20.2,
+   "json": 20.2
+  }
+ },
+ "notes": "27B IQ2_XXS 7.3GB tutto in VRAM, contesto 8K, senza drafter",
+ "tags": [],
+ "summary": "20.3 t/s a un flusso, 20.2 t/s medi su 4 tipi di prompt."
+}

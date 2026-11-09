@@ -1,0 +1,317 @@
+[
+ {
+  "id": "I1",
+  "cat": "Intelligenza",
+  "titolo": "Voto su 5 campioni (SC5)",
+  "descr": "Il modello risponde 5 volte con sampling e vince la risposta piu frequente. Misurato su GSM, MMLU e ARC.",
+  "stato": "in corso",
+  "fonte": "Letteratura classica; da noi: utile solo in matematica sul modello grande",
+  "atteso": "+3-8 punti GSM, x5 tempo"
+ },
+ {
+  "id": "I2",
+  "cat": "Intelligenza",
+  "titolo": "Programma Python eseguito (PAL)",
+  "descr": "Il modello scrive un programma che calcola la risposta; lo eseguiamo davvero. Con ripiego sul testo se il codice fallisce.",
+  "stato": "in corso",
+  "fonte": "Neurosymbolic Routing 2609.35833: 98,3% contro 72% del Program-of-Thought (Phi-4-mini)",
+  "atteso": "+5-20 punti sui calcoli"
+ },
+ {
+  "id": "I3",
+  "cat": "Intelligenza",
+  "titolo": "Verifica a due passi",
+  "descr": "Una seconda lettura che controlla la soluzione e la corregge.",
+  "stato": "in corso",
+  "fonte": "Blind Spots 2610.39006: i piccoli sono poco calibrati sulla verifica",
+  "atteso": "+0-4 punti, x2 tempo"
+ },
+ {
+  "id": "I4",
+  "cat": "Intelligenza",
+  "titolo": "Escalation condizionata (gated)",
+  "descr": "Tre campioni: se concordano si accetta (economico), altrimenti si passa a PAL+voto. Si spende calcolo solo dove serve.",
+  "stato": "in corso",
+  "fonte": "Conformal Cascade 2607.25018 (decisione sull'accordo dei campioni)",
+  "atteso": "stessa qualita di SC5 a costo medio ~1,5x"
+ },
+ {
+  "id": "I5",
+  "cat": "Intelligenza",
+  "titolo": "Scrivi-testa-correggi (stile AREX-2)",
+  "descr": "Il modello scrive il codice e i propri test, li esegue e corregge con l'errore reale, fino a 2 giri.",
+  "stato": "in corso",
+  "fonte": "AREX-2 2609.38288: round con feedback misurabile",
+  "atteso": "+10-20 punti codice"
+ },
+ {
+  "id": "I6",
+  "cat": "Intelligenza",
+  "titolo": "Cascata tra modelli (gratis)",
+  "descr": "Simulazione sui risultati per domanda: 4B -> 9B -> 35B -> Flash-Next. Se due modelli concordano si ferma, altrimenti sale.",
+  "stato": "pianificato",
+  "fonte": "Conformal Cascade 2607.25018",
+  "atteso": "qualita del grande a velocita del piccolo"
+ },
+ {
+  "id": "I7",
+  "cat": "Intelligenza",
+  "titolo": "Router verso solver deterministici",
+  "descr": "Aritmetica e logica passano a sympy/regex senza chiamare il modello.",
+  "stato": "pianificato",
+  "fonte": "2609.35833",
+  "atteso": "quasi 100% su calcoli strutturati"
+ },
+ {
+  "id": "I8",
+  "cat": "Intelligenza",
+  "titolo": "Thinking a budget adattivo",
+  "descr": "Ragiona a fondo solo sulle domande dove i campioni non concordano.",
+  "stato": "pianificato",
+  "fonte": "Nostri test: thinking +5,5 MMLU-Pro ma 4x tempo",
+  "atteso": "+4 punti a costo ~1,5x"
+ },
+ {
+  "id": "I9",
+  "cat": "Intelligenza",
+  "titolo": "Knowledge pack = cache KV precalcolata",
+  "descr": "Un documento (note del lab, manuali) pre-letto una volta e ripristinato in secondi con slot save/restore. Zero token di lettura.",
+  "stato": "pianificato",
+  "fonte": "Knowledge Packs 2604.03270 (repo cnails/kv-knowledge-packs)",
+  "atteso": "TTFT da minuti a secondi sui documenti grandi"
+ },
+ {
+  "id": "I10",
+  "cat": "Intelligenza",
+  "titolo": "Memoria di abilita / run compilati",
+  "descr": "Le esecuzioni riuscite diventano programmi riutilizzabili: meno token, risultati identici.",
+  "stato": "idea",
+  "fonte": "FlashScript 2610.33876 (70x meno token, solo Haiku testato)",
+  "atteso": "meno token, piu affidabilita"
+ },
+ {
+  "id": "I11",
+  "cat": "Intelligenza",
+  "titolo": "Armature su Flash-Next",
+  "descr": "Le ricette migliori sul modello di punta, dopo averle validate sui piccoli.",
+  "stato": "pianificato",
+  "fonte": "-",
+  "atteso": "dipende da I1-I5"
+ },
+ {
+  "id": "I12",
+  "cat": "Intelligenza",
+  "titolo": "Merge nella famiglia qwen35moe",
+  "descr": "Fondere Agents-A1, Ornith-35B-A3B e il distill Qwen3.8 (stessa architettura) con TIES/DARE.",
+  "stato": "idea",
+  "fonte": "Prune/merge dentro un modello conserva le scelte multiple ma degrada codice e matematica",
+  "atteso": "incerto; richiede pesi BF16 (~70 GB l'uno) e un secondo disco"
+ },
+ {
+  "id": "I13",
+  "cat": "Intelligenza",
+  "titolo": "LoRA locale su un 4B/9B",
+  "descr": "Fine-tune leggero con dati di un modello piu forte per un compito stretto (il tuo caso d'uso).",
+  "stato": "idea",
+  "fonte": "Agents-A1: SFT + distillazione multi-insegnante",
+  "atteso": "dipende dai dati; fattibile su 12 GB solo per modelli piccoli"
+ },
+ {
+  "id": "V1",
+  "cat": "Velocita",
+  "titolo": "Modello piccolo tutto in VRAM",
+  "descr": "Agents-A1-4B Q4: 75,9 t/s a flusso singolo.",
+  "stato": "fatto",
+  "fonte": "Fabbrica",
+  "atteso": "fatto"
+ },
+ {
+  "id": "V2",
+  "cat": "Velocita",
+  "titolo": "MTP con 2 bozze su famiglia Qwen3.5",
+  "descr": "Speculative decoding nativo dei GGUF con testa MTP (nello studio RTX 3090: +60%).",
+  "stato": "pianificato",
+  "fonte": "thc1006/qwen3.8-speculative-decoding-rtx3090",
+  "atteso": "+30-60% sui 9B e 35B"
+ },
+ {
+  "id": "V3",
+  "cat": "Velocita",
+  "titolo": "Agents-A1 35B-A3B: offload ottimale",
+  "descr": "Prova di --fit e --n-cpu-moe con le quantizzazioni da 11,7 e 21 GB.",
+  "stato": "pianificato",
+  "fonte": "Fabbrica",
+  "atteso": "30-60 t/s attesi (stima)"
+ },
+ {
+  "id": "V4",
+  "cat": "Velocita",
+  "titolo": "Routing consapevole della cache (PSR)",
+  "descr": "Selezione deterministica degli esperti con cache logica.",
+  "stato": "idea",
+  "fonte": "2610.34721: nessun guadagno su Qwen3.6-35B-A3B",
+  "atteso": "basso; solo su MoE piccoli"
+ },
+ {
+  "id": "V5",
+  "cat": "Velocita",
+  "titolo": "HybridSpec per modelli GDN-MoE",
+  "descr": "Lunghezza di verifica adattiva per i modelli ibridi. Codice non ancora rilasciato.",
+  "stato": "idea",
+  "fonte": "2611.04055",
+  "atteso": "1,75-1,88x su A100; da attendere il codice"
+ },
+ {
+  "id": "M1",
+  "cat": "Modelli",
+  "titolo": "GLM-5.3-Flash (Maya) in locale",
+  "descr": "320B/18B attivi, MIT. Quantizzazioni da 73 a 156 GB. Serve almeno 32 GB di RAM e un NVMe da 256+ GB. Con 16 GB: stima pochi t/s.",
+  "stato": "idea",
+  "fonte": "Maya (peasantsmith/GLM-5.3-Flash-Maya-GGUF)",
+  "atteso": "richiede hardware"
+ },
+ {
+  "id": "M2",
+  "cat": "Modelli",
+  "titolo": "Chirurgia: trapianto di intelligenza",
+  "descr": "Nessuna fonte supporta trapianti tra architetture diverse. Alternativa: distillazione o merge nella stessa famiglia.",
+  "stato": "idea",
+  "fonte": "2610.41236, 2610.41366, REAM-288",
+  "atteso": "non fattibile cross-architettura"
+ },
+ {
+  "id": "M3",
+  "cat": "Modelli",
+  "titolo": "Confronto ampio dei modelli nuovi",
+  "descr": "13 modelli in coda piu lo scout automatico.",
+  "stato": "in corso",
+  "fonte": "Fabbrica",
+  "atteso": "classifica completa"
+ },
+ {
+  "id": "C1",
+  "cat": "Contesto",
+  "titolo": "Ago in pagliaio a 64K / 128K / 250K",
+  "descr": "Recupero di tre chiavi in un documento lungo, sui modelli che passano il filtro.",
+  "stato": "in corso",
+  "fonte": "Fabbrica",
+  "atteso": "-"
+ },
+ {
+  "id": "O1",
+  "cat": "Metodo",
+  "titolo": "Statistica onesta della Fabbrica",
+  "descr": "IC Wilson, McNemar appaiato per domanda, Q pesato per numero di item; MMLU-Pro 200 + matematica generata al volo (non contaminabile) al posto delle tiny che saturano. File: consulenza/statistica.py, suite3.py, fabbrica_v2.diff.",
+  "stato": "applicato al file (attivo al prossimo riavvio runner)",
+  "fonte": "Consulenza Opus 8/11: con 100 domande la differenza minima rilevabile e ~12-18 punti (non appaiato)",
+  "atteso": "classifiche che distinguono davvero i modelli; 2 run della baseline entro l'IC"
+ },
+ {
+  "id": "O2",
+  "cat": "Velocita",
+  "titolo": "MTP nativo su A3B (Ornith-1.5 / Qwen3.6)",
+  "descr": "Teste MTP incluse nei GGUF (--spec-type draft-mtp, n=2, 1 slot). Confronto appaiato stesso file con/senza.",
+  "stato": "in coda (op-ornith35-*, op-qwen36-*)",
+  "fonte": "unsloth Qwen3.6 MTP: 1,5-2x dichiarato; owner run 3060+32 GB: 20,5 -> 31,5-34,5 t/s (Q4_K_M)",
+  "atteso": "+40-70% decode a flusso singolo"
+ },
+ {
+  "id": "O3",
+  "cat": "Velocita",
+  "titolo": "Qwen3.8-27B in VRAM + DFlash2",
+  "descr": "27B denso (GPQA 89,2 dichiarato, vicino a Flash-Next 91,7) in UD-IQ2_S 8,4 GB + drafter z-lab 1,1 GB. Contesto limitato (~32K) dalla KV: 64 KiB/token f16.",
+  "stato": "in coda (op-qwen38-27b-*)",
+  "fonte": "z-lab DFlash2: accettazione 5,4 token su GSM; PR llama.cpp #27342 (in b10955)",
+  "atteso": "2-3x sul decode; capire quanto costa IQ2 in qualita"
+ },
+ {
+  "id": "O4",
+  "cat": "Hardware",
+  "titolo": "RAM 2x32 GB (64 GB) sul Lenovo",
+  "descr": "Il 5600G supporta 64 GB; Lenovo dichiara 32. Con 64 GB tutti gli esperti di Flash-Next IQ3_XXS (~46 GB) stanno in page cache: i miss passano da SSD (~2,8 GB/s) a RAM->GPU (13,4 GB/s misurati).",
+  "stato": "proposta (acquisto con diritto di reso)",
+  "fonte": "Misure nostre PCIe/SSD; Strata docs: tetto di calcolo 3060 ~60-66 t/s con tutti gli esperti a portata",
+  "atteso": "stima 45-60 t/s a prior 1.0 e prompt nuovi 3-5x piu rapidi"
+ },
+ {
+  "id": "O5",
+  "cat": "Motori",
+  "titolo": "Strata 0.2.12 (7/11) in cartella separata",
+  "descr": "Drafter DFlash2 rifinito (0,34 GB) e prompt 3x piu veloci su 3060 con UD-IQ4_XS-v31. Installare accanto, non sopra, il fork; poi portare il fork su 0.1.58.",
+  "stato": "da fare (serve OK di Motti per scaricare da GitHub)",
+  "fonte": "Release notes Strata 0.2.12",
+  "atteso": "prompt nuovi lunghi: 35-55 s -> 12-20 s (stima); decode +0-37%"
+ },
+ {
+  "id": "O6",
+  "cat": "Intelligenza",
+  "titolo": "Tier con thinking acceso",
+  "descr": "I modelli 2026 sono ragionatori: testarli con thinking off li sottostima. Aggiungere 't1b'+'think' (MMLU-Pro con budget 3000 token) sui finalisti.",
+  "stato": "pronto nel diff",
+  "fonte": "Nostri: thinking +5,5 MMLU-Pro su Flash-Next",
+  "atteso": "classifica dei finalisti piu vicina all'uso reale"
+ },
+ {
+  "id": "O7",
+  "cat": "Contesto",
+  "titolo": "Contesto lungo vero: variabili a catena 32K/128K/256K",
+  "descr": "suite3.var_track: 6 salti di assegnazione in testo lungo (stile RULER). L'ago a 3 chiavi lo passano tutti.",
+  "stato": "pronto (codice), da integrare",
+  "fonte": "RULER (NVIDIA) variable tracking",
+  "atteso": "separare i modelli sul contesto lungo"
+ },
+ {
+  "id": "O8",
+  "cat": "Addestramento",
+  "titolo": "QLoRA/distillazione su 4B-9B dal teacher Flash-Next",
+  "descr": "Generare 20-50 mila esempi verificati (codice con test, matematica con risposta) da Flash-Next in locale (~30 t/s = ~1M token/9 h) e fare QLoRA su Agents-A1-4B / Ornith-9B con Unsloth (Windows: WSL2).",
+  "stato": "idea con piano",
+  "fonte": "Agents-A1 (distillazione multi-insegnante), AREX-2 (SFT su traiettorie verificate)",
+  "atteso": "+3-10 punti sul TUO dominio stretto; nessun guadagno generale garantito"
+ },
+ {
+  "id": "O9",
+  "cat": "Intelligenza",
+  "titolo": "Cascata 9B/A3B -> Flash-Next sul disaccordo",
+  "descr": "Simulare offline con i *-items.json: il piccolo risponde, se 3 campioni non concordano si passa a Flash-Next. Poi modello virtuale 'flash-cascata' nel proxy.",
+  "stato": "pianificato (dopo O1)",
+  "fonte": "Conformal Cascade 2607.25018",
+  "atteso": "qualita ~Flash-Next al 60-80% delle domande a 50-75 t/s"
+ },
+ {
+  "id": "O10",
+  "cat": "Metodo",
+  "titolo": "Free lab: formato risultati portabile Win/Mac",
+  "descr": "Schema JSON unico (hardware, motore+build, args, commit HF, SHA file, seed, item per domanda), runner con percorsi da config e backend llama.cpp/Metal/Strata; ricette per fascia (12 GB+16 GB, Mac 16/32/64 GB).",
+  "stato": "proposta",
+  "fonte": "InventiveHQ Lab, LocalScore",
+  "atteso": "risultati confrontabili tra la tua macchina e quella del tuo amico"
+ },
+ {
+  "id": "S1",
+  "cat": "Metodo",
+  "titolo": "Suite S: benchmark serio non saturo",
+  "descr": "MATH-500 (100, 20 per livello), BBH (135), MMLU-Pro 200, HumanEval+ 82, MBPP+ 100, LiveCodeBench recente 30, 8 lavori reali con test nascosti e credito parziale, contesto lungo 20K. Indice uso = media pesata (lavori 25, math 15, lcb 15). Graders verificati con soluzioni di riferimento.",
+  "stato": "pronto, in uso sul riferimento Flash-Next",
+  "fonte": "Opus + NoCodeAbode (lavori reali) + dataset ufficiali",
+  "atteso": "separare davvero forti e deboli; le tiny saturano (GSM 95%)"
+ },
+ {
+  "id": "S2",
+  "cat": "Intelligenza",
+  "titolo": "Armature rifatte su Suite S",
+  "descr": "Le armature su tiny non hanno mostrato guadagni (GSM gia 95, MCQ 77 vs 77). Rifare voto, verifica, escalation e fixloop su math, lcb e lavori dove il modello base sbaglia.",
+  "stato": "pianificato",
+  "fonte": "risultato Agents-A1-4B 9/11",
+  "atteso": "primo guadagno misurabile di una armatura"
+ },
+ {
+  "id": "S3",
+  "cat": "Modelli",
+  "titolo": "Bolt 74B-A9B, Flint 40B, 27B IQ2_XXS, LFM2.5",
+  "descr": "Candidati dal canale NoCodeAbode, provati con llama.cpp b12141 su 16 GB di RAM e Suite S.",
+  "stato": "in coda",
+  "fonte": "YouTube NoCodeAbode",
+  "atteso": "Bolt 30 t/s se la RAM regge; Flint 53 t/s"
+ }
+]

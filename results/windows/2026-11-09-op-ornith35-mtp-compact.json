@@ -1,0 +1,63 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-op-ornith35-mtp-compact",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "speculative",
+ "status": "ok",
+ "title": "op-ornith35-mtp-compact",
+ "reference": false,
+ "model": {
+  "name": "Ornith-1.5-35B-A3B-APEX-MTP-GGUF",
+  "repo": "mudler/Ornith-1.5-35B-A3B-APEX-MTP-GGUF",
+  "file": "Ornith-1.5-35B-A3B-APEX-MTP-Compact.gguf",
+  "quant": null,
+  "size_gb": 17.4
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "--spec-type",
+   "draft-mtp",
+   "--spec-draft-n-max",
+   "2"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "speed-4-prompts",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 39.5,
+  "tps_media": 35.7,
+  "load_s": 22.6,
+  "tps_by_type": {
+   "codice": 35.0,
+   "storia": 27.4,
+   "ragionamento": 38.8,
+   "json": 41.6
+  },
+  "draft_acceptance_by_type": {
+   "codice": 44.0,
+   "storia": 20.4,
+   "ragionamento": 51.5,
+   "json": 60.6
+  },
+  "draft_acceptance_pct": 44.0
+ },
+ "notes": "Muro della RAM: 17.4 GB su 12 VRAM + 16 RAM",
+ "tags": [
+  "speculative"
+ ],
+ "summary": "39.5 t/s a un flusso, 35.7 t/s medi su 4 tipi di prompt, accettazione drafter sul codice 44.0%."
+}

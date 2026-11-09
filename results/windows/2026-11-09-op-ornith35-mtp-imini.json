@@ -1,0 +1,64 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-op-ornith35-mtp-imini",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "speculative",
+ "status": "ok",
+ "title": "op-ornith35-mtp-imini",
+ "reference": false,
+ "model": {
+  "name": "Ornith-1.5-35B-A3B-APEX-MTP-GGUF",
+  "repo": "mudler/Ornith-1.5-35B-A3B-APEX-MTP-GGUF",
+  "file": "Ornith-1.5-35B-A3B-APEX-MTP-I-Mini.gguf",
+  "quant": null,
+  "size_gb": 14.4
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "--spec-type",
+   "draft-mtp",
+   "--spec-draft-n-max",
+   "2"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "speed-4-prompts",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 43.6,
+  "tps_media": 38.5,
+  "needle_64k": 1,
+  "load_s": 19.1,
+  "tps_by_type": {
+   "codice": 39.7,
+   "storia": 29.2,
+   "ragionamento": 43.0,
+   "json": 42.3
+  },
+  "draft_acceptance_by_type": {
+   "codice": 47.9,
+   "storia": 19.3,
+   "ragionamento": 53.5,
+   "json": 52.2
+  },
+  "draft_acceptance_pct": 47.9
+ },
+ "notes": "MTP piu lento del no-MTP (38,5 vs 43,9 t/s medi) con accettazione 48%. Ornith-1.5-35B-A3B APEX I-Mini 14.4 GB con testa MTP n=2",
+ "tags": [
+  "speculative"
+ ],
+ "summary": "43.6 t/s a un flusso, 38.5 t/s medi su 4 tipi di prompt, accettazione drafter sul codice 47.9%. MTP piu lento del no-MTP (38,5 vs 43,9 t/s medi) con accettazione 48%."
+}

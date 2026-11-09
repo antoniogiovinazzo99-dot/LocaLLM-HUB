@@ -1,0 +1,73 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-sp-27b-xxs-dflash2",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "speculative",
+ "status": "ok",
+ "title": "sp-27b-xxs-dflash2",
+ "reference": false,
+ "model": {
+  "name": "Qwen3.8-27B-GGUF",
+  "repo": "unsloth/Qwen3.8-27B-GGUF",
+  "file": "Qwen3.8-27B-UD-IQ2_XXS.gguf",
+  "quant": "UD-IQ2_XXS",
+  "size_gb": 7.3
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0",
+   "-c",
+   "8192",
+   "--spec-type",
+   "draft-dflash",
+   "-md",
+   "<PATH>/Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
+   "-ngld",
+   "99",
+   "--spec-draft-n-max",
+   "7"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "speed-4-prompts",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 32.3,
+  "tps_media": 33.0,
+  "load_s": 9.6,
+  "tps_by_type": {
+   "codice": 25.6,
+   "storia": 17.0,
+   "ragionamento": 42.3,
+   "json": 47.0
+  },
+  "draft_acceptance_by_type": {
+   "codice": 37.8,
+   "storia": 20.0,
+   "ragionamento": 72.4,
+   "json": 82.2
+  },
+  "draft_acceptance_pct": 37.8
+ },
+ "notes": "DFlash2 su IQ2_XXS, ctx 8K, drafter Q4: +63% rispetto al base (33,0 vs 20,2 t/s). Sul codice resta lento (25,6) perche l accettazione cala. + drafter DFlash2 Q4",
+ "tags": [
+  "speculative"
+ ],
+ "summary": "32.3 t/s a un flusso, 33.0 t/s medi su 4 tipi di prompt, accettazione drafter sul codice 37.8%. DFlash2 su IQ2_XXS, ctx 8K, drafter Q4: +63% rispetto al base (33,0 vs 20,2 t/s). Sul codice resta lento (25,6) perche l accettazione cala."
+}

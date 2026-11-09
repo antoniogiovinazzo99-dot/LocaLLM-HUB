@@ -1,0 +1,97 @@
+{
+ "schema": 1,
+ "id": "2026-11-08-agents-a1-4b-arm",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-08",
+ "category": "armature",
+ "status": "ok",
+ "title": "agents-a1-4b-arm",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-4B-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-4B-Q4_K_M-GGUF",
+  "file": "Agents-A1-4B-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 2.7
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": null,
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "armature-math+mcq",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 74.5,
+  "decode_tps_4": 35.0,
+  "prompt_tps": 482.2,
+  "mmlu": 67.0,
+  "arc": 87.0,
+  "gsm": 95.0,
+  "code12": 41.7,
+  "humaneval": 76.8,
+  "q_medio": 72.7,
+  "invented_words_pct": 0.37,
+  "needle_64k": 1,
+  "load_s": 3.5,
+  "armature": {
+   "sc5": {
+    "acc": 96.0,
+    "n": 100,
+    "min": 9.7
+   },
+   "pal": {
+    "acc": 83.0,
+    "n": 100,
+    "min": 1.3
+   },
+   "pal_fallback": {
+    "acc": 85.0,
+    "n": 100,
+    "min": 1.2
+   },
+   "pal_sc3": {
+    "acc": 84.0,
+    "n": 100,
+    "min": 3.4
+   },
+   "verify": {
+    "acc": 96.0,
+    "n": 100,
+    "min": 4.8
+   },
+   "gated": {
+    "acc": 96.0,
+    "n": 100,
+    "min": 6.5
+   },
+   "mcq_sc5": {
+    "acc": 77.0,
+    "n": 200,
+    "min": 2.4
+   },
+   "mcq_gated": {
+    "acc": 77.5,
+    "n": 200,
+    "min": 2.1
+   },
+   "fixloop": {
+    "acc": 41.7,
+    "n": 12,
+    "min": 1.4
+   }
+  }
+ },
+ "notes": "Con armatura peggiora: 72,7 vs 77,6 della base, il codice scende da 58 a 42.",
+ "tags": [],
+ "summary": "Qualita tiny 72.7, 74.5 t/s a un flusso, armature: migliore sc5 96.0%. Con armatura peggiora: 72,7 vs 77,6 della base, il codice scende da 58 a 42."
+}

@@ -1,0 +1,67 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-op-flashnext-p15",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "quality-suite-s",
+ "status": "ok",
+ "title": "op-flashnext-p15",
+ "reference": false,
+ "model": {
+  "name": "op-flashnext-p15",
+  "repo": null,
+  "file": null,
+  "quant": null,
+  "size_gb": null
+ },
+ "engine": {
+  "name": "strata",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "suite-s+agente-mini",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 47.0,
+  "decode_tps_4": 53.8,
+  "prompt_tps": 29.7,
+  "mmlu": 83.3,
+  "arc": 100.0,
+  "gsm": 45.0,
+  "code12": 83.3,
+  "q_medio": 77.9,
+  "invented_words_pct": 1.91,
+  "load_s": 30.3,
+  "indice_uso": 61.0,
+  "math": 0.0,
+  "bbh": 100.0,
+  "hep": 100.0,
+  "lcb": 50.0,
+  "lavori": 97.5,
+  "lungo": 0.0,
+  "suite_s_samples": {
+   "math": "7/30",
+   "bbh": "5/54",
+   "hep": "6/30",
+   "lcb": "2/8",
+   "lavori": "7/8",
+   "lungo": "1/1"
+  },
+  "agente_mini": 66.7,
+  "agente_parziale": 66.7,
+  "agente_turni_medi": 5.8,
+  "agente_chiamate_non_valide": 0
+ },
+ "notes": "Lungo contesto (lungo) a 0 per tutti i modelli: sospetto bug del test (max_tokens=40, 1 campione), non fidarsi di quella colonna. Flash-Next modalita veloce (prior 1.5) sulla stessa Fabbrica: costo qualita vs velocita",
+ "tags": [],
+ "summary": "Qualita tiny 77.9, indice d uso suite s 61.0, agente-mini 66.7%, 47.0 t/s a un flusso."
+}

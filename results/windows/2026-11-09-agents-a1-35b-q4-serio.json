@@ -1,0 +1,67 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-agents-a1-35b-q4-serio",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "quality-suite-s",
+ "status": "ok",
+ "title": "agents-a1-35b-q4-serio",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+  "file": "Agents-A1-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 21.2
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "suite-s+agente-mini",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 36.6,
+  "decode_tps_4": 10.6,
+  "prompt_tps": 38.8,
+  "mmlu": 88.4,
+  "arc": 97.6,
+  "gsm": 97.5,
+  "code12": 91.7,
+  "q_medio": 93.8,
+  "invented_words_pct": 0.57,
+  "load_s": 19.1,
+  "indice_uso": 69.1,
+  "math": 86.7,
+  "bbh": 82.8,
+  "hep": 93.3,
+  "lcb": 50.0,
+  "lavori": 82.5,
+  "lungo": 0.0,
+  "suite_s_samples": {
+   "math": "30/30",
+   "bbh": "29/54",
+   "hep": "30/30",
+   "lcb": "4/8",
+   "lavori": "8/8",
+   "lungo": "1/1"
+  },
+  "agente_mini": 83.3,
+  "agente_parziale": 83.3,
+  "agente_turni_medi": 8.2,
+  "agente_chiamate_non_valide": 0
+ },
+ "notes": "Pari a Flash-Next sulla Suite S (69,1 vs 68,4) e sull agente (83%), alla stessa velocita. Intelligenza pari, non meglio. Lungo contesto (lungo) a 0 per tutti i modelli: sospetto bug del test (max_tokens=40, 1 campione), non fidarsi di quella colonna.",
+ "tags": [],
+ "summary": "Qualita tiny 93.8, indice d uso suite s 69.1, agente-mini 83.3%, 36.6 t/s a un flusso. Pari a Flash-Next sulla Suite S (69,1 vs 68,4) e sull agente (83%), alla stessa velocita. Intelligenza pari, non meglio."
+}

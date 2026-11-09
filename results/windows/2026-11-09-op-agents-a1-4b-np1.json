@@ -1,0 +1,50 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-op-agents-a1-4b-np1",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "speed",
+ "status": "ok",
+ "title": "op-agents-a1-4b-np1",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-4B-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-4B-Q4_K_M-GGUF",
+  "file": "Agents-A1-4B-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 2.7
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "speed-4-prompts",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 76.8,
+  "tps_media": 76.8,
+  "load_s": 8.1,
+  "tps_by_type": {
+   "codice": 76.9,
+   "storia": 76.7,
+   "ragionamento": 76.9,
+   "json": 76.7
+  }
+ },
+ "notes": "Rumore: stesso modello a 1 slot (determinismo) per separare rumore di batching da rumore di campionamento",
+ "tags": [],
+ "summary": "76.8 t/s a un flusso, 76.8 t/s medi su 4 tipi di prompt."
+}

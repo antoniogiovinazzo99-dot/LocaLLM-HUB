@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "id": "2026-11-10-qwen3.8-27b-q4-base-esempio",
+  "platform": "mac",
+  "author": "Pietro",
+  "date": "2026-11-10",
+  "category": "speed",
+  "status": "ok",
+  "title": "Qwen3.8-27B Q4 base (esempio)",
+  "reference": false,
+  "model": { "name": "Qwen3.8-27B", "repo": "unsloth/Qwen3.8-27B-GGUF", "file": "Qwen3.8-27B-Q4_K_M.gguf", "quant": "Q4_K_M", "size_gb": 16.0 },
+  "engine": { "name": "llama.cpp", "version": "b12141", "args": ["-c", "8192", "-ngl", "99"] },
+  "hardware": { "chip": "Apple M3 Max", "ram_gb": 64, "os": "macOS 15" },
+  "benchmark": { "suite": "core-speed", "version": 1, "harness": "tools/speedtest.py" },
+  "metrics": { "decode_tps_1": 24.0, "tps_media": 24.5, "tps_by_type": { "codice": 24.1, "storia": 24.9, "ragionamento": 24.6, "json": 24.4 } },
+  "notes": "Cosa e andato storto, cosa ti ha sorpreso, cosa rifaresti. Qui il contesto che i numeri non dicono.",
+  "tags": [],
+  "summary": "1-3 frasi: cosa dice questo test. E il testo che compare nella card del sito e che gli agenti leggono per primo."
+}

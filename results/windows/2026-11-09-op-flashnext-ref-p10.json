@@ -1,0 +1,69 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-op-flashnext-ref-p10",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "quality-suite-s",
+ "status": "ok",
+ "title": "op-flashnext-ref-p10",
+ "reference": true,
+ "model": {
+  "name": "op-flashnext-ref-p10",
+  "repo": null,
+  "file": null,
+  "quant": null,
+  "size_gb": null
+ },
+ "engine": {
+  "name": "strata",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "suite-s+agente-mini",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 31.1,
+  "decode_tps_4": 29.0,
+  "prompt_tps": 16.6,
+  "mmlu": 71.4,
+  "arc": 100.0,
+  "gsm": 100.0,
+  "code12": 91.7,
+  "q_medio": 90.8,
+  "invented_words_pct": 0.56,
+  "load_s": 26.7,
+  "indice_uso": 64.9,
+  "math": 100.0,
+  "bbh": 66.7,
+  "hep": 100.0,
+  "lcb": 0.0,
+  "lavori": 94.1,
+  "lungo": 0.0,
+  "suite_s_samples": {
+   "math": "3/30",
+   "bbh": "3/54",
+   "hep": "1/30",
+   "lcb": "1/8",
+   "lavori": "4/8",
+   "lungo": "1/1"
+  },
+  "agente_mini": 75.0,
+  "agente_parziale": 86.1,
+  "agente_turni_medi": 4.5,
+  "agente_chiamate_non_valide": 0
+ },
+ "notes": "Primo giro del riferimento con budget basso: molte parti con 3-12 campioni, poco affidabile. Vedi op-flashnext-ref-serio2. Lungo contesto (lungo) a 0 per tutti i modelli: sospetto bug del test (max_tokens=40, 1 campione), non fidarsi di quella colonna. Riferimento Flash-Next senza --kv-resident e con file prior proprio (1.0), riproducibile",
+ "tags": [
+  "reference"
+ ],
+ "summary": "Qualita tiny 90.8, indice d uso suite s 64.9, agente-mini 75.0%, 31.1 t/s a un flusso. Primo giro del riferimento con budget basso: molte parti con 3-12 campioni, poco affidabile. Vedi op-flashnext-ref-serio2."
+}

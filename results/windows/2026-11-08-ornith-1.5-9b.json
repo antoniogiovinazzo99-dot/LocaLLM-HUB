@@ -1,0 +1,50 @@
+{
+ "schema": 1,
+ "id": "2026-11-08-ornith-1.5-9b",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-08",
+ "category": "quality-tiny",
+ "status": "ok",
+ "title": "ornith-1.5-9b",
+ "reference": false,
+ "model": {
+  "name": "Ornith-1.5-9B-GGUF",
+  "repo": "ornith-ai/Ornith-1.5-9B-GGUF",
+  "file": "Ornith-1.5-9B-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 5.8
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": null,
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 51.4,
+  "decode_tps_4": 25.3,
+  "prompt_tps": 524.4,
+  "mmlu": 67.0,
+  "arc": 92.0,
+  "gsm": 92.0,
+  "code12": 58.3,
+  "humaneval": 78.0,
+  "q_medio": 77.3,
+  "invented_words_pct": 0.71,
+  "needle_64k": 1,
+  "load_s": 6.5
+ },
+ "notes": "",
+ "tags": [],
+ "summary": "Qualita tiny 77.3, 51.4 t/s a un flusso."
+}

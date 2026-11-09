@@ -1,0 +1,50 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-ornith-1.5-35b-a3b",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "quality-tiny",
+ "status": "ok",
+ "title": "ornith-1.5-35b-a3b",
+ "reference": false,
+ "model": {
+  "name": "Ornith-1.5-35B-A3B-GGUF",
+  "repo": "ornith-ai/Ornith-1.5-35B-A3B-GGUF",
+  "file": "Ornith-1.5-35B-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 21.7
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 34.6,
+  "decode_tps_4": 9.8,
+  "prompt_tps": 63.6,
+  "mmlu": 75.0,
+  "arc": 97.3,
+  "gsm": 97.4,
+  "code12": 91.7,
+  "humaneval": 89.0,
+  "q_medio": 90.4,
+  "invented_words_pct": 1.1,
+  "needle_64k": 1,
+  "load_s": 19.1
+ },
+ "notes": "",
+ "tags": [],
+ "summary": "Qualita tiny 90.4, 34.6 t/s a un flusso."
+}

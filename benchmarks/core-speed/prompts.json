@@ -1,0 +1,15 @@
+{
+  "name": "core-speed",
+  "version": 1,
+  "description": "4 prompt tipo, 300 token massimi, temperatura 0, seed 1 e 2. Una misura conta solo se il modello genera almeno 40 token. Serve per confrontare velocita (e accettazione del drafter) tra macchine diverse con lo stesso metro.",
+  "max_tokens": 300,
+  "temperature": 0,
+  "seeds": [1, 2],
+  "min_tokens": 40,
+  "prompts": {
+    "codice": "Write a Python module with a class Graph (add_edge, bfs, dijkstra) and full docstrings.",
+    "storia": "Write a vivid 300 word story about a lighthouse keeper who finds a message in a bottle.",
+    "ragionamento": "A train leaves at 9:10 at 80 km/h, another at 9:40 at 100 km/h on the same track. When does the second catch up? Show every step.",
+    "json": "Return a JSON array of 8 objects with keys id, name, email, tags (array of 3 strings). JSON only."
+  }
+}

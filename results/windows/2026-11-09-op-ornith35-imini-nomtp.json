@@ -1,0 +1,50 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-op-ornith35-imini-nomtp",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "speed",
+ "status": "ok",
+ "title": "op-ornith35-imini-nomtp",
+ "reference": false,
+ "model": {
+  "name": "Ornith-1.5-35B-A3B-APEX-MTP-GGUF",
+  "repo": "mudler/Ornith-1.5-35B-A3B-APEX-MTP-GGUF",
+  "file": "Ornith-1.5-35B-A3B-APEX-MTP-I-Mini.gguf",
+  "quant": null,
+  "size_gb": 14.4
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "speed-4-prompts",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 44.6,
+  "tps_media": 43.9,
+  "load_s": 19.1,
+  "tps_by_type": {
+   "codice": 43.7,
+   "storia": 44.0,
+   "ragionamento": 44.0,
+   "json": 43.9
+  }
+ },
+ "notes": "Controllo appaiato: stesso file senza MTP",
+ "tags": [],
+ "summary": "44.6 t/s a un flusso, 43.9 t/s medi su 4 tipi di prompt."
+}

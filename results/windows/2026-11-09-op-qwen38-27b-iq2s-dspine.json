@@ -1,0 +1,54 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-op-qwen38-27b-iq2s-dspine",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "quality-tiny",
+ "status": "failed",
+ "title": "op-qwen38-27b-iq2s-dspine",
+ "reference": false,
+ "model": {
+  "name": "Qwen3.8-27B-GGUF",
+  "repo": "unsloth/Qwen3.8-27B-GGUF",
+  "file": "Qwen3.8-27B-UD-IQ2_S.gguf",
+  "quant": "UD-IQ2_S",
+  "size_gb": 8.4
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0",
+   "--spec-type",
+   "draft-dflash",
+   "-md",
+   "<PATH>/Qwen3.8-27B-DSpine-b16-Q8_0.gguf",
+   "-ngld",
+   "99",
+   "--spec-draft-n-max",
+   "16"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {},
+ "notes": "FALLITO: connessione chiusa dal server del fork llama-dspine. Primo tentativo, IQ2_S + drafter Q8 + contesto 32K saturava la VRAM. DSpine (Tencent, blocco 16) su 27B in VRAM, fork Ajay9o9 compilato in llama-dspine; stesso target di base e dflash2",
+ "tags": [
+  "speculative"
+ ],
+ "summary": "Test fallito: [WinError 10054] Connessione in corso interrotta forzatamente dall'host remoto. FALLITO: connessione chiusa dal server del fork llama-dspine. Primo tentativo, IQ2_S + drafter Q8 + contesto 32K saturava la VRAM."
+}

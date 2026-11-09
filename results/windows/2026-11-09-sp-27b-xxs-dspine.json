@@ -1,0 +1,56 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-sp-27b-xxs-dspine",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "quality-tiny",
+ "status": "failed",
+ "title": "sp-27b-xxs-dspine",
+ "reference": false,
+ "model": {
+  "name": "Qwen3.8-27B-GGUF",
+  "repo": "unsloth/Qwen3.8-27B-GGUF",
+  "file": "Qwen3.8-27B-UD-IQ2_XXS.gguf",
+  "quant": "UD-IQ2_XXS",
+  "size_gb": 7.3
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0",
+   "-c",
+   "8192",
+   "--spec-type",
+   "draft-dflash",
+   "-md",
+   "<PATH>/Qwen3.8-27B-DSpine-b16-Q4_K_M.gguf",
+   "-ngld",
+   "99",
+   "--spec-draft-n-max",
+   "15"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {},
+ "notes": "FALLITO: il server del fork llama-dspine si pianta (timeout dopo ~2 ore). Nessun numero su DSpine. + drafter DSpine Q4, fork compilato",
+ "tags": [
+  "speculative"
+ ],
+ "summary": "Test fallito: timed out. FALLITO: il server del fork llama-dspine si pianta (timeout dopo ~2 ore). Nessun numero su DSpine."
+}
