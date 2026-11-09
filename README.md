@@ -39,7 +39,7 @@ Windows e Mac scrivono in cartelle diverse: **nessun conflitto di merge**.
 - Attenzione: la colonna *lungo contesto* della Suite S era 0 per un bug del runner (corretto, da rimisurare): vedi [FINDINGS](docs/FINDINGS.md) e il capitolo *Quanto fidarsi* di [BENCHMARKS](docs/BENCHMARKS.md#quanto-fidarsi-audit-del-9112026-lato-windows).
 - 33 esperimenti Windows registrati: velocita, tiny, Suite S, agente-mini, armature, speculative decoding, 3 fallimenti documentati.
 - Intelligenza pari a Flash-Next raggiunta con Agents-A1-35B Q4 (indice d'uso 69,1 vs 68,4), ma ancora alla stessa velocita (~36 t/s): il passo avanti e la velocita.
-- Il Mac non ha ancora risultati. Primo passo: `core-speed` su un modello comune.
+- Mac (M4 16 GB): 31 esperimenti. Agents-A1 ONYX-224r a 256K tutto in GPU (28,3 t/s), 51 t/s a 64K con DFlash + ngram-mod; Flash Next su Strata fino a 512K. Dettagli in [FINDINGS](docs/FINDINGS.md#lato-mac-macbook-pro-m4-16-gb-aggiornato-al-9-novembre-2026).
 - Dettagli e trappole gia trovate: [docs/FINDINGS.md](docs/FINDINGS.md).
 
 ## Progetti e tecniche

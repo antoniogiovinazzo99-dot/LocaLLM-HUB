@@ -24,6 +24,16 @@ Verificato = misurato con numeri nei file `results/windows/`. Il resto e dichiar
 - Il riferimento Flash-Next del primo giro (`op-flashnext-ref-p10`) ha campioni minuscoli (3-12 per parte): usa `op-flashnext-ref-serio2`.
 - Con 16 GB di RAM i file sopra ~14 GB paginano dal disco e crollano di velocita.
 
+## Lato Mac (MacBook Pro M4 16 GB, aggiornato al 9 novembre 2026)
+Verificato = misurato con numeri nei file `results/mac/`.
+- **Velocita `core-speed`:** Agents-A1 ONYX-224r (10,2 GB, 256K tutto in GPU) **28,3 t/s**; con **ngram-mod** 33,8 (+19%, nessun modello extra); con **DFlash z-lab + ngram-mod a 64K 51,0 t/s** (mediana 41,2, accettazione 72,6%) contro 26,5 della base a 64K. Il drafter oltre ~64-96K esaurisce la memoria GPU. ngram-simple non da nulla.
+- **Il contesto allocato pesa:** ONYX-240 (11,2 GB) fa 25,8 t/s a 32K e 16,6 a 128K: vicino al limite della memoria GPU (circa 12,1 GB utilizzabili su 16) la velocita crolla.
+- **Flash Next su Strata** (fork locale con streaming degli expert dall'SSD): 17,8 t/s a 256K col protocollo interno e 98,3% su `mac-bench2`; su `core-speed` 10,8 t/s. Arriva a 512K (13 t/s). DFlash2 accetta fino all'87% ma resta piu lento: la GPU M4 da 10 core e gia al limite.
+- **Qualita (`mac-duro`, 59-74 domande, MATH-500/HumanEval+/MBPP+/MMLU-Pro):** ONYX-240 74,3% contro 62,2% di IQ2_S alla stessa memoria. Il **cervello** (ragionamento solo per calcolo e conoscenza) +8,5 punti su ONYX-240 e +5,1 su ONYX-224r. Ragionamento ovunque -7 (MBPP 53→13%).
+- **Potatura degli expert:** utile per far spazio alla KV (224 su 256 expert ≈ -5 punti), ma senza testi di conoscenza nella calibrazione la conoscenza crolla (100→37,5%), e 176 expert rompono il modello (18,6%). **512K con A1 su 16 GB: non conviene.**
+- **256K reali:** ONYX-224r ritrova 5/5 fatti in 240K token (n=1 per profondita); leggere 240K richiede circa 56 minuti la prima volta.
+- **Trappola Mac:** i token di ragionamento del template contano nei t/s di `core-speed` (A1: 28 t/s contro 37 su risposte brevi senza ragionamento).
+
 ## Idee non ancora provate
 Vedi [`data/ideas.json`](../data/ideas.json) (35 voci). Priorita Windows: drafter/MTP su Agents-A1-35B Q4, cascata 4B -> 35B, knowledge pack (KV precalcolata), corretto test del lungo contesto, harness reali, QLoRA su 4B-9B per un compito stretto.
 
