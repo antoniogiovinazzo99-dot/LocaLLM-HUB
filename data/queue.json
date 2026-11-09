@@ -4,16 +4,16 @@
  "items": [
   {
    "order": 1,
-   "name": "a1-35b-q4-harness-claude",
-   "kind": "agente reale (claude)",
-   "why": "6 compiti agente-mini guidati da Claude Code (protocollo Anthropic)",
+   "name": "a1-35b-q4-harness-opencode2",
+   "kind": "agente reale (opencode)",
+   "why": "opencode con --standalone (la prima prova falliva: servizio in background che ignora la config)",
    "repo": "InternScience/Agents-A1-Q4_K_M-GGUF"
   },
   {
    "order": 2,
-   "name": "a1-35b-q4-harness-opencode2",
-   "kind": "agente reale (opencode)",
-   "why": "opencode con --standalone (la prima prova falliva: servizio in background che ignora la config)",
+   "name": "a1-35b-q4-harness-claude2",
+   "kind": "agente reale (claude)",
+   "why": "Claude Code come agente reale (riprova: la prima volta fallita per spazio disco dopo un riavvio del runner)",
    "repo": "InternScience/Agents-A1-Q4_K_M-GGUF"
   },
   {
@@ -39,34 +39,48 @@
   },
   {
    "order": 6,
+   "name": "p-a1-35b-q4",
+   "kind": "tiny (~10 min, saturo)",
+   "why": "Benchmark di Pietro (duro n=8 per set, agente, lungo 64K) su A1-35B Q4: confrontabile con i suoi numeri del Mac",
+   "repo": "InternScience/Agents-A1-Q4_K_M-GGUF"
+  },
+  {
+   "order": 7,
+   "name": "p-flashnext-ref",
+   "kind": "tiny (~10 min, saturo)",
+   "why": "Benchmark di Pietro sul riferimento Flash-Next (Strata), stessi parametri di p-a1-35b-q4",
+   "repo": null
+  },
+  {
+   "order": 8,
    "name": "qwen3.8-27b",
    "kind": "tiny (~10 min, saturo)",
    "why": "",
    "repo": "byteshape/Qwen3.8-27B-GGUF"
   },
   {
-   "order": 7,
+   "order": 9,
    "name": "qwen3.8-35b-a3b-distill",
    "kind": "tiny (~10 min, saturo)",
    "why": "",
    "repo": "empero-ai/Qwen3.8-35B-A3B-Distill-GGUF"
   },
   {
-   "order": 8,
+   "order": 10,
    "name": "lfm2.5-24b-a2b-turbo-brilliance-50x-neo-",
    "kind": "tiny (~10 min, saturo)",
    "why": "",
    "repo": "DavidAU/LFM2.5-24B-A2B-Turbo-Brilliance-50X-NEO-MAX-Imatrix-GGUF"
   },
   {
-   "order": 9,
+   "order": 11,
    "name": "laguna-xs-2.1-apex",
    "kind": "tiny (~10 min, saturo)",
    "why": "",
    "repo": "mudler/Laguna-XS-2.1-APEX-GGUF"
   },
   {
-   "order": 10,
+   "order": 12,
    "name": "qwen3.5-9b-kimi-k3-distilled",
    "kind": "tiny (~10 min, saturo)",
    "why": "",
