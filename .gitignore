@@ -4,4 +4,4 @@ __pycache__/
 *.gguf
 *.log
 benchmarks/mac-pietro/*-risultati.jsonl
-benchmarks/mac-pietro/dati/
+benchmarks/mac-pietro/dati
