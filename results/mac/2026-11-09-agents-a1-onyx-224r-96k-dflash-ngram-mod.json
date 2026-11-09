@@ -1,0 +1,80 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-agents-a1-onyx-224r-96k-dflash-ngram-mod",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-09",
+ "category": "speculative",
+ "status": "ok",
+ "title": "Agents-A1 ONYX-224r 96K DFlash+ngram-mod",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-ONYX-224r",
+  "repo": null,
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, 224 expert",
+  "size_gb": 10.21,
+  "drafter": "z-lab Qwen3.5-35B-A3B-DFlash (GGUF Q4_K_M, Anbeeld)"
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "-c",
+   "98304",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--spec-type",
+   "draft-dflash,ngram-mod",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16.0,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "core-speed",
+  "version": 1,
+  "harness": "tools/speedtest.py"
+ },
+ "metrics": {
+  "decode_tps_1": 25.3,
+  "tps_media": 34.2,
+  "tps_by_type": {
+   "codice": 18.8,
+   "storia": 18.5,
+   "ragionamento": 53.8,
+   "json": 45.8
+  },
+  "tps_method": "timings",
+  "draft_acceptance_pct": 72.6
+ },
+ "notes": "DFlash z-lab Qwen3.5-35B-A3B Q4_K_M insieme a ngram-mod, contesto 96K (128K va oltre la memoria GPU con il drafter). Ragionamento del template attivo. Drafter: z-lab Qwen3.5-35B-A3B-DFlash, GGUF Q4_K_M di Anbeeld (0,24 GB). Progetti usati: llama.cpp b12038 (Metal), Agents-A1 (famiglia Qwen3.5-35B-A3B), quantizzazione ONYX MoE-aware, potatura stile REAP.",
+ "tags": [
+  "agents-a1",
+  "onyx",
+  "core-speed",
+  "dflash",
+  "ngram"
+ ],
+ "summary": "DFlash + ngram-mod a 96K: 34,2 t/s medi ma codice e storia scendono a 18-19 t/s. Il drafter piu la cache a 96K arrivano al limite della memoria GPU: il punto giusto e 64K."
+}

@@ -1,0 +1,58 @@
+{
+ "schema": 1,
+ "id": "2026-11-08-onyx224r-256k-qualita-duro",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-08",
+ "category": "other",
+ "status": "ok",
+ "title": "ONYX-224r (256K): qualita diretta e con cervello",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-224r.gguf",
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-c",
+   "32768",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "--parallel",
+   "4",
+   "--jinja"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "mac-duro",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/duro.py (MATH-500 L4-5, HumanEval+, MBPP+, MMLU-Pro)"
+ },
+ "metrics": {
+  "duro_pct": 59.3,
+  "duro_cervello_pct": 64.4,
+  "n": 59
+ },
+ "summary": "ONYX potato a 224 expert e riquantizzato per entrare a 256K tutto sulla GPU fa 59,3% diretto e 64,4% con il cervello: circa 5 punti sotto ONYX-240, che pero a 256K non entra in memoria.",
+ "notes": "N4. Ricetta: prune_experts.py 256→224 + imatrix ritagliato (prune_imatrix.py) + expert Q3_K di 10 strati riquantizzati a IQ3_XXS con llama-quantize --tensor-type-file. Progetti usati: llama.cpp b12038 (Metal), Agents-A1 (famiglia Qwen3.5-35B-A3B), quantizzazioni ONYX/APEX MoE-aware, potatura degli expert stile REAP (ICLR 2026) con imatrix di llama.cpp calibrato anche su Wikipedia.",
+ "tags": [
+  "agents-a1",
+  "onyx",
+  "256k"
+ ]
+}

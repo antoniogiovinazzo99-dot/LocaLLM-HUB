@@ -1,0 +1,70 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-agents-a1-onyx-224r-256k-base",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-09",
+ "category": "speed",
+ "status": "ok",
+ "title": "Agents-A1 ONYX-224r 256K base",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-ONYX-224r",
+  "repo": null,
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "-c",
+   "262144",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16.0,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "core-speed",
+  "version": 1,
+  "harness": "tools/speedtest.py"
+ },
+ "metrics": {
+  "decode_tps_1": 28.3,
+  "tps_media": 28.2,
+  "tps_by_type": {
+   "codice": 28.3,
+   "storia": 28.5,
+   "ragionamento": 28.3,
+   "json": 27.7
+  },
+  "tps_method": "timings"
+ },
+ "notes": "Configurazione d'uso quotidiano (a1-locale): ONYX potato a 224 expert su 256, expert di 10 strati Q3_K riquantizzati a IQ3_XXS. Tutto su GPU a 256K. Ragionamento del template attivo: i token di ragionamento contano nei t/s. Il mio protocollo interno dava 37 t/s su risposte brevi senza ragionamento: core-speed include i token di ragionamento del template e 300 token, quindi misura di meno. In OMP (11K di contesto) 26-29 t/s. Progetti usati: llama.cpp b12038 (Metal), Agents-A1 (famiglia Qwen3.5-35B-A3B), quantizzazione ONYX MoE-aware, potatura stile REAP.",
+ "tags": [
+  "agents-a1",
+  "onyx",
+  "core-speed"
+ ],
+ "summary": "Agents-A1 ONYX-224r a 256K, tutto sulla GPU: 28,3 t/s medi su core-speed, uguali sui 4 tipi di prompt."
+}

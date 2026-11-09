@@ -1,0 +1,69 @@
+{
+ "schema": 1,
+ "id": "2026-11-08-onyx224r-256k-contesto-lungo",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-08",
+ "category": "other",
+ "status": "ok",
+ "title": "ONYX-224r: documento da 240K token",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-224r.gguf",
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-c",
+   "262144",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "mac-lungo",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/lungo.py"
+ },
+ "metrics": {
+  "needle_64k": 1,
+  "richiamo_240k": "5/5",
+  "prompt_tps_64k": 188,
+  "prompt_tps_128k": 89,
+  "prompt_tps_200k": 55,
+  "prompt_tps_240k": 41,
+  "decode_tps_240k": 8.8
+ },
+ "summary": "Su un registro di magazzino da 240K token con 5 fatti nascosti a 5K-235K, ONYX-224r li ritrova tutti (2/2 a 64K, 3/3 a 128K, 4/4 a 200K, 5/5 a 240K). Lettura del prompt 188 t/s a 64K e 41 t/s a 240K (circa 56 minuti la prima volta), scrittura 8,8 t/s a 240K.",
+ "notes": "N5. Un solo campione per profondita (n=1): prova di funzionamento, non statistica. I fatti sono frasi isolate in un testo ripetitivo: piu facile di un vero documento. Il prefisso condiviso fa riusare la cache tra le domande. Progetti usati: llama.cpp b12038 (Metal), Agents-A1 (famiglia Qwen3.5-35B-A3B), quantizzazioni ONYX/APEX MoE-aware, potatura degli expert stile REAP (ICLR 2026) con imatrix di llama.cpp calibrato anche su Wikipedia.",
+ "tags": [
+  "agents-a1",
+  "onyx",
+  "256k",
+  "contesto-lungo"
+ ]
+}

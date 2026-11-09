@@ -1,0 +1,70 @@
+{
+ "schema": 1,
+ "id": "2026-11-07-a1-iq2s-armature-bench2",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-07",
+ "category": "armature",
+ "status": "ok",
+ "title": "Agents-A1 IQ2_S: strumenti, ragionamento, voto",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B",
+  "quant": "IQ2_S (i1)",
+  "size_gb": 11.0
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-c",
+   "131072",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "--jinja"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "mac-bench2",
+  "version": "2",
+  "harness": "benchmarks/mac-pietro/bench2.py (59 domande, 8 categorie)"
+ },
+ "metrics": {
+  "bench2_pct": 83.1,
+  "armature": {
+   "strumenti": {
+    "acc": 96.6,
+    "n": 59
+   },
+   "ragionamento": {
+    "acc": 74.6,
+    "n": 59
+   },
+   "voto3_strumenti": {
+    "acc": 98.3,
+    "n": 59
+   },
+   "strumenti_cheatsheet": {
+    "acc": 96.6,
+    "n": 59
+   }
+  }
+ },
+ "summary": "Su bench2 Agents-A1 IQ2_S passa da 83,1% (base, 3,6 s per domanda) a 96,6% con strumenti Python eseguiti (4,3 s) e 98,3% con voto a 3 + strumenti; il ragionamento invece lo peggiora (74,6%, 47 s per domanda) perche a 2 bit va in loop.",
+ "notes": "E142a, E151, E152, E154, E155b. Flash Next con strumenti: 98,3% in circa 25 s per domanda: A1 potenziato quasi alla pari a 6 volte la velocita. Base senza armatura sugli stessi 59 esempi accanto. Progetti usati: llama.cpp b12038 (Metal), Agents-A1 (famiglia Qwen3.5-35B-A3B), quantizzazioni ONYX/APEX MoE-aware, potatura degli expert stile REAP (ICLR 2026) con imatrix di llama.cpp calibrato anche su Wikipedia.",
+ "tags": [
+  "agents-a1",
+  "armature"
+ ]
+}

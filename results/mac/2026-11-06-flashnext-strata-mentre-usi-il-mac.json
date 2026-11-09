@@ -1,0 +1,57 @@
+{
+ "schema": 1,
+ "id": "2026-11-06-flashnext-strata-mentre-usi-il-mac",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-06",
+ "category": "other",
+ "status": "ok",
+ "title": "Flash Next su Strata, modalita usabile (cache 3,5 GB)",
+ "reference": false,
+ "model": {
+  "name": "Qwen3.8-Flash-Next",
+  "file": "Qwen3.8-Flash-Next-GSQ-RCO-Q2_0 (2 parti)",
+  "quant": "Q2_0",
+  "size_gb": 62
+ },
+ "engine": {
+  "name": "strata",
+  "version": "0.1.55 + fork locale m4-tail-skip (binario strata-learn)",
+  "args": [
+   "STRATA_METAL_TAIL_SKIP=1",
+   "STRATA_METAL_TAIL_SUB=1",
+   "STRATA_METAL_CUT_EVERY=4",
+   "STRATA_METAL_PREFETCH=12",
+   "STRATA_METAL_PREFETCH2=12",
+   "STRATA_METAL_PREFETCH3=12",
+   "STRATA_METAL_PROMPT_CHUNK=512",
+   "STRATA_METAL_KEEP_FREE_GB=2.5",
+   "STRATA_METAL_IO_THREADS=6"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "mac-bench2",
+  "version": "2",
+  "harness": "benchmarks/mac-pietro/bench2.py (59 domande, 8 categorie)"
+ },
+ "metrics": {
+  "decode_tps_1": 18.0,
+  "bench2_pct": 89.8,
+  "bench2_ragionamento_pct": 96.6,
+  "bench2_ragionamento_ripetizione_pct": 93.2,
+  "bench2_cache2.5_pct": 86.4,
+  "bench2_cache2.5_ragionamento_pct": 91.5
+ },
+ "summary": "Lasciando 2,5 GB a macOS (cache expert 3,5 GB) Flash Next resta a 18 t/s ma scende a 89,8% su bench2; con il ragionamento torna a 96,6% (ripetizione 93,2%, media circa 95%). Con 2,5 GB di cache: 86,4% senza e 91,5% con ragionamento.",
+ "notes": "E114, E118, E120, E123, E129. Il ragionamento compensa la cache piu piccola (piu expert sostituiti). Il voto a maggioranza non aggiunge nulla in questa modalita (E132: 94,9). Progetti usati: Strata (motore Metal con streaming degli expert dall'SSD) in un fork locale (tail skip, sostituzione degli expert mancanti da Prefetch-Steered Routing arXiv 2610.34721, lettura anticipata), Qwen3.8 Flash Next GSQ-RCO Q2_0.",
+ "tags": [
+  "flash-next",
+  "strata",
+  "usabilita"
+ ]
+}

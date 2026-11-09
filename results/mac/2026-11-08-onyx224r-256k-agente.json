@@ -1,0 +1,64 @@
+{
+ "schema": 1,
+ "id": "2026-11-08-onyx224r-256k-agente",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-08",
+ "category": "agent",
+ "status": "ok",
+ "title": "ONYX-224r a 256K: agente con chiamate di funzione",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-224r.gguf",
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-c",
+   "262144",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "mac-agente",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/agente.py"
+ },
+ "metrics": {
+  "agente_pct": 100,
+  "compiti": "12/12",
+  "s_compito": 8
+ },
+ "summary": "Su 12 compiti di gestione del lavoro personale (calendario, attivita, note, contatti, email simulate) con chiamate di funzione native ONYX-224r li completa tutti (12/12, circa 8 s per compito), controllando lo stato finale.",
+ "notes": "Suite diversa da agente-mini di Windows (6 compiti di codice con test nascosti): non confrontare. Compiti brevi: misura l'uso corretto degli strumenti, non la programmazione. Progetti usati: llama.cpp b12038 (Metal), Agents-A1 (famiglia Qwen3.5-35B-A3B), quantizzazioni ONYX/APEX MoE-aware, potatura degli expert stile REAP (ICLR 2026) con imatrix di llama.cpp calibrato anche su Wikipedia.",
+ "tags": [
+  "agents-a1",
+  "onyx",
+  "agente"
+ ]
+}

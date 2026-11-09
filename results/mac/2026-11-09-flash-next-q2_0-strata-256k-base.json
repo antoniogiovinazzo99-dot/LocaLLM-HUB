@@ -1,0 +1,69 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-flash-next-q2_0-strata-256k-base",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-09",
+ "category": "speed",
+ "status": "ok",
+ "title": "Flash Next Q2_0 Strata 256K base",
+ "reference": false,
+ "model": {
+  "name": "Qwen3.8-Flash-Next",
+  "repo": null,
+  "quant": "Q2_0",
+  "size_gb": 62.0,
+  "file": "Qwen3.8-Flash-Next-GSQ-RCO-Q2_0 (2 parti)"
+ },
+ "engine": {
+  "name": "strata",
+  "version": "0.1.55 + fork m4-tail-skip (strata-learn)",
+  "args": [
+   "STRATA_METAL_TAIL_SKIP=1",
+   "STRATA_METAL_TAIL_SUB=1",
+   "STRATA_METAL_CUT_EVERY=4",
+   "STRATA_METAL_PREFETCH=12",
+   "STRATA_METAL_PREFETCH2=12",
+   "STRATA_METAL_PREFETCH3=12",
+   "STRATA_METAL_PROMPT_CHUNK=512",
+   "STRATA_METAL_ARENA_GB=5.0",
+   "--suffix-draft",
+   "0",
+   "--max-context",
+   "262144",
+   "--mmap-experts",
+   "--expert-cache",
+   "64",
+   "--prefill",
+   "auto"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16.0,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "core-speed",
+  "version": 1,
+  "harness": "tools/speedtest.py"
+ },
+ "metrics": {
+  "decode_tps_1": 11.9,
+  "tps_media": 10.8,
+  "tps_by_type": {
+   "codice": 9.1,
+   "storia": 12.0,
+   "ragionamento": 11.9,
+   "json": 10.3
+  },
+  "tps_method": "timings"
+ },
+ "notes": "Il protocollo interno (strata_bench, cache gia calda dopo 3 giri, risposte senza ragionamento) dava 17,8 t/s: core-speed misura da cache fredda e include il ragionamento del template. Lo streaming degli expert legge dall'SSD interno (3-6 GB/s): dall'SSD esterno USB (163 MB/s) sarebbe molto piu lento. Arena expert 5 GB; ingombro pianificato 14,6 GB contro un tetto di 12,7 GB (il motore riduce l'arena). Progetti usati: Strata (motore Metal con streaming degli expert dall'SSD) in un fork locale (tail skip, sostituzione degli expert mancanti da Prefetch-Steered Routing arXiv 2610.34721, lettura anticipata), Qwen3.8 Flash Next GSQ-RCO Q2_0.",
+ "tags": [
+  "flash-next",
+  "strata",
+  "core-speed"
+ ],
+ "summary": "Flash Next Q2_0 su Strata a 256K: 10,8 t/s medi su core-speed (codice 9,1, storia 12,0), molto sotto Agents-A1 ONYX-224r (28,3) sulla stessa macchina."
+}

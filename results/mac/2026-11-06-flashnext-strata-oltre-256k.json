@@ -1,0 +1,61 @@
+{
+ "schema": 1,
+ "id": "2026-11-06-flashnext-strata-oltre-256k",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-06",
+ "category": "other",
+ "status": "ok",
+ "title": "Flash Next su Strata a 384K, 448K e 512K",
+ "reference": false,
+ "model": {
+  "name": "Qwen3.8-Flash-Next",
+  "file": "Qwen3.8-Flash-Next-GSQ-RCO-Q2_0 (2 parti)",
+  "quant": "Q2_0",
+  "size_gb": 62
+ },
+ "engine": {
+  "name": "strata",
+  "version": "0.1.55 + fork locale m4-tail-skip (binario strata-learn)",
+  "args": [
+   "STRATA_METAL_TAIL_SKIP=2",
+   "--kv",
+   "q4_0",
+   "--max-context",
+   "524288",
+   "--rope-scaling",
+   "yarn",
+   "--rope-scale",
+   "2",
+   "--yarn-orig-ctx",
+   "262144"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "mac-bench2",
+  "version": "2",
+  "harness": "benchmarks/mac-pietro/bench2.py (59 domande, 8 categorie)"
+ },
+ "metrics": {
+  "tps_384k": 16.5,
+  "tps_448k": 15.0,
+  "tps_512k": 13.0,
+  "bench2_384k_pct": 88.1,
+  "bench2_384k_ragionamento_pct": 94.9,
+  "bench2_448k_ragionamento_pct": 94.9,
+  "bench2_512k_ragionamento_pct": 91.5
+ },
+ "summary": "Oltre 256K Flash Next funziona con KV q4_0 e YaRN: 384K a 16,5 t/s (88% su bench2, 95% col ragionamento), 448K a 15 t/s (94,9% col ragionamento), 512K a 13 t/s (91,5% col ragionamento). Il contesto piu lungo toglie cache agli expert e costa velocita e conoscenza.",
+ "notes": "E115, E121, E128, E131 (cache 3,3 / 2,3 / 1,4 GB). Il contesto e misurato dal test 'contesto' di bench2 (5 domande a piu profondita), non con un documento da 500K: la lettura di un prompt cosi lungo non e stata provata. Progetti usati: Strata (motore Metal con streaming degli expert dall'SSD) in un fork locale (tail skip, sostituzione degli expert mancanti da Prefetch-Steered Routing arXiv 2610.34721, lettura anticipata), Qwen3.8 Flash Next GSQ-RCO Q2_0.",
+ "tags": [
+  "flash-next",
+  "strata",
+  "512k",
+  "yarn"
+ ]
+}

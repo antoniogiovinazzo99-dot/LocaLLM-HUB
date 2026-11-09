@@ -1,0 +1,46 @@
+{
+ "schema": 1,
+ "id": "2026-11-05-flashnext-strata-default",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-05",
+ "category": "speed",
+ "status": "ok",
+ "title": "Flash Next su Strata con impostazioni di default",
+ "reference": false,
+ "model": {
+  "name": "Qwen3.8-Flash-Next",
+  "file": "Qwen3.8-Flash-Next-GSQ-RCO-Q2_0 (2 parti)",
+  "quant": "Q2_0",
+  "size_gb": 62
+ },
+ "engine": {
+  "name": "strata",
+  "version": "0.1.55 (ufficiale)",
+  "args": [
+   "default"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "mac-strata-speed",
+  "version": "1",
+  "harness": "strata_bench.py interno"
+ },
+ "metrics": {
+  "decode_tps_1": 3.6,
+  "prompt_tps": 92,
+  "swap_gb": 9.2
+ },
+ "summary": "Con le impostazioni di default di Strata (cache 0,8 GB, 7 GB lasciati a macOS) Flash Next fa 3,5-3,8 t/s e lo swap sale a 9 GB: inutilizzabile su 16 GB. Durante un test a cache piena (E45) la memoria libera era al 3% e non si riusciva a scrivere.",
+ "notes": "E0 ed E45. Da qui il lavoro sul fork: cache expert piu grande, tail skip, lettura anticipata, prompt a pezzi da 512. Progetti usati: Strata (motore Metal con streaming degli expert dall'SSD) in un fork locale (tail skip, sostituzione degli expert mancanti da Prefetch-Steered Routing arXiv 2610.34721, lettura anticipata), Qwen3.8 Flash Next GSQ-RCO Q2_0.",
+ "tags": [
+  "flash-next",
+  "strata",
+  "memoria"
+ ]
+}

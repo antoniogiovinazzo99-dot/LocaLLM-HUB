@@ -1,0 +1,70 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-agents-a1-onyx-224r-64k-base",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-09",
+ "category": "speed",
+ "status": "ok",
+ "title": "Agents-A1 ONYX-224r 64K base",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-ONYX-224r",
+  "repo": null,
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "-c",
+   "65536",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16.0,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "core-speed",
+  "version": 1,
+  "harness": "tools/speedtest.py"
+ },
+ "metrics": {
+  "decode_tps_1": 26.3,
+  "tps_media": 26.5,
+  "tps_by_type": {
+   "codice": 27.0,
+   "storia": 26.9,
+   "ragionamento": 26.1,
+   "json": 26.1
+  },
+  "tps_method": "timings"
+ },
+ "notes": "Base a 64K, per confronto alla pari con DFlash a 64K. Ragionamento del template attivo. Leggermente sotto il 256K (28,3): differenza nel rumore fra due corse. Progetti usati: llama.cpp b12038 (Metal), Agents-A1 (famiglia Qwen3.5-35B-A3B), quantizzazione ONYX MoE-aware, potatura stile REAP.",
+ "tags": [
+  "agents-a1",
+  "onyx",
+  "core-speed"
+ ],
+ "summary": "Base di confronto per DFlash: ONYX-224r a 64K fa 26,5 t/s medi."
+}

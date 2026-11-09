@@ -1,0 +1,83 @@
+{
+ "schema": 1,
+ "id": "2026-11-08-onyx240-armature-duro",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-08",
+ "category": "armature",
+ "status": "ok",
+ "title": "ONYX-240: ragionamento, AREX, skills, vettore di controllo",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-mini-pota240.gguf",
+  "quant": "ONYX mix 2-3 bit, potato a 240 expert",
+  "size_gb": 11.18
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-c",
+   "32768",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "--parallel",
+   "4",
+   "--jinja"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "mac-duro",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/duro.py (MATH-500 L4-5, HumanEval+, MBPP+, MMLU-Pro)"
+ },
+ "metrics": {
+  "duro_pct": 64.4,
+  "armature": {
+   "ragionamento_forzato": {
+    "acc": 57.6,
+    "n": 59,
+    "s_domanda": 145
+   },
+   "arex2": {
+    "acc": 66.1,
+    "n": 59,
+    "s_domanda": 91
+   },
+   "skills": {
+    "acc": 61.0,
+    "n": 59,
+    "s_domanda": 47
+   },
+   "vettore_controllo_0.1": {
+    "acc": 54.2,
+    "n": 59,
+    "s_domanda": 17
+   },
+   "expert10": {
+    "acc": 62.7,
+    "n": 59,
+    "s_domanda": 39
+   }
+  }
+ },
+ "summary": "Nessuna armatura generica batte nettamente la base (64,4%): ragionamento ovunque 57,6% (MBPP crolla al 13%), ciclo AREX 66,1% ma 3 volte piu lento, documento di skills 61,0%, vettore di controllo anti-loop 54,2%, 10 expert 62,7%. Il ragionamento aiuta solo matematica e conoscenza.",
+ "notes": "Serie F1-F3 sulle stesse 59 domande (15 math, 15 code, 15 mbpp, 14 mmlu): ±6 punti sono rumore. Ragionamento: budget forcing s1 (Muennighoff et al.) con campionamento Qwen (T 0,6, top_p 0,95, top_k 20). AREX-2 (BAAI) come verificatore. Il vettore di controllo a 0,5 rompeva il modello (0%). Slot paralleli: non deterministico. Progetti usati: llama.cpp b12038 (Metal), Agents-A1 (famiglia Qwen3.5-35B-A3B), quantizzazioni ONYX/APEX MoE-aware, potatura degli expert stile REAP (ICLR 2026) con imatrix di llama.cpp calibrato anche su Wikipedia.",
+ "tags": [
+  "agents-a1",
+  "onyx",
+  "armature"
+ ]
+}

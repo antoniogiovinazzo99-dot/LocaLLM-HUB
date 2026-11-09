@@ -1,0 +1,5 @@
+{"CALCOLO":{"think":true,"budget":2500,"votes":1},
+ "CONOSCENZA":{"think":true,"budget":2500,"votes":1},
+ "CODICE":{"think":false,"tools":false,"votes":1},
+ "AGENTE":{"think":false,"tools":false,"votes":1},
+ "ALTRO":{"think":false,"tools":false,"votes":1}}

@@ -1,5 +1,745 @@
 {
  "platform": "mac",
- "count": 0,
- "experiments": []
+ "count": 31,
+ "experiments": [
+  {
+   "id": "2026-11-09-flash-next-q2_0-strata-256k-suffix-draft",
+   "file": "results/mac/2026-11-09-flash-next-q2_0-strata-256k-suffix-draft.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "speculative",
+   "status": "ok",
+   "title": "Flash Next Q2_0 Strata 256K suffix-draft",
+   "summary": "Flash Next su Strata con le bozze da ripetizioni del prompt (--suffix-draft 3): 10,0 t/s medi, nessun guadagno sui prompt di core-speed rispetto alla base (10,8).",
+   "model": "Qwen3.8-Flash-Next",
+   "quant": "Q2_0",
+   "size_gb": 62.0,
+   "engine": "strata",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 9.9,
+    "tps_media": 10.0,
+    "draft_acceptance_pct": 68.5
+   },
+   "tags": [
+    "flash-next",
+    "strata",
+    "core-speed"
+   ]
+  },
+  {
+   "id": "2026-11-09-flash-next-q2_0-strata-256k-base",
+   "file": "results/mac/2026-11-09-flash-next-q2_0-strata-256k-base.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "speed",
+   "status": "ok",
+   "title": "Flash Next Q2_0 Strata 256K base",
+   "summary": "Flash Next Q2_0 su Strata a 256K: 10,8 t/s medi su core-speed (codice 9,1, storia 12,0), molto sotto Agents-A1 ONYX-224r (28,3) sulla stessa macchina.",
+   "model": "Qwen3.8-Flash-Next",
+   "quant": "Q2_0",
+   "size_gb": 62.0,
+   "engine": "strata",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 11.9,
+    "tps_media": 10.8
+   },
+   "tags": [
+    "flash-next",
+    "strata",
+    "core-speed"
+   ]
+  },
+  {
+   "id": "2026-11-09-agents-a1-onyx-240-32k-base",
+   "file": "results/mac/2026-11-09-agents-a1-onyx-240-32k-base.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "speed",
+   "status": "ok",
+   "title": "Agents-A1 ONYX-240 32K base",
+   "summary": "ONYX-240 (il piu intelligente) a 32K: 25,8 t/s medi su core-speed, contro 16,6 a 128K.",
+   "model": "Agents-A1-ONYX-mini-pota240",
+   "quant": "ONYX mix 2-3 bit, 240 expert",
+   "size_gb": 11.18,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 25.7,
+    "tps_media": 25.9
+   },
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "core-speed"
+   ]
+  },
+  {
+   "id": "2026-11-09-agents-a1-onyx-240-128k-base",
+   "file": "results/mac/2026-11-09-agents-a1-onyx-240-128k-base.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "speed",
+   "status": "ok",
+   "title": "Agents-A1 ONYX-240 128K base",
+   "summary": "ONYX-240 a 128K: solo 16,6 t/s medi. Il modello (11,2 GB) piu la cache a 128K arriva vicino al limite della memoria GPU e la velocita crolla: a 32K lo stesso modello fa 25,8.",
+   "model": "Agents-A1-ONYX-mini-pota240",
+   "quant": "ONYX mix 2-3 bit, 240 expert",
+   "size_gb": 11.18,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 16.4,
+    "tps_media": 16.5
+   },
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "core-speed"
+   ]
+  },
+  {
+   "id": "2026-11-09-agents-a1-onyx-224r-96k-dflash-ngram-mod",
+   "file": "results/mac/2026-11-09-agents-a1-onyx-224r-96k-dflash-ngram-mod.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "speculative",
+   "status": "ok",
+   "title": "Agents-A1 ONYX-224r 96K DFlash+ngram-mod",
+   "summary": "DFlash + ngram-mod a 96K: 34,2 t/s medi ma codice e storia scendono a 18-19 t/s. Il drafter piu la cache a 96K arrivano al limite della memoria GPU: il punto giusto e 64K.",
+   "model": "Agents-A1-ONYX-224r",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 25.3,
+    "tps_media": 34.2,
+    "draft_acceptance_pct": 72.6
+   },
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "core-speed",
+    "dflash",
+    "ngram"
+   ]
+  },
+  {
+   "id": "2026-11-09-agents-a1-onyx-224r-64k-dflash-ngram-mod",
+   "file": "results/mac/2026-11-09-agents-a1-onyx-224r-64k-dflash-ngram-mod.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "speculative",
+   "status": "ok",
+   "title": "Agents-A1 ONYX-224r 64K DFlash+ngram-mod",
+   "summary": "DFlash + ngram-mod a 64K: 51,0 t/s medi (mediana 41,2), quasi il doppio della base (26,5), accettazione 72,6%. Primo test sul Mac sopra l'obiettivo di 50 t/s.",
+   "model": "Agents-A1-ONYX-224r",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 41.2,
+    "tps_media": 51.0,
+    "draft_acceptance_pct": 72.6
+   },
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "core-speed",
+    "dflash",
+    "ngram"
+   ]
+  },
+  {
+   "id": "2026-11-09-agents-a1-onyx-224r-64k-dflash",
+   "file": "results/mac/2026-11-09-agents-a1-onyx-224r-64k-dflash.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "speculative",
+   "status": "ok",
+   "title": "Agents-A1 ONYX-224r 64K DFlash",
+   "summary": "DFlash a 64K: 37,1 t/s medi contro 26,5 della base allo stesso contesto (+40%), accettazione 66,8%.",
+   "model": "Agents-A1-ONYX-224r",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 37.0,
+    "tps_media": 37.1,
+    "draft_acceptance_pct": 66.8
+   },
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "core-speed",
+    "dflash"
+   ]
+  },
+  {
+   "id": "2026-11-09-agents-a1-onyx-224r-64k-base",
+   "file": "results/mac/2026-11-09-agents-a1-onyx-224r-64k-base.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "speed",
+   "status": "ok",
+   "title": "Agents-A1 ONYX-224r 64K base",
+   "summary": "Base di confronto per DFlash: ONYX-224r a 64K fa 26,5 t/s medi.",
+   "model": "Agents-A1-ONYX-224r",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 26.3,
+    "tps_media": 26.5
+   },
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "core-speed"
+   ]
+  },
+  {
+   "id": "2026-11-09-agents-a1-onyx-224r-256k-ngram-simple",
+   "file": "results/mac/2026-11-09-agents-a1-onyx-224r-256k-ngram-simple.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "speculative",
+   "status": "ok",
+   "title": "Agents-A1 ONYX-224r 256K ngram-simple",
+   "summary": "ngram-simple a 256K non cambia nulla: 28,4 t/s contro 28,3 della base, nessuna bozza accettata sui prompt di core-speed.",
+   "model": "Agents-A1-ONYX-224r",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 28.2,
+    "tps_media": 28.4
+   },
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "core-speed",
+    "ngram"
+   ]
+  },
+  {
+   "id": "2026-11-09-agents-a1-onyx-224r-256k-ngram-mod",
+   "file": "results/mac/2026-11-09-agents-a1-onyx-224r-256k-ngram-mod.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "speculative",
+   "status": "ok",
+   "title": "Agents-A1 ONYX-224r 256K ngram-mod",
+   "summary": "ngram-mod a 256K, senza modello drafter: 33,8 t/s medi contro 28,3 (+19%), accettazione 53,5%. E il guadagno migliore a 256K.",
+   "model": "Agents-A1-ONYX-224r",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 31.6,
+    "tps_media": 33.8,
+    "draft_acceptance_pct": 53.5
+   },
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "core-speed",
+    "ngram"
+   ]
+  },
+  {
+   "id": "2026-11-09-agents-a1-onyx-224r-256k-dflash",
+   "file": "results/mac/2026-11-09-agents-a1-onyx-224r-256k-dflash.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "speculative",
+   "status": "failed",
+   "title": "Agents-A1 ONYX-224r 256K DFlash",
+   "summary": "DFlash con ONYX-224r a 256K: il server parte ma alla prima richiesta la memoria GPU si esaurisce (kIOGPUCommandBufferCallbackErrorOutOfMemory). Il drafter entra solo fino a circa 64-96K.",
+   "model": "Agents-A1-ONYX-224r",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "core-speed",
+    "dflash"
+   ]
+  },
+  {
+   "id": "2026-11-09-agents-a1-onyx-224r-256k-base",
+   "file": "results/mac/2026-11-09-agents-a1-onyx-224r-256k-base.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "speed",
+   "status": "ok",
+   "title": "Agents-A1 ONYX-224r 256K base",
+   "summary": "Agents-A1 ONYX-224r a 256K, tutto sulla GPU: 28,3 t/s medi su core-speed, uguali sui 4 tipi di prompt.",
+   "model": "Agents-A1-ONYX-224r",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 28.3,
+    "tps_media": 28.2
+   },
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "core-speed"
+   ]
+  },
+  {
+   "id": "2026-11-09-agents-a1-onyx-224r-128k-dflash",
+   "file": "results/mac/2026-11-09-agents-a1-onyx-224r-128k-dflash.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "speculative",
+   "status": "failed",
+   "title": "Agents-A1 ONYX-224r 128K DFlash",
+   "summary": "DFlash con ONYX-224r a 128K: il server parte ma alla prima richiesta la memoria GPU si esaurisce (kIOGPUCommandBufferCallbackErrorOutOfMemory). Il drafter entra solo fino a circa 64-96K.",
+   "model": "Agents-A1-ONYX-224r",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "core-speed",
+    "dflash"
+   ]
+  },
+  {
+   "id": "2026-11-08-onyx240-cervello-duro",
+   "file": "results/mac/2026-11-08-onyx240-cervello-duro.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-08",
+   "category": "armature",
+   "status": "ok",
+   "title": "ONYX-240 con il cervello (instradamento per classe)",
+   "summary": "Il proxy a1_cervello classifica ogni domanda con A1 stesso (6 token) e accende il ragionamento solo per calcolo e conoscenza: 72,9% contro 64,4% della base sulle stesse 59 domande (math 86,7, mmlu 71,4), a 109 s per domanda contro 28,5.",
+   "model": "Agents-A1-35B-A3B ONYX",
+   "quant": "ONYX mix 2-3 bit, potato a 240 expert",
+   "size_gb": 11.18,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "router"
+   ]
+  },
+  {
+   "id": "2026-11-08-onyx240-armature-duro",
+   "file": "results/mac/2026-11-08-onyx240-armature-duro.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-08",
+   "category": "armature",
+   "status": "ok",
+   "title": "ONYX-240: ragionamento, AREX, skills, vettore di controllo",
+   "summary": "Nessuna armatura generica batte nettamente la base (64,4%): ragionamento ovunque 57,6% (MBPP crolla al 13%), ciclo AREX 66,1% ma 3 volte piu lento, documento di skills 61,0%, vettore di controllo anti-loop 54,2%, 10 expert 62,7%. Il ragionamento aiuta solo matematica e conoscenza.",
+   "model": "Agents-A1-35B-A3B ONYX",
+   "quant": "ONYX mix 2-3 bit, potato a 240 expert",
+   "size_gb": 11.18,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "armature"
+   ]
+  },
+  {
+   "id": "2026-11-08-onyx224r-256k-qualita-duro",
+   "file": "results/mac/2026-11-08-onyx224r-256k-qualita-duro.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-08",
+   "category": "other",
+   "status": "ok",
+   "title": "ONYX-224r (256K): qualita diretta e con cervello",
+   "summary": "ONYX potato a 224 expert e riquantizzato per entrare a 256K tutto sulla GPU fa 59,3% diretto e 64,4% con il cervello: circa 5 punti sotto ONYX-240, che pero a 256K non entra in memoria.",
+   "model": "Agents-A1-35B-A3B ONYX",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "256k"
+   ]
+  },
+  {
+   "id": "2026-11-08-onyx224r-256k-contesto-lungo",
+   "file": "results/mac/2026-11-08-onyx224r-256k-contesto-lungo.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-08",
+   "category": "other",
+   "status": "ok",
+   "title": "ONYX-224r: documento da 240K token",
+   "summary": "Su un registro di magazzino da 240K token con 5 fatti nascosti a 5K-235K, ONYX-224r li ritrova tutti (2/2 a 64K, 3/3 a 128K, 4/4 a 200K, 5/5 a 240K). Lettura del prompt 188 t/s a 64K e 41 t/s a 240K (circa 56 minuti la prima volta), scrittura 8,8 t/s a 240K.",
+   "model": "Agents-A1-35B-A3B ONYX",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "256k",
+    "contesto-lungo"
+   ]
+  },
+  {
+   "id": "2026-11-08-onyx224r-256k-agente",
+   "file": "results/mac/2026-11-08-onyx224r-256k-agente.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-08",
+   "category": "agent",
+   "status": "ok",
+   "title": "ONYX-224r a 256K: agente con chiamate di funzione",
+   "summary": "Su 12 compiti di gestione del lavoro personale (calendario, attivita, note, contatti, email simulate) con chiamate di funzione native ONYX-224r li completa tutti (12/12, circa 8 s per compito), controllando lo stato finale.",
+   "model": "Agents-A1-35B-A3B ONYX",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "agente"
+   ]
+  },
+  {
+   "id": "2026-11-08-onyx-512k-tentativi",
+   "file": "results/mac/2026-11-08-onyx-512k-tentativi.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-08",
+   "category": "other",
+   "status": "failed",
+   "title": "ONYX a 512K: non conviene su 16 GB",
+   "summary": "Per 512K tutto sulla GPU servono circa 2 GB in piu (KV q4_0 2,9 GB, buffer di calcolo 1,3 GB). ONYX potato a 192 expert va comunque oltre la memoria; a 176 expert (+ uscita sulla CPU) entra e scrive a 23-27 t/s, ma il modello crolla al 18,6% sul set duro (59,3% a 224 expert), con o senza YaRN.",
+   "model": "Agents-A1-35B-A3B ONYX",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "512k"
+   ]
+  },
+  {
+   "id": "2026-11-08-omp-agents-a1-harness",
+   "file": "results/mac/2026-11-08-omp-agents-a1-harness.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-08",
+   "category": "harness",
+   "status": "partial",
+   "title": "OMP con Agents-A1 locale (ONYX-224r)",
+   "summary": "L'harness OMP (Oh My Pi 18.15) con ONYX-224r a 256K come modello ha trovato, corretto e verificato un bug in un piccolo modulo Python in circa 2,5 minuti, a 26-29 t/s con 11K token di contesto e cache dei prompt riusata. Con il server locale spento OMP passa da solo al modello di ripiego in cloud.",
+   "model": "Agents-A1-35B-A3B ONYX",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "agents-a1",
+    "omp",
+    "harness"
+   ]
+  },
+  {
+   "id": "2026-11-07-onyx240-vs-iq2s-duro",
+   "file": "results/mac/2026-11-07-onyx240-vs-iq2s-duro.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-07",
+   "category": "other",
+   "status": "ok",
+   "title": "ONYX-240 contro IQ2_S-240 su set standard",
+   "summary": "Sui set standard con margine (MATH-500 livelli 4-5, HumanEval+, MBPP+, MMLU-Pro; 74 domande) la quantizzazione ONYX potata a 240 expert fa 74,3% contro 62,2% della IQ2_S potata allo stesso modo: +12 punti a pari memoria. Gli strumenti Python, che aiutavano IQ2_S, peggiorano ONYX (66,2%).",
+   "model": "Agents-A1-35B-A3B ONYX",
+   "quant": "ONYX mix 2-3 bit, potato a 240 expert",
+   "size_gb": 11.18,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "quantizzazione"
+   ]
+  },
+  {
+   "id": "2026-11-07-a1-vs-flashnext-tre-suite",
+   "file": "results/mac/2026-11-07-a1-vs-flashnext-tre-suite.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-07",
+   "category": "other",
+   "status": "ok",
+   "title": "Agents-A1 potenziato contro Flash Next potenziato",
+   "summary": "Su tre suite scritte da noi Agents-A1 potenziato (strumenti Python + strategie) batte o pareggia Flash Next potenziato a circa doppia velocita: bench4 92,9 contro 82,9, test ufficiale 94,0 contro 91,0, bench3 94,7 contro 93,4. Solo bench4 supera il rumore.",
+   "model": "Agents-A1-35B-A3B",
+   "quant": "IQ2_S (i1)",
+   "size_gb": 11.0,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "agents-a1",
+    "flash-next",
+    "confronto"
+   ]
+  },
+  {
+   "id": "2026-11-07-a1-potatura-expert-calibrazione",
+   "file": "results/mac/2026-11-07-a1-potatura-expert-calibrazione.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-07",
+   "category": "other",
+   "status": "ok",
+   "title": "Agents-A1: potatura degli expert e calibrazione",
+   "summary": "Potare gli expert poco usati libera memoria per il contesto (256K a 44 t/s con 192 expert), ma con una calibrazione senza testi di conoscenza la conoscenza crolla dal 100% al 37,5%. Ricalibrando l'imatrix con Wikipedia, 224 expert tornano al 100% di conoscenza; 176 expert a 3 bit perdono comunque 5 punti.",
+   "model": "Agents-A1-35B-A3B",
+   "quant": "IQ2_S (i1)",
+   "size_gb": 11.0,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "agents-a1",
+    "potatura",
+    "reap"
+   ]
+  },
+  {
+   "id": "2026-11-07-a1-iq2s-expert-per-token",
+   "file": "results/mac/2026-11-07-a1-iq2s-expert-per-token.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-07",
+   "category": "other",
+   "status": "ok",
+   "title": "Agents-A1: meno expert attivi per token",
+   "summary": "Ridurre gli expert attivi da 8 a 6 o 4 non accelera su llama.cpp Metal (36 e 40 t/s contro 43) e costa qualita (93,2% e 83,1% con strumenti contro 96,6%). Anche 10 expert su ONYX (62,7% su duro, 26 t/s) non aiuta. Scartato.",
+   "model": "Agents-A1-35B-A3B",
+   "quant": "IQ2_S (i1)",
+   "size_gb": 11.0,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "agents-a1",
+    "moe"
+   ]
+  },
+  {
+   "id": "2026-11-07-a1-iq2s-armature-bench2",
+   "file": "results/mac/2026-11-07-a1-iq2s-armature-bench2.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-07",
+   "category": "armature",
+   "status": "ok",
+   "title": "Agents-A1 IQ2_S: strumenti, ragionamento, voto",
+   "summary": "Su bench2 Agents-A1 IQ2_S passa da 83,1% (base, 3,6 s per domanda) a 96,6% con strumenti Python eseguiti (4,3 s) e 98,3% con voto a 3 + strumenti; il ragionamento invece lo peggiora (74,6%, 47 s per domanda) perche a 2 bit va in loop.",
+   "model": "Agents-A1-35B-A3B",
+   "quant": "IQ2_S (i1)",
+   "size_gb": 11.0,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "agents-a1",
+    "armature"
+   ]
+  },
+  {
+   "id": "2026-11-06-flashnext-strata-tail-skip",
+   "file": "results/mac/2026-11-06-flashnext-strata-tail-skip.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-06",
+   "category": "other",
+   "status": "ok",
+   "title": "Flash Next: saltare la coda degli expert (compromesso)",
+   "summary": "Saltare gli expert con peso basso ogni 4 strati e gratis (98,3%), ogni 5 strati costa 15 punti (83,1%) e ogni 6 crolla (49,2%). Il guadagno di velocita del taglio piu aggressivo non vale la perdita.",
+   "model": "Qwen3.8-Flash-Next",
+   "quant": "Q2_0",
+   "size_gb": 62,
+   "engine": "strata",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "flash-next",
+    "strata",
+    "compromesso"
+   ]
+  },
+  {
+   "id": "2026-11-06-flashnext-strata-oltre-256k",
+   "file": "results/mac/2026-11-06-flashnext-strata-oltre-256k.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-06",
+   "category": "other",
+   "status": "ok",
+   "title": "Flash Next su Strata a 384K, 448K e 512K",
+   "summary": "Oltre 256K Flash Next funziona con KV q4_0 e YaRN: 384K a 16,5 t/s (88% su bench2, 95% col ragionamento), 448K a 15 t/s (94,9% col ragionamento), 512K a 13 t/s (91,5% col ragionamento). Il contesto piu lungo toglie cache agli expert e costa velocita e conoscenza.",
+   "model": "Qwen3.8-Flash-Next",
+   "quant": "Q2_0",
+   "size_gb": 62,
+   "engine": "strata",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "flash-next",
+    "strata",
+    "512k",
+    "yarn"
+   ]
+  },
+  {
+   "id": "2026-11-06-flashnext-strata-mentre-usi-il-mac",
+   "file": "results/mac/2026-11-06-flashnext-strata-mentre-usi-il-mac.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-06",
+   "category": "other",
+   "status": "ok",
+   "title": "Flash Next su Strata, modalita usabile (cache 3,5 GB)",
+   "summary": "Lasciando 2,5 GB a macOS (cache expert 3,5 GB) Flash Next resta a 18 t/s ma scende a 89,8% su bench2; con il ragionamento torna a 96,6% (ripetizione 93,2%, media circa 95%). Con 2,5 GB di cache: 86,4% senza e 91,5% con ragionamento.",
+   "model": "Qwen3.8-Flash-Next",
+   "quant": "Q2_0",
+   "size_gb": 62,
+   "engine": "strata",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 18.0
+   },
+   "tags": [
+    "flash-next",
+    "strata",
+    "usabilita"
+   ]
+  },
+  {
+   "id": "2026-11-06-flashnext-strata-256k-riferimento",
+   "file": "results/mac/2026-11-06-flashnext-strata-256k-riferimento.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-06",
+   "category": "other",
+   "status": "ok",
+   "title": "Flash Next Q2_0 su Strata, 256K (riferimento Mac)",
+   "summary": "Configurazione migliore di Flash Next sul Mac da 16 GB: 17,8 t/s a 256K con lo streaming degli expert dall'SSD interno, 98,3% su bench2 (58/59) senza ragionamento e 98,3% con ragionamento. Tetto della GPU per Q2_0 a 256K: circa 18 t/s.",
+   "model": "Qwen3.8-Flash-Next",
+   "quant": "Q2_0",
+   "size_gb": 62,
+   "engine": "strata",
+   "ref": true,
+   "headline": {
+    "decode_tps_1": 17.8
+   },
+   "tags": [
+    "flash-next",
+    "strata",
+    "256k"
+   ]
+  },
+  {
+   "id": "2026-11-05-flashnext-strata-dflash2",
+   "file": "results/mac/2026-11-05-flashnext-strata-dflash2.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-05",
+   "category": "speculative",
+   "status": "ok",
+   "title": "Flash Next su Strata con DFlash2",
+   "summary": "DFlash2 (drafter a blocchi incoai/Qwen3.8-Flash-Next-DFlash2) funziona sul Mac e accetta fino all'87% delle bozze su alcune risposte, ma e sempre piu lento della base: 13-15 t/s contro 17,5-18. Una finestra di 2 token costa 1,45 volte una di 1 sulla GPU M4.",
+   "model": "Qwen3.8-Flash-Next",
+   "quant": "Q2_0",
+   "size_gb": 62,
+   "engine": "strata",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 14.5,
+    "draft_acceptance_pct": 62
+   },
+   "tags": [
+    "flash-next",
+    "strata",
+    "dflash2"
+   ]
+  },
+  {
+   "id": "2026-11-05-flashnext-strata-default",
+   "file": "results/mac/2026-11-05-flashnext-strata-default.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-05",
+   "category": "speed",
+   "status": "ok",
+   "title": "Flash Next su Strata con impostazioni di default",
+   "summary": "Con le impostazioni di default di Strata (cache 0,8 GB, 7 GB lasciati a macOS) Flash Next fa 3,5-3,8 t/s e lo swap sale a 9 GB: inutilizzabile su 16 GB. Durante un test a cache piena (E45) la memoria libera era al 3% e non si riusciva a scrivere.",
+   "model": "Qwen3.8-Flash-Next",
+   "quant": "Q2_0",
+   "size_gb": 62,
+   "engine": "strata",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 3.6,
+    "prompt_tps": 92
+   },
+   "tags": [
+    "flash-next",
+    "strata",
+    "memoria"
+   ]
+  }
+ ]
 }

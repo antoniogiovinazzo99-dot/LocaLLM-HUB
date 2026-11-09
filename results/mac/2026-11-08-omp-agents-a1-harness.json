@@ -1,0 +1,65 @@
+{
+ "schema": 1,
+ "id": "2026-11-08-omp-agents-a1-harness",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-08",
+ "category": "harness",
+ "status": "partial",
+ "title": "OMP con Agents-A1 locale (ONYX-224r)",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-224r.gguf",
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-c",
+   "262144",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "prova-manuale",
+  "version": "1",
+  "harness": "omp --model=llama.cpp/agents-a1"
+ },
+ "metrics": {
+  "compiti": "1/1",
+  "decode_tps_sessione": 28,
+  "prompt_tps_primo": 305,
+  "token_istruzioni_harness": 9500
+ },
+ "summary": "L'harness OMP (Oh My Pi 18.15) con ONYX-224r a 256K come modello ha trovato, corretto e verificato un bug in un piccolo modulo Python in circa 2,5 minuti, a 26-29 t/s con 11K token di contesto e cache dei prompt riusata. Con il server locale spento OMP passa da solo al modello di ripiego in cloud.",
+ "notes": "n=1: prova di funzionamento. Il primo messaggio richiede circa 30 s (OMP manda circa 9.500 token di istruzioni). Attenzione: nella configurazione di OMP il ruolo locale ha un ripiego su un modello NVIDIA in cloud; per lavorare solo in locale va tolto. Memoria libera del Mac con il server acceso: 4-5%. Progetti usati: llama.cpp b12038 (Metal), Agents-A1 (famiglia Qwen3.5-35B-A3B), quantizzazioni ONYX/APEX MoE-aware, potatura degli expert stile REAP (ICLR 2026) con imatrix di llama.cpp calibrato anche su Wikipedia.",
+ "tags": [
+  "agents-a1",
+  "omp",
+  "harness"
+ ]
+}

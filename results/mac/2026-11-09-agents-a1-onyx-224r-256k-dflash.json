@@ -1,0 +1,68 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-agents-a1-onyx-224r-256k-dflash",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-09",
+ "category": "speculative",
+ "status": "failed",
+ "title": "Agents-A1 ONYX-224r 256K DFlash",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-ONYX-224r",
+  "repo": null,
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, 224 expert",
+  "size_gb": 10.21,
+  "drafter": "z-lab Qwen3.5-35B-A3B-DFlash (GGUF Q4_K_M, Anbeeld)"
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "-c",
+   "262144",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--spec-type",
+   "draft-dflash",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16.0,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "core-speed",
+  "version": 1,
+  "harness": "tools/speedtest.py"
+ },
+ "metrics": {},
+ "notes": "Il drafter Q4_K_M pesa solo 0,24 GB ma porta con se la sua cache e i buffer di calcolo. Progetti usati: llama.cpp b12038 (Metal), Agents-A1 (famiglia Qwen3.5-35B-A3B), quantizzazione ONYX MoE-aware, potatura stile REAP.",
+ "tags": [
+  "agents-a1",
+  "onyx",
+  "core-speed",
+  "dflash"
+ ],
+ "summary": "DFlash con ONYX-224r a 256K: il server parte ma alla prima richiesta la memoria GPU si esaurisce (kIOGPUCommandBufferCallbackErrorOutOfMemory). Il drafter entra solo fino a circa 64-96K."
+}

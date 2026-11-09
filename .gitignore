@@ -3,3 +3,5 @@ __pycache__/
 .DS_Store
 *.gguf
 *.log
+benchmarks/mac-pietro/*-risultati.jsonl
+benchmarks/mac-pietro/dati/

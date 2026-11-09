@@ -1,0 +1,58 @@
+{
+ "schema": 1,
+ "id": "2026-11-07-a1-iq2s-expert-per-token",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-07",
+ "category": "other",
+ "status": "ok",
+ "title": "Agents-A1: meno expert attivi per token",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B",
+  "quant": "IQ2_S (i1)",
+  "size_gb": 11.0
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-c",
+   "131072",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "--jinja",
+   "--override-kv",
+   "qwen35moe.expert_used_count=int:6|4"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "mac-bench2",
+  "version": "2",
+  "harness": "benchmarks/mac-pietro/bench2.py (59 domande, 8 categorie)"
+ },
+ "metrics": {
+  "tps_8exp": 43.0,
+  "tps_6exp": 36.2,
+  "tps_4exp": 39.8,
+  "bench2_6exp_strumenti_pct": 93.2,
+  "bench2_4exp_strumenti_pct": 83.1
+ },
+ "summary": "Ridurre gli expert attivi da 8 a 6 o 4 non accelera su llama.cpp Metal (36 e 40 t/s contro 43) e costa qualita (93,2% e 83,1% con strumenti contro 96,6%). Anche 10 expert su ONYX (62,7% su duro, 26 t/s) non aiuta. Scartato.",
+ "notes": "E160, E161 e F3 (su mac-duro). Velocita col protocollo interno, non core-speed. Progetti usati: llama.cpp b12038 (Metal), Agents-A1 (famiglia Qwen3.5-35B-A3B), quantizzazioni ONYX/APEX MoE-aware, potatura degli expert stile REAP (ICLR 2026) con imatrix di llama.cpp calibrato anche su Wikipedia.",
+ "tags": [
+  "agents-a1",
+  "moe"
+ ]
+}

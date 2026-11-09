@@ -1,0 +1,70 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-agents-a1-onyx-240-128k-base",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-09",
+ "category": "speed",
+ "status": "ok",
+ "title": "Agents-A1 ONYX-240 128K base",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-ONYX-mini-pota240",
+  "repo": null,
+  "quant": "ONYX mix 2-3 bit, 240 expert",
+  "size_gb": 11.18
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "-c",
+   "131072",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16.0,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "core-speed",
+  "version": 1,
+  "harness": "tools/speedtest.py"
+ },
+ "metrics": {
+  "decode_tps_1": 16.4,
+  "tps_media": 16.5,
+  "tps_by_type": {
+   "codice": 16.1,
+   "storia": 17.4,
+   "ragionamento": 16.2,
+   "json": 16.2
+  },
+  "tps_method": "timings"
+ },
+ "notes": "Profilo piu intelligente (a1-locale 128k): ONYX potato a 240 expert su 256, senza riquantizzazione. A 256K non entra nella memoria GPU (12,1 GB utilizzabili). Ragionamento del template attivo. Proiezione llama-fit-params: 11.406 MiB su 12.123 utilizzabili. Il profilo '128k' di a1-locale e quindi piu lento del profilo 256K con ONYX-224r (28,3). Progetti usati: llama.cpp b12038 (Metal), Agents-A1 (famiglia Qwen3.5-35B-A3B), quantizzazione ONYX MoE-aware, potatura stile REAP.",
+ "tags": [
+  "agents-a1",
+  "onyx",
+  "core-speed"
+ ],
+ "summary": "ONYX-240 a 128K: solo 16,6 t/s medi. Il modello (11,2 GB) piu la cache a 128K arriva vicino al limite della memoria GPU e la velocita crolla: a 32K lo stesso modello fa 25,8."
+}

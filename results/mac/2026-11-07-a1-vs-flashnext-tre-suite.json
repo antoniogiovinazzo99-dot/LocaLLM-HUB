@@ -1,0 +1,60 @@
+{
+ "schema": 1,
+ "id": "2026-11-07-a1-vs-flashnext-tre-suite",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-07",
+ "category": "other",
+ "status": "ok",
+ "title": "Agents-A1 potenziato contro Flash Next potenziato",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B",
+  "quant": "IQ2_S (i1)",
+  "size_gb": 11.0
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-c",
+   "131072",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "--jinja"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "mac-bench4 + mac-ufficiale + mac-bench3",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/bench4.py, bench_ufficiale.py, bench3.py"
+ },
+ "metrics": {
+  "bench4_a1_pct": 92.9,
+  "bench4_flashnext_pct": 82.9,
+  "ufficiale_a1_pct": 94.0,
+  "ufficiale_flashnext_pct": 91.0,
+  "bench3_a1_pct": 94.7,
+  "bench3_flashnext_pct": 93.4,
+  "secondi_domanda_a1_bench4": 19.5,
+  "secondi_domanda_flashnext_bench4": 40.1
+ },
+ "summary": "Su tre suite scritte da noi Agents-A1 potenziato (strumenti Python + strategie) batte o pareggia Flash Next potenziato a circa doppia velocita: bench4 92,9 contro 82,9, test ufficiale 94,0 contro 91,0, bench3 94,7 contro 93,4. Solo bench4 supera il rumore.",
+ "notes": "W2 vs V3, U4 vs U2, V2 vs V3. Le suite sono state scritte per questi due modelli (70, 67, 76 domande): il risultato non e confrontabile con la Suite S di Windows. Senza armature A1 fa 65,7% sull'ufficiale contro 80,6% di Flash Next: il vantaggio viene dagli strumenti. Progetti usati: llama.cpp b12038 (Metal), Agents-A1 (famiglia Qwen3.5-35B-A3B), quantizzazioni ONYX/APEX MoE-aware, potatura degli expert stile REAP (ICLR 2026) con imatrix di llama.cpp calibrato anche su Wikipedia. Progetti usati: Strata (motore Metal con streaming degli expert dall'SSD) in un fork locale (tail skip, sostituzione degli expert mancanti da Prefetch-Steered Routing arXiv 2610.34721, lettura anticipata), Qwen3.8 Flash Next GSQ-RCO Q2_0.",
+ "tags": [
+  "agents-a1",
+  "flash-next",
+  "confronto"
+ ]
+}

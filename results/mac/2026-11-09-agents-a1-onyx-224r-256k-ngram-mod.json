@@ -1,0 +1,74 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-agents-a1-onyx-224r-256k-ngram-mod",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-09",
+ "category": "speculative",
+ "status": "ok",
+ "title": "Agents-A1 ONYX-224r 256K ngram-mod",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-ONYX-224r",
+  "repo": null,
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "-c",
+   "262144",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--spec-type",
+   "ngram-mod"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16.0,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "core-speed",
+  "version": 1,
+  "harness": "tools/speedtest.py"
+ },
+ "metrics": {
+  "decode_tps_1": 31.6,
+  "tps_media": 33.8,
+  "tps_by_type": {
+   "codice": 36.3,
+   "storia": 31.4,
+   "ragionamento": 34.6,
+   "json": 32.7
+  },
+  "tps_method": "timings",
+  "draft_acceptance_pct": 53.5
+ },
+ "notes": "Speculative decoding senza modello drafter (ngram-mod di llama.cpp): propone token ripetendo n-grammi gia visti nel contesto. Stessa configurazione del test base a 256K. Ragionamento del template attivo. ngram-mod propone token gia visti nel contesto: rende di piu su testo ripetitivo (codice, ragionamento) e su conversazioni lunghe con file riletti, come negli agenti. Progetti usati: llama.cpp b12038 (Metal), Agents-A1 (famiglia Qwen3.5-35B-A3B), quantizzazione ONYX MoE-aware, potatura stile REAP.",
+ "tags": [
+  "agents-a1",
+  "onyx",
+  "core-speed",
+  "ngram"
+ ],
+ "summary": "ngram-mod a 256K, senza modello drafter: 33,8 t/s medi contro 28,3 (+19%), accettazione 53,5%. E il guadagno migliore a 256K."
+}

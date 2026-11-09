@@ -1,0 +1,58 @@
+{
+ "schema": 1,
+ "id": "2026-11-07-onyx240-vs-iq2s-duro",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-07",
+ "category": "other",
+ "status": "ok",
+ "title": "ONYX-240 contro IQ2_S-240 su set standard",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-mini-pota240.gguf",
+  "quant": "ONYX mix 2-3 bit, potato a 240 expert",
+  "size_gb": 11.18
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-c",
+   "131072",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "--jinja"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "mac-duro",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/duro.py (MATH-500 L4-5, HumanEval+, MBPP+, MMLU-Pro)"
+ },
+ "metrics": {
+  "duro_pct": 74.3,
+  "duro_iq2s_pct": 62.2,
+  "duro_strumenti_pct": 66.2,
+  "duro_iq2s_strumenti_pct": 68.9,
+  "n": 74
+ },
+ "summary": "Sui set standard con margine (MATH-500 livelli 4-5, HumanEval+, MBPP+, MMLU-Pro; 74 domande) la quantizzazione ONYX potata a 240 expert fa 74,3% contro 62,2% della IQ2_S potata allo stesso modo: +12 punti a pari memoria. Gli strumenti Python, che aiutavano IQ2_S, peggiorano ONYX (66,2%).",
+ "notes": "Q-onyx240-128k vs Q-iq2s240-128k. 20 domande per categoria (MMLU-Pro 14): rumore circa ±10 punti per categoria. Da qui ONYX diventa il modello base. Progetti usati: llama.cpp b12038 (Metal), Agents-A1 (famiglia Qwen3.5-35B-A3B), quantizzazioni ONYX/APEX MoE-aware, potatura degli expert stile REAP (ICLR 2026) con imatrix di llama.cpp calibrato anche su Wikipedia.",
+ "tags": [
+  "agents-a1",
+  "onyx",
+  "quantizzazione"
+ ]
+}

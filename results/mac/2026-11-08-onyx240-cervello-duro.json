@@ -1,0 +1,68 @@
+{
+ "schema": 1,
+ "id": "2026-11-08-onyx240-cervello-duro",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-08",
+ "category": "armature",
+ "status": "ok",
+ "title": "ONYX-240 con il cervello (instradamento per classe)",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-mini-pota240.gguf",
+  "quant": "ONYX mix 2-3 bit, potato a 240 expert",
+  "size_gb": 11.18
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-c",
+   "32768",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "--parallel",
+   "4",
+   "--jinja"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "mac-duro",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/duro.py (MATH-500 L4-5, HumanEval+, MBPP+, MMLU-Pro)"
+ },
+ "metrics": {
+  "duro_pct": 72.9,
+  "armature": {
+   "base": {
+    "acc": 64.4,
+    "n": 59,
+    "s_domanda": 28.5
+   },
+   "cervello": {
+    "acc": 72.9,
+    "n": 59,
+    "s_domanda": 108.9
+   }
+  }
+ },
+ "summary": "Il proxy a1_cervello classifica ogni domanda con A1 stesso (6 token) e accende il ragionamento solo per calcolo e conoscenza: 72,9% contro 64,4% della base sulle stesse 59 domande (math 86,7, mmlu 71,4), a 109 s per domanda contro 28,5.",
+ "notes": "N1 contro F1-base. +8,5 punti sono appena sopra il rumore (±6); confermato da un secondo modello (ONYX-224r: +5,1). Codice: benchmarks/mac-pietro/a1_cervello.py e politica-v2.json. Le richieste con strumenti (agenti) passano intatte. Progetti usati: llama.cpp b12038 (Metal), Agents-A1 (famiglia Qwen3.5-35B-A3B), quantizzazioni ONYX/APEX MoE-aware, potatura degli expert stile REAP (ICLR 2026) con imatrix di llama.cpp calibrato anche su Wikipedia.",
+ "tags": [
+  "agents-a1",
+  "onyx",
+  "router"
+ ]
+}

@@ -1,0 +1,80 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-agents-a1-onyx-224r-64k-dflash-ngram-mod",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-09",
+ "category": "speculative",
+ "status": "ok",
+ "title": "Agents-A1 ONYX-224r 64K DFlash+ngram-mod",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-ONYX-224r",
+  "repo": null,
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, 224 expert",
+  "size_gb": 10.21,
+  "drafter": "z-lab Qwen3.5-35B-A3B-DFlash (GGUF Q4_K_M, Anbeeld)"
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "-c",
+   "65536",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--spec-type",
+   "draft-dflash,ngram-mod",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16.0,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "core-speed",
+  "version": 1,
+  "harness": "tools/speedtest.py"
+ },
+ "metrics": {
+  "decode_tps_1": 41.2,
+  "tps_media": 51.0,
+  "tps_by_type": {
+   "codice": 41.3,
+   "storia": 38.0,
+   "ragionamento": 70.4,
+   "json": 54.4
+  },
+  "tps_method": "timings",
+  "draft_acceptance_pct": 72.6
+ },
+ "notes": "DFlash z-lab Qwen3.5-35B-A3B Q4_K_M insieme a ngram-mod, contesto 64K. Ragionamento del template attivo. Drafter: z-lab Qwen3.5-35B-A3B-DFlash, GGUF Q4_K_M di Anbeeld (0,24 GB). Il ragionamento arriva a 70 t/s e il JSON a 54 perche ripetono molto; codice 41 e storia 38. A temperatura 0 la decodifica speculativa non cambia il testo prodotto (verifica esatta di llama.cpp), quindi la qualita resta quella della base. Progetti usati: llama.cpp b12038 (Metal), Agents-A1 (famiglia Qwen3.5-35B-A3B), quantizzazione ONYX MoE-aware, potatura stile REAP.",
+ "tags": [
+  "agents-a1",
+  "onyx",
+  "core-speed",
+  "dflash",
+  "ngram"
+ ],
+ "summary": "DFlash + ngram-mod a 64K: 51,0 t/s medi (mediana 41,2), quasi il doppio della base (26,5), accettazione 72,6%. Primo test sul Mac sopra l'obiettivo di 50 t/s."
+}

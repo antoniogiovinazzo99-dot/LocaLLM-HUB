@@ -1,0 +1,60 @@
+{
+ "schema": 1,
+ "id": "2026-11-06-flashnext-strata-256k-riferimento",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-06",
+ "category": "other",
+ "status": "ok",
+ "title": "Flash Next Q2_0 su Strata, 256K (riferimento Mac)",
+ "reference": true,
+ "model": {
+  "name": "Qwen3.8-Flash-Next",
+  "file": "Qwen3.8-Flash-Next-GSQ-RCO-Q2_0 (2 parti)",
+  "quant": "Q2_0",
+  "size_gb": 62
+ },
+ "engine": {
+  "name": "strata",
+  "version": "0.1.55 + fork locale m4-tail-skip (binario strata-learn)",
+  "args": [
+   "STRATA_METAL_TAIL_SKIP=1",
+   "STRATA_METAL_TAIL_SUB=1",
+   "STRATA_METAL_CUT_EVERY=4",
+   "STRATA_METAL_PREFETCH=12",
+   "STRATA_METAL_PREFETCH2=12",
+   "STRATA_METAL_PREFETCH3=12",
+   "STRATA_METAL_PROMPT_CHUNK=512",
+   "STRATA_METAL_ARENA_GB=5.0",
+   "--suffix-draft",
+   "3",
+   "--max-context",
+   "262144",
+   "--mmap-experts"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "mac-bench2",
+  "version": "2",
+  "harness": "benchmarks/mac-pietro/bench2.py (59 domande, 8 categorie)"
+ },
+ "metrics": {
+  "decode_tps_1": 17.8,
+  "bench2_pct": 98.3,
+  "bench2_ragionamento_pct": 98.3,
+  "bench2_ripetizione_pct": 94.9,
+  "gpu_ceiling_tps": 18.0
+ },
+ "summary": "Configurazione migliore di Flash Next sul Mac da 16 GB: 17,8 t/s a 256K con lo streaming degli expert dall'SSD interno, 98,3% su bench2 (58/59) senza ragionamento e 98,3% con ragionamento. Tetto della GPU per Q2_0 a 256K: circa 18 t/s.",
+ "notes": "Media E130 (98,3) ed E133 (ripetizione, 94,9): la differenza e rumore di 59 domande. Velocita misurata col protocollo interno (risposte medie), non core-speed. Riferimenti esterni sullo stesso Q2_0: Mac mini M4 32 GB 13,5 t/s, M5 Pro 48 GB 19-22 t/s (non verificati da noi). Progetti usati: Strata (motore Metal con streaming degli expert dall'SSD) in un fork locale (tail skip, sostituzione degli expert mancanti da Prefetch-Steered Routing arXiv 2610.34721, lettura anticipata), Qwen3.8 Flash Next GSQ-RCO Q2_0.",
+ "tags": [
+  "flash-next",
+  "strata",
+  "256k"
+ ]
+}
