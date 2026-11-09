@@ -90,21 +90,13 @@
   {
    "order": 2,
    "platform": "mac",
-   "name": "mac-omp-agente-mini-ripetizione",
-   "kind": "agente reale (omp)",
-   "why": "seconda corsa di G1 (base) e G8 (veloce + DRY + omp-locale): con 6 compiti serve sapere quanto e rumore il -28% di tempo",
-   "repo": "el4/Agents-A1-ONYX-GGUF (ricetta)"
-  },
-  {
-   "order": 3,
-   "platform": "mac",
    "name": "mac-omp-esplorazione",
    "kind": "agente reale (omp)",
    "why": "compito di esplorazione di una cartella grande (la sessione lenta da 45 minuti): misura il peso dei limiti di output del profilo omp-locale",
    "repo": "el4/Agents-A1-ONYX-GGUF (ricetta)"
   },
   {
-   "order": 4,
+   "order": 3,
    "platform": "mac",
    "name": "mac-lungo-64k-veloce",
    "kind": "contesto lungo",

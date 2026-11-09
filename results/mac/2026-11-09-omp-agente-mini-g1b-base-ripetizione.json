@@ -1,0 +1,104 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-omp-agente-mini-g1b-base-ripetizione",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-09",
+ "category": "harness",
+ "status": "ok",
+ "title": "OMP + ONYX-224r, impostazioni di partenza (ripetizione)",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-224r.gguf",
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja",
+   "-c",
+   "262144",
+   "--spec-type",
+   "ngram-mod"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "agente-mini via omp",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/omp_agente.py (omp -p --model llama.cpp/agents-a1 (impostazioni di default, ragionamento del modello attivo)), tempo massimo 600 s per compito"
+ },
+ "metrics": {
+  "agente_mini": 66.7,
+  "agente_mini_parziale": 81.0,
+  "sec_totali": 1342,
+  "sec_mediana": 243.4,
+  "passi_medi": 8.0,
+  "token_out_totali": 22571,
+  "per_compito": {
+   "bug_prezzi": {
+    "successo": 0.857,
+    "sec": 189.1,
+    "passi": 8
+   },
+   "config_loader": {
+    "successo": 1.0,
+    "sec": 283.9,
+    "passi": 8
+   },
+   "rinomina": {
+    "successo": 1.0,
+    "sec": 156.8,
+    "passi": 7
+   },
+   "paginazione": {
+    "successo": 1.0,
+    "sec": 243.4,
+    "passi": 9
+   },
+   "dati_ordini": {
+    "successo": 0.0,
+    "sec": 115.7,
+    "passi": 8
+   },
+   "rapporto": {
+    "successo": 1.0,
+    "sec": 352.8,
+    "passi": 8
+   }
+  }
+ },
+ "summary": "Ripetizione di G1: 1342 s (prima 1334), 4/6 pieni (prima 5/6), parziale 81% (prima 83%). Il tempo della base e stabile; dati_ordini fallisce in entrambe le corse.",
+ "notes": "Seconda corsa identica alla prima, stessa sera, server riavviato. n=6 compiti: un compito vale 16,7 punti. Nessuna risposta da modelli cloud.",
+ "tags": [
+  "agente-mini",
+  "agents-a1",
+  "harness",
+  "omp",
+  "onyx",
+  "ripetizione"
+ ]
+}

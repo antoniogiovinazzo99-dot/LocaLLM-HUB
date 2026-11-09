@@ -61,4 +61,6 @@ Lezioni: `--thinking=off` di OMP non spegne il ragionamento su llama.cpp (serve 
 ragionamento A1 entra in cicli di ripetizione, che il campionatore DRY leggero (`--dry-multiplier 0.5 --dry-allowed-length 4`)
 ha eliminato; nei compiti di codice il tempo va quasi tutto nella **scrittura** (24-26 t/s), nei compiti di esplorazione nella
 **lettura** di output lunghi: per questo il profilo omp-locale limita gli output dei comandi a 4+4 KB e 120 righe.
-n=6 e una sola corsa: il -28% va confermato (in coda la ripetizione).
+**Ripetizione (seconda corsa):** base 1342 s (4/6, parziale 81%), migliore 1046 s (4/6, parziale 82%). Media delle due corse:
+migliore **1006 s contro 1338 (-25%)**, compiti pieni 75% contro 75%, parziale 89% contro 82%. Il guadagno di tempo regge,
+la qualita resta uguale alla base; il -28% e il 97% della prima corsa erano un po' fortunati (`dati_ordini` cambia esito tra le corse).

@@ -1,0 +1,114 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-omp-agente-mini-g8b-veloce-noreason-dry-locale-ripetizione",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-09",
+ "category": "harness",
+ "status": "ok",
+ "title": "OMP + ONYX-224r veloce, DRY, profilo omp-locale (ripetizione)",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-224r.gguf",
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja",
+   "-c",
+   "65536",
+   "--spec-type",
+   "draft-dflash,ngram-mod",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99",
+   "--reasoning",
+   "off",
+   "--dry-multiplier",
+   "0.5",
+   "--dry-allowed-length",
+   "4"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "agente-mini via omp",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/omp_agente.py (omp --snello --profile=locale (output dei comandi 4+4 KB / 120 righe, compattazione al 50%) + regole per modello locale), tempo massimo 600 s per compito"
+ },
+ "metrics": {
+  "agente_mini": 66.7,
+  "agente_mini_parziale": 81.8,
+  "sec_totali": 1046,
+  "sec_mediana": 142.9,
+  "passi_medi": 12.3,
+  "token_out_totali": 20177,
+  "per_compito": {
+   "bug_prezzi": {
+    "successo": 1.0,
+    "sec": 142.9,
+    "passi": 14
+   },
+   "config_loader": {
+    "successo": 0.909,
+    "sec": 84.6,
+    "passi": 8
+   },
+   "rinomina": {
+    "successo": 1.0,
+    "sec": 141.7,
+    "passi": 15
+   },
+   "paginazione": {
+    "successo": 1.0,
+    "sec": 188.2,
+    "passi": 10
+   },
+   "dati_ordini": {
+    "successo": 0.0,
+    "sec": 65.4,
+    "passi": 9
+   },
+   "rapporto": {
+    "successo": 1.0,
+    "sec": 423.3,
+    "passi": 18
+   }
+  }
+ },
+ "summary": "Ripetizione di G8: 1046 s (prima 965), 4/6 pieni (prima 5/6), parziale 82% (prima 97%). Media delle due corse: G8 1006 s contro 1338 della base (-25%), pieni 75% contro 75%, parziale 89% contro 82%. Piu veloce a parita di qualita; il -28% della prima corsa era un po' ottimista.",
+ "notes": "Seconda corsa identica alla prima, stessa sera, server riavviato. n=6 compiti: un compito vale 16,7 punti. Nessuna risposta da modelli cloud. Il calo di parziale viene da dati_ordini (1,0 nella prima corsa, 0,0 qui): un solo compito che cambia esito tra due corse, quindi rumore.",
+ "tags": [
+  "agente-mini",
+  "agents-a1",
+  "harness",
+  "omp",
+  "onyx",
+  "ripetizione"
+ ]
+}

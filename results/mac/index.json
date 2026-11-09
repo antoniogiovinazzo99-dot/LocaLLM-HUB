@@ -1,7 +1,34 @@
 {
  "platform": "mac",
- "count": 40,
+ "count": 42,
  "experiments": [
+  {
+   "id": "2026-11-09-omp-agente-mini-g8b-veloce-noreason-dry-locale-ripetizione",
+   "file": "results/mac/2026-11-09-omp-agente-mini-g8b-veloce-noreason-dry-locale-ripetizione.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "harness",
+   "status": "ok",
+   "title": "OMP + ONYX-224r veloce, DRY, profilo omp-locale (ripetizione)",
+   "summary": "Ripetizione di G8: 1046 s (prima 965), 4/6 pieni (prima 5/6), parziale 82% (prima 97%). Media delle due corse: G8 1006 s contro 1338 della base (-25%), pieni 75% contro 75%, parziale 89% contro 82%. Piu veloce a parita di qualita; il -28% della prima corsa era un po' ottimista.",
+   "model": "Agents-A1-35B-A3B ONYX",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "agente_mini": 66.7
+   },
+   "tags": [
+    "agente-mini",
+    "agents-a1",
+    "harness",
+    "omp",
+    "onyx",
+    "ripetizione"
+   ]
+  },
   {
    "id": "2026-11-09-omp-agente-mini-g8-veloce-noreason-dry-locale",
    "file": "results/mac/2026-11-09-omp-agente-mini-g8-veloce-noreason-dry-locale.json",
@@ -104,6 +131,33 @@
     "omp",
     "agente-mini",
     "harness"
+   ]
+  },
+  {
+   "id": "2026-11-09-omp-agente-mini-g1b-base-ripetizione",
+   "file": "results/mac/2026-11-09-omp-agente-mini-g1b-base-ripetizione.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "harness",
+   "status": "ok",
+   "title": "OMP + ONYX-224r, impostazioni di partenza (ripetizione)",
+   "summary": "Ripetizione di G1: 1342 s (prima 1334), 4/6 pieni (prima 5/6), parziale 81% (prima 83%). Il tempo della base e stabile; dati_ordini fallisce in entrambe le corse.",
+   "model": "Agents-A1-35B-A3B ONYX",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "agente_mini": 66.7
+   },
+   "tags": [
+    "agente-mini",
+    "agents-a1",
+    "harness",
+    "omp",
+    "onyx",
+    "ripetizione"
    ]
   },
   {
