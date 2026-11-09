@@ -1,0 +1,57 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-agents-a1-4b-q4_k_m-agente",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-09",
+ "category": "agent",
+ "status": "ok",
+ "title": "Agents-A1-4B Q4_K_M: agente 12 compiti (controllo incrociato)",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-4B",
+  "repo": "InternScience/Agents-A1-4B-Q4_K_M-GGUF",
+  "file": "Agents-A1-4B-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 2.71
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-c",
+   "32768",
+   "-fa",
+   "on",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "agente-v1",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/agente.py"
+ },
+ "metrics": {
+  "agente_pct": 75.0,
+  "compiti": "9/12",
+  "s_compito": 13.8,
+  "chiamate_funzione": 25
+ },
+ "summary": "Agents-A1-4B Q4_K_M su agente.py: 9 compiti su 12 (75%) con chiamate di funzione native, 13,8 s per compito, 25 chiamate in tutto. ONYX-224r faceva 12/12.",
+ "notes": "Controllo incrociato chiesto in docs/ALLINEAMENTO-2026-11-09.md (sezione 6, punto 4): stesso modello e stessi comandi su Mac e Windows. Tra gli errori: compiti in piu passaggi (es. cancellare solo uno degli impegni di un giorno).",
+ "tags": [
+  "agents-a1-4b",
+  "controllo-incrociato"
+ ]
+}

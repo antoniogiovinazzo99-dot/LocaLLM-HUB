@@ -1,0 +1,62 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-agents-a1-4b-q4_k_m-controllo-incrociato",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-09",
+ "category": "speed",
+ "status": "ok",
+ "title": "Agents-A1-4B Q4_K_M controllo incrociato",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-4B",
+  "repo": "InternScience/Agents-A1-4B-Q4_K_M-GGUF",
+  "quant": "Q4_K_M",
+  "size_gb": 2.71
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-c",
+   "32768",
+   "-fa",
+   "on",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16.0,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "core-speed",
+  "version": 1,
+  "harness": "tools/speedtest.py"
+ },
+ "metrics": {
+  "decode_tps_1": 26.4,
+  "tps_media": 26.5,
+  "tps_by_type": {
+   "codice": 26.5,
+   "storia": 26.6,
+   "ragionamento": 26.5,
+   "json": 26.3
+  },
+  "tps_method": "timings"
+ },
+ "notes": "Controllo incrociato chiesto in docs/ALLINEAMENTO-2026-11-09.md (sezione 6, punto 4): stesso modello e stessi comandi su Mac e Windows. Su Windows lo stesso 4B faceva 76,8 t/s (RTX 3060): la differenza viene dalla banda di memoria (M4 base circa 120 GB/s).",
+ "tags": [
+  "agents-a1-4b",
+  "controllo-incrociato",
+  "core-speed"
+ ],
+ "summary": "Agents-A1-4B Q4_K_M sul Mac: 26,4 t/s medi su core-speed, uguali sui 4 tipi di prompt. Sul Mac il 4B denso non e piu veloce del 35B-A3B ONYX (28,3): legge 2,7 GB di pesi per token contro circa 1 GB dei 3B attivi del MoE."
+}

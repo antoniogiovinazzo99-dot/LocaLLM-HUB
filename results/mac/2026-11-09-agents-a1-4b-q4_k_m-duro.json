@@ -1,0 +1,60 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-agents-a1-4b-q4_k_m-duro",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-09",
+ "category": "other",
+ "status": "ok",
+ "title": "Agents-A1-4B Q4_K_M: duro n=8 (controllo incrociato)",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-4B",
+  "repo": "InternScience/Agents-A1-4B-Q4_K_M-GGUF",
+  "file": "Agents-A1-4B-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 2.71
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-c",
+   "32768",
+   "-fa",
+   "on",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "duro-v1",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/duro.py --sets=math,code,mbpp,mmlu --n=8 --jobs=1"
+ },
+ "metrics": {
+  "duro_pct": 73.7,
+  "math": 75.0,
+  "humaneval": 75.0,
+  "mbpp": 62.5,
+  "mmlu": 78.6,
+  "n": 38,
+  "secondi_domanda": 33.2
+ },
+ "summary": "Agents-A1-4B Q4_K_M su duro (n=8, jobs=1): 73,7% (28/38): matematica 75 (6/8), codice HumanEval+ 75 (6/8), MBPP+ 62,5 (5/8), MMLU-Pro 78,6 (11/14). Circa 33 s per domanda.",
+ "notes": "Controllo incrociato chiesto in docs/ALLINEAMENTO-2026-11-09.md (sezione 6, punto 4): stesso modello e stessi comandi su Mac e Windows. Con n=8 per set il rumore e circa ±20 punti per set: confronto grossolano. ATTENZIONE, trappola trovata col controllo: la prima corsa dava 0% su codice e MBPP perche duro.py esegue i test con 'python -I', che esclude i pacchetti utente, e numpy era installato solo li. Rifatte codice e MBPP con PYV=<PATH>/python con numpy; duro.py ora si ferma con un messaggio se numpy non e importabile con -I. Matematica e MMLU vengono dalla prima corsa, codice e MBPP dalla seconda (stessi campioni fissi).",
+ "tags": [
+  "agents-a1-4b",
+  "controllo-incrociato"
+ ]
+}

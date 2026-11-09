@@ -1,6 +1,6 @@
 {
  "platform": "mac",
- "count": 31,
+ "count": 34,
  "experiments": [
   {
    "id": "2026-11-09-flash-next-q2_0-strata-256k-suffix-draft",
@@ -333,6 +333,75 @@
     "onyx",
     "core-speed",
     "dflash"
+   ]
+  },
+  {
+   "id": "2026-11-09-agents-a1-4b-q4_k_m-duro",
+   "file": "results/mac/2026-11-09-agents-a1-4b-q4_k_m-duro.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "other",
+   "status": "ok",
+   "title": "Agents-A1-4B Q4_K_M: duro n=8 (controllo incrociato)",
+   "summary": "Agents-A1-4B Q4_K_M su duro (n=8, jobs=1): 73,7% (28/38): matematica 75 (6/8), codice HumanEval+ 75 (6/8), MBPP+ 62,5 (5/8), MMLU-Pro 78,6 (11/14). Circa 33 s per domanda.",
+   "model": "Agents-A1-4B",
+   "quant": "Q4_K_M",
+   "size_gb": 2.71,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "humaneval": 75.0
+   },
+   "tags": [
+    "agents-a1-4b",
+    "controllo-incrociato"
+   ]
+  },
+  {
+   "id": "2026-11-09-agents-a1-4b-q4_k_m-controllo-incrociato",
+   "file": "results/mac/2026-11-09-agents-a1-4b-q4_k_m-controllo-incrociato.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "speed",
+   "status": "ok",
+   "title": "Agents-A1-4B Q4_K_M controllo incrociato",
+   "summary": "Agents-A1-4B Q4_K_M sul Mac: 26,4 t/s medi su core-speed, uguali sui 4 tipi di prompt. Sul Mac il 4B denso non e piu veloce del 35B-A3B ONYX (28,3): legge 2,7 GB di pesi per token contro circa 1 GB dei 3B attivi del MoE.",
+   "model": "Agents-A1-4B",
+   "quant": "Q4_K_M",
+   "size_gb": 2.71,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 26.4,
+    "tps_media": 26.5
+   },
+   "tags": [
+    "agents-a1-4b",
+    "controllo-incrociato",
+    "core-speed"
+   ]
+  },
+  {
+   "id": "2026-11-09-agents-a1-4b-q4_k_m-agente",
+   "file": "results/mac/2026-11-09-agents-a1-4b-q4_k_m-agente.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "agent",
+   "status": "ok",
+   "title": "Agents-A1-4B Q4_K_M: agente 12 compiti (controllo incrociato)",
+   "summary": "Agents-A1-4B Q4_K_M su agente.py: 9 compiti su 12 (75%) con chiamate di funzione native, 13,8 s per compito, 25 chiamate in tutto. ONYX-224r faceva 12/12.",
+   "model": "Agents-A1-4B",
+   "quant": "Q4_K_M",
+   "size_gb": 2.71,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "agents-a1-4b",
+    "controllo-incrociato"
    ]
   },
   {

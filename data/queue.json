@@ -85,6 +85,38 @@
    "kind": "tiny (~10 min, saturo)",
    "why": "",
    "repo": "mradermacher/Qwen3.5-9B-Kimi-k3-Distilled-GGUF"
+  },
+  {
+   "order": 1,
+   "platform": "mac",
+   "name": "mac-omp-agente-mini",
+   "kind": "agente reale (omp)",
+   "why": "I 6 compiti di agente-mini guidati da OMP vero su ONYX-224r: impostazioni di oggi contro ragionamento spento, strumenti ridotti e profilo veloce (64K DFlash + ngram-mod). Obiettivo: capire perche un compito reale ha richiesto 45 minuti.",
+   "repo": "el4/Agents-A1-ONYX-GGUF (ricetta)"
+  },
+  {
+   "order": 2,
+   "platform": "mac",
+   "name": "mac-prefill-ub-b12223",
+   "kind": "velocita (~10 min)",
+   "why": "lettura del prompt a contesto profondo con -ub 256/512/1024 e llama.cpp b12223 contro b12038: nella sessione lenta tre letture da 22K token a 90-135K di contesto sono costate 23 minuti",
+   "repo": "el4/Agents-A1-ONYX-GGUF (ricetta)"
+  },
+  {
+   "order": 3,
+   "platform": "mac",
+   "name": "mac-onyx224r-duro-n8",
+   "kind": "qualita duro-v1",
+   "why": "ONYX-224r con lo stesso comando di Windows (duro --n=8 --jobs=1) per il confronto diretto con Agents-A1-35B Q4",
+   "repo": "el4/Agents-A1-ONYX-GGUF (ricetta)"
+  },
+  {
+   "order": 4,
+   "platform": "mac",
+   "name": "mac-lungo-64k-veloce",
+   "kind": "contesto lungo",
+   "why": "lungo.py a 64K sul profilo veloce: verificare che DFlash + ngram-mod non peggiori il richiamo",
+   "repo": "el4/Agents-A1-ONYX-GGUF (ricetta)"
   }
  ]
 }

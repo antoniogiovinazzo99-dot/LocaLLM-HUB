@@ -252,10 +252,10 @@
     box.textContent = '';
     var q = state.queue;
     if (!q || !q.items || !q.items.length) { box.appendChild(el('div', 'empty', 'Coda vuota o non disponibile.')); return; }
-    box.appendChild(el('div', 'meta', 'Windows · aggiornata ' + (q.updated || '')));
+    box.appendChild(el('div', 'meta', 'Coda · aggiornata ' + (q.updated || '')));
     q.items.filter(function (i) { return !state.q || (i.name + ' ' + i.kind + ' ' + (i.why || '')).toLowerCase().indexOf(state.q) >= 0; }).forEach(function (i) {
       var d = el('div', 'idea'); var r = el('div', 'row');
-      r.appendChild(el('b', null, i.order + '. ' + i.name)); r.appendChild(el('span', 'badge', i.kind)); d.appendChild(r);
+      r.appendChild(el('b', null, (i.platform === 'mac' ? 'Mac ' : 'Windows ') + i.order + '. ' + i.name)); r.appendChild(el('span', 'badge', i.kind)); d.appendChild(r);
       if (i.why) d.appendChild(el('p', null, i.why));
       box.appendChild(d);
     });

@@ -16,6 +16,10 @@ from bench2 import TOOLS_SYS, ask, extract  # noqa: E402
 D = os.path.join(HERE, "dati")
 OUT = os.path.join(HERE, "duro-risultati.jsonl")
 PYV = os.environ.get("PYV", sys.executable)  # Python con numpy, serve ai test di EvalPlus
+if any(s_ in " ".join(sys.argv) for s_ in ("code", "mbpp")) or "--sets" not in " ".join(sys.argv):
+    if subprocess.run([PYV, "-I", "-c", "import numpy"], capture_output=True).returncode != 0:
+        sys.exit(f"duro.py: il Python dei test ({PYV}) non importa numpy con -I (pacchetti utente esclusi): i test di HumanEval+/MBPP+ fallirebbero tutti (0%). "
+                 "Installa numpy o indica un altro Python con PYV=/percorso/python")
 SYSP = ("Answer the question. Think step by step if useful, then end with one final line in the format: RISPOSTA: <answer>")
 
 NUM = re.compile(r"^-?\d+(\.\d+)?$")
