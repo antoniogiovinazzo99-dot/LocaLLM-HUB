@@ -77,6 +77,62 @@
       "id": "training", "title": "QLoRA / distillazione", "owner": "Motti", "platform": "windows", "status": "idea",
       "summary": "Fine-tuning leggero (4B-9B sulla 3060) o distillazione da un modello grande per un compito stretto (codice/agente). Non rende un modello piu intelligente in generale.",
       "techniques": ["QLoRA", "distillazione"], "tests": [], "next": "Dopo aver misurato dove il 4B sbaglia nei lavori reali."
+    },
+    {
+      "id": "mac-agents-a1-onyx", "title": "Agents-A1 ONYX su Mac (256K tutto in GPU)", "owner": "Pietro", "platform": "mac", "status": "attivo",
+      "summary": "Agents-A1 35B-A3B con quantizzazione ONYX (MoE-aware, 2-3 bit) potata a 224 expert e con 10 strati riquantizzati: 10,2 GB, 256K di contesto tutto nella memoria GPU di un M4 da 16 GB, 28,3 t/s su core-speed, 5/5 fatti ritrovati in 240K token, agente 12/12. ONYX-240 (11,2 GB) e piu intelligente di circa 5 punti ma entra solo fino a ~64K a piena velocita.",
+      "techniques": ["quantizzazione ONYX/APEX", "potatura expert stile REAP", "imatrix calibrato con Wikipedia", "KV q4_0"],
+      "tests": ["2026-11-09-agents-a1-onyx-224r-256k-base", "2026-11-08-onyx224r-256k-qualita-duro", "2026-11-08-onyx224r-256k-contesto-lungo", "2026-11-08-onyx224r-256k-agente", "2026-11-07-onyx240-vs-iq2s-duro", "2026-11-09-agents-a1-onyx-240-32k-base", "2026-11-09-agents-a1-onyx-240-128k-base"],
+      "next": "Suite S portabile (core-quick) per confrontarlo con il Q4 di Windows; ONYX-240 a 64K come profilo intelligente."
+    },
+    {
+      "id": "mac-speculative-dflash-ngram", "title": "DFlash + ngram-mod su llama.cpp (Mac)", "owner": "Pietro", "platform": "mac", "status": "attivo",
+      "summary": "Drafter DFlash z-lab per Qwen3.5-35B-A3B (GGUF Q4_K_M di Anbeeld, 0,24 GB) piu ngram-mod di llama.cpp su ONYX-224r: 51,0 t/s medi a 64K contro 26,5 della base (accettazione 72,6%). Solo ngram-mod a 256K: 33,8 t/s (+19%). Con il drafter oltre ~64-96K la memoria GPU finisce.",
+      "techniques": ["DFlash", "ngram-mod", "speculative decoding"],
+      "tests": ["2026-11-09-agents-a1-onyx-224r-64k-dflash-ngram-mod", "2026-11-09-agents-a1-onyx-224r-64k-dflash", "2026-11-09-agents-a1-onyx-224r-64k-base", "2026-11-09-agents-a1-onyx-224r-256k-ngram-mod", "2026-11-09-agents-a1-onyx-224r-256k-ngram-simple", "2026-11-09-agents-a1-onyx-224r-96k-dflash-ngram-mod", "2026-11-09-agents-a1-onyx-224r-128k-dflash", "2026-11-09-agents-a1-onyx-224r-256k-dflash"],
+      "next": "Profilo a1-locale 64K con DFlash + ngram-mod e verifica in un agente reale (OMP); provare --spec-draft-n-max."
+    },
+    {
+      "id": "mac-strata-flash-next", "title": "Strata + Flash Next su Mac M4 16 GB (fork m4-tail-skip)", "owner": "Pietro", "platform": "mac", "status": "provato",
+      "summary": "Fork locale del motore Metal di Strata che legge gli expert dall'SSD: tail skip ogni 4 strati, sostituzione degli expert mancanti (Prefetch-Steered Routing), lettura anticipata, prompt a pezzi da 512. Da 3,6 a 17,8 t/s a 256K (protocollo interno) con 98,3% su bench2; fino a 512K a 13 t/s. Su core-speed 10,8 t/s. DFlash2 accetta fino all'87% ma resta piu lento.",
+      "techniques": ["streaming expert da SSD", "tail skip", "sostituzione expert", "YaRN", "KV q4_0", "DFlash2"],
+      "tests": ["2026-11-06-flashnext-strata-256k-riferimento", "2026-11-06-flashnext-strata-mentre-usi-il-mac", "2026-11-06-flashnext-strata-oltre-256k", "2026-11-06-flashnext-strata-tail-skip", "2026-11-05-flashnext-strata-default", "2026-11-05-flashnext-strata-dflash2", "2026-11-09-flash-next-q2_0-strata-256k-base", "2026-11-09-flash-next-q2_0-strata-256k-suffix-draft"],
+      "next": "Fermo: riprendere con un SSD esterno su Thunderbolt (letture parallele da due dischi, cache del prefisso su SSD)."
+    },
+    {
+      "id": "mac-cervello", "title": "Cervello: instradamento per tipo di domanda", "owner": "Pietro", "platform": "mac", "status": "provato",
+      "summary": "Proxy OpenAI-compatibile (a1_cervello.py): A1 classifica la domanda in 6 token e una politica sceglie la strategia (ragionamento con budget forcing per calcolo e conoscenza, risposta diretta per codice). +8,5 punti su ONYX-240 e +5,1 su ONYX-224r sullo stesso set; le richieste con strumenti passano intatte.",
+      "techniques": ["router", "budget forcing s1", "campionamento Qwen"],
+      "tests": ["2026-11-08-onyx240-cervello-duro", "2026-11-08-onyx224r-256k-qualita-duro"],
+      "next": "Provarlo su core-quick e sui lavori reali della Suite S."
+    },
+    {
+      "id": "mac-armature", "title": "Armature su Agents-A1 (Mac)", "owner": "Pietro", "platform": "mac", "status": "provato",
+      "summary": "Con IQ2_S gli strumenti Python eseguiti portano bench2 da 83 a 97% (voto a 3 + strumenti 98%) e il ragionamento lo peggiora (75%). Con ONYX nessuna armatura generica batte la base: ragionamento ovunque -7, AREX-2 +1,7 ma 3 volte piu lento, skills -3, vettore di controllo -10, 10 expert -2.",
+      "techniques": ["strumenti Python (PAL)", "voto", "ragionamento", "AREX-2 (BAAI)", "skills", "vettore di controllo"],
+      "tests": ["2026-11-07-a1-iq2s-armature-bench2", "2026-11-08-onyx240-armature-duro", "2026-11-07-a1-iq2s-expert-per-token"],
+      "next": "Solo armature mirate per classe (vedi mac-cervello)."
+    },
+    {
+      "id": "mac-contesto-lungo", "title": "Contesto lungo sul Mac: 256K si, 512K no", "owner": "Pietro", "platform": "mac", "status": "provato",
+      "summary": "256K con ONYX-224r tutto in GPU: 5/5 fatti in 240K token, lettura 188→41 t/s (circa 56 minuti la prima volta). 512K: servono ~2 GB in piu; a memoria invariata solo con 176 expert, che rompono il modello (18,6%). Flash Next su Strata arriva a 512K (13 t/s) perche legge gli expert dall'SSD.",
+      "techniques": ["KV q4_0", "YaRN", "potatura per far spazio alla KV"],
+      "tests": ["2026-11-08-onyx224r-256k-contesto-lungo", "2026-11-08-onyx-512k-tentativi", "2026-11-06-flashnext-strata-oltre-256k"],
+      "next": "Knowledge pack: salvare la KV di un documento lungo su SSD (--slot-save-path) per non rileggerlo."
+    },
+    {
+      "id": "mac-omp", "title": "OMP (Oh My Pi) con Agents-A1 locale", "owner": "Pietro", "platform": "mac", "status": "attivo",
+      "summary": "OMP 18.15 collegato a llama.cpp/agents-a1 (ONYX-224r, 256K): primo compito reale (bug in un modulo Python) corretto e verificato in 2,5 minuti a 26-29 t/s. Attenzione al ripiego automatico su un modello cloud quando il server locale e spento.",
+      "techniques": ["harness reale", "agente"],
+      "tests": ["2026-11-08-omp-agents-a1-harness"],
+      "next": "Eseguire i 6 compiti di agente-mini con OMP sul Mac (harness_reali.py)."
+    },
+    {
+      "id": "mac-benchmark", "title": "Benchmark del Mac (benchmarks/mac-pietro)", "owner": "Pietro", "platform": "mac", "status": "attivo",
+      "summary": "Script usati sul Mac, tutti contro un server OpenAI-compatibile: duro (MATH-500 L4-5, AIME, HumanEval+, MBPP+, MMLU-Pro), bench2/3/4 e ufficiale (suite scritte per A1 contro Flash Next), lungo (aghi fino a 240K), agente (12 compiti con chiamate di funzione), cervello e potatura.",
+      "techniques": ["benchmark"],
+      "tests": ["2026-11-07-a1-vs-flashnext-tre-suite", "2026-11-07-onyx240-vs-iq2s-duro"],
+      "next": "Unirli alla Suite S in un core-quick comune (proposta in docs/BENCHMARKS.md)."
     }
   ]
 }
