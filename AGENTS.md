@@ -34,7 +34,7 @@ Il sito (`index.html`) legge `results/*/index.json`: dopo il push (e un minuto d
 
 ## Che test fare (in ordine di priorita)
 1. **Velocita comune (`core-speed`)**: obbligatoria per ogni modello/configurazione, e quella che rende i Mac e il Windows confrontabili. Prova la stessa configurazione con e senza drafter / MTP / speculative decoding.
-2. **Qualita seria**: la Suite S e il codice sotto [`benchmarks/windows-fabbrica/`](benchmarks/windows-fabbrica/) (vedi [`docs/BENCHMARKS.md`](docs/BENCHMARKS.md)). E scritta per Windows ma e Python puro piu un server llama.cpp: puoi adattarla. Se la adatti, **mettila in `benchmarks/` come variante** e dichiara `benchmark.suite`/`version` esatti, cosi i punteggi restano confrontabili.
+2. **Qualita seria (metro comune dal 9/11)**: `duro.py`, `lungo.py`, `agente.py` in [`benchmarks/mac-pietro/`](benchmarks/mac-pietro/): parlano con qualsiasi server OpenAI-compatibile. Dichiara `benchmark.suite` = `duro-v1` ecc. e i parametri (`--n`, `--jobs`). I benchmark Windows ([`benchmarks/windows-fabbrica/`](benchmarks/windows-fabbrica/)) restano solo per agente-mini e harness reali. Leggi [`docs/ALLINEAMENTO-2026-11-09.md`](docs/ALLINEAMENTO-2026-11-09.md).
 3. **Agenti**: agente-mini (6 compiti con test nascosti) e prove con harness reali (Claude Code, opencode, omp, ...).
 4. **Armature e intelligenza extra**: voto su N campioni, programma eseguito, verifica, cascate, knowledge pack, QLoRA. Sempre con la **base senza armatura sugli stessi esempi** accanto.
 5. **Idee**: aggiungi a [`data/ideas.json`](data/ideas.json) (solo in coda, un oggetto per idea) cio che vale la pena provare.

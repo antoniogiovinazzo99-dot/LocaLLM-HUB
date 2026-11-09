@@ -37,6 +37,9 @@ Il codice e ancora cucito su Windows (percorsi, kill dei processi, server Strata
 
 Regole che ne derivano: nessuna conclusione su differenze entro il rumore; per classificare serve la Suite S con n alto e agente reale; i numeri del 9/11 sono "indicativi per scegliere cosa approfondire", non "il modello X batte Y".
 
+## Decisione del 9/11/2026: metro di qualita comune
+Per misurare l'intelligenza si usano **`duro.py` + `lungo.py` + `agente.py` di Pietro** (`benchmarks/mac-pietro/`): set pubblici con margine, seed fissi, rumore dichiarato. La Suite S e il tiny di Windows restano solo come storia e per `agente_mini` (compiti di codice con test nascosti) e harness reali. Dettagli e motivi: [`docs/ALLINEAMENTO-2026-11-09.md`](ALLINEAMENTO-2026-11-09.md).
+
 ## Unificazione
 Obiettivo: che Motti e Pietro eseguano **lo stesso identico benchmark** e i punteggi siano confrontabili. Piano proposto:
 
