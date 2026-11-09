@@ -50,5 +50,5 @@
  "tags": [
   "speculative"
  ],
- "summary": "Test fallito: [WinError 10054] Connessione in corso interrotta forzatamente dall'host remoto. FALLITO: connessione chiusa dal server del fork llama-dspine. Primo tentativo, IQ2_S + drafter Q8 + contesto 32K saturava la VRAM."
+ "summary": "Test fallito o non valido: [WinError 10054] Connessione in corso interrotta forzatamente dall'host remoto. FALLITO: connessione chiusa dal server del fork llama-dspine. Primo tentativo, IQ2_S + drafter Q8 + contesto 32K saturava la VRAM."
 }

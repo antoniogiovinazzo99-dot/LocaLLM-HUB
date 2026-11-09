@@ -35,5 +35,5 @@
  "tags": [
   "reference"
  ],
- "summary": "Test fallito: server uscito in avvio."
+ "summary": "Test fallito o non valido: server uscito in avvio."
 }

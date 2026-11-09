@@ -3,135 +3,387 @@
   "note": "Un oggetto per progetto o tecnica. Aggiungi le tue in coda (owner = chi la porta avanti). status: attivo | provato | idea | chiuso | bloccato. tests = id degli esperimenti in results/ che la riguardano.",
   "projects": [
     {
-      "id": "fabbrica", "title": "Fabbrica: runner di benchmark Windows", "owner": "Motti", "platform": "windows", "status": "attivo",
+      "id": "fabbrica",
+      "title": "Fabbrica: runner di benchmark Windows",
+      "owner": "Motti",
+      "platform": "windows",
+      "status": "attivo",
       "summary": "Runner che scarica un modello, avvia il server (llama.cpp o Strata), misura velocita, tiny, Suite S e agente-mini con budget di tempo e scrive un record per modello. Ha una coda (coda.json) e uno scout che aggiunge modelli nuovi.",
-      "techniques": ["budget di tempo con campione casuale", "modo speed_only (3 min)", "hook agente-mini", "hook harness reali"],
-      "tests": [], "links": ["benchmarks/windows-fabbrica/fabbrica.py"],
+      "techniques": [
+        "budget di tempo con campione casuale",
+        "modo speed_only (3 min)",
+        "hook agente-mini",
+        "hook harness reali"
+      ],
+      "tests": [],
+      "links": [
+        "benchmarks/windows-fabbrica/fabbrica.py"
+      ],
       "next": "Estrarre un runner portabile che parli solo con un server OpenAI-compatibile, per usarlo anche su Mac."
     },
     {
-      "id": "suite-s", "title": "Suite S + agente-mini", "owner": "Motti", "platform": "windows", "status": "attivo",
+      "id": "suite-s",
+      "title": "Suite S + agente-mini",
+      "owner": "Motti",
+      "platform": "windows",
+      "status": "attivo",
       "summary": "Benchmark pensato per l'uso reale: MATH, BBH, HumanEval+, LiveCodeBench, 8 lavori con test nascosti, contesto lungo; piu 6 compiti da agente con strumenti. Indice d'uso = media pesata. I punteggi sulle parti con pochi campioni non valgono: guardare suite_s_samples.",
-      "techniques": ["test nascosti con credito parziale", "indice d'uso pesato"],
-      "tests": ["2026-11-09-agents-a1-35b-q4-serio", "2026-11-09-op-flashnext-ref-serio2"], "links": ["docs/BENCHMARKS.md"],
+      "techniques": [
+        "test nascosti con credito parziale",
+        "indice d'uso pesato"
+      ],
+      "tests": [
+        "2026-11-09-agents-a1-35b-q4-serio",
+        "2026-11-09-op-flashnext-ref-serio2"
+      ],
+      "links": [
+        "docs/BENCHMARKS.md"
+      ],
       "next": "Correggere lungo contesto (bug trovato: slot da 8K), congelare core v1."
     },
     {
-      "id": "agents-a1", "title": "Agents-A1 35B-A3B (candidato)", "owner": "Motti", "platform": "windows", "status": "attivo",
+      "id": "agents-a1",
+      "title": "Agents-A1 35B-A3B (candidato)",
+      "owner": "Motti",
+      "platform": "windows",
+      "status": "attivo",
       "summary": "MoE 35B con 3B attivi. Q4 21 GB: indice d'uso 69,1 e agente 83%, pari a Flash-Next (68,4 / 83%) a 36,6 t/s. IQ2_M 11,7 GB: 52 t/s ma indice 60,6 e agente 50%. Esiste una versione 4B (77 t/s, tiny 77,6) come primo stadio di una cascata.",
-      "techniques": ["quantizzazione", "cascata 4B -> 35B"],
-      "tests": ["2026-11-09-agents-a1-35b-q4", "2026-11-09-agents-a1-35b-q4-serio", "2026-11-09-agents-a1-35b-iq2m-serio", "2026-11-08-agents-a1-4b"],
+      "techniques": [
+        "quantizzazione",
+        "cascata 4B -> 35B"
+      ],
+      "tests": [
+        "2026-11-09-agents-a1-35b-q4",
+        "2026-11-09-agents-a1-35b-q4-serio",
+        "2026-11-09-agents-a1-35b-iq2m-serio",
+        "2026-11-08-agents-a1-4b"
+      ],
       "next": "Agente reale (opencode, Claude Code), contesto a 64K+, drafter/MTP."
     },
     {
-      "id": "strata-flash-next", "title": "Strata + Qwen3.8-Flash-Next 125B", "owner": "Motti", "platform": "windows", "status": "attivo",
+      "id": "strata-flash-next",
+      "title": "Strata + Qwen3.8-Flash-Next 125B",
+      "owner": "Motti",
+      "platform": "windows",
+      "status": "attivo",
       "summary": "Motore Strata (0.2.11) che tiene gli esperimenti piu usati in VRAM: da 5,8 a 28-31 t/s a qualita piena, 23 t/s a 253K di contesto. STRATA_ROUTE_PRIOR=1.5 da +50% di velocita ma peggiora matematica e agente. E il riferimento di tutti i confronti.",
-      "techniques": ["expert prior", "KV in RAM (kv-resident)", "MTP/DFlash2", "tail-skip"],
-      "tests": ["2026-11-09-op-flashnext-ref-serio2", "2026-11-09-op-flashnext-p15"],
+      "techniques": [
+        "expert prior",
+        "KV in RAM (kv-resident)",
+        "MTP/DFlash2",
+        "tail-skip"
+      ],
+      "tests": [
+        "2026-11-09-op-flashnext-ref-serio2",
+        "2026-11-09-op-flashnext-p15"
+      ],
       "next": "Strata 0.2.12 (3x prompt, ma solo per un quant specifico); confrontare kv q4_0 / k8v4 per raddoppiare il contesto."
     },
     {
-      "id": "speculative", "title": "Decodifica speculativa: MTP, DFlash2, DSpine", "owner": "Motti", "platform": "windows", "status": "attivo",
-      "summary": "Un drafter propone token, il modello grande li verifica. DFlash2 sul 27B IQ2_XXS: 20,2 -> 33,0 t/s (+63%), ma solo se resta VRAM libera. MTP su Ornith35 piu lento del no-MTP. DSpine: il fork gira ma la velocita crolla in alcune richieste (0,12 t/s); in rifacimento con n_max 7 e contesto 4K.",
-      "techniques": ["MTP", "DFlash2", "DSpine (Tencent 2609.36173)", "prompt lookup"],
-      "tests": ["2026-11-09-sp-27b-xxs-base", "2026-11-09-sp-27b-xxs-dflash2", "2026-11-09-sp-27b-xxs-dspine", "2026-11-09-op-ornith35-mtp-imini"],
-      "next": "DSpine n_max 7; drafter su Agents-A1-35B Q4."
+      "id": "speculative",
+      "title": "Decodifica speculativa: MTP, DFlash2, DSpine",
+      "owner": "Motti",
+      "platform": "windows",
+      "status": "attivo",
+      "summary": "Un drafter propone token, il modello grande li verifica. 27B IQ2_XXS: base 20,2 t/s, DFlash2 33,0 (+63%), DSpine 31,4: DSpine (fork llama-dspine) ora gira ma non batte DFlash2 (accettazione codice 36,8% vs 37,8%); il blocco precedente era memoria piena con n_max 15. MTP su Ornith35 piu lento del no-MTP. Dal Mac (Pietro): DFlash z-lab Qwen3.5-35B-A3B (0,24 GB) + ngram-mod su Agents-A1 raddoppia la velocita (51 vs 26,5 t/s a 64K): in coda su A1-35B Q4 Windows.",
+      "techniques": [
+        "MTP",
+        "DFlash2",
+        "DSpine (Tencent 2609.36173)",
+        "prompt lookup"
+      ],
+      "tests": [
+        "2026-11-09-sp-27b-xxs-base",
+        "2026-11-09-sp-27b-xxs-dflash2",
+        "2026-11-09-sp-27b-xxs-dspine",
+        "2026-11-09-op-ornith35-mtp-imini",
+        "2026-11-09-sp-27b-xxs-dspine-n7"
+      ],
+      "next": "Ricetta di Pietro su A1-35B Q4: sp-a1-q4-base, sp-a1-q4-ngram-mod, sp-a1-q4-dflash-ngram."
     },
     {
-      "id": "armature", "title": "Armature di ragionamento", "owner": "Motti", "platform": "windows", "status": "provato",
+      "id": "armature",
+      "title": "Armature di ragionamento",
+      "owner": "Motti",
+      "platform": "windows",
+      "status": "provato",
       "summary": "Voto su N campioni, programma eseguito (PAL), verifica, escalation condizionata, MCQ. Sul tiny non guadagnano nulla. Sulla matematica Ornith-9B: voto su 5 98% in 10,8 min vs PAL 83-86% in 0,8 min; manca la base senza armatura.",
-      "techniques": ["self-consistency", "PAL", "verify", "gated escalation"],
-      "tests": ["2026-11-09-ornith-1.5-9b-arm", "2026-11-08-agents-a1-4b-arm"],
+      "techniques": [
+        "self-consistency",
+        "PAL",
+        "verify",
+        "gated escalation"
+      ],
+      "tests": [
+        "2026-11-09-ornith-1.5-9b-arm",
+        "2026-11-08-agents-a1-4b-arm"
+      ],
       "next": "Rifare sui lavori e su LiveCodeBench della Suite S, con la base accanto."
     },
     {
-      "id": "harness-reali", "title": "Agenti reali: opencode, Claude Code, omp", "owner": "Motti", "platform": "windows", "status": "attivo",
-      "summary": "Gli stessi 6 compiti di agente-mini guidati da agenti veri su un server a 64K. Adattatori scritti, hook nel runner aggiunto il 9/11; primo giro in coda su Agents-A1-35B Q4. Obiettivo: misurare la qualita in uso reale da agente.",
-      "techniques": ["opencode", "Claude Code via protocollo Anthropic", "omp"],
-      "tests": [], "links": ["benchmarks/windows-fabbrica/harness_reali.py"], "next": "Risultati del primo giro; poi Flash-Next e confronto tra harness."
+      "id": "harness-reali",
+      "title": "Agenti reali: opencode, Claude Code, omp",
+      "owner": "Motti",
+      "platform": "windows",
+      "status": "attivo",
+      "summary": "Gli stessi 6 compiti di agente-mini guidati da agenti veri su un server a 64K. Primo giro opencode NON VALIDO (opencode v2 con servizio in background ignorava la config): corretto con --standalone, rifatto. Claude Code in corso. Il Mac ha gia OMP 18.15 con Agents-A1 (primo compito reale risolto in 2,5 min).",
+      "techniques": [
+        "opencode",
+        "Claude Code via protocollo Anthropic",
+        "omp"
+      ],
+      "tests": [
+        "2026-11-09-a1-35b-q4-harness-opencode"
+      ],
+      "links": [
+        "benchmarks/windows-fabbrica/harness_reali.py"
+      ],
+      "next": "Risultati del primo giro; poi Flash-Next e confronto tra harness."
     },
     {
-      "id": "contesto-lungo", "title": "Contesto lungo (obiettivo 256K+, raddoppiare)", "owner": "Motti", "platform": "windows", "status": "attivo",
+      "id": "contesto-lungo",
+      "title": "Contesto lungo (obiettivo 256K+, raddoppiare)",
+      "owner": "Motti",
+      "platform": "windows",
+      "status": "attivo",
       "summary": "Il test 'lungo' valeva 0 per tutti i modelli: bug del server (4 slot da 8K ricevevano un prompt da 41K token), non dei modelli. Rifatto con slot da 49K. Strata offre KV int8/q4_0/k8v4 e KV in streaming su RAM (13,7 KB/token) per allungare il contesto.",
-      "techniques": ["KV q4_0 con rotazione Hadamard", "KV streaming in RAM", "YaRN oltre 262K"],
-      "tests": [], "next": "Lungo corretto su A1-35B Q4; poi 128K con KV q4_0 e confronto qualita/velocita."
+      "techniques": [
+        "KV q4_0 con rotazione Hadamard",
+        "KV streaming in RAM",
+        "YaRN oltre 262K"
+      ],
+      "tests": [
+        "2026-11-09-a1-35b-q4-lungo-fix"
+      ],
+      "next": "Piu campioni del lungo; poi ONYX-224r di Pietro (10 GB, 256K tutto in GPU sul Mac) sulla 3060: da provare se Pietro condivide il GGUF."
     },
     {
-      "id": "infinity-runtime", "title": "Infinity (AWS/Berkeley): runtime per agenti concorrenti", "owner": "Motti", "platform": "windows", "status": "idea",
+      "id": "infinity-runtime",
+      "title": "Infinity (AWS/Berkeley): runtime per agenti concorrenti",
+      "owner": "Motti",
+      "platform": "windows",
+      "status": "idea",
       "summary": "Runtime Rust che sospende gli agenti in attesa di tool (solo la storia resta, ~100 KB ciascuno): 75k agenti in 8 GB e una stima, misurata su un modello simulato. Non aumenta la velocita di inferenza. Idea: usarlo come scheduler davanti a un llama-server con 1-2 slot, cosi molti agenti condividono la GPU mentre aspettano i tool.",
-      "techniques": ["sospensione/ripresa a slice", "storia come unico stato"],
-      "tests": [], "links": ["docs/RICERCA-2026-11-09-INFINITY-GYRO.md"], "next": "Misurare quanti agenti paralleli regge davvero il server (slot, MoE con offload)."
+      "techniques": [
+        "sospensione/ripresa a slice",
+        "storia come unico stato"
+      ],
+      "tests": [],
+      "links": [
+        "docs/RICERCA-2026-11-09-INFINITY-GYRO.md"
+      ],
+      "next": "Misurare quanti agenti paralleli regge davvero il server (slot, MoE con offload)."
     },
     {
-      "id": "gyro", "title": "Gyro (quantizzazione trellis) per Flash-Next", "owner": "Motti", "platform": "windows", "status": "idea",
+      "id": "gyro",
+      "title": "Gyro (quantizzazione trellis) per Flash-Next",
+      "owner": "Motti",
+      "platform": "windows",
+      "status": "idea",
       "summary": "Gyro-S: 27,6 GiB di pesi in GPU, metodo QTIP/trellis, qualita migliore di IQ2/IQ3 a pari memoria (dati del venditore). Richiede Strata >= 0.2.0. Con 12 GB di VRAM + 16 GB di RAM non entra: serve ~32 GB di memoria utile.",
-      "techniques": ["trellis-coded quantization", "rotazione Hadamard", "tabella n-gram su disco"],
-      "tests": [], "links": ["docs/RICERCA-2026-11-09-INFINITY-GYRO.md"], "next": "Valutare l'upgrade RAM; nel frattempo Gyro non e testabile qui."
+      "techniques": [
+        "trellis-coded quantization",
+        "rotazione Hadamard",
+        "tabella n-gram su disco"
+      ],
+      "tests": [],
+      "links": [
+        "docs/RICERCA-2026-11-09-INFINITY-GYRO.md"
+      ],
+      "next": "Valutare l'upgrade RAM; nel frattempo Gyro non e testabile qui."
     },
     {
-      "id": "knowledge-pack", "title": "Knowledge pack (KV precalcolata)", "owner": "Motti", "platform": "windows", "status": "idea",
+      "id": "knowledge-pack",
+      "title": "Knowledge pack (KV precalcolata)",
+      "owner": "Motti",
+      "platform": "windows",
+      "status": "idea",
       "summary": "Si legge una volta un documento, si salva la KV e la si ricarica: il modello 'sa' il documento senza rileggerlo. Strata ha file di sessione e checkpoint di prompt (~118 MB l'uno).",
-      "techniques": ["KV precompute", "prompt checkpoints"], "tests": [], "next": "Costruire sul 35B Q4 con un documento reale e misurare il tempo risparmiato."
+      "techniques": [
+        "KV precompute",
+        "prompt checkpoints"
+      ],
+      "tests": [],
+      "next": "Costruire sul 35B Q4 con un documento reale e misurare il tempo risparmiato."
     },
     {
-      "id": "training", "title": "QLoRA / distillazione", "owner": "Motti", "platform": "windows", "status": "idea",
+      "id": "training",
+      "title": "QLoRA / distillazione",
+      "owner": "Motti",
+      "platform": "windows",
+      "status": "idea",
       "summary": "Fine-tuning leggero (4B-9B sulla 3060) o distillazione da un modello grande per un compito stretto (codice/agente). Non rende un modello piu intelligente in generale.",
-      "techniques": ["QLoRA", "distillazione"], "tests": [], "next": "Dopo aver misurato dove il 4B sbaglia nei lavori reali."
+      "techniques": [
+        "QLoRA",
+        "distillazione"
+      ],
+      "tests": [],
+      "next": "Dopo aver misurato dove il 4B sbaglia nei lavori reali."
     },
     {
-      "id": "mac-agents-a1-onyx", "title": "Agents-A1 ONYX su Mac (256K tutto in GPU)", "owner": "Pietro", "platform": "mac", "status": "attivo",
+      "id": "mac-agents-a1-onyx",
+      "title": "Agents-A1 ONYX su Mac (256K tutto in GPU)",
+      "owner": "Pietro",
+      "platform": "mac",
+      "status": "attivo",
       "summary": "Agents-A1 35B-A3B con quantizzazione ONYX (MoE-aware, 2-3 bit) potata a 224 expert e con 10 strati riquantizzati: 10,2 GB, 256K di contesto tutto nella memoria GPU di un M4 da 16 GB, 28,3 t/s su core-speed, 5/5 fatti ritrovati in 240K token, agente 12/12. ONYX-240 (11,2 GB) e piu intelligente di circa 5 punti ma entra solo fino a ~64K a piena velocita.",
-      "techniques": ["quantizzazione ONYX/APEX", "potatura expert stile REAP", "imatrix calibrato con Wikipedia", "KV q4_0"],
-      "tests": ["2026-11-09-agents-a1-onyx-224r-256k-base", "2026-11-08-onyx224r-256k-qualita-duro", "2026-11-08-onyx224r-256k-contesto-lungo", "2026-11-08-onyx224r-256k-agente", "2026-11-07-onyx240-vs-iq2s-duro", "2026-11-09-agents-a1-onyx-240-32k-base", "2026-11-09-agents-a1-onyx-240-128k-base"],
+      "techniques": [
+        "quantizzazione ONYX/APEX",
+        "potatura expert stile REAP",
+        "imatrix calibrato con Wikipedia",
+        "KV q4_0"
+      ],
+      "tests": [
+        "2026-11-09-agents-a1-onyx-224r-256k-base",
+        "2026-11-08-onyx224r-256k-qualita-duro",
+        "2026-11-08-onyx224r-256k-contesto-lungo",
+        "2026-11-08-onyx224r-256k-agente",
+        "2026-11-07-onyx240-vs-iq2s-duro",
+        "2026-11-09-agents-a1-onyx-240-32k-base",
+        "2026-11-09-agents-a1-onyx-240-128k-base"
+      ],
       "next": "Suite S portabile (core-quick) per confrontarlo con il Q4 di Windows; ONYX-240 a 64K come profilo intelligente."
     },
     {
-      "id": "mac-speculative-dflash-ngram", "title": "DFlash + ngram-mod su llama.cpp (Mac)", "owner": "Pietro", "platform": "mac", "status": "attivo",
+      "id": "mac-speculative-dflash-ngram",
+      "title": "DFlash + ngram-mod su llama.cpp (Mac)",
+      "owner": "Pietro",
+      "platform": "mac",
+      "status": "attivo",
       "summary": "Drafter DFlash z-lab per Qwen3.5-35B-A3B (GGUF Q4_K_M di Anbeeld, 0,24 GB) piu ngram-mod di llama.cpp su ONYX-224r: 51,0 t/s medi a 64K contro 26,5 della base (accettazione 72,6%). Solo ngram-mod a 256K: 33,8 t/s (+19%). Con il drafter oltre ~64-96K la memoria GPU finisce.",
-      "techniques": ["DFlash", "ngram-mod", "speculative decoding"],
-      "tests": ["2026-11-09-agents-a1-onyx-224r-64k-dflash-ngram-mod", "2026-11-09-agents-a1-onyx-224r-64k-dflash", "2026-11-09-agents-a1-onyx-224r-64k-base", "2026-11-09-agents-a1-onyx-224r-256k-ngram-mod", "2026-11-09-agents-a1-onyx-224r-256k-ngram-simple", "2026-11-09-agents-a1-onyx-224r-96k-dflash-ngram-mod", "2026-11-09-agents-a1-onyx-224r-128k-dflash", "2026-11-09-agents-a1-onyx-224r-256k-dflash"],
+      "techniques": [
+        "DFlash",
+        "ngram-mod",
+        "speculative decoding"
+      ],
+      "tests": [
+        "2026-11-09-agents-a1-onyx-224r-64k-dflash-ngram-mod",
+        "2026-11-09-agents-a1-onyx-224r-64k-dflash",
+        "2026-11-09-agents-a1-onyx-224r-64k-base",
+        "2026-11-09-agents-a1-onyx-224r-256k-ngram-mod",
+        "2026-11-09-agents-a1-onyx-224r-256k-ngram-simple",
+        "2026-11-09-agents-a1-onyx-224r-96k-dflash-ngram-mod",
+        "2026-11-09-agents-a1-onyx-224r-128k-dflash",
+        "2026-11-09-agents-a1-onyx-224r-256k-dflash"
+      ],
       "next": "Profilo a1-locale 64K con DFlash + ngram-mod e verifica in un agente reale (OMP); provare --spec-draft-n-max."
     },
     {
-      "id": "mac-strata-flash-next", "title": "Strata + Flash Next su Mac M4 16 GB (fork m4-tail-skip)", "owner": "Pietro", "platform": "mac", "status": "provato",
+      "id": "mac-strata-flash-next",
+      "title": "Strata + Flash Next su Mac M4 16 GB (fork m4-tail-skip)",
+      "owner": "Pietro",
+      "platform": "mac",
+      "status": "provato",
       "summary": "Fork locale del motore Metal di Strata che legge gli expert dall'SSD: tail skip ogni 4 strati, sostituzione degli expert mancanti (Prefetch-Steered Routing), lettura anticipata, prompt a pezzi da 512. Da 3,6 a 17,8 t/s a 256K (protocollo interno) con 98,3% su bench2; fino a 512K a 13 t/s. Su core-speed 10,8 t/s. DFlash2 accetta fino all'87% ma resta piu lento.",
-      "techniques": ["streaming expert da SSD", "tail skip", "sostituzione expert", "YaRN", "KV q4_0", "DFlash2"],
-      "tests": ["2026-11-06-flashnext-strata-256k-riferimento", "2026-11-06-flashnext-strata-mentre-usi-il-mac", "2026-11-06-flashnext-strata-oltre-256k", "2026-11-06-flashnext-strata-tail-skip", "2026-11-05-flashnext-strata-default", "2026-11-05-flashnext-strata-dflash2", "2026-11-09-flash-next-q2_0-strata-256k-base", "2026-11-09-flash-next-q2_0-strata-256k-suffix-draft"],
+      "techniques": [
+        "streaming expert da SSD",
+        "tail skip",
+        "sostituzione expert",
+        "YaRN",
+        "KV q4_0",
+        "DFlash2"
+      ],
+      "tests": [
+        "2026-11-06-flashnext-strata-256k-riferimento",
+        "2026-11-06-flashnext-strata-mentre-usi-il-mac",
+        "2026-11-06-flashnext-strata-oltre-256k",
+        "2026-11-06-flashnext-strata-tail-skip",
+        "2026-11-05-flashnext-strata-default",
+        "2026-11-05-flashnext-strata-dflash2",
+        "2026-11-09-flash-next-q2_0-strata-256k-base",
+        "2026-11-09-flash-next-q2_0-strata-256k-suffix-draft"
+      ],
       "next": "Fermo: riprendere con un SSD esterno su Thunderbolt (letture parallele da due dischi, cache del prefisso su SSD)."
     },
     {
-      "id": "mac-cervello", "title": "Cervello: instradamento per tipo di domanda", "owner": "Pietro", "platform": "mac", "status": "provato",
+      "id": "mac-cervello",
+      "title": "Cervello: instradamento per tipo di domanda",
+      "owner": "Pietro",
+      "platform": "mac",
+      "status": "provato",
       "summary": "Proxy OpenAI-compatibile (a1_cervello.py): A1 classifica la domanda in 6 token e una politica sceglie la strategia (ragionamento con budget forcing per calcolo e conoscenza, risposta diretta per codice). +8,5 punti su ONYX-240 e +5,1 su ONYX-224r sullo stesso set; le richieste con strumenti passano intatte.",
-      "techniques": ["router", "budget forcing s1", "campionamento Qwen"],
-      "tests": ["2026-11-08-onyx240-cervello-duro", "2026-11-08-onyx224r-256k-qualita-duro"],
+      "techniques": [
+        "router",
+        "budget forcing s1",
+        "campionamento Qwen"
+      ],
+      "tests": [
+        "2026-11-08-onyx240-cervello-duro",
+        "2026-11-08-onyx224r-256k-qualita-duro"
+      ],
       "next": "Provarlo su core-quick e sui lavori reali della Suite S."
     },
     {
-      "id": "mac-armature", "title": "Armature su Agents-A1 (Mac)", "owner": "Pietro", "platform": "mac", "status": "provato",
+      "id": "mac-armature",
+      "title": "Armature su Agents-A1 (Mac)",
+      "owner": "Pietro",
+      "platform": "mac",
+      "status": "provato",
       "summary": "Con IQ2_S gli strumenti Python eseguiti portano bench2 da 83 a 97% (voto a 3 + strumenti 98%) e il ragionamento lo peggiora (75%). Con ONYX nessuna armatura generica batte la base: ragionamento ovunque -7, AREX-2 +1,7 ma 3 volte piu lento, skills -3, vettore di controllo -10, 10 expert -2.",
-      "techniques": ["strumenti Python (PAL)", "voto", "ragionamento", "AREX-2 (BAAI)", "skills", "vettore di controllo"],
-      "tests": ["2026-11-07-a1-iq2s-armature-bench2", "2026-11-08-onyx240-armature-duro", "2026-11-07-a1-iq2s-expert-per-token"],
+      "techniques": [
+        "strumenti Python (PAL)",
+        "voto",
+        "ragionamento",
+        "AREX-2 (BAAI)",
+        "skills",
+        "vettore di controllo"
+      ],
+      "tests": [
+        "2026-11-07-a1-iq2s-armature-bench2",
+        "2026-11-08-onyx240-armature-duro",
+        "2026-11-07-a1-iq2s-expert-per-token"
+      ],
       "next": "Solo armature mirate per classe (vedi mac-cervello)."
     },
     {
-      "id": "mac-contesto-lungo", "title": "Contesto lungo sul Mac: 256K si, 512K no", "owner": "Pietro", "platform": "mac", "status": "provato",
+      "id": "mac-contesto-lungo",
+      "title": "Contesto lungo sul Mac: 256K si, 512K no",
+      "owner": "Pietro",
+      "platform": "mac",
+      "status": "provato",
       "summary": "256K con ONYX-224r tutto in GPU: 5/5 fatti in 240K token, lettura 188→41 t/s (circa 56 minuti la prima volta). 512K: servono ~2 GB in piu; a memoria invariata solo con 176 expert, che rompono il modello (18,6%). Flash Next su Strata arriva a 512K (13 t/s) perche legge gli expert dall'SSD.",
-      "techniques": ["KV q4_0", "YaRN", "potatura per far spazio alla KV"],
-      "tests": ["2026-11-08-onyx224r-256k-contesto-lungo", "2026-11-08-onyx-512k-tentativi", "2026-11-06-flashnext-strata-oltre-256k"],
+      "techniques": [
+        "KV q4_0",
+        "YaRN",
+        "potatura per far spazio alla KV"
+      ],
+      "tests": [
+        "2026-11-08-onyx224r-256k-contesto-lungo",
+        "2026-11-08-onyx-512k-tentativi",
+        "2026-11-06-flashnext-strata-oltre-256k"
+      ],
       "next": "Knowledge pack: salvare la KV di un documento lungo su SSD (--slot-save-path) per non rileggerlo."
     },
     {
-      "id": "mac-omp", "title": "OMP (Oh My Pi) con Agents-A1 locale", "owner": "Pietro", "platform": "mac", "status": "attivo",
+      "id": "mac-omp",
+      "title": "OMP (Oh My Pi) con Agents-A1 locale",
+      "owner": "Pietro",
+      "platform": "mac",
+      "status": "attivo",
       "summary": "OMP 18.15 collegato a llama.cpp/agents-a1 (ONYX-224r, 256K): primo compito reale (bug in un modulo Python) corretto e verificato in 2,5 minuti a 26-29 t/s. Attenzione al ripiego automatico su un modello cloud quando il server locale e spento.",
-      "techniques": ["harness reale", "agente"],
-      "tests": ["2026-11-08-omp-agents-a1-harness"],
+      "techniques": [
+        "harness reale",
+        "agente"
+      ],
+      "tests": [
+        "2026-11-08-omp-agents-a1-harness"
+      ],
       "next": "Eseguire i 6 compiti di agente-mini con OMP sul Mac (harness_reali.py)."
     },
     {
-      "id": "mac-benchmark", "title": "Benchmark del Mac (benchmarks/mac-pietro)", "owner": "Pietro", "platform": "mac", "status": "attivo",
+      "id": "mac-benchmark",
+      "title": "Benchmark del Mac (benchmarks/mac-pietro)",
+      "owner": "Pietro",
+      "platform": "mac",
+      "status": "attivo",
       "summary": "Script usati sul Mac, tutti contro un server OpenAI-compatibile: duro (MATH-500 L4-5, AIME, HumanEval+, MBPP+, MMLU-Pro), bench2/3/4 e ufficiale (suite scritte per A1 contro Flash Next), lungo (aghi fino a 240K), agente (12 compiti con chiamate di funzione), cervello e potatura.",
-      "techniques": ["benchmark"],
-      "tests": ["2026-11-07-a1-vs-flashnext-tre-suite", "2026-11-07-onyx240-vs-iq2s-duro"],
+      "techniques": [
+        "benchmark"
+      ],
+      "tests": [
+        "2026-11-07-a1-vs-flashnext-tre-suite",
+        "2026-11-07-onyx240-vs-iq2s-duro"
+      ],
       "next": "Unirli alla Suite S in un core-quick comune (proposta in docs/BENCHMARKS.md)."
     }
   ]

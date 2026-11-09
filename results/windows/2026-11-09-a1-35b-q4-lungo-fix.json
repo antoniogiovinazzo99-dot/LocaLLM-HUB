@@ -1,0 +1,66 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-a1-35b-q4-lungo-fix",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "quality-suite-s",
+ "status": "ok",
+ "title": "a1-35b-q4-lungo-fix",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+  "file": "Agents-A1-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 21.2
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "49152",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "suite-s+agente-mini",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 37.0,
+  "decode_tps_4": 36.5,
+  "prompt_tps": 92.1,
+  "mmlu": 84.6,
+  "arc": 97.5,
+  "gsm": 100.0,
+  "code12": 91.7,
+  "q_medio": 93.5,
+  "invented_words_pct": 0.4,
+  "load_s": 22.8,
+  "indice_uso": 100.0,
+  "lungo": 100.0,
+  "suite_s_samples": {
+   "lungo": "1/1"
+  },
+  "agente_mini": 83.3,
+  "agente_parziale": 83.3,
+  "agente_turni_medi": 7.8,
+  "agente_chiamate_non_valide": 0
+ },
+ "notes": "Lungo contesto rifatto con server a 1 slot da 49K: 100% su 1 campione (n=1: indicativo). Il vecchio 0 era un bug del runner (slot da 8K). Colonna lungo = 0 NON valida: bug del runner (server a 4 slot da 8K, il test mandava ~41K token: errore di contesto contato come risposta sbagliata). Corretto con slot da 49K, vedi a1-35b-q4-lungo-fix. lungo contesto con slot da 49K: il test precedente dava 0 per tutti perche il server aveva 4 slot da 8K",
+ "tags": [],
+ "summary": "Qualita tiny 93.5, indice d uso suite s 100.0, agente-mini 83.3%, 37.0 t/s a un flusso. Lungo contesto rifatto con server a 1 slot da 49K: 100% su 1 campione (n=1: indicativo). Il vecchio 0 era un bug del runner (slot da 8K)."
+}

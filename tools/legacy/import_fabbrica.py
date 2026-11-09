@@ -15,6 +15,9 @@ HW = {'gpu': 'NVIDIA RTX 3060 12GB', 'ram_gb': 16, 'os': 'Windows 11', 'cpu': 'R
 
 # note scritte a mano per i risultati che contano (verdetto, non solo numeri)
 NOTE = {
+    'sp-27b-xxs-dspine-n7': 'DSpine ORA GIRA (fork llama-dspine, n_max 7, ctx 4K, timeout 150 s): 31,4 t/s medi contro 33,0 di DFlash2 e 20,2 della base. Accettazione codice 36,8% contro 37,8% di DFlash2: nessun vantaggio misurabile su questo modello. Il crollo di prima (0,12 t/s) era memoria piena con n_max 15.',
+    'a1-35b-q4-lungo-fix': 'Lungo contesto rifatto con server a 1 slot da 49K: 100% su 1 campione (n=1: indicativo). Il vecchio 0 era un bug del runner (slot da 8K).',
+    'a1-35b-q4-harness-opencode': 'NON VALIDO: opencode v2 usa un servizio in background che ignorava la configurazione (errore provider.no-route, 0,4 s per compito). I punteggi sono credito parziale su una cartella mai toccata. Rifatto come a1-35b-q4-harness-opencode2 con --standalone.',
     'agents-a1-35b-iq2m': 'Il tiny dice 91,2 ma la Suite S (agents-a1-35b-iq2m-serio) dice 60,6: il tiny e quasi saturo e non vede il costo della compressione a 2 bit.',
     'agents-a1-35b-iq2m-serio': 'Suite S + agente-mini. Rispetto al Q4 perde circa 8 punti di indice d uso e scende al 50% sull agente: IQ2_M non e un sostituto del Q4.',
     'agents-a1-35b-q4-serio': 'Pari a Flash-Next sulla Suite S (69,1 vs 68,4) e sull agente (83%), alla stessa velocita. Intelligenza pari, non meglio.',
@@ -57,6 +60,8 @@ def convert(r):
     cat = 'quality-tiny'
     if r.get('tps_tipi'):
         cat = 'speed'
+    elif r.get('harness'):
+        cat = 'harness'
     elif r.get('arm'):
         cat = 'armature'
     elif r.get('serio'):
@@ -86,9 +91,13 @@ def convert(r):
         m['agente_parziale'] = a['parziale']
         m['agente_turni_medi'] = a['turni_medi']
         m['agente_chiamate_non_valide'] = a['non_valide']
+    if r.get('harness'):
+        for h, v in r['harness'].items():
+            m['harness_' + h + '_pieno_pct'] = v['pieno_pct']
+            m['harness_' + h + '_parziale_pct'] = v['parziale_pct']
     if r.get('arm'):
         m['armature'] = {k: {'acc': v['acc'], 'n': v['n'], 'min': v['min']} for k, v in r['arm'].items() if isinstance(v, dict) and 'acc' in v}
-    ok = not r.get('errore') and bool(m)
+    ok = not r.get('errore') and bool(m) and name != 'a1-35b-q4-harness-opencode'
     repo = r.get('repo')
     f = r.get('file')
     notes = [NOTE.get(name)] if NOTE.get(name) else []
@@ -102,13 +111,13 @@ def convert(r):
         'model': {'name': (repo or name).split('/')[-1], 'repo': repo, 'file': f, 'quant': quant_of(f), 'size_gb': r.get('size_gb')},
         'engine': {'name': 'strata' if (it.get('backend') == 'strata' or r.get('ref')) else 'llama.cpp', 'version': r.get('engine'), 'args': scrub(it.get('args') or [])},
         'hardware': dict(HW),
-        'benchmark': {'suite': {'quality-suite-s': 'suite-s+agente-mini', 'speed': 'speed-4-prompts', 'speculative': 'speed-4-prompts', 'armature': 'armature-math+mcq'}.get(cat, 'tiny-fabbrica'), 'harness': 'fabbrica-runner'},
+        'benchmark': {'suite': {'quality-suite-s': 'suite-s+agente-mini', 'speed': 'speed-4-prompts', 'speculative': 'speed-4-prompts', 'armature': 'armature-math+mcq', 'harness': 'agente-mini-harness-reali'}.get(cat, 'tiny-fabbrica'), 'harness': 'fabbrica-runner'},
         'metrics': m if ok else {},
         'notes': ' '.join(notes),
         'tags': [t for t in ['reference' if r.get('ref') else None, 'speculative' if spec else None] if t],
     }
     if not ok:
-        e['summary'] = f"Test fallito: {r.get('errore')}." + (' ' + NOTE[name] if name in NOTE else '')
+        e['summary'] = f"Test fallito o non valido: {r.get('errore') or 'vedi note'}." + (' ' + NOTE[name] if name in NOTE else '')
     else:
         bits = []
         if 'q_medio' in m:

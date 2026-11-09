@@ -52,5 +52,5 @@
  "tags": [
   "speculative"
  ],
- "summary": "Test fallito: timed out. FALLITO: il server del fork llama-dspine si pianta (timeout dopo ~2 ore). Nessun numero su DSpine."
+ "summary": "Test fallito o non valido: timed out. FALLITO: il server del fork llama-dspine si pianta (timeout dopo ~2 ore). Nessun numero su DSpine."
 }

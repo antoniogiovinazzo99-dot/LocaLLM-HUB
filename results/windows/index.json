@@ -1,6 +1,6 @@
 {
  "platform": "windows",
- "count": 33,
+ "count": 36,
  "experiments": [
   {
    "id": "2026-11-09-yt-qwen38-27b-iq2xxs",
@@ -95,6 +95,30 @@
    "tags": []
   },
   {
+   "id": "2026-11-09-sp-27b-xxs-dspine-n7",
+   "file": "results/windows/2026-11-09-sp-27b-xxs-dspine-n7.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "speculative",
+   "status": "ok",
+   "title": "sp-27b-xxs-dspine-n7",
+   "summary": "32.4 t/s a un flusso, 31.4 t/s medi su 4 tipi di prompt, accettazione drafter sul codice 36.8%. DSpine ORA GIRA (fork llama-dspine, n_max 7, ctx 4K, timeout 150 s): 31,4 t/s medi contro 33,0 di DFlash2 e 20,2 della base. Accettazione codice 36,8% contro 37,8% di DFlash2: nessun vantaggio misurabile su questo modello. Il crollo di prima (0,12 t/s) era memoria piena con n_max 15.",
+   "model": "Qwen3.8-27B-GGUF",
+   "quant": "UD-IQ2_XXS",
+   "size_gb": 7.3,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 32.4,
+    "tps_media": 31.4,
+    "draft_acceptance_pct": 36.8
+   },
+   "tags": [
+    "speculative"
+   ]
+  },
+  {
    "id": "2026-11-09-sp-27b-xxs-dspine",
    "file": "results/windows/2026-11-09-sp-27b-xxs-dspine.json",
    "platform": "windows",
@@ -103,7 +127,7 @@
    "category": "quality-tiny",
    "status": "failed",
    "title": "sp-27b-xxs-dspine",
-   "summary": "Test fallito: timed out. FALLITO: il server del fork llama-dspine si pianta (timeout dopo ~2 ore). Nessun numero su DSpine.",
+   "summary": "Test fallito o non valido: timed out. FALLITO: il server del fork llama-dspine si pianta (timeout dopo ~2 ore). Nessun numero su DSpine.",
    "model": "Qwen3.8-27B-GGUF",
    "quant": "UD-IQ2_XXS",
    "size_gb": 7.3,
@@ -282,7 +306,7 @@
    "category": "quality-tiny",
    "status": "failed",
    "title": "op-qwen38-27b-iq2s-dspine",
-   "summary": "Test fallito: [WinError 10054] Connessione in corso interrotta forzatamente dall'host remoto. FALLITO: connessione chiusa dal server del fork llama-dspine. Primo tentativo, IQ2_S + drafter Q8 + contesto 32K saturava la VRAM.",
+   "summary": "Test fallito o non valido: [WinError 10054] Connessione in corso interrotta forzatamente dall'host remoto. FALLITO: connessione chiusa dal server del fork llama-dspine. Primo tentativo, IQ2_S + drafter Q8 + contesto 32K saturava la VRAM.",
    "model": "Qwen3.8-27B-GGUF",
    "quant": "UD-IQ2_S",
    "size_gb": 8.4,
@@ -641,6 +665,47 @@
    "tags": []
   },
   {
+   "id": "2026-11-09-a1-35b-q4-lungo-fix",
+   "file": "results/windows/2026-11-09-a1-35b-q4-lungo-fix.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "quality-suite-s",
+   "status": "ok",
+   "title": "a1-35b-q4-lungo-fix",
+   "summary": "Qualita tiny 93.5, indice d uso suite s 100.0, agente-mini 83.3%, 37.0 t/s a un flusso. Lungo contesto rifatto con server a 1 slot da 49K: 100% su 1 campione (n=1: indicativo). Il vecchio 0 era un bug del runner (slot da 8K).",
+   "model": "Agents-A1-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.2,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 37.0,
+    "q_medio": 93.5,
+    "indice_uso": 100.0,
+    "agente_mini": 83.3
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-09-a1-35b-q4-harness-opencode",
+   "file": "results/windows/2026-11-09-a1-35b-q4-harness-opencode.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-09",
+   "category": "harness",
+   "status": "failed",
+   "title": "a1-35b-q4-harness-opencode",
+   "summary": "Test fallito o non valido: vedi note. NON VALIDO: opencode v2 usa un servizio in background che ignorava la configurazione (errore provider.no-route, 0,4 s per compito). I punteggi sono credito parziale su una cartella mai toccata. Rifatto come a1-35b-q4-harness-opencode2 con --standalone.",
+   "model": "Agents-A1-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.2,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": []
+  },
+  {
    "id": "2026-11-08-ornith-1.5-9b",
    "file": "results/windows/2026-11-08-ornith-1.5-9b.json",
    "platform": "windows",
@@ -672,7 +737,7 @@
    "category": "quality-tiny",
    "status": "failed",
    "title": "flashnext-v3-ref",
-   "summary": "Test fallito: server uscito in avvio.",
+   "summary": "Test fallito o non valido: server uscito in avvio.",
    "model": "flashnext-v3-ref",
    "quant": null,
    "size_gb": null,

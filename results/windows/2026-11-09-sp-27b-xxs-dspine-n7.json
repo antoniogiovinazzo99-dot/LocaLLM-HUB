@@ -1,0 +1,73 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-sp-27b-xxs-dspine-n7",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "speculative",
+ "status": "ok",
+ "title": "sp-27b-xxs-dspine-n7",
+ "reference": false,
+ "model": {
+  "name": "Qwen3.8-27B-GGUF",
+  "repo": "unsloth/Qwen3.8-27B-GGUF",
+  "file": "Qwen3.8-27B-UD-IQ2_XXS.gguf",
+  "quant": "UD-IQ2_XXS",
+  "size_gb": 7.3
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0",
+   "-c",
+   "4096",
+   "--spec-type",
+   "draft-dflash",
+   "-md",
+   "<PATH>/Qwen3.8-27B-DSpine-b16-Q4_K_M.gguf",
+   "-ngld",
+   "99",
+   "--spec-draft-n-max",
+   "7"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "speed-4-prompts",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 32.4,
+  "tps_media": 31.4,
+  "load_s": 13.1,
+  "tps_by_type": {
+   "codice": 24.8,
+   "storia": 13.5,
+   "ragionamento": 39.8,
+   "json": 47.7
+  },
+  "draft_acceptance_by_type": {
+   "codice": 36.8,
+   "storia": 12.3,
+   "ragionamento": 65.7,
+   "json": 80.8
+  },
+  "draft_acceptance_pct": 36.8
+ },
+ "notes": "DSpine ORA GIRA (fork llama-dspine, n_max 7, ctx 4K, timeout 150 s): 31,4 t/s medi contro 33,0 di DFlash2 e 20,2 della base. Accettazione codice 36,8% contro 37,8% di DFlash2: nessun vantaggio misurabile su questo modello. Il crollo di prima (0,12 t/s) era memoria piena con n_max 15. + drafter DSpine Q4, fork compilato",
+ "tags": [
+  "speculative"
+ ],
+ "summary": "32.4 t/s a un flusso, 31.4 t/s medi su 4 tipi di prompt, accettazione drafter sul codice 36.8%. DSpine ORA GIRA (fork llama-dspine, n_max 7, ctx 4K, timeout 150 s): 31,4 t/s medi contro 33,0 di DFlash2 e 20,2 della base. Accettazione codice 36,8% contro 37,8% di DFlash2: nessun vantaggio misurabile su questo modello. Il crollo di prima (0,12 t/s) era memoria piena con n_max 15."
+}

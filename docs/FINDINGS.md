@@ -4,7 +4,7 @@ Verificato = misurato con numeri nei file `results/windows/`. Il resto e dichiar
 
 ## Velocita
 - **Qwen3.8-27B IQ2_XXS, base: 20,2 t/s** su RTX 3060. Con **DFlash2** (drafter Q4, ctx 8K): **33,0 t/s medi (+63%)**, ma sul codice solo 25,6 perche l'accettazione cala (37,8%). Con IQ2_S, drafter Q8 e ctx 32K la VRAM si riempiva e DFlash2 era *piu lento* (12 vs 20): **un drafter aiuta solo se resta VRAM libera**.
-- **DSpine** (Tencent, fork `llama-dspine`): **nessun numero**. Il server del fork si e piantato due volte (connessione chiusa, poi timeout di 2 ore). Il paper dichiara +1,28-1,32x di accettazione rispetto a DFlash; il "1,75x" circolato non e verificato.
+- **DSpine** (Tencent, fork `llama-dspine`): **gira, ma non batte DFlash2.** 27B IQ2_XXS, n_max 7, ctx 4K: 31,4 t/s medi vs 33,0 di DFlash2 e 20,2 della base; accettazione codice 36,8% vs 37,8%. I blocchi precedenti erano memoria piena (n_max 15, ctx 8K, drafter Q8). Il "1,75x" circolato non e verificato.
 - **MTP su Ornith35**: piu lento del no-MTP (38,5 vs 43,9 t/s) con accettazione 48%. Su MoE con pochi parametri attivi il guadagno puo essere nullo.
 - **Flash-Next con prior 1,5** (Strata): 47-54 t/s contro 31, ma peggiora matematica e agente. Il prior e un compromesso, non un regalo.
 - **Agents-A1-4B** a 76,8 t/s (np1) e il piu veloce, ma qualita tiny 77,6.
