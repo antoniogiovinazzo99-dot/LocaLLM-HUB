@@ -78,6 +78,38 @@
    "kind": "tiny (~10 min, saturo)",
    "why": "",
    "repo": "mradermacher/Qwen3.5-9B-Kimi-k3-Distilled-GGUF"
+  },
+  {
+   "order": 1,
+   "platform": "mac",
+   "name": "mac-onyx224r-duro-n8",
+   "kind": "qualita duro-v1",
+   "why": "ONYX-224r con lo stesso comando di Windows (duro --n=8 --jobs=1, PYV con numpy) per il confronto diretto con Agents-A1-35B Q4",
+   "repo": "el4/Agents-A1-ONYX-GGUF (ricetta)"
+  },
+  {
+   "order": 2,
+   "platform": "mac",
+   "name": "mac-omp-agente-mini-ripetizione",
+   "kind": "agente reale (omp)",
+   "why": "seconda corsa di G1 (base) e G8 (veloce + DRY + omp-locale): con 6 compiti serve sapere quanto e rumore il -28% di tempo",
+   "repo": "el4/Agents-A1-ONYX-GGUF (ricetta)"
+  },
+  {
+   "order": 3,
+   "platform": "mac",
+   "name": "mac-omp-esplorazione",
+   "kind": "agente reale (omp)",
+   "why": "compito di esplorazione di una cartella grande (la sessione lenta da 45 minuti): misura il peso dei limiti di output del profilo omp-locale",
+   "repo": "el4/Agents-A1-ONYX-GGUF (ricetta)"
+  },
+  {
+   "order": 4,
+   "platform": "mac",
+   "name": "mac-lungo-64k-veloce",
+   "kind": "contesto lungo",
+   "why": "lungo.py a 64K sul profilo veloce: DFlash + ngram-mod + ragionamento spento non deve peggiorare il richiamo",
+   "repo": "el4/Agents-A1-ONYX-GGUF (ricetta)"
   }
  ]
 }

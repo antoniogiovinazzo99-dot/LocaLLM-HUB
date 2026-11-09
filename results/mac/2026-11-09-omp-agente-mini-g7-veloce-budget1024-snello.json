@@ -1,0 +1,109 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-omp-agente-mini-g7-veloce-budget1024-snello",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-09",
+ "category": "harness",
+ "status": "ok",
+ "title": "OMP + ONYX-224r veloce con ragionamento max 1024 token",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-224r.gguf",
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja",
+   "-c",
+   "65536",
+   "--spec-type",
+   "draft-dflash,ngram-mod",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99",
+   "--reasoning-budget",
+   "1024"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "agente-mini via omp",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/omp_agente.py (omp --snello), tempo massimo 600 s per compito"
+ },
+ "metrics": {
+  "agente_mini": 66.7,
+  "agente_mini_parziale": 96.1,
+  "sec_totali": 1380,
+  "sec_mediana": 200.6,
+  "passi_medi": 13.7,
+  "token_out_totali": 32789,
+  "per_compito": {
+   "bug_prezzi": {
+    "successo": 0.857,
+    "sec": 149.4,
+    "passi": 9
+   },
+   "config_loader": {
+    "successo": 0.909,
+    "sec": 600.0,
+    "passi": 25
+   },
+   "rinomina": {
+    "successo": 1.0,
+    "sec": 91.4,
+    "passi": 9
+   },
+   "paginazione": {
+    "successo": 1.0,
+    "sec": 200.6,
+    "passi": 12
+   },
+   "dati_ordini": {
+    "successo": 1.0,
+    "sec": 120.2,
+    "passi": 14
+   },
+   "rapporto": {
+    "successo": 1.0,
+    "sec": 218.1,
+    "passi": 13
+   }
+  }
+ },
+ "summary": "Profilo veloce con ragionamento limitato a 1024 token per risposta: 1380 s, 4/6 pieni (96% parziale). Il tetto per risposta non basta: un compito accumula 41.000 caratteri di ragionamento in 25 passi e arriva al tempo massimo.",
+ "notes": "n=6 compiti, una sola corsa: un compito vale 16,7 punti, differenze di 1 compito sono rumore. Il tempo e misurato dall'avvio di omp alla fine; il punteggio usa i test nascosti di agente_mini.py (credito parziale). Nessuna risposta da modelli cloud (controllato nella sessione). Contesto: un compito reale di analisi dello spazio disco aveva richiesto 45 minuti con OMP + ONYX; 23 di questi per leggere tre output di comandi da 22.000 token a 90-135K di contesto (50 t/s di lettura). Il profilo omp-locale limita proprio quegli output.",
+ "tags": [
+  "agents-a1",
+  "onyx",
+  "omp",
+  "agente-mini",
+  "harness"
+ ]
+}

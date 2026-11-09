@@ -1,0 +1,105 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-omp-agente-mini-g5-256k-noreason-snello",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-09",
+ "category": "harness",
+ "status": "ok",
+ "title": "OMP + ONYX-224r 256K senza ragionamento, strumenti ridotti",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-224r.gguf",
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja",
+   "-c",
+   "262144",
+   "--spec-type",
+   "ngram-mod",
+   "--reasoning",
+   "off"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "agente-mini via omp",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/omp_agente.py (omp --snello (read, edit, write, bash, grep, glob; niente LSP, skills, regole, titolo)), tempo massimo 600 s per compito"
+ },
+ "metrics": {
+  "agente_mini": 83.3,
+  "agente_mini_parziale": 83.3,
+  "sec_totali": 1650,
+  "sec_mediana": 157.6,
+  "passi_medi": 25.7,
+  "token_out_totali": 39732,
+  "per_compito": {
+   "bug_prezzi": {
+    "successo": 1.0,
+    "sec": 88.7,
+    "passi": 10
+   },
+   "config_loader": {
+    "successo": 1.0,
+    "sec": 600.0,
+    "passi": 40
+   },
+   "rinomina": {
+    "successo": 1.0,
+    "sec": 79.2,
+    "passi": 13
+   },
+   "paginazione": {
+    "successo": 1.0,
+    "sec": 124.0,
+    "passi": 15
+   },
+   "dati_ordini": {
+    "successo": 0.0,
+    "sec": 600.0,
+    "passi": 46
+   },
+   "rapporto": {
+    "successo": 1.0,
+    "sec": 157.6,
+    "passi": 30
+   }
+  }
+ },
+ "summary": "Spegnere il ragionamento del modello sul server (--reasoning off) a 256K non accelera: 1650 s, 5/6, perche senza ragionamento A1 fa il doppio dei passi (25,7 in media) e due compiti finiscono in cicli fino al tempo massimo. Nota: --thinking=off di OMP NON spegne il ragionamento su llama.cpp (44.876 caratteri di ragionamento in un compito).",
+ "notes": "n=6 compiti, una sola corsa: un compito vale 16,7 punti, differenze di 1 compito sono rumore. Il tempo e misurato dall'avvio di omp alla fine; il punteggio usa i test nascosti di agente_mini.py (credito parziale). Nessuna risposta da modelli cloud (controllato nella sessione). Contesto: un compito reale di analisi dello spazio disco aveva richiesto 45 minuti con OMP + ONYX; 23 di questi per leggere tre output di comandi da 22.000 token a 90-135K di contesto (50 t/s di lettura). Il profilo omp-locale limita proprio quegli output.",
+ "tags": [
+  "agents-a1",
+  "onyx",
+  "omp",
+  "agente-mini",
+  "harness"
+ ]
+}

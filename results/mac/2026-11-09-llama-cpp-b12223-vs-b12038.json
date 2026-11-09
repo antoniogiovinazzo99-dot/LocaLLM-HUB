@@ -1,0 +1,73 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-llama-cpp-b12223-vs-b12038",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-09",
+ "category": "speed",
+ "status": "ok",
+ "title": "llama.cpp b12223 contro b12038 su ONYX-224r",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-224r.gguf",
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12223 e b12038",
+  "args": [
+   "llama-bench",
+   "-ngl",
+   "99",
+   "-fa",
+   "1",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "1024",
+   "-ub",
+   "256,512",
+   "-p",
+   "4096",
+   "-n",
+   "32",
+   "-d",
+   "0,32768",
+   "-r",
+   "1"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "llama-bench",
+  "version": "b12038/b12223",
+  "harness": "llama-bench"
+ },
+ "metrics": {
+  "b12038_pp4096_ub256": 323.3,
+  "b12038_pp4096_ub512": 346.8,
+  "b12038_pp4096_d32k_ub256": 132.3,
+  "b12038_pp4096_d32k_ub512": 136.1,
+  "b12038_tg32_d32k": 23.3,
+  "b12223_pp4096_ub256": 310.0,
+  "b12223_pp4096_ub512": 290.6,
+  "b12223_pp4096_d32k_ub256": 125.8,
+  "b12223_pp4096_d32k_ub512": 116.6,
+  "b12223_tg32_d32k_ub256": 16.5,
+  "b12223_tg32_d32k_ub512": 19.3
+ },
+ "summary": "Sul Mac la build piu recente b12223 e piu lenta della b12038 con ONYX-224r: lettura del prompt -4/-15% e scrittura a 32K di contesto 16-19 t/s invece di 23. Con b12038 -ub 512 da solo +3/+7% in lettura.",
+ "notes": "Una sola ripetizione per misura (-r 1). Restiamo su b12038. Da ricontrollare quando escono build con cambi Metal per qwen35moe.",
+ "tags": [
+  "llama.cpp",
+  "prefill"
+ ]
+}

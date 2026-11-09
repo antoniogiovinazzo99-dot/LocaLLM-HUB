@@ -1,7 +1,158 @@
 {
  "platform": "mac",
- "count": 34,
+ "count": 40,
  "experiments": [
+  {
+   "id": "2026-11-09-omp-agente-mini-g8-veloce-noreason-dry-locale",
+   "file": "results/mac/2026-11-09-omp-agente-mini-g8-veloce-noreason-dry-locale.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "harness",
+   "status": "ok",
+   "title": "OMP + ONYX-224r veloce, DRY, profilo omp-locale (migliore)",
+   "summary": "Migliore combinazione: profilo veloce senza ragionamento, campionatore DRY leggero contro le ripetizioni e profilo omp-locale. 965 s invece di 1334 (-28%), 5/6 pieni come la base, credito parziale 97% (il migliore) e nessun compito oltre il tempo massimo.",
+   "model": "Agents-A1-35B-A3B ONYX",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "agente_mini": 83.3
+   },
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "omp",
+    "agente-mini",
+    "harness"
+   ]
+  },
+  {
+   "id": "2026-11-09-omp-agente-mini-g7-veloce-budget1024-snello",
+   "file": "results/mac/2026-11-09-omp-agente-mini-g7-veloce-budget1024-snello.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "harness",
+   "status": "ok",
+   "title": "OMP + ONYX-224r veloce con ragionamento max 1024 token",
+   "summary": "Profilo veloce con ragionamento limitato a 1024 token per risposta: 1380 s, 4/6 pieni (96% parziale). Il tetto per risposta non basta: un compito accumula 41.000 caratteri di ragionamento in 25 passi e arriva al tempo massimo.",
+   "model": "Agents-A1-35B-A3B ONYX",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "agente_mini": 66.7
+   },
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "omp",
+    "agente-mini",
+    "harness"
+   ]
+  },
+  {
+   "id": "2026-11-09-omp-agente-mini-g6-veloce-noreason-snello",
+   "file": "results/mac/2026-11-09-omp-agente-mini-g6-veloce-noreason-snello.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "harness",
+   "status": "ok",
+   "title": "OMP + ONYX-224r veloce (64K DFlash) senza ragionamento",
+   "summary": "Profilo veloce (64K, DFlash + ngram-mod) senza ragionamento: 982 s e credito parziale 94,6%, ma 4/6 compiti pieni; 600 s se ne vanno in un solo ciclo di ripetizione (23.000 token in una risposta). Senza quel ciclo gli altri 5 compiti in circa 6,5 minuti.",
+   "model": "Agents-A1-35B-A3B ONYX",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "agente_mini": 66.7
+   },
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "omp",
+    "agente-mini",
+    "harness"
+   ]
+  },
+  {
+   "id": "2026-11-09-omp-agente-mini-g5-256k-noreason-snello",
+   "file": "results/mac/2026-11-09-omp-agente-mini-g5-256k-noreason-snello.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "harness",
+   "status": "ok",
+   "title": "OMP + ONYX-224r 256K senza ragionamento, strumenti ridotti",
+   "summary": "Spegnere il ragionamento del modello sul server (--reasoning off) a 256K non accelera: 1650 s, 5/6, perche senza ragionamento A1 fa il doppio dei passi (25,7 in media) e due compiti finiscono in cicli fino al tempo massimo. Nota: --thinking=off di OMP NON spegne il ragionamento su llama.cpp (44.876 caratteri di ragionamento in un compito).",
+   "model": "Agents-A1-35B-A3B ONYX",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "agente_mini": 83.3
+   },
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "omp",
+    "agente-mini",
+    "harness"
+   ]
+  },
+  {
+   "id": "2026-11-09-omp-agente-mini-g1-base",
+   "file": "results/mac/2026-11-09-omp-agente-mini-g1-base.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "harness",
+   "status": "ok",
+   "title": "OMP + ONYX-224r 256K, impostazioni di partenza",
+   "summary": "Con le impostazioni di partenza OMP + ONYX-224r risolve 5 dei 6 compiti di agente-mini in 1334 s (mediana 164 s per compito); config_loader supera i 10 minuti. Il server passa 1150 s a scrivere (24 t/s) e 165 a leggere: nei compiti di codice il collo di bottiglia e la scrittura.",
+   "model": "Agents-A1-35B-A3B ONYX",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "agente_mini": 83.3
+   },
+   "tags": [
+    "agents-a1",
+    "onyx",
+    "omp",
+    "agente-mini",
+    "harness"
+   ]
+  },
+  {
+   "id": "2026-11-09-llama-cpp-b12223-vs-b12038",
+   "file": "results/mac/2026-11-09-llama-cpp-b12223-vs-b12038.json",
+   "platform": "mac",
+   "author": "Pietro",
+   "date": "2026-11-09",
+   "category": "speed",
+   "status": "ok",
+   "title": "llama.cpp b12223 contro b12038 su ONYX-224r",
+   "summary": "Sul Mac la build piu recente b12223 e piu lenta della b12038 con ONYX-224r: lettura del prompt -4/-15% e scrittura a 32K di contesto 16-19 t/s invece di 23. Con b12038 -ub 512 da solo +3/+7% in lettura.",
+   "model": "Agents-A1-35B-A3B ONYX",
+   "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+   "size_gb": 10.21,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "llama.cpp",
+    "prefill"
+   ]
+  },
   {
    "id": "2026-11-09-flash-next-q2_0-strata-256k-suffix-draft",
    "file": "results/mac/2026-11-09-flash-next-q2_0-strata-256k-suffix-draft.json",

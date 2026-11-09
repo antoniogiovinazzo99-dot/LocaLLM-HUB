@@ -355,20 +355,11 @@
       "next": "Knowledge pack: salvare la KV di un documento lungo su SSD (--slot-save-path) per non rileggerlo."
     },
     {
-      "id": "mac-omp",
-      "title": "OMP (Oh My Pi) con Agents-A1 locale",
-      "owner": "Pietro",
-      "platform": "mac",
-      "status": "attivo",
-      "summary": "OMP 18.15 collegato a llama.cpp/agents-a1 (ONYX-224r, 256K): primo compito reale (bug in un modulo Python) corretto e verificato in 2,5 minuti a 26-29 t/s. Attenzione al ripiego automatico su un modello cloud quando il server locale e spento.",
-      "techniques": [
-        "harness reale",
-        "agente"
-      ],
-      "tests": [
-        "2026-11-08-omp-agents-a1-harness"
-      ],
-      "next": "Eseguire i 6 compiti di agente-mini con OMP sul Mac (harness_reali.py)."
+      "id": "mac-omp", "title": "OMP (Oh My Pi) con Agents-A1 locale", "owner": "Pietro", "platform": "mac", "status": "attivo",
+      "summary": "Sui 6 compiti di agente-mini guidati da OMP vero, ONYX-224r con le impostazioni di partenza risolve 5/6 in 1334 s; la combinazione migliore (profilo veloce 64K DFlash + ngram-mod, ragionamento spento sul server, DRY leggero, profilo omp-locale con output dei comandi corti) 5/6 in 965 s (-28%) e nessun ciclo. Cosa NON ha funzionato: --thinking=off di OMP non spegne il ragionamento su llama.cpp; ragionamento spento senza DRY fa entrare A1 in cicli di ripetizione; tetto di 1024 token al ragionamento; llama.cpp b12223 piu lenta di b12038. Un compito reale di 45 minuti era dovuto per meta a output di comandi da 22.000 token letti a contesto profondo.",
+      "techniques": ["harness reale", "profilo omp-locale", "--reasoning off", "DRY", "DFlash", "ngram-mod"],
+      "tests": ["2026-11-09-omp-agente-mini-g1-base", "2026-11-09-omp-agente-mini-g5-256k-noreason-snello", "2026-11-09-omp-agente-mini-g6-veloce-noreason-snello", "2026-11-09-omp-agente-mini-g7-veloce-budget1024-snello", "2026-11-09-omp-agente-mini-g8-veloce-noreason-dry-locale", "2026-11-08-omp-agents-a1-harness"],
+      "next": "Ripetere G1 e G8 per misurare il rumore; provare un compito di esplorazione (lettura di molti file) dove pesa la lettura e non la scrittura."
     },
     {
       "id": "mac-benchmark",
