@@ -1,0 +1,61 @@
+{
+ "schema": 1,
+ "id": "2026-11-09-a1-35b-q4-harness-claude2",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-09",
+ "category": "harness",
+ "status": "ok",
+ "title": "a1-35b-q4-harness-claude2",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+  "file": "Agents-A1-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 21.2
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "agente-mini-harness-reali",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 36.9,
+  "decode_tps_4": 33.3,
+  "prompt_tps": 82.8,
+  "mmlu": 89.5,
+  "arc": 97.4,
+  "gsm": 100.0,
+  "code12": 91.7,
+  "humaneval": 91.5,
+  "q_medio": 94.6,
+  "invented_words_pct": 0.78,
+  "needle_64k": 1,
+  "load_s": 19.2,
+  "harness_claude_pieno_pct": 0.0,
+  "harness_claude_parziale_pct": 24.8
+ },
+ "notes": "Claude Code come agente reale (riprova: la prima volta fallita per spazio disco dopo un riavvio del runner)",
+ "tags": [],
+ "summary": "Qualita tiny 94.6, 36.9 t/s a un flusso."
+}
