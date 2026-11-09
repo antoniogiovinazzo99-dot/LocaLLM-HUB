@@ -36,10 +36,14 @@ AGENTS.md                  istruzioni per gli agenti di chi collabora
 Windows e Mac scrivono in cartelle diverse: **nessun conflitto di merge**.
 
 ## Stato attuale (9/11/2026)
+- Attenzione: la colonna *lungo contesto* della Suite S era 0 per un bug del runner (corretto, da rimisurare): vedi [FINDINGS](docs/FINDINGS.md) e il capitolo *Quanto fidarsi* di [BENCHMARKS](docs/BENCHMARKS.md#quanto-fidarsi-audit-del-9112026-lato-windows).
 - 33 esperimenti Windows registrati: velocita, tiny, Suite S, agente-mini, armature, speculative decoding, 3 fallimenti documentati.
 - Intelligenza pari a Flash-Next raggiunta con Agents-A1-35B Q4 (indice d'uso 69,1 vs 68,4), ma ancora alla stessa velocita (~36 t/s): il passo avanti e la velocita.
 - Il Mac non ha ancora risultati. Primo passo: `core-speed` su un modello comune.
 - Dettagli e trappole gia trovate: [docs/FINDINGS.md](docs/FINDINGS.md).
+
+## Progetti e tecniche
+Elenco vivo in [`data/projects.json`](data/projects.json) (tab *Progetti* del sito): Fabbrica, Suite S e agente-mini, Agents-A1, Strata + Flash-Next, decodifica speculativa (MTP, DFlash2, DSpine), armature, agenti reali (opencode, Claude Code, omp), contesto lungo, e idee come Infinity (runtime per agenti concorrenti), Gyro (quantizzazione trellis), knowledge pack, QLoRA. Ognuno aggiunge i suoi: *cosa fa, stato, test collegati, prossimo passo*. Coda dei test: tab *Coda* ([`data/queue.json`](data/queue.json)). Ricerca piu recente: [Infinity, Gyro e Strata](docs/RICERCA-2026-11-09-INFINITY-GYRO.md).
 
 ## Benchmark
 Tre livelli (velocita comune, tiny, Suite S + agente-mini) e il [piano per unificarli](docs/BENCHMARKS.md#unificazione) cosi che i punteggi siano uguali tra Windows e Mac. Fino ad allora: non confrontare punteggi di suite diverse, dichiara sempre `benchmark.suite`.

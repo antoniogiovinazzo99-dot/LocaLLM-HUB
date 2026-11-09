@@ -64,7 +64,7 @@
   "agente_turni_medi": 5.0,
   "agente_chiamate_non_valide": 0
  },
- "notes": "Lungo contesto (lungo) a 0 per tutti i modelli: sospetto bug del test (max_tokens=40, 1 campione), non fidarsi di quella colonna. NoCodeAbode: 30.5 t/s su 12GB+32GB con 14GB RAM liberi, 24/24 in Claude Code. Con 16GB RAM il file da 22GB paginera' da SSD: misura onesta del muro.",
+ "notes": "Colonna lungo = 0 NON valida: bug del runner (server a 4 slot da 8K, il test mandava ~41K token: errore di contesto contato come risposta sbagliata). Corretto con slot da 49K, vedi a1-35b-q4-lungo-fix. NoCodeAbode: 30.5 t/s su 12GB+32GB con 14GB RAM liberi, 24/24 in Claude Code. Con 16GB RAM il file da 22GB paginera' da SSD: misura onesta del muro.",
  "tags": [],
  "summary": "Qualita tiny 87.8, indice d uso suite s 53.8, agente-mini 83.3%, 19.2 t/s a un flusso."
 }

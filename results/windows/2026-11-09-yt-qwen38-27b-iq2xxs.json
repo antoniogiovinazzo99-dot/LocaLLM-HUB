@@ -68,7 +68,7 @@
   "agente_turni_medi": 6.3,
   "agente_chiamate_non_valide": 0
  },
- "notes": "Lungo contesto (lungo) a 0 per tutti i modelli: sospetto bug del test (max_tokens=40, 1 campione), non fidarsi di quella colonna. NoCodeAbode: 49 t/s tutto in VRAM su 4070S, 16/17 sui suoi 6 lavori; stesso voto di Ripple-65B",
+ "notes": "Colonna lungo = 0 NON valida: bug del runner (server a 4 slot da 8K, il test mandava ~41K token: errore di contesto contato come risposta sbagliata). Corretto con slot da 49K, vedi a1-35b-q4-lungo-fix. NoCodeAbode: 49 t/s tutto in VRAM su 4070S, 16/17 sui suoi 6 lavori; stesso voto di Ripple-65B",
  "tags": [],
  "summary": "Qualita tiny 68.3, indice d uso suite s 49.1, agente-mini 83.3%, 20.3 t/s a un flusso."
 }

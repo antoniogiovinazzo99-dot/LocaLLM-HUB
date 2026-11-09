@@ -61,7 +61,7 @@
   "agente_turni_medi": 7.7,
   "agente_chiamate_non_valide": 0
  },
- "notes": "Suite S + agente-mini. Rispetto al Q4 perde circa 8 punti di indice d uso e scende al 50% sull agente: IQ2_M non e un sostituto del Q4. Lungo contesto (lungo) a 0 per tutti i modelli: sospetto bug del test (max_tokens=40, 1 campione), non fidarsi di quella colonna.",
+ "notes": "Suite S + agente-mini. Rispetto al Q4 perde circa 8 punti di indice d uso e scende al 50% sull agente: IQ2_M non e un sostituto del Q4. Colonna lungo = 0 NON valida: bug del runner (server a 4 slot da 8K, il test mandava ~41K token: errore di contesto contato come risposta sbagliata). Corretto con slot da 49K, vedi a1-35b-q4-lungo-fix.",
  "tags": [],
  "summary": "Qualita tiny 87.1, indice d uso suite s 60.6, agente-mini 50.0%, 51.8 t/s a un flusso. Suite S + agente-mini. Rispetto al Q4 perde circa 8 punti di indice d uso e scende al 50% sull agente: IQ2_M non e un sostituto del Q4."
 }

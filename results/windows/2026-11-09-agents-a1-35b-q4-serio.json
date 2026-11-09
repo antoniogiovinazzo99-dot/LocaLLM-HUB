@@ -61,7 +61,7 @@
   "agente_turni_medi": 8.2,
   "agente_chiamate_non_valide": 0
  },
- "notes": "Pari a Flash-Next sulla Suite S (69,1 vs 68,4) e sull agente (83%), alla stessa velocita. Intelligenza pari, non meglio. Lungo contesto (lungo) a 0 per tutti i modelli: sospetto bug del test (max_tokens=40, 1 campione), non fidarsi di quella colonna.",
+ "notes": "Pari a Flash-Next sulla Suite S (69,1 vs 68,4) e sull agente (83%), alla stessa velocita. Intelligenza pari, non meglio. Colonna lungo = 0 NON valida: bug del runner (server a 4 slot da 8K, il test mandava ~41K token: errore di contesto contato come risposta sbagliata). Corretto con slot da 49K, vedi a1-35b-q4-lungo-fix.",
  "tags": [],
  "summary": "Qualita tiny 93.8, indice d uso suite s 69.1, agente-mini 83.3%, 36.6 t/s a un flusso. Pari a Flash-Next sulla Suite S (69,1 vs 68,4) e sull agente (83%), alla stessa velocita. Intelligenza pari, non meglio."
 }

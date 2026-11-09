@@ -28,7 +28,7 @@ NOTE = {
     'ornith-1.5-9b-arm': 'Armature su matematica (100 domande): voto su 5 98% in 10,8 min, programma eseguito (PAL) 83-86% in 0,8 min. Manca ancora la base senza armatura sugli stessi 100.',
     'agents-a1-4b-arm': 'Con armatura peggiora: 72,7 vs 77,6 della base, il codice scende da 58 a 42.',
 }
-FORMAT_NOTE = 'Lungo contesto (lungo) a 0 per tutti i modelli: sospetto bug del test (max_tokens=40, 1 campione), non fidarsi di quella colonna.'
+FORMAT_NOTE = 'Colonna lungo = 0 NON valida: bug del runner (server a 4 slot da 8K, il test mandava ~41K token: errore di contesto contato come risposta sbagliata). Corretto con slot da 49K, vedi a1-35b-q4-lungo-fix.'
 
 
 def slug(s):

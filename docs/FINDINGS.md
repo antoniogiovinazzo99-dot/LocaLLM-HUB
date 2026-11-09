@@ -20,7 +20,7 @@ Verificato = misurato con numeri nei file `results/windows/`. Il resto e dichiar
 - Ornith-1.5-9B, matematica 100 domande: voto su 5 98% (10,8 min), PAL 83-86% (0,8 min). **Manca la base senza armatura sugli stessi 100**: non quantificato il guadagno.
 
 ## Trappole
-- **`lungo` (contesto lungo) = 0 per tutti i modelli**, anche per Flash-Next che il contesto lo regge: `max_tokens=40` e 1 solo campione. Probabilmente un bug del test. Ignora quella colonna finche non e corretta.
+- **`lungo` (contesto lungo) = 0 per tutti era un bug del runner, non dei modelli.** Il server aveva 4 slot da 8192 token e il test mandava 41.318 token: errore `exceeds the available context size`, contato come risposta sbagliata. Prima avevo ipotizzato `max_tokens=40`: sbagliato. Corretto con un server a 1 slot da 49K (`a1-35b-q4-lungo-fix`). Conseguenza: **tutti gli indici d'uso della Suite S pubblicati finora hanno 0 su un componente da 10 punti su 100**: valgono per confronti tra modelli, non come punteggio assoluto.
 - Il riferimento Flash-Next del primo giro (`op-flashnext-ref-p10`) ha campioni minuscoli (3-12 per parte): usa `op-flashnext-ref-serio2`.
 - Con 16 GB di RAM i file sopra ~14 GB paginano dal disco e crollano di velocita.
 

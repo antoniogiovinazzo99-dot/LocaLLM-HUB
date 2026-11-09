@@ -61,7 +61,7 @@
   "agente_turni_medi": 5.8,
   "agente_chiamate_non_valide": 0
  },
- "notes": "Lungo contesto (lungo) a 0 per tutti i modelli: sospetto bug del test (max_tokens=40, 1 campione), non fidarsi di quella colonna. Flash-Next modalita veloce (prior 1.5) sulla stessa Fabbrica: costo qualita vs velocita",
+ "notes": "Colonna lungo = 0 NON valida: bug del runner (server a 4 slot da 8K, il test mandava ~41K token: errore di contesto contato come risposta sbagliata). Corretto con slot da 49K, vedi a1-35b-q4-lungo-fix. Flash-Next modalita veloce (prior 1.5) sulla stessa Fabbrica: costo qualita vs velocita",
  "tags": [],
  "summary": "Qualita tiny 77.9, indice d uso suite s 61.0, agente-mini 66.7%, 47.0 t/s a un flusso."
 }

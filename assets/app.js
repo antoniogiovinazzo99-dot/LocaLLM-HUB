@@ -3,7 +3,7 @@
   var PLATFORMS = ['windows', 'mac'];
   var CAT = { speed: 'Velocita', speculative: 'Speculative', 'quality-tiny': 'Qualita tiny', 'quality-suite-s': 'Suite S', agent: 'Agente', armature: 'Armature', harness: 'Harness', other: 'Altro' };
   var LABEL = { decode_tps_1: 't/s', tps_media: 't/s medi', q_medio: 'tiny', indice_uso: 'indice uso', agente_mini: 'agente', humaneval: 'HumanEval', draft_acceptance_pct: 'accett. %', prompt_tps: 'prompt t/s' };
-  var state = { exp: [], ideas: [], cat: 'all', q: '', tab: 'exp', sort: { k: 'indice_uso', d: -1 }, detail: {} };
+  var state = { exp: [], ideas: [], proj: [], queue: null, cat: 'all', q: '', tab: 'exp', sort: { k: 'indice_uso', d: -1 }, detail: {} };
   var REPO = 'https://github.com/mtom123/LocaLLM-HUB/blob/main/';
 
   function el(tag, cls, text) {
@@ -29,9 +29,13 @@
       return fetchJSON('results/' + p + '/index.json').then(function (d) { return d.experiments || []; }).catch(function () { return []; });
     });
     jobs.push(fetchJSON('data/ideas.json').catch(function () { return []; }));
+    jobs.push(fetchJSON('data/projects.json').then(function (d) { return d.projects || []; }).catch(function () { return []; }));
+    jobs.push(fetchJSON('data/queue.json').catch(function () { return null; }));
     Promise.all(jobs).then(function (r) {
       state.exp = r[0].concat(r[1]);
       state.ideas = r[2];
+      state.proj = r[3];
+      state.queue = r[4];
       render();
     });
   }
@@ -214,12 +218,57 @@
     if (!box.childNodes.length) box.appendChild(el('div', 'empty', 'Nessuna idea corrisponde.'));
   }
 
+  var STATUS_ORDER = { attivo: 0, bloccato: 1, provato: 2, idea: 3, chiuso: 4 };
+  function renderProj() {
+    var box = document.getElementById('proj');
+    box.textContent = '';
+    var xs = state.proj.filter(function (p) {
+      var s = [p.title, p.summary, (p.techniques || []).join(' '), p.owner].join(' ').toLowerCase();
+      return !state.q || s.indexOf(state.q) >= 0;
+    }).sort(function (a, b) { return (STATUS_ORDER[a.status] || 9) - (STATUS_ORDER[b.status] || 9); });
+    var byId = {};
+    state.exp.forEach(function (x) { byId[x.id] = x; });
+    xs.forEach(function (p) {
+      var c = el('article', 'card'); c.style.marginBottom = '10px';
+      var h = el('header'); var l = el('div'); l.appendChild(el('h3', null, p.title));
+      l.appendChild(el('div', 'meta', p.owner + ' · ' + (p.platform || ''))); h.appendChild(l);
+      h.appendChild(el('span', 'badge', p.status)); c.appendChild(h);
+      c.appendChild(el('p', 'sum', p.summary));
+      if ((p.techniques || []).length) { var t = el('div', 'pills'); p.techniques.forEach(function (x) { t.appendChild(el('span', 'pill', x)); }); c.appendChild(t); }
+      if ((p.tests || []).length) {
+        var tl = el('div', 'meta', 'Test: ');
+        p.tests.forEach(function (id, i) { var x = byId[id]; var a = el('span', null, (x ? x.title : id) + (i < p.tests.length - 1 ? ', ' : '')); tl.appendChild(a); });
+        c.appendChild(tl);
+      }
+      if (p.next) c.appendChild(el('p', 'meta', 'Prossimo passo: ' + p.next));
+      (p.links || []).forEach(function (u) { var a = el('a', 'meta', u + '  '); a.href = /^https?:/.test(u) ? u : REPO + u; a.target = '_blank'; a.rel = 'noopener'; a.style.marginRight = '10px'; c.appendChild(a); });
+      box.appendChild(c);
+    });
+    if (!xs.length) box.appendChild(el('div', 'empty', 'Nessun progetto corrisponde.'));
+  }
+
+  function renderQueue() {
+    var box = document.getElementById('queue');
+    box.textContent = '';
+    var q = state.queue;
+    if (!q || !q.items || !q.items.length) { box.appendChild(el('div', 'empty', 'Coda vuota o non disponibile.')); return; }
+    box.appendChild(el('div', 'meta', 'Windows · aggiornata ' + (q.updated || '')));
+    q.items.filter(function (i) { return !state.q || (i.name + ' ' + i.kind + ' ' + (i.why || '')).toLowerCase().indexOf(state.q) >= 0; }).forEach(function (i) {
+      var d = el('div', 'idea'); var r = el('div', 'row');
+      r.appendChild(el('b', null, i.order + '. ' + i.name)); r.appendChild(el('span', 'badge', i.kind)); d.appendChild(r);
+      if (i.why) d.appendChild(el('p', null, i.why));
+      box.appendChild(d);
+    });
+  }
+
   function render() {
     renderStats(); renderChips();
-    ['exp', 'rank', 'ideas'].forEach(function (t) { document.getElementById('view-' + t).hidden = state.tab !== t; });
-    document.getElementById('chips').hidden = state.tab === 'ideas';
+    ['exp', 'rank', 'proj', 'queue', 'ideas'].forEach(function (t) { document.getElementById('view-' + t).hidden = state.tab !== t; });
+    document.getElementById('chips').hidden = state.tab !== 'exp' && state.tab !== 'rank';
     if (state.tab === 'exp') renderExp();
     if (state.tab === 'rank') renderRank();
+    if (state.tab === 'proj') renderProj();
+    if (state.tab === 'queue') renderQueue();
     if (state.tab === 'ideas') renderIdeas();
   }
 

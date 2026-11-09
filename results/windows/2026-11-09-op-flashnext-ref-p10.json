@@ -61,7 +61,7 @@
   "agente_turni_medi": 4.5,
   "agente_chiamate_non_valide": 0
  },
- "notes": "Primo giro del riferimento con budget basso: molte parti con 3-12 campioni, poco affidabile. Vedi op-flashnext-ref-serio2. Lungo contesto (lungo) a 0 per tutti i modelli: sospetto bug del test (max_tokens=40, 1 campione), non fidarsi di quella colonna. Riferimento Flash-Next senza --kv-resident e con file prior proprio (1.0), riproducibile",
+ "notes": "Primo giro del riferimento con budget basso: molte parti con 3-12 campioni, poco affidabile. Vedi op-flashnext-ref-serio2. Colonna lungo = 0 NON valida: bug del runner (server a 4 slot da 8K, il test mandava ~41K token: errore di contesto contato come risposta sbagliata). Corretto con slot da 49K, vedi a1-35b-q4-lungo-fix. Riferimento Flash-Next senza --kv-resident e con file prior proprio (1.0), riproducibile",
  "tags": [
   "reference"
  ],

@@ -61,7 +61,7 @@
   "agente_turni_medi": 7.0,
   "agente_chiamate_non_valide": 0
  },
- "notes": "Lungo contesto (lungo) a 0 per tutti i modelli: sospetto bug del test (max_tokens=40, 1 campione), non fidarsi di quella colonna. NoCodeAbode: 62-81 t/s, pensa sempre, sbaglia fatti: candidato fronte veloce della cascata",
+ "notes": "Colonna lungo = 0 NON valida: bug del runner (server a 4 slot da 8K, il test mandava ~41K token: errore di contesto contato come risposta sbagliata). Corretto con slot da 49K, vedi a1-35b-q4-lungo-fix. NoCodeAbode: 62-81 t/s, pensa sempre, sbaglia fatti: candidato fronte veloce della cascata",
  "tags": [],
  "summary": "Qualita tiny 27.8, indice d uso suite s 14.0, agente-mini 50.0%, 52.8 t/s a un flusso."
 }

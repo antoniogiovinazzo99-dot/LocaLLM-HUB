@@ -28,6 +28,8 @@
     <div class="tabs" role="tablist">
       <button role="tab" class="tab on" data-tab="exp">Esperimenti</button>
       <button role="tab" class="tab" data-tab="rank">Classifica</button>
+      <button role="tab" class="tab" data-tab="proj">Progetti</button>
+      <button role="tab" class="tab" data-tab="queue">Coda</button>
       <button role="tab" class="tab" data-tab="ideas">Idee</button>
     </div>
     <input id="q" type="search" placeholder="Cerca modello, motore, nota..." aria-label="Cerca">
@@ -50,6 +52,16 @@
   <section id="view-rank" hidden>
     <p class="hint">Un modello per riga, il miglior risultato misurato per ogni metrica. Clic sulle intestazioni per ordinare. Confronta solo numeri della stessa suite (vedi <a href="https://github.com/mtom123/LocaLLM-HUB/blob/main/docs/BENCHMARKS.md" target="_blank" rel="noopener">benchmark</a>).</p>
     <div class="tablewrap"><table id="rank"></table></div>
+  </section>
+
+  <section id="view-proj" hidden>
+    <p class="hint">Progetti e tecniche in corso, con stato, esperimenti collegati e prossimo passo. Ognuno aggiunge i suoi in <code>data/projects.json</code>.</p>
+    <div id="proj"></div>
+  </section>
+
+  <section id="view-queue" hidden>
+    <p class="hint">Cosa verra testato, in ordine. Aggiornata a ogni ciclo.</p>
+    <div id="queue"></div>
   </section>
 
   <section id="view-ideas" hidden>

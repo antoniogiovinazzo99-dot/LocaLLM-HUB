@@ -64,7 +64,7 @@
   "agente_turni_medi": 5.0,
   "agente_chiamate_non_valide": 0
  },
- "notes": "Lungo contesto (lungo) a 0 per tutti i modelli: sospetto bug del test (max_tokens=40, 1 campione), non fidarsi di quella colonna. NoCodeAbode: Q4 25GB a 53 t/s; qui IQ3_XXS 14.5GB per stare in 16GB RAM; pensa sempre (cap alti)",
+ "notes": "Colonna lungo = 0 NON valida: bug del runner (server a 4 slot da 8K, il test mandava ~41K token: errore di contesto contato come risposta sbagliata). Corretto con slot da 49K, vedi a1-35b-q4-lungo-fix. NoCodeAbode: Q4 25GB a 53 t/s; qui IQ3_XXS 14.5GB per stare in 16GB RAM; pensa sempre (cap alti)",
  "tags": [],
  "summary": "Qualita tiny 69.5, indice d uso suite s 40.6, agente-mini 83.3%, 41.5 t/s a un flusso."
 }

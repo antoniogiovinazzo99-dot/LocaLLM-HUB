@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "note": "Un oggetto per progetto o tecnica. Aggiungi le tue in coda (owner = chi la porta avanti). status: attivo | provato | idea | chiuso | bloccato. tests = id degli esperimenti in results/ che la riguardano.",
+  "projects": [
+    {
+      "id": "fabbrica", "title": "Fabbrica: runner di benchmark Windows", "owner": "Motti", "platform": "windows", "status": "attivo",
+      "summary": "Runner che scarica un modello, avvia il server (llama.cpp o Strata), misura velocita, tiny, Suite S e agente-mini con budget di tempo e scrive un record per modello. Ha una coda (coda.json) e uno scout che aggiunge modelli nuovi.",
+      "techniques": ["budget di tempo con campione casuale", "modo speed_only (3 min)", "hook agente-mini", "hook harness reali"],
+      "tests": [], "links": ["benchmarks/windows-fabbrica/fabbrica.py"],
+      "next": "Estrarre un runner portabile che parli solo con un server OpenAI-compatibile, per usarlo anche su Mac."
+    },
+    {
+      "id": "suite-s", "title": "Suite S + agente-mini", "owner": "Motti", "platform": "windows", "status": "attivo",
+      "summary": "Benchmark pensato per l'uso reale: MATH, BBH, HumanEval+, LiveCodeBench, 8 lavori con test nascosti, contesto lungo; piu 6 compiti da agente con strumenti. Indice d'uso = media pesata. I punteggi sulle parti con pochi campioni non valgono: guardare suite_s_samples.",
+      "techniques": ["test nascosti con credito parziale", "indice d'uso pesato"],
+      "tests": ["2026-11-09-agents-a1-35b-q4-serio", "2026-11-09-op-flashnext-ref-serio2"], "links": ["docs/BENCHMARKS.md"],
+      "next": "Correggere lungo contesto (bug trovato: slot da 8K), congelare core v1."
+    },
+    {
+      "id": "agents-a1", "title": "Agents-A1 35B-A3B (candidato)", "owner": "Motti", "platform": "windows", "status": "attivo",
+      "summary": "MoE 35B con 3B attivi. Q4 21 GB: indice d'uso 69,1 e agente 83%, pari a Flash-Next (68,4 / 83%) a 36,6 t/s. IQ2_M 11,7 GB: 52 t/s ma indice 60,6 e agente 50%. Esiste una versione 4B (77 t/s, tiny 77,6) come primo stadio di una cascata.",
+      "techniques": ["quantizzazione", "cascata 4B -> 35B"],
+      "tests": ["2026-11-09-agents-a1-35b-q4", "2026-11-09-agents-a1-35b-q4-serio", "2026-11-09-agents-a1-35b-iq2m-serio", "2026-11-08-agents-a1-4b"],
+      "next": "Agente reale (opencode, Claude Code), contesto a 64K+, drafter/MTP."
+    },
+    {
+      "id": "strata-flash-next", "title": "Strata + Qwen3.8-Flash-Next 125B", "owner": "Motti", "platform": "windows", "status": "attivo",
+      "summary": "Motore Strata (0.2.11) che tiene gli esperimenti piu usati in VRAM: da 5,8 a 28-31 t/s a qualita piena, 23 t/s a 253K di contesto. STRATA_ROUTE_PRIOR=1.5 da +50% di velocita ma peggiora matematica e agente. E il riferimento di tutti i confronti.",
+      "techniques": ["expert prior", "KV in RAM (kv-resident)", "MTP/DFlash2", "tail-skip"],
+      "tests": ["2026-11-09-op-flashnext-ref-serio2", "2026-11-09-op-flashnext-p15"],
+      "next": "Strata 0.2.12 (3x prompt, ma solo per un quant specifico); confrontare kv q4_0 / k8v4 per raddoppiare il contesto."
+    },
+    {
+      "id": "speculative", "title": "Decodifica speculativa: MTP, DFlash2, DSpine", "owner": "Motti", "platform": "windows", "status": "attivo",
+      "summary": "Un drafter propone token, il modello grande li verifica. DFlash2 sul 27B IQ2_XXS: 20,2 -> 33,0 t/s (+63%), ma solo se resta VRAM libera. MTP su Ornith35 piu lento del no-MTP. DSpine: il fork gira ma la velocita crolla in alcune richieste (0,12 t/s); in rifacimento con n_max 7 e contesto 4K.",
+      "techniques": ["MTP", "DFlash2", "DSpine (Tencent 2609.36173)", "prompt lookup"],
+      "tests": ["2026-11-09-sp-27b-xxs-base", "2026-11-09-sp-27b-xxs-dflash2", "2026-11-09-sp-27b-xxs-dspine", "2026-11-09-op-ornith35-mtp-imini"],
+      "next": "DSpine n_max 7; drafter su Agents-A1-35B Q4."
+    },
+    {
+      "id": "armature", "title": "Armature di ragionamento", "owner": "Motti", "platform": "windows", "status": "provato",
+      "summary": "Voto su N campioni, programma eseguito (PAL), verifica, escalation condizionata, MCQ. Sul tiny non guadagnano nulla. Sulla matematica Ornith-9B: voto su 5 98% in 10,8 min vs PAL 83-86% in 0,8 min; manca la base senza armatura.",
+      "techniques": ["self-consistency", "PAL", "verify", "gated escalation"],
+      "tests": ["2026-11-09-ornith-1.5-9b-arm", "2026-11-08-agents-a1-4b-arm"],
+      "next": "Rifare sui lavori e su LiveCodeBench della Suite S, con la base accanto."
+    },
+    {
+      "id": "harness-reali", "title": "Agenti reali: opencode, Claude Code, omp", "owner": "Motti", "platform": "windows", "status": "attivo",
+      "summary": "Gli stessi 6 compiti di agente-mini guidati da agenti veri su un server a 64K. Adattatori scritti, hook nel runner aggiunto il 9/11; primo giro in coda su Agents-A1-35B Q4. Obiettivo: misurare la qualita in uso reale da agente.",
+      "techniques": ["opencode", "Claude Code via protocollo Anthropic", "omp"],
+      "tests": [], "links": ["benchmarks/windows-fabbrica/harness_reali.py"], "next": "Risultati del primo giro; poi Flash-Next e confronto tra harness."
+    },
+    {
+      "id": "contesto-lungo", "title": "Contesto lungo (obiettivo 256K+, raddoppiare)", "owner": "Motti", "platform": "windows", "status": "attivo",
+      "summary": "Il test 'lungo' valeva 0 per tutti i modelli: bug del server (4 slot da 8K ricevevano un prompt da 41K token), non dei modelli. Rifatto con slot da 49K. Strata offre KV int8/q4_0/k8v4 e KV in streaming su RAM (13,7 KB/token) per allungare il contesto.",
+      "techniques": ["KV q4_0 con rotazione Hadamard", "KV streaming in RAM", "YaRN oltre 262K"],
+      "tests": [], "next": "Lungo corretto su A1-35B Q4; poi 128K con KV q4_0 e confronto qualita/velocita."
+    },
+    {
+      "id": "infinity-runtime", "title": "Infinity (AWS/Berkeley): runtime per agenti concorrenti", "owner": "Motti", "platform": "windows", "status": "idea",
+      "summary": "Runtime Rust che sospende gli agenti in attesa di tool (solo la storia resta, ~100 KB ciascuno): 75k agenti in 8 GB e una stima, misurata su un modello simulato. Non aumenta la velocita di inferenza. Idea: usarlo come scheduler davanti a un llama-server con 1-2 slot, cosi molti agenti condividono la GPU mentre aspettano i tool.",
+      "techniques": ["sospensione/ripresa a slice", "storia come unico stato"],
+      "tests": [], "links": ["docs/RICERCA-2026-11-09-INFINITY-GYRO.md"], "next": "Misurare quanti agenti paralleli regge davvero il server (slot, MoE con offload)."
+    },
+    {
+      "id": "gyro", "title": "Gyro (quantizzazione trellis) per Flash-Next", "owner": "Motti", "platform": "windows", "status": "idea",
+      "summary": "Gyro-S: 27,6 GiB di pesi in GPU, metodo QTIP/trellis, qualita migliore di IQ2/IQ3 a pari memoria (dati del venditore). Richiede Strata >= 0.2.0. Con 12 GB di VRAM + 16 GB di RAM non entra: serve ~32 GB di memoria utile.",
+      "techniques": ["trellis-coded quantization", "rotazione Hadamard", "tabella n-gram su disco"],
+      "tests": [], "links": ["docs/RICERCA-2026-11-09-INFINITY-GYRO.md"], "next": "Valutare l'upgrade RAM; nel frattempo Gyro non e testabile qui."
+    },
+    {
+      "id": "knowledge-pack", "title": "Knowledge pack (KV precalcolata)", "owner": "Motti", "platform": "windows", "status": "idea",
+      "summary": "Si legge una volta un documento, si salva la KV e la si ricarica: il modello 'sa' il documento senza rileggerlo. Strata ha file di sessione e checkpoint di prompt (~118 MB l'uno).",
+      "techniques": ["KV precompute", "prompt checkpoints"], "tests": [], "next": "Costruire sul 35B Q4 con un documento reale e misurare il tempo risparmiato."
+    },
+    {
+      "id": "training", "title": "QLoRA / distillazione", "owner": "Motti", "platform": "windows", "status": "idea",
+      "summary": "Fine-tuning leggero (4B-9B sulla 3060) o distillazione da un modello grande per un compito stretto (codice/agente). Non rende un modello piu intelligente in generale.",
+      "techniques": ["QLoRA", "distillazione"], "tests": [], "next": "Dopo aver misurato dove il 4B sbaglia nei lavori reali."
+    }
+  ]
+}
