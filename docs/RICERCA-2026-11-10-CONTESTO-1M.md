@@ -49,5 +49,17 @@ E' la versione locale e onesta di "1M di contesto come una sessione vera":
 - Il pack occupa disco (1,5-5,7 GB per sessione) e la KV q4 costa qualcosa in qualità (da misurare contro q8 a 64K).
 - La parte fredda **non è** "il modello che ricorda 1M token": è un recupero. Per i fatti esatti funziona; per il ragionamento su tutto il corpus in una volta, no.
 
-## 8. Cosa significa per l'intelligenza
+## 8. Fork candidati (ricerca GitHub, 10/11)
+- **`AmesianX/TurboQuant`** — KV cache compression per llama.cpp: **~5,2x meno memoria, near-lossless**. Se funziona, la KV di 1M scende da 5,7 GB a ~1,1 GB e il decode legge 5x meno: è la strada più concreta per 1M *e* velocità. Da provare su CUDA Windows.
+- **`scrya-com/rotorquant`** — KV compression via rotazione block-diagonal, PPL migliore di TurboQuant; altro fork da confrontare.
+- **`DaoyuanLi2816/mini-verl`** — PPO/GRPO/on-policy distillation su **una sola GPU consumer**: è l'infrastruttura giusta per addestrare il 4B su 12 GB.
+- **`songmzhang/KDFlow`** — framework di knowledge distillation (off/on-policy).
+- **`WLS04/EOPD`** — entropia-aware on-policy distillation (ICML 2026), +5 Pass@8 su Qwen3-4B.
+- **`Zagitta/gpu-unlock`** — Linux only; port Windows `impacifist/Windows-GPU-UNLOCK` sperimentale (EFI headless), guadagno reale su Q4 GGUF piccolo e rischio alto. Non prioritario.
+
+## 9. Nota su DFlash/DSpine
+Sono **speculative decoding**: accelerano il **decode**, non il prefill. Per il prefill servono ubatch più grandi (misurato **+52%** con `-ub 1024`), FlashAttention e il KV pack.
+
+## 10. Cosa significa per l'intelligenza
+
 Il 4B AREX-Turbo (duro 76,3, 76 t/s) resta la base veloce; il 74B Nemotron (6/6 su omp) è il cervello profondo; A1-35B è l'ibrido da 256K. La combinazione giusta non è un modello solo: **4B per il turno veloce + pack 256K per la memoria + 74B per i compiti difficili**. La cascata decide; il pack evita di ripagare il contesto.

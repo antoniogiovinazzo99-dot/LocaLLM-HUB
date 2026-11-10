@@ -1,7 +1,7 @@
 {
  "platform": "windows",
- "count": 77,
- "hidden_failed": 27,
+ "count": 82,
+ "hidden_failed": 30,
  "experiments": [
   {
    "id": "2026-11-10-underdog-saluki-27b-1.0",
@@ -24,6 +24,30 @@
     "q_medio": 85.4,
     "humaneval": 89.0,
     "prompt_tps": 76.5
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-10-twil-8b",
+   "file": "results/windows/2026-11-10-twil-8b.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "quality-tiny",
+   "status": "ok",
+   "title": "twil-8b",
+   "summary": "Qualita tiny 76.3, 53.6 t/s a un flusso.",
+   "model": "TwIL-8B",
+   "repo": "webAI-Official/TwIL-8B",
+   "quant": "Q4_K_M",
+   "size_gb": 5.3,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 53.6,
+    "q_medio": 76.3,
+    "humaneval": 79.3,
+    "prompt_tps": 739.3
    },
    "tags": []
   },
@@ -456,6 +480,29 @@
     "q_medio": 80.1,
     "humaneval": 82.9,
     "prompt_tps": 449.9
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-10-qwen3.5-4b-glb-3d-coder",
+   "file": "results/windows/2026-11-10-qwen3.5-4b-glb-3d-coder.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "quality-tiny",
+   "status": "ok",
+   "title": "qwen3.5-4b-glb-3d-coder",
+   "summary": "Qualita tiny 23.9, 76.8 t/s a un flusso.",
+   "model": "Qwen3.5-4B-GLB-3D-Coder",
+   "repo": "ccore/Qwen3.5-4B-GLB-3D-Coder",
+   "quant": "Q4_K_M",
+   "size_gb": 2.7,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 76.8,
+    "q_medio": 23.9,
+    "prompt_tps": 626.3
    },
    "tags": []
   },
@@ -958,6 +1005,48 @@
    "tags": []
   },
   {
+   "id": "2026-11-10-n11-a1-prefill-ub1024",
+   "file": "results/windows/2026-11-10-n11-a1-prefill-ub1024.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "other",
+   "status": "ok",
+   "title": "n11-a1-prefill-ub1024",
+   "summary": "Lungo 100.0%, 38.7 t/s a un flusso.",
+   "model": "Agents-A1-Q4_K_M-GGUF",
+   "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.2,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 38.7
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-10-n10-a1-35b-q4-256k",
+   "file": "results/windows/2026-11-10-n10-a1-35b-q4-256k.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "other",
+   "status": "ok",
+   "title": "n10-a1-35b-q4-256k",
+   "summary": "Lungo 100.0%, 35.8 t/s a un flusso.",
+   "model": "Agents-A1-Q4_K_M-GGUF",
+   "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.2,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 35.8
+   },
+   "tags": []
+  },
+  {
    "id": "2026-11-10-humanizer",
    "file": "results/windows/2026-11-10-humanizer.json",
    "platform": "windows",
@@ -1000,6 +1089,30 @@
     "q_medio": 74.8,
     "humaneval": 46.3,
     "prompt_tps": 384.7
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-10-b1-9b",
+   "file": "results/windows/2026-11-10-b1-9b.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "quality-tiny",
+   "status": "ok",
+   "title": "b1-9b",
+   "summary": "Qualita tiny 79.1, 51.9 t/s a un flusso.",
+   "model": "B1-9B-GGUF",
+   "repo": "mradermacher/B1-9B-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 5.8,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 51.9,
+    "q_medio": 79.1,
+    "humaneval": 72.0,
+    "prompt_tps": 415.2
    },
    "tags": []
   },

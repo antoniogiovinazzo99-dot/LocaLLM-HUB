@@ -1,0 +1,37 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-mimo-v2.6-distill-qwen-9b",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "quality-tiny",
+ "status": "failed",
+ "title": "mimo-v2.6-distill-qwen-9b",
+ "reference": false,
+ "model": {
+  "name": "MiMo-V2.6-Distill-Qwen-9B-GGUF",
+  "repo": "bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF",
+  "file": "MiMo-V2.6-Distill-Qwen-9B-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 5.8
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {},
+ "notes": "",
+ "tags": [],
+ "summary": "Test fallito o non valido: spazio insufficiente (10 GB liberi)."
+}

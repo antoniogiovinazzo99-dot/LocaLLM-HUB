@@ -1,0 +1,50 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-twil-8b",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "quality-tiny",
+ "status": "ok",
+ "title": "twil-8b",
+ "reference": false,
+ "model": {
+  "name": "TwIL-8B",
+  "repo": "webAI-Official/TwIL-8B",
+  "file": "TwIL-8B-Q4_K_M-balanced.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 5.3
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 53.6,
+  "decode_tps_4": 29.8,
+  "prompt_tps": 739.3,
+  "mmlu": 69.0,
+  "arc": 83.0,
+  "gsm": 95.0,
+  "code12": 58.3,
+  "humaneval": 79.3,
+  "q_medio": 76.3,
+  "invented_words_pct": 1.14,
+  "needle_64k": 1,
+  "load_s": 7.1
+ },
+ "notes": "",
+ "tags": [],
+ "summary": "Qualita tiny 76.3, 53.6 t/s a un flusso."
+}

@@ -1,0 +1,52 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-n10-a1-35b-q4-256k",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "other",
+ "status": "ok",
+ "title": "n10-a1-35b-q4-256k",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+  "file": "Agents-A1-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 21.2
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "262144",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "pietro-duro+agente+lungo",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 35.8,
+  "load_s": 16.1,
+  "lungo_pct": 100.0,
+  "lungo_decode_tps": 13.6,
+  "lungo_prefill_tps": 193.1
+ },
+ "notes": "CONTESTO 256K nativo (max_position_embeddings=262144) con KV q4_0: misura prefill, decode e richiamo a 250K. Base per il piano 1M con KV pack",
+ "tags": [],
+ "summary": "Lungo 100.0%, 35.8 t/s a un flusso."
+}
