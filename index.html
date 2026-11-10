@@ -11,14 +11,14 @@
 <header class="top">
   <div class="wrap">
     <div class="brand">
-      <h1>LocaLLM <span>Hub</span></h1>
-      <p>Esperimenti e benchmark su modelli locali. Windows a sinistra, Mac a destra, stessi metri di misura.</p>
+      <h1>LocaLLM <span>Quant Desk</span></h1>
+      <p>Laboratorio locale su due macchine: Windows (RTX 3060) e Mac (Pietro). Un solo QI, benchmark comuni, velocità dichiarata.</p>
     </div>
     <div class="stats" id="stats" aria-live="polite"></div>
     <nav class="links">
       <a href="https://github.com/mtom123/LocaLLM-HUB" target="_blank" rel="noopener">Repo</a>
-      <a href="https://github.com/mtom123/LocaLLM-HUB/blob/main/AGENTS.md" target="_blank" rel="noopener">Guida agenti</a>
-      <a href="https://github.com/mtom123/LocaLLM-HUB/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">Cosa sappiamo</a>
+      <a href="https://github.com/mtom123/LocaLLM-HUB/blob/main/AGENTS.md" target="_blank" rel="noopener">Agenti</a>
+      <a href="https://github.com/mtom123/LocaLLM-HUB/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">Findings</a>
     </nav>
   </div>
 </header>
@@ -26,17 +26,17 @@
 <main class="wrap">
   <div class="bar">
     <div class="tabs" role="tablist">
-      <button role="tab" class="tab on" data-tab="exp">Esperimenti</button>
-      <button role="tab" class="tab" data-tab="rank">Classifica</button>
+      <button role="tab" class="tab on" data-tab="rank">Quant Desk</button>
+      <button role="tab" class="tab" data-tab="exp">Esperimenti</button>
       <button role="tab" class="tab" data-tab="proj">Progetti</button>
       <button role="tab" class="tab" data-tab="queue">Coda</button>
       <button role="tab" class="tab" data-tab="ideas">Idee</button>
     </div>
-    <input id="q" type="search" placeholder="Cerca modello, motore, nota..." aria-label="Cerca">
+    <input id="q" type="search" placeholder="Cerca modello, motore, nota…" aria-label="Cerca">
   </div>
   <div class="chips" id="chips" aria-label="Filtra per categoria"></div>
 
-  <section id="view-exp">
+  <section id="view-exp" hidden>
     <div class="cols">
       <div class="col" id="col-windows">
         <h2><span class="dot win"></span>Windows <small>Motti &middot; RTX 3060 12 GB</small></h2>
@@ -49,9 +49,8 @@
     </div>
   </section>
 
-  <section id="view-rank" hidden>
-    <p class="hint">Un modello per riga, il miglior risultato misurato per ogni metrica. Clic sulle intestazioni per ordinare. Confronta solo numeri della stessa suite (vedi <a href="https://github.com/mtom123/LocaLLM-HUB/blob/main/docs/BENCHMARKS.md" target="_blank" rel="noopener">benchmark</a>).</p>
-    <div class="tablewrap"><table id="rank"></table></div>
+  <section id="view-rank">
+    <div id="desk"></div>
   </section>
 
   <section id="view-proj" hidden>
