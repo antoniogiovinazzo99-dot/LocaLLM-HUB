@@ -62,6 +62,8 @@ def convert(r):
         cat = 'speed'
     elif r.get('harness'):
         cat = 'harness'
+    elif r.get('pietro'):
+        cat = 'other'
     elif r.get('arm'):
         cat = 'armature'
     elif r.get('serio'):
@@ -97,6 +99,43 @@ def convert(r):
             m['harness_' + h + '_parziale_pct'] = v['parziale_pct']
     if r.get('arm'):
         m['armature'] = {k: {'acc': v['acc'], 'n': v['n'], 'min': v['min']} for k, v in r['arm'].items() if isinstance(v, dict) and 'acc' in v}
+    if r.get('pietro'):
+        # benchmark di Pietro eseguiti dal runner: senza questa mappa i duro/agente Windows sparivano
+        p = r['pietro']
+        def _s(x):
+            return (x or {}).get('summary') or {}
+        d = _s(p.get('duro'))
+        if d:
+            v = d.get('totale_pct') or d.get('punteggio_pct')
+            if v is not None:
+                m['duro_pct'] = v
+            for k in ('math', 'code', 'mbpp', 'mmlu'):
+                if d.get(k) is not None:
+                    m['duro_' + k] = d[k]
+            if d.get('n') is not None:
+                m['duro_n'] = d['n']
+        a = _s(p.get('agente'))
+        if a:
+            v = a.get('totale_pct') or a.get('punteggio_pct')
+            if v is not None:
+                m['agente_pct'] = v
+            if a.get('compiti'):
+                m['agente_compiti'] = a['compiti']
+            if a.get('s_compito') is not None:
+                m['agente_s_compito'] = a['s_compito']
+        l = _s(p.get('lungo'))
+        if l:
+            rich = str(l.get('richiamo') or '')
+            if '/' in rich:
+                try:
+                    a_, b_ = rich.split('/')[:2]
+                    m['lungo_pct'] = round(100 * float(a_) / float(b_), 1)
+                except Exception:
+                    pass
+            if l.get('decode_tps') is not None:
+                m['lungo_decode_tps'] = l['decode_tps']
+            if l.get('prefill_tps') is not None:
+                m['lungo_prefill_tps'] = l['prefill_tps']
     ok = not r.get('errore') and bool(m) and name != 'a1-35b-q4-harness-opencode'
     repo = r.get('repo')
     f = r.get('file')
@@ -111,7 +150,7 @@ def convert(r):
         'model': {'name': (repo or name).split('/')[-1], 'repo': repo, 'file': f, 'quant': quant_of(f), 'size_gb': r.get('size_gb')},
         'engine': {'name': 'strata' if (it.get('backend') == 'strata' or r.get('ref')) else 'llama.cpp', 'version': r.get('engine'), 'args': scrub(it.get('args') or [])},
         'hardware': dict(HW),
-        'benchmark': {'suite': {'quality-suite-s': 'suite-s+agente-mini', 'speed': 'speed-4-prompts', 'speculative': 'speed-4-prompts', 'armature': 'armature-math+mcq', 'harness': 'agente-mini-harness-reali'}.get(cat, 'tiny-fabbrica'), 'harness': 'fabbrica-runner'},
+        'benchmark': {'suite': {'quality-suite-s': 'suite-s+agente-mini', 'speed': 'speed-4-prompts', 'speculative': 'speed-4-prompts', 'armature': 'armature-math+mcq', 'harness': 'agente-mini-harness-reali', 'other': 'pietro-duro+agente+lungo'}.get(cat, 'tiny-fabbrica'), 'harness': 'fabbrica-runner'},
         'metrics': m if ok else {},
         'notes': ' '.join(notes),
         'tags': [t for t in ['reference' if r.get('ref') else None, 'speculative' if spec else None] if t],
@@ -126,6 +165,12 @@ def convert(r):
             bits.append(f"indice d uso Suite S {m['indice_uso']}")
         if 'agente_mini' in m:
             bits.append(f"agente-mini {m['agente_mini']}%")
+        if 'duro_pct' in m:
+            bits.append(f"duro {m['duro_pct']}%")
+        if 'agente_pct' in m:
+            bits.append(f"agente {m['agente_pct']}%")
+        if 'lungo_pct' in m:
+            bits.append(f"lungo {m['lungo_pct']}%")
         if 'decode_tps_1' in m:
             bits.append(f"{m['decode_tps_1']} t/s a un flusso")
         if 'tps_media' in m:

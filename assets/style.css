@@ -158,3 +158,6 @@ summary{cursor:pointer;color:var(--mute);font:11px var(--mono);text-transform:up
 .f.hard{flex-direction:row;align-items:center;gap:5px;text-transform:none;font-size:10px}
 .f input[type=checkbox]{width:auto;accent-color:#a3e635}
 
+
+.ncell{color:#66788c}
+

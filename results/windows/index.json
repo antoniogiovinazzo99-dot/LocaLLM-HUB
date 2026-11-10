@@ -1,6 +1,6 @@
 {
  "platform": "windows",
- "count": 68,
+ "count": 71,
  "hidden_failed": 26,
  "experiments": [
   {
@@ -489,7 +489,7 @@
    "platform": "windows",
    "author": "Motti",
    "date": "2026-11-10",
-   "category": "quality-tiny",
+   "category": "other",
    "status": "ok",
    "title": "p-a1q4-kvq4-64k",
    "summary": "38.5 t/s a un flusso.",
@@ -510,10 +510,10 @@
    "platform": "windows",
    "author": "Motti",
    "date": "2026-11-10",
-   "category": "quality-tiny",
+   "category": "other",
    "status": "ok",
    "title": "p-a1q4-kvq4-128k",
-   "summary": "37.2 t/s a un flusso.",
+   "summary": "Agente 100.0%, 37.2 t/s a un flusso.",
    "model": "Agents-A1-Q4_K_M-GGUF",
    "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
    "quant": "Q4_K_M",
@@ -521,7 +521,8 @@
    "engine": "llama.cpp",
    "ref": false,
    "headline": {
-    "decode_tps_1": 37.2
+    "decode_tps_1": 37.2,
+    "agente_pct": 100.0
    },
    "tags": []
   },
@@ -531,10 +532,10 @@
    "platform": "windows",
    "author": "Motti",
    "date": "2026-11-10",
-   "category": "quality-tiny",
+   "category": "other",
    "status": "ok",
    "title": "p-a1q4-dflash-ngram",
-   "summary": "34.2 t/s a un flusso.",
+   "summary": "Agente 100.0%, 34.2 t/s a un flusso.",
    "model": "Agents-A1-Q4_K_M-GGUF",
    "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
    "quant": "Q4_K_M",
@@ -542,7 +543,8 @@
    "engine": "llama.cpp",
    "ref": false,
    "headline": {
-    "decode_tps_1": 34.2
+    "decode_tps_1": 34.2,
+    "agente_pct": 100.0
    },
    "tags": [
     "speculative"
@@ -554,10 +556,10 @@
    "platform": "windows",
    "author": "Motti",
    "date": "2026-11-10",
-   "category": "quality-tiny",
+   "category": "other",
    "status": "ok",
    "title": "p-a1-35b-q4",
-   "summary": "37.7 t/s a un flusso.",
+   "summary": "Agente 100.0%, 37.7 t/s a un flusso.",
    "model": "Agents-A1-Q4_K_M-GGUF",
    "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
    "quant": "Q4_K_M",
@@ -565,7 +567,8 @@
    "engine": "llama.cpp",
    "ref": false,
    "headline": {
-    "decode_tps_1": 37.7
+    "decode_tps_1": 37.7,
+    "agente_pct": 100.0
    },
    "tags": []
   },
@@ -614,6 +617,72 @@
     "q_medio": 78.4,
     "humaneval": 85.4,
     "prompt_tps": 624.4
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-10-n7c-nemotron-omp",
+   "file": "results/windows/2026-11-10-n7c-nemotron-omp.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "harness",
+   "status": "ok",
+   "title": "n7c-nemotron-omp",
+   "summary": "Risultato registrato.",
+   "model": "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+   "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+   "quant": null,
+   "size_gb": 22.0,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "harness_omp_pieno_pct": 100.0,
+    "harness_omp_parziale_pct": 100.0
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-10-n7b-nemotron-moecache",
+   "file": "results/windows/2026-11-10-n7b-nemotron-moecache.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "speed",
+   "status": "ok",
+   "title": "n7b-nemotron-moecache",
+   "summary": "13.3 t/s a un flusso, 14.2 t/s medi su 4 tipi di prompt.",
+   "model": "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+   "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+   "quant": null,
+   "size_gb": 22.0,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 13.3,
+    "tps_media": 14.2
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-10-n7-nemotron-74b",
+   "file": "results/windows/2026-11-10-n7-nemotron-74b.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "speed",
+   "status": "ok",
+   "title": "n7-nemotron-74b",
+   "summary": "18.5 t/s a un flusso, 18.3 t/s medi su 4 tipi di prompt.",
+   "model": "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+   "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+   "quant": null,
+   "size_gb": 22.0,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 18.5,
+    "tps_media": 18.3
    },
    "tags": []
   },
@@ -667,10 +736,10 @@
    "platform": "windows",
    "author": "Motti",
    "date": "2026-11-10",
-   "category": "quality-tiny",
+   "category": "other",
    "status": "ok",
    "title": "n3-arex-turbo-q4k",
-   "summary": "76.1 t/s a un flusso.",
+   "summary": "Agente 100.0%, 76.1 t/s a un flusso.",
    "model": "BAAI_AREX-Turbo-GGUF",
    "repo": "bartowski/BAAI_AREX-Turbo-GGUF",
    "quant": "Q4_K_M",
@@ -678,7 +747,8 @@
    "engine": "llama.cpp",
    "ref": false,
    "headline": {
-    "decode_tps_1": 76.1
+    "decode_tps_1": 76.1,
+    "agente_pct": 100.0
    },
    "tags": []
   },
@@ -735,7 +805,7 @@
    "platform": "windows",
    "author": "Motti",
    "date": "2026-11-10",
-   "category": "quality-tiny",
+   "category": "other",
    "status": "ok",
    "title": "n3-arex-turbo-iq2m",
    "summary": "79.9 t/s a un flusso.",

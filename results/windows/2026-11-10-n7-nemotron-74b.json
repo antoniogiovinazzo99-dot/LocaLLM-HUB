@@ -1,0 +1,56 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-n7-nemotron-74b",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "speed",
+ "status": "ok",
+ "title": "n7-nemotron-74b",
+ "reference": false,
+ "model": {
+  "name": "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+  "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+  "file": "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB.gguf",
+  "quant": null,
+  "size_gb": 22.0
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "8192",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "speed-4-prompts",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 18.5,
+  "tps_media": 18.3,
+  "load_s": 16.1,
+  "tps_by_type": {
+   "codice": 18.2,
+   "storia": 17.6,
+   "ragionamento": 18.6,
+   "json": 18.7
+  }
+ },
+ "notes": "Nemotron 3.5 Bolt 74B-A9B 24GB (22 GB, 2 bit nativi). Baseline 8K: il muro e la RAM da 16 GB, non la VRAM",
+ "tags": [],
+ "summary": "18.5 t/s a un flusso, 18.3 t/s medi su 4 tipi di prompt."
+}

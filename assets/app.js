@@ -111,12 +111,23 @@
   }
 
   // ---------------------------------------------------------------- righe modello
+  // alcuni risultati Mac usano nomi diversi per lo stesso modello: normalizzo per non spaccare la classifica
+  function normModel(name) {
+    var n = (name || '').toLowerCase();
+    if (n.indexOf('onyx-224r') >= 0 || n === 'agents-a1-35b-a3b onyx') return 'Agents-A1 ONYX-224r';
+    if (n.indexOf('onyx-mini-pota240') >= 0) return 'Agents-A1 ONYX-mini-240';
+    return name;
+  }
+
   function buildRows(plat) {
     var groups = {};
     state.exp.forEach(function (x) {
       if (x.platform !== plat || x.status === 'failed') return;
-      var key = x.model + '|' + (x.quant || '');
-      var g = groups[key] || (groups[key] = { model: x.model, quant: x.quant, repo: x.repo, size: x.size_gb, rows: [] });
+      var nm = normModel(x.model);
+      var isOnyx = /onyx/i.test(nm);
+      var key = nm + '|' + (isOnyx ? '' : (x.quant || ''));
+      var g = groups[key] || (groups[key] = { model: nm, quant: isOnyx ? '' : x.quant, repo: x.repo, size: x.size_gb, rows: [] });
+      if (!g.repo && x.repo) g.repo = x.repo;
       g.rows.push(x.headline || {});
     });
     var keys = ['decode_tps_1', 'tps_media', 'duro_pct', 'agente_pct', 'harness_omp_pieno_pct', 'harness_omp_parziale_pct', 'q_medio', 'indice_uso', 'humaneval', 'agente_mini'];
@@ -126,7 +137,7 @@
         var b = null; g.rows.forEach(function (r) { if (has(r[key]) && (b === null || r[key] > b)) b = r[key]; });
         if (b !== null) m[key] = b;
       });
-      return { model: g.model, quant: g.quant, repo: g.repo, size: g.size, metrics: m, qi: qiFrom(m) };
+      return { model: g.model, quant: g.quant, repo: g.repo, size: g.size, metrics: m, qi: qiFrom(m), n: g.rows.length };
     });
     // ricerca globale + filtri per parametro
     var f = state.filt[plat];
@@ -147,7 +158,7 @@
 
   function sortRows(rows, plat) {
     var s = state.sort[plat];
-    function val(r) { if (s.k === 'qi') return r.qi ? r.qi.v : null; if (s.k === 'size') return r.size; return has(r.metrics[s.k]) ? r.metrics[s.k] : null; }
+    function val(r) { if (s.k === 'qi') return r.qi ? r.qi.v : null; if (s.k === 'size') return r.size; if (s.k === 'n') return r.n; return has(r.metrics[s.k]) ? r.metrics[s.k] : null; }
     rows.sort(function (a, b) {
       if (s.k === 'qi') return byQi(a, b, s.d);
       var x = val(a), y = val(b);
@@ -169,14 +180,14 @@
 
   // ---------------------------------------------------------------- pannello piattaforma
   function podium(rows, plat) {
-    var top = rows.slice().sort(function (a, b) { return byQi(a, b, -1); }).slice(0, 3);
+    var top = rows.filter(function (r) { return r.qi; }).sort(function (a, b) { return byQi(a, b, -1); }).slice(0, 3);
     var box = el('div', 'podium');
     top.forEach(function (r, i) {
       var c = el('div', 'pod p' + (i + 1));
       c.appendChild(el('span', 'podrank', '#' + (i + 1) + (r.qi ? (r.qi.tier === 0 ? ' hard' : r.qi.tier === 2 ? ' legacy' : '') : '')));
       c.appendChild(el('b', null, r.model + (r.quant ? ' ' + r.quant : '')));
       c.appendChild(el('div', 'podqi', r.qi ? fmt(r.qi.v) : '—'));
-      c.appendChild(el('span', 'podsrc', r.qi ? r.qi.src + ' · ' + fmt(r.metrics.decode_tps_1 || 0) + ' t/s' : 'nessun QI'));
+      c.appendChild(el('span', 'podsrc', r.qi ? r.qi.src + ' · ' + fmt(r.metrics.decode_tps_1 || 0) + ' t/s · ' + r.n + ' test' : 'nessun QI'));
       box.appendChild(c);
     });
     if (!top.length) box.appendChild(el('div', 'empty', 'Nessun modello con questi filtri.'));
@@ -206,7 +217,7 @@
     var t = el('table', 'desk-table');
     var hr = el('tr');
     var s = state.sort[plat];
-    [['model', 'Modello'], ['qi', 'QI']].concat(COLS.slice(1)).forEach(function (c) {
+    [['model', 'Modello'], ['n', 'test'], ['qi', 'QI']].concat(COLS.slice(1)).forEach(function (c) {
       var th = el('th', null, c[1] + (s.k === c[0] ? (s.d < 0 ? ' ▼' : ' ▲') : ''));
       th.onclick = function () { state.sort[plat] = { k: c[0], d: s.k === c[0] ? -s.d : -1 }; refreshTable(plat); };
       hr.appendChild(th);
@@ -221,7 +232,7 @@
   function fillTbody(tb, rows, plat) {
     tb.textContent = '';
     if (!rows.length) {
-      var tr = el('tr'); var td = el('td', 'empty-cell', 'Nessun risultato con questi filtri.'); td.colSpan = 9; tr.appendChild(td); tb.appendChild(tr); return;
+      var tr = el('tr'); var td = el('td', 'empty-cell', 'Nessun risultato con questi filtri.'); td.colSpan = 10; tr.appendChild(td); tb.appendChild(tr); return;
     }
     rows.forEach(function (r, i) {
       var tr = el('tr');
@@ -230,6 +241,7 @@
       if (i === 0) td.appendChild(el('span', 'badge', '1°'));
       td.appendChild(document.createTextNode(' ' + r.model + (r.quant ? ' ' + r.quant : '')));
       tr.appendChild(td);
+      tr.appendChild(el('td', 'ncell', String(r.n)));
       var tq = el('td'); tq.appendChild(qiBadge(r)); tr.appendChild(tq);
       [['decode_tps_1'], ['duro_pct'], ['agente_pct'], ['harness_omp_pieno_pct'], ['q_medio'], ['indice_uso']].forEach(function (c) {
         tr.appendChild(el('td', null, has(r.metrics[c[0]]) ? fmt(r.metrics[c[0]]) : '–'));

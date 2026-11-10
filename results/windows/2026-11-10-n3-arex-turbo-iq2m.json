@@ -4,7 +4,7 @@
  "platform": "windows",
  "author": "Motti",
  "date": "2026-11-10",
- "category": "quality-tiny",
+ "category": "other",
  "status": "ok",
  "title": "n3-arex-turbo-iq2m",
  "reference": false,
@@ -36,7 +36,7 @@
   "cpu": "Ryzen 5 5600G"
  },
  "benchmark": {
-  "suite": "tiny-fabbrica",
+  "suite": "pietro-duro+agente+lungo",
   "harness": "fabbrica-runner"
  },
  "metrics": {
