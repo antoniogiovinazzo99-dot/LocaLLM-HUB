@@ -84,3 +84,14 @@ table#rank{border-collapse:collapse;width:100%;font-size:13.5px;font-variant-num
 .foot{padding:30px 20px 50px;color:var(--mute);font-size:13px}
 
 @media (max-width:860px){.cols{grid-template-columns:1fr}.stats{margin-left:0}.wrap{padding:0 16px}}
+
+/* classifiche separate Windows/Mac (10/11/2026) */
+.rank-block{margin:18px 0 26px}
+.rank-block h3{margin:0 0 4px}
+.rank-block table{width:100%;border-collapse:collapse;font-size:13px}
+.rank-block th,.rank-block td{padding:4px 6px;border-bottom:1px solid rgba(128,128,128,.25);text-align:right;white-space:nowrap}
+.rank-block th:first-child,.rank-block td:first-child{text-align:left;white-space:normal}
+.rank-block th{cursor:pointer;user-select:none}
+.rank-block tr.top td{background:rgba(46,160,67,.12);font-weight:600}
+.rank-block .badge{margin-right:4px}
+

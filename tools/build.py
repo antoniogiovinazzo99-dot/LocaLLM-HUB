@@ -21,7 +21,8 @@ STATUSES = {'ok', 'partial', 'failed'}
 DATE_RE = re.compile(r'^\d{4}-\d{2}-\d{2}$')
 ID_RE = re.compile(r'^[a-z0-9][a-z0-9._-]*$')
 # metriche mostrate in evidenza nelle card (in questo ordine, le prime 4 presenti)
-HEADLINE = ['decode_tps_1', 'tps_media', 'q_medio', 'indice_uso', 'agente_mini', 'humaneval', 'draft_acceptance_pct', 'prompt_tps']
+HEADLINE = ['decode_tps_1', 'tps_media', 'duro_pct', 'agente_pct', 'harness_omp_pieno_pct', 'harness_omp_parziale_pct',
+            'q_medio', 'indice_uso', 'agente_mini', 'humaneval', 'draft_acceptance_pct', 'prompt_tps']
 
 
 def validate(e, path):
@@ -69,6 +70,7 @@ def main(check_only=False):
         if not d.exists():
             continue
         index = []
+        hidden_failed = 0
         for f in sorted(d.glob('*.json')):
             if f.name == 'index.json':
                 continue
@@ -79,17 +81,21 @@ def main(check_only=False):
                 continue
             errors += validate(e, f)
             total += 1
+            if e.get('status') == 'failed':
+                # i fallimenti restano nel repo (onesta), ma non sporcano la dashboard
+                hidden_failed += 1
+                continue
             m = e.get('model') or {}
             index.append({
                 'id': e.get('id'), 'file': f'results/{plat}/{f.name}', 'platform': plat, 'author': e.get('author'),
                 'date': e.get('date'), 'category': e.get('category'), 'status': e.get('status'), 'title': e.get('title'),
-                'summary': e.get('summary'), 'model': m.get('name'), 'quant': m.get('quant'), 'size_gb': m.get('size_gb'),
+                'summary': e.get('summary'), 'model': m.get('name'), 'repo': m.get('repo'), 'quant': m.get('quant'), 'size_gb': m.get('size_gb'),
                 'engine': (e.get('engine') or {}).get('name'), 'ref': bool(e.get('reference')),
                 'headline': headline(e.get('metrics') or {}), 'tags': e.get('tags', []),
             })
         index.sort(key=lambda x: (x['date'] or '', x['id'] or ''), reverse=True)
         if not check_only:
-            (d / 'index.json').write_text(json.dumps({'platform': plat, 'count': len(index), 'experiments': index}, ensure_ascii=False, indent=1), encoding='utf-8')
+            (d / 'index.json').write_text(json.dumps({'platform': plat, 'count': len(index), 'hidden_failed': hidden_failed, 'experiments': index}, ensure_ascii=False, indent=1), encoding='utf-8')
     for x in errors:
         print('ERRORE', x)
     print(f'{total} esperimenti, {len(errors)} errori')

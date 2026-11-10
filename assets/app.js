@@ -2,8 +2,9 @@
   'use strict';
   var PLATFORMS = ['windows', 'mac'];
   var CAT = { speed: 'Velocita', speculative: 'Speculative', 'quality-tiny': 'Qualita tiny', 'quality-suite-s': 'Suite S', agent: 'Agente', armature: 'Armature', harness: 'Harness', other: 'Altro' };
-  var LABEL = { decode_tps_1: 't/s', tps_media: 't/s medi', q_medio: 'tiny', indice_uso: 'indice uso', agente_mini: 'agente', humaneval: 'HumanEval', draft_acceptance_pct: 'accett. %', prompt_tps: 'prompt t/s' };
-  var state = { exp: [], ideas: [], proj: [], queue: null, cat: 'all', q: '', tab: 'exp', sort: { k: 'indice_uso', d: -1 }, detail: {} };
+  var LABEL = { decode_tps_1: 't/s', tps_media: 't/s medi', q_medio: 'tiny', indice_uso: 'indice uso', agente_mini: 'agente', humaneval: 'HumanEval', draft_acceptance_pct: 'accett. %', prompt_tps: 'prompt t/s', duro_pct: 'duro %', agente_pct: 'agente %', harness_omp_pieno_pct: 'omp pieno %', harness_omp_parziale_pct: 'omp parziale %' };
+  var state = { exp: [], ideas: [], proj: [], queue: null, cat: 'all', q: '', tab: 'exp', hiddenFailed: 0,
+    sort: { windows: { k: 'harness_omp_pieno_pct', d: -1 }, mac: { k: 'duro_pct', d: -1 } }, detail: {} };
   var REPO = 'https://github.com/mtom123/LocaLLM-HUB/blob/main/';
 
   function el(tag, cls, text) {
@@ -26,13 +27,14 @@
 
   function load() {
     var jobs = PLATFORMS.map(function (p) {
-      return fetchJSON('results/' + p + '/index.json').then(function (d) { return d.experiments || []; }).catch(function () { return []; });
+      return fetchJSON('results/' + p + '/index.json').then(function (d) { return d; }).catch(function () { return { experiments: [] }; });
     });
     jobs.push(fetchJSON('data/ideas.json').catch(function () { return []; }));
     jobs.push(fetchJSON('data/projects.json').then(function (d) { return d.projects || []; }).catch(function () { return []; }));
     jobs.push(fetchJSON('data/queue.json').catch(function () { return null; }));
     Promise.all(jobs).then(function (r) {
-      state.exp = r[0].concat(r[1]);
+      state.exp = (r[0].experiments || []).concat(r[1].experiments || []);
+      state.hiddenFailed = (r[0].hidden_failed || 0) + (r[1].hidden_failed || 0);
       state.ideas = r[2];
       state.proj = r[3];
       state.queue = r[4];
@@ -41,6 +43,7 @@
   }
 
   function visible(x) {
+    if (x.status === 'failed') return false;
     if (state.cat !== 'all' && x.category !== state.cat) return false;
     if (state.q) {
       var s = [x.title, x.model, x.quant, x.engine, x.summary, (x.tags || []).join(' ')].join(' ').toLowerCase();
@@ -155,44 +158,118 @@
   // la classifica usa le metriche complete dei file: le leggiamo una volta e le teniamo in memoria
   function renderRank() {
     var t = document.getElementById('rank');
-    t.textContent = 'Carico...';
     var need = state.exp.filter(function (x) { return x.status !== 'failed' && !state.detail[x.id]; });
+    if (need.length) t.textContent = 'Carico...';
     Promise.all(need.map(function (x) { return fetchJSON(x.file).then(function (e) { state.detail[x.id] = e; }).catch(function () { state.detail[x.id] = { metrics: {} }; }); })).then(drawRank);
   }
-  function drawRank() {
-    var t = document.getElementById('rank');
+
+  var COLS = [['decode_tps_1', 't/s'], ['tps_media', 't/s medi'], ['duro_pct', 'duro %'], ['agente_pct', 'agente %'],
+              ['harness_omp_pieno_pct', 'omp pieno %'], ['q_medio', 'tiny'], ['indice_uso', 'indice uso'], ['humaneval', 'HumanEval']];
+
+  function modelRows(plat) {
     var groups = {};
     state.exp.forEach(function (x) {
-      if (x.status === 'failed' || !visible(x)) return;
-      var key = x.platform + '|' + x.model + '|' + (x.quant || '');
-      (groups[key] = groups[key] || { platform: x.platform, model: x.model, quant: x.quant, size: x.size_gb, rows: [] }).rows.push({ metrics: (state.detail[x.id] || {}).metrics || {} });
+      if (x.platform !== plat || x.status === 'failed' || !visible(x)) return;
+      var key = x.model + '|' + (x.quant || '');
+      (groups[key] = groups[key] || { platform: x.platform, model: x.model, repo: x.repo, quant: x.quant, size: x.size_gb, rows: [] }).rows.push({ metrics: (state.detail[x.id] || {}).metrics || {} });
     });
-    var cols = [['decode_tps_1', 't/s'], ['tps_media', 't/s medi'], ['q_medio', 'tiny'], ['indice_uso', 'indice uso'], ['agente_mini', 'agente %'], ['humaneval', 'HumanEval']];
     var rows = Object.keys(groups).map(function (k) {
-      var g = groups[k]; var r = { platform: g.platform, model: g.model + (g.quant ? ' ' + g.quant : ''), size: g.size };
-      cols.forEach(function (c) { r[c[0]] = best(g.rows, c[0]); });
+      var g = groups[k]; var r = { platform: g.platform, model: g.model + (g.quant ? ' ' + g.quant : ''), repo: g.repo, size: g.size };
+      COLS.forEach(function (c) { r[c[0]] = best(g.rows, c[0]); });
       return r;
     });
-    var s = state.sort;
-    rows.sort(function (a, b) { var x = a[s.k], y = b[s.k]; if (x === null || x === undefined) x = -Infinity; if (y === null || y === undefined) y = -Infinity; if (typeof x === 'string') return s.d * x.localeCompare(y); return s.d * (x - y); });
-    t.textContent = '';
+    var s = state.sort[plat];
+    rows.sort(function (a, b) {
+      var x = a[s.k], y = b[s.k];
+      if (x === null || x === undefined) x = -Infinity;
+      if (y === null || y === undefined) y = -Infinity;
+      if (x === y) return (b.decode_tps_1 || 0) - (a.decode_tps_1 || 0);
+      return s.d * (x - y);
+    });
+    return rows;
+  }
+
+  function tableFor(plat) {
+    var rows = modelRows(plat);
+    var s = state.sort[plat];
+    var box = el('section', 'rank-block');
+    box.appendChild(el('h3', null, 'Classifica ' + (plat === 'windows' ? 'Windows' : 'Mac')));
+    box.appendChild(el('div', 'meta', plat === 'windows'
+      ? 'RTX 3060 12 GB / 16 GB RAM · intelligenza = harness omp (6 compiti con test nascosti)'
+      : 'Mac di Pietro · intelligenza = duro (set pubblici) e agente (12 compiti)'));
+    var t = el('table');
     var hr = el('tr');
-    [['platform', 'Macchina'], ['model', 'Modello']].concat(cols).concat([['size', 'GB']]).forEach(function (c) {
+    [['model', 'Modello']].concat(COLS).concat([['size', 'GB']]).forEach(function (c) {
       var th = el('th', null, c[1] + (s.k === c[0] ? (s.d < 0 ? ' ▼' : ' ▲') : ''));
-      th.onclick = function () { state.sort = { k: c[0], d: s.k === c[0] ? -s.d : -1 }; drawRank(); };
+      th.onclick = function () { state.sort[plat] = { k: c[0], d: s.k === c[0] ? -s.d : -1 }; drawRank(); };
       hr.appendChild(th);
     });
     var th = el('thead'); th.appendChild(hr); t.appendChild(th);
     var tb = el('tbody');
-    rows.forEach(function (r) {
+    rows.forEach(function (r, i) {
       var tr = el('tr');
-      var td = el('td'); td.appendChild(el('span', 'tag ' + r.platform, r.platform)); tr.appendChild(td);
-      tr.appendChild(el('td', null, r.model));
-      cols.forEach(function (c) { tr.appendChild(el('td', null, r[c[0]] === null ? '–' : fmt(r[c[0]]))); });
+      if (i === 0) { tr.className = 'top'; }
+      var td = el('td');
+      if (i === 0) td.appendChild(el('span', 'badge', '1°'));
+      td.appendChild(document.createTextNode(' ' + r.model));
+      tr.appendChild(td);
+      COLS.forEach(function (c) { tr.appendChild(el('td', null, r[c[0]] === null ? '–' : fmt(r[c[0]]))); });
       tr.appendChild(el('td', null, r.size ? fmt(r.size) : '–'));
       tb.appendChild(tr);
     });
     t.appendChild(tb);
+    box.appendChild(t);
+    if (!rows.length) box.appendChild(el('div', 'empty', 'Nessun test riuscito con questi filtri.'));
+    return box;
+  }
+
+  function bestForRepo(repo, plat, key) {
+    var v = null;
+    state.exp.forEach(function (x) {
+      if (x.repo !== repo || x.platform !== plat || x.status === 'failed') return;
+      var m = (state.detail[x.id] || {}).metrics || {};
+      if (typeof m[key] === 'number' && (v === null || m[key] > v)) v = m[key];
+    });
+    return v;
+  }
+
+  function comparisonBlock() {
+    var byRepo = {};
+    state.exp.forEach(function (x) { if (x.repo && x.status !== 'failed') (byRepo[x.repo] = byRepo[x.repo] || {})[x.platform] = 1; });
+    var rows = Object.keys(byRepo).filter(function (r) { return byRepo[r].windows && byRepo[r].mac; });
+    var box = el('section', 'rank-block');
+    box.appendChild(el('h3', null, 'Confronto sullo stesso modello'));
+    if (!rows.length) {
+      box.appendChild(el('div', 'meta', 'Nessun modello misurato su entrambe le macchine con lo stesso benchmark. Prossimo passo: Agents-A1-4B con duro/agente anche su Windows.'));
+      return box;
+    }
+    var t = el('table');
+    var hr = el('tr');
+    ['Modello', 'Windows duro %', 'Windows agente %', 'Windows omp pieno %', 'Mac duro %', 'Mac agente %'].forEach(function (h) { hr.appendChild(el('th', null, h)); });
+    var th = el('thead'); th.appendChild(hr); t.appendChild(th);
+    var tb = el('tbody');
+    rows.forEach(function (r) {
+      var tr = el('tr');
+      tr.appendChild(el('td', null, r));
+      [['windows', 'duro_pct'], ['windows', 'agente_pct'], ['windows', 'harness_omp_pieno_pct'], ['mac', 'duro_pct'], ['mac', 'agente_pct']].forEach(function (c) {
+        var v = bestForRepo(r, c[0], c[1]);
+        tr.appendChild(el('td', null, v === null ? '–' : fmt(v)));
+      });
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb);
+    box.appendChild(t);
+    box.appendChild(el('div', 'meta', 'Confronti solo a parita di modello, benchmark e n. Il rumore con n=8 e ±20 punti: i numeri servono a vedere la direzione, non a dichiarare un vincitore.'));
+    return box;
+  }
+
+  function drawRank() {
+    var t = document.getElementById('rank');
+    t.textContent = '';
+    t.appendChild(tableFor('windows'));
+    t.appendChild(tableFor('mac'));
+    t.appendChild(comparisonBlock());
+    if (state.hiddenFailed) t.appendChild(el('div', 'meta', state.hiddenFailed + ' test falliti registrati nel repo ma non mostrati in dashboard.'));
   }
 
   function renderIdeas() {
