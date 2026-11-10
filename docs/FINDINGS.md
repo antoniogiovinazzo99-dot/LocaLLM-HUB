@@ -46,3 +46,21 @@ Guadagno per tipo di prompt con DFlash n3: JSON 56,0 (da 36,9), ragionamento 45,
 
 **Non ancora verificato:** la ricetta esatta a 64K (q4_0 KV, b512/ub256), `--n-cpu-moe`, il confronto harness opencode/omp e AREX-Turbo/AREX-2: tutto in coda stanotte. Vedi `C:/Users/motti/llm/fabbrica/NOTTE-2026-11-10-PIANO.md` (fuori dal repo) e i file che arriveranno in `results/windows/`.
 
+### Aggiornamento 10/11 mattina (harness reale, solo omp)
+
+| modello | harness omp | t/s | tempo 6 compiti |
+|---|---|---:|---:|
+| **Agents-A1-35B Q4** (corsa 1) | **6/6 pieni (100%)** | 37-45 | **5,5 min** |
+| Agents-A1-35B Q4 (corsa 2, ripetizione) | 5/6 (83,3%) — sbaglia `dati_ordini` in 29 s | 37-45 | 7,2 min |
+| **AREX-Turbo 4B Q4** | **5/6 pieni (83,3%)**, parziale 93,9% — `config_loader` 0,636 | **76** | 7,1 min |
+
+Lezione: **il 35B non e' piu' lento del 4B sui compiti agentici veri.** Il 4B scrive piu' veloce, ma sui compiti difficili entra in cicli (212 s su `config_loader`); il 35B chiude in 66 s. La velocita' in token/s non predice il tempo per compito. `dati_ordini` (conteggio su CSV sporco) e' il punto debole sistematico del 35B; il 4B lo fa bene in 9 s. Un router per tipo di compito li combina.
+
+### MoE cache (PR 30966) — provato, NON funziona su questa macchina
+`-cmoe --moe-cache-mib 6000` su A1-35B Q4: **17,3 t/s** contro 47,5 della config senza cache. Causa: i 21 GB di esperti non stanno nei 16 GB di RAM, quindi i "miss" della cache leggono dal disco. Il PR e' ottimo, ma serve RAM >= modello (come il desktop da 128 GB dell'esempio). Da riprovare solo con un modello <= 14 GB (es. A1 IQ3_XXS 13,6 GB).
+Nota: la build **b12244** ha anche `--moe-cache-cpu-share`, ma su CUDA Windows e' risultata **~9 t/s** sulla stessa config (b12141: 47,5). Restiamo su b12141.
+
+### GLM-5.3-Flash — non e' "condensabile" qui
+BF16 ~700 GB (14 parti da ~50 GB), Q8 ~390 GB, e anche la versione **REAP50** (potata al 50%) e' **72-99 GB**. Non entra in 16+12 GB in nessuna quantizzazione. "Trapiantare il cervello" in un altro modello e' tecnicamente impossibile tra architetture diverse: cio' che si trasferisce e' il **comportamento** (distillazione di tracce), non i pesi. Vedi `docs/RICERCA-2026-11-10-DISTILLAZIONE-4B.md`.
+
+

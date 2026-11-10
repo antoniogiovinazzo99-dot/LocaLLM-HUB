@@ -1,0 +1,61 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-n5-a1q4-harness-omp",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "harness",
+ "status": "ok",
+ "title": "n5-a1q4-harness-omp",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+  "file": "Agents-A1-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 21.2
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "llama.cpp b12141",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0",
+   "--chat-template-file",
+   "<PATH>/a1-chat_template-fixed.jinja",
+   "--reasoning",
+   "off",
+   "--dry-multiplier",
+   "0.5",
+   "--dry-allowed-length",
+   "8",
+   "--cache-ram",
+   "512",
+   "--cache-reuse",
+   "256"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "agente-mini-harness-reali",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "harness_omp_pieno_pct": 100.0,
+  "harness_omp_parziale_pct": 100.0
+ },
+ "notes": "",
+ "tags": [],
+ "summary": "Risultato registrato."
+}

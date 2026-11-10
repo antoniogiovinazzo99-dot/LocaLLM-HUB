@@ -1,0 +1,78 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-sp-a1q4-moecache6g-dflash",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "speculative",
+ "status": "ok",
+ "title": "sp-a1q4-moecache6g-dflash",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+  "file": "Agents-A1-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 21.2
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "8192",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "-cmoe",
+   "--moe-cache-mib",
+   "6000",
+   "--spec-type",
+   "draft-dflash",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "speed-4-prompts",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 9.1,
+  "tps_media": 17.3,
+  "load_s": 7.0,
+  "tps_by_type": {
+   "codice": 15.3,
+   "storia": 23.2,
+   "ragionamento": 8.1,
+   "json": 22.7
+  },
+  "draft_acceptance_by_type": {
+   "codice": 68.8,
+   "storia": 31.1,
+   "ragionamento": 74.6,
+   "json": 92.4
+  },
+  "draft_acceptance_pct": 68.8
+ },
+ "notes": "PR 30966: esperti in CPU + 6 GB di cache in VRAM. Confronto diretto con 47,5 t/s (stessa config senza cache)",
+ "tags": [
+  "speculative"
+ ],
+ "summary": "9.1 t/s a un flusso, 17.3 t/s medi su 4 tipi di prompt, accettazione drafter sul codice 68.8%."
+}

@@ -1,6 +1,6 @@
 {
  "platform": "windows",
- "count": 91,
+ "count": 94,
  "experiments": [
   {
    "id": "2026-11-10-underdog-saluki-27b-1.0",
@@ -225,6 +225,30 @@
     "tps_media": 18.5
    },
    "tags": []
+  },
+  {
+   "id": "2026-11-10-sp-a1q4-moecache6g-dflash",
+   "file": "results/windows/2026-11-10-sp-a1q4-moecache6g-dflash.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "speculative",
+   "status": "ok",
+   "title": "sp-a1q4-moecache6g-dflash",
+   "summary": "9.1 t/s a un flusso, 17.3 t/s medi su 4 tipi di prompt, accettazione drafter sul codice 68.8%.",
+   "model": "Agents-A1-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.2,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 9.1,
+    "tps_media": 17.3,
+    "draft_acceptance_pct": 68.8
+   },
+   "tags": [
+    "speculative"
+   ]
   },
   {
    "id": "2026-11-10-sp-a1q4-dflash-ngram-n4",
@@ -840,6 +864,42 @@
     "humaneval": 85.4,
     "prompt_tps": 624.4
    },
+   "tags": []
+  },
+  {
+   "id": "2026-11-10-n5b-a1q4-harness-omp",
+   "file": "results/windows/2026-11-10-n5b-a1q4-harness-omp.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "harness",
+   "status": "ok",
+   "title": "n5b-a1q4-harness-omp",
+   "summary": "Risultato registrato.",
+   "model": "Agents-A1-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.2,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": []
+  },
+  {
+   "id": "2026-11-10-n5-a1q4-harness-omp",
+   "file": "results/windows/2026-11-10-n5-a1q4-harness-omp.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "harness",
+   "status": "ok",
+   "title": "n5-a1q4-harness-omp",
+   "summary": "Risultato registrato.",
+   "model": "Agents-A1-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.2,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
    "tags": []
   },
   {
