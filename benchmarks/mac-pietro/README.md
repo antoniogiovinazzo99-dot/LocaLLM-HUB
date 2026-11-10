@@ -16,6 +16,9 @@ Ogni script scrive `<nome>-risultati.jsonl` accanto a se (ignorato da git): una 
 | `lungo.py` | contesto lungo reale: 5 aghi a 5K-235K token in un registro, domande a 64K/128K/200K/.../max | 5 | 60 min per 240K | 256K su ONYX-224r |
 | `agente.py` | agente con chiamate di funzione native: calendario, attivita, note, contatti, email simulate; controlla lo stato finale | 12 | ~2 min | ONYX-224r a 256K (12/12) |
 | `a1_cervello.py` | non e un test: proxy che classifica la domanda e sceglie la strategia (`politica-v2.json`) | - | - | +8,5 punti su `duro` |
+| `omp_agente.py` | OMP vero (non simulato) sui 6 compiti di `windows-fabbrica/agente_mini.py`: successo, secondi, passi, token, caratteri di pensiero, modelli non locali usati | 6 | 10-25 min | G1-G11 |
+| `esplora_mini.py` | 3 compiti di esplorazione di una cartella grande (registro da 24.000 righe, 80 config, 120 moduli): pesa la lettura, non la scrittura; `omp_agente.py --tasks=esplora` | 3 | 4-15 min | E1-E11 |
+| `regole-locale.md` | non e un test: le regole del profilo `omp-locale` (comandi mirati, output corti, dati con Python, verifica prima di finire) | - | - | G8-G11, E8-E11 |
 | `prune_experts.py`, `prune_imatrix.py` | potatura degli expert stile REAP da conteggi imatrix, e ritaglio dell'imatrix | - | - | ONYX-224r, 192r, 176r |
 
 ## Dataset di `duro.py` (non nel repo)

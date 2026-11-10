@@ -64,3 +64,20 @@ ha eliminato; nei compiti di codice il tempo va quasi tutto nella **scrittura** 
 **Ripetizione (seconda corsa):** base 1342 s (4/6, parziale 81%), migliore 1046 s (4/6, parziale 82%). Media delle due corse:
 migliore **1006 s contro 1338 (-25%)**, compiti pieni 75% contro 75%, parziale 89% contro 82%. Il guadagno di tempo regge,
 la qualita resta uguale alla base; il -28% e il 97% della prima corsa erano un po' fortunati (`dati_ordini` cambia esito tra le corse).
+
+## Aggiornamento 10 novembre: regole v2, DRY 8, esplorazione
+| Configurazione (sempre veloce 64K DFlash + omp-locale) | 6 compiti di codice | 3 compiti di esplorazione |
+|---|---|---|
+| Base per confronto (256K, OMP predefinito) | 1334 s, 5/6 | 884 s, 2/3 (**1 risposta da un modello cloud di riserva**) |
+| Ragionamento spento, DRY 4, regole v1 (G8, media di 2) | 1006 s, 4,5/6 | 229 s, 1/3 (E8) |
+| Ragionamento spento, DRY 4, regole v2 (G9, media di 2) | 620 s, 4/6 | - |
+| **Ragionamento spento, DRY 8, regole v2 (G11)** | **687 s, 4/6, parziale 96%** | 896 s, 1/3 (E11: un output da 31.000 token) |
+| **Ragionamento acceso, DRY 8, regole v2 (G10 / E10)** | 838 s, 4/6, parziale 93% | **766 s, 2/3, parziale 89%** |
+
+Lezioni: (1) le regole v2 (`benchmarks/mac-pietro/regole-locale.md`: dati con Python, verifica prima di finire, mai concludere da un
+output tagliato) tolgono un terzo del tempo; (2) DRY con lunghezza ammessa 4 penalizza i tag ripetuti delle chiamate di strumento e
+produce chiamate scritte come testo (G9b): con 8 sparisce; (3) per il codice il ragionamento non serve, per l'analisi di dati grandi
+si (il conteggio sul registro: acceso giusto in 196 s, spento sbagliato o in tempo massimo); (4) il profilo predefinito di OMP ha una
+catena di riserva verso modelli cloud e la usa senza avvisare: il profilo `omp-locale` no. Varianti del drafter DFlash (draft 6/8/10,
+p-min 0,5/0,7, ub 512): nessuna batte la ricetta (controllo 54,9 t/s, varianti 50-51), e il rumore tra corse e alto.
+Compiti di esplorazione: `benchmarks/mac-pietro/esplora_mini.py` (`omp_agente.py --tasks=esplora`). Tutto n=1 salvo dove indicato.

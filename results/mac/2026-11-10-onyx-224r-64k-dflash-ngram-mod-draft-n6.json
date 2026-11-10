@@ -1,0 +1,75 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-onyx-224r-64k-dflash-ngram-mod-draft-n6",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-10",
+ "category": "speculative",
+ "status": "ok",
+ "title": "ONYX-224r 64K DFlash+ngram-mod, draft n6",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-ONYX-224r",
+  "repo": null,
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "-c",
+   "65536",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "--spec-type",
+   "draft-dflash,ngram-mod",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99",
+   "-ub",
+   "256",
+   "--spec-draft-n-max",
+   "6"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16.0,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "core-speed",
+  "version": 1,
+  "harness": "tools/speedtest.py"
+ },
+ "metrics": {
+  "decode_tps_1": 37.0,
+  "tps_media": 44.2,
+  "tps_by_type": {
+   "codice": 31.9,
+   "storia": 33.1,
+   "ragionamento": 59.6,
+   "json": 52.1
+  },
+  "tps_method": "timings",
+  "draft_acceptance_pct": 55.1
+ },
+ "notes": "Variante della ricetta DFlash: -ub 256 --spec-draft-n-max 6. Base (n-max 3, ub 256) = 51,0 t/s, accettazione 72,6%. Esito del gruppo (9 varianti, 10 novembre): nessuna variante batte la ricetta (draft 3, ub 256): controllo rifatto nello stesso momento = 54,9 t/s, varianti 50-51; draft 10 = 27. Il rumore tra corse della stessa configurazione e grande (44 e 30 t/s per draft 6; 61 e 51 per draft 6 + p-min 0,5): confrontare solo corse vicine nel tempo e con un controllo.",
+ "tags": [],
+ "summary": "44.2 t/s medi su 4 tipi di prompt (core-speed v1), 37.0 t/s mediana. Accettazione drafter 55.1%."
+}

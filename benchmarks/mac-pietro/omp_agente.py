@@ -3,7 +3,7 @@ Misura per ogni compito: successo sui test nascosti (credito parziale), tempo, n
 Serve a capire cosa rende lento un agente locale: impostazioni di OMP (ragionamento, strumenti, istruzioni) e del server.
 
 Uso: python3 -I omp_agente.py ETICHETTA [--model=llama.cpp/agents-a1] [--thinking=off] [--snello] [--solo=bug_prezzi,...]
-     [--timeout=900] [--extra="--altro-flag-omp"]
+     [--timeout=900] [--extra="--altro-flag-omp"] [--tasks=esplora]
   --snello : solo gli strumenti utili ai compiti (read, edit, write, bash, grep, glob), niente LSP, skills, regole,
              estensioni, file di contesto e titolo automatico (che chiama un modello cloud).
 Richiede un server gia avviato e omp nel PATH. Scrive omp-agente-risultati.jsonl accanto a se.
@@ -12,7 +12,11 @@ import glob, json, os, shutil, subprocess, sys, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "windows-fabbrica"))
+sys.path.insert(0, HERE)  # con python -I la cartella dello script non e nel path
 import agente_mini as A  # noqa: E402
+if any(a == "--tasks=esplora" for a in sys.argv):
+    import esplora_mini as E  # noqa: E402
+    A.T = E.T  # stessi setup/grade, compiti di esplorazione (benchmarks/mac-pietro/esplora_mini.py)
 
 opt = lambda k, d=None: next((a.split("=", 1)[1] for a in sys.argv if a.startswith(f"--{k}=")), d)
 LAB = sys.argv[1]
@@ -84,7 +88,7 @@ for t in A.T:
     res.append(r)
     print(json.dumps({k: r[k] for k in ("nome", "successo", "sec", "passi", "token_out", "car_pensiero", "modelli_non_locali", "rc")}, ensure_ascii=False), flush=True)
 n = len(res)
-summ = {"label": LAB, "summary": True, "model": MODEL, "thinking": THINK, "snello": SNELLO,
+summ = {"label": LAB, "summary": True, "tasks": "esplora" if "--tasks=esplora" in sys.argv else "agente-mini", "model": MODEL, "thinking": THINK, "snello": SNELLO,
         "pieno_pct": round(100 * sum(r["pieno"] for r in res) / n, 1), "parziale_pct": round(100 * sum(r["successo"] for r in res) / n, 1),
         "sec_totali": round(sum(r["sec"] for r in res)), "sec_mediana": sorted(r["sec"] for r in res)[n // 2],
         "passi_medi": round(sum(r["passi"] for r in res) / n, 1),

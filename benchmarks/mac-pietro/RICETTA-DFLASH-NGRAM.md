@@ -26,6 +26,9 @@ llama-server -m Agents-A1-ONYX-224r.gguf -ngl 99 -fa on --jinja --parallel 1 --c
 - Solo `ngram-mod` (nessun drafter) a 256K: 33,8 t/s contro 28,3 (+19%), accettazione 53,5%. `ngram-simple`: nessun guadagno.
 - Solo DFlash a 64K: 37,1 t/s (+40%), accettazione 66,8%.
 - Il guadagno dipende dal testo: ragionamento 70 t/s e JSON 54 (ripetitivi), codice 41, storia 38.
-- Non provati: `--spec-draft-n-max` diverso da 3, i drafter Q8_0 / Q2_K, la versione Qwen3.6, build piu recenti di b12038.
+- Provati il 10 novembre (`2026-11-10-...-draft-*`): `--spec-draft-n-max` 6, 8, 10, `--spec-draft-p-min` 0,5 e 0,7, `-ub 512`: **nessuno batte la ricetta**
+  (controllo nello stesso momento 54,9 t/s, varianti 50-51, draft 10 = 27). Il rumore tra corse uguali e alto (44 e 30 t/s per la stessa
+  configurazione): confrontare solo con un controllo vicino nel tempo.
+- Non provati: i drafter Q8_0 / Q2_K, la versione Qwen3.6, build piu recenti di b12038.
 - Il drafter non e stato addestrato su Agents-A1 ma sul modello base Qwen3.5-35B-A3B: l'accettazione del 67-73% dice che
   la famiglia e abbastanza vicina.

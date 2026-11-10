@@ -1,0 +1,119 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-omp-agente-mini-g11-veloce-noreason-dry8-regole2",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-10",
+ "category": "harness",
+ "status": "ok",
+ "title": "OMP + ONYX-224r veloce, ragionamento spento, DRY 8, omp-locale regole v2 (migliore)",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-224r.gguf",
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja",
+   "-c",
+   "65536",
+   "--spec-type",
+   "draft-dflash,ngram-mod",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99",
+   "--reasoning",
+   "off",
+   "--dry-multiplier",
+   "0.5",
+   "--dry-allowed-length",
+   "8"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "agente-mini via omp",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/omp_agente.py (omp --snello --profile=locale: output dei comandi 4+4 KB / 120 righe, compattazione al 50%, nessun modello di riserva; regole-locale.md v2 (dati con Python, verifica prima di finire, non concludere da output tagliati)), tempo massimo 600 s per compito"
+ },
+ "metrics": {
+  "agente_mini": 66.7,
+  "agente_mini_parziale": 96.1,
+  "sec_totali": 687,
+  "sec_mediana": 129.3,
+  "passi_medi": 16.8,
+  "token_out_totali": 15487,
+  "per_compito": {
+   "bug_prezzi": {
+    "successo": 0.857,
+    "sec": 161.4,
+    "passi": 22,
+    "car_pensiero": 0
+   },
+   "config_loader": {
+    "successo": 0.909,
+    "sec": 139.1,
+    "passi": 23,
+    "car_pensiero": 0
+   },
+   "rinomina": {
+    "successo": 1.0,
+    "sec": 129.3,
+    "passi": 19,
+    "car_pensiero": 0
+   },
+   "paginazione": {
+    "successo": 1.0,
+    "sec": 87.5,
+    "passi": 17,
+    "car_pensiero": 0
+   },
+   "dati_ordini": {
+    "successo": 1.0,
+    "sec": 110.8,
+    "passi": 12,
+    "car_pensiero": 0
+   },
+   "rapporto": {
+    "successo": 1.0,
+    "sec": 59.0,
+    "passi": 8,
+    "car_pensiero": 0
+   }
+  }
+ },
+ "summary": "Migliore configurazione per i compiti di codice: 687 s (base 1334, -49%), 4/6 pieni, credito parziale 96% (il piu alto), nessun ciclo e nessuna chiamata di strumento malformata. dati_ordini e rapporto risolti.",
+ "notes": "DRY --dry-allowed-length 8 invece di 4: le sequenze corte (tag delle chiamate di funzione) non vengono piu penalizzate, i cicli lunghi si. I due compiti non pieni sono a 86% e 91%. Nessuna risposta da modelli cloud.",
+ "tags": [
+  "agente-mini",
+  "agents-a1",
+  "harness",
+  "omp",
+  "onyx"
+ ]
+}

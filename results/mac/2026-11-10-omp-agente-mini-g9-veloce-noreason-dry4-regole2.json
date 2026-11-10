@@ -1,0 +1,120 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-omp-agente-mini-g9-veloce-noreason-dry4-regole2",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-10",
+ "category": "harness",
+ "status": "ok",
+ "title": "OMP + ONYX-224r veloce, DRY 4, omp-locale con regole v2",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-224r.gguf",
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja",
+   "-c",
+   "65536",
+   "--spec-type",
+   "draft-dflash,ngram-mod",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99",
+   "--reasoning",
+   "off",
+   "--dry-multiplier",
+   "0.5",
+   "--dry-allowed-length",
+   "4"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "agente-mini via omp",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/omp_agente.py (omp --snello --profile=locale: output dei comandi 4+4 KB / 120 righe, compattazione al 50%, nessun modello di riserva; regole-locale.md v2 (dati con Python, verifica prima di finire, non concludere da output tagliati)), tempo massimo 600 s per compito"
+ },
+ "metrics": {
+  "agente_mini": 66.7,
+  "agente_mini_parziale": 80.3,
+  "sec_totali": 514,
+  "sec_mediana": 88.6,
+  "passi_medi": 14.5,
+  "token_out_totali": 11050,
+  "per_compito": {
+   "bug_prezzi": {
+    "successo": 1.0,
+    "sec": 166.9,
+    "passi": 28,
+    "car_pensiero": 0
+   },
+   "config_loader": {
+    "successo": 0.818,
+    "sec": 36.1,
+    "passi": 6,
+    "car_pensiero": 0
+   },
+   "rinomina": {
+    "successo": 1.0,
+    "sec": 54.1,
+    "passi": 12,
+    "car_pensiero": 0
+   },
+   "paginazione": {
+    "successo": 1.0,
+    "sec": 88.6,
+    "passi": 15,
+    "car_pensiero": 0
+   },
+   "dati_ordini": {
+    "successo": 0.0,
+    "sec": 32.8,
+    "passi": 6,
+    "car_pensiero": 0
+   },
+   "rapporto": {
+    "successo": 1.0,
+    "sec": 135.1,
+    "passi": 20,
+    "car_pensiero": 0
+   }
+  }
+ },
+ "summary": "Con le regole v2 (dati con Python, verifica prima di finire): 514 s, 4/6, parziale 80%. Il piu veloce di tutti, ma dati_ordini sbaglia ancora (conta 'paid' senza distinguere le maiuscole, contro notes.txt).",
+ "notes": "Prima corsa con le regole v2. Nessuna risposta da modelli cloud.",
+ "tags": [
+  "agente-mini",
+  "agents-a1",
+  "harness",
+  "omp",
+  "onyx",
+  "regole-v2"
+ ]
+}

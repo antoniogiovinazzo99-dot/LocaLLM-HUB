@@ -1,0 +1,117 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-omp-agente-mini-g10-veloce-reasoning-dry8-regole2",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-10",
+ "category": "harness",
+ "status": "ok",
+ "title": "OMP + ONYX-224r veloce, ragionamento acceso, DRY 8, omp-locale regole v2",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-224r.gguf",
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja",
+   "-c",
+   "65536",
+   "--spec-type",
+   "draft-dflash,ngram-mod",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99",
+   "--dry-multiplier",
+   "0.5",
+   "--dry-allowed-length",
+   "8"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "agente-mini via omp",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/omp_agente.py (omp --snello --profile=locale: output dei comandi 4+4 KB / 120 righe, compattazione al 50%, nessun modello di riserva; regole-locale.md v2 (dati con Python, verifica prima di finire, non concludere da output tagliati)), tempo massimo 600 s per compito"
+ },
+ "metrics": {
+  "agente_mini": 66.7,
+  "agente_mini_parziale": 93.1,
+  "sec_totali": 838,
+  "sec_mediana": 130.1,
+  "passi_medi": 10.0,
+  "token_out_totali": 21924,
+  "per_compito": {
+   "bug_prezzi": {
+    "successo": 0.857,
+    "sec": 118.0,
+    "passi": 7,
+    "car_pensiero": 8199
+   },
+   "config_loader": {
+    "successo": 0.727,
+    "sec": 50.8,
+    "passi": 9,
+    "car_pensiero": 2206
+   },
+   "rinomina": {
+    "successo": 1.0,
+    "sec": 188.9,
+    "passi": 13,
+    "car_pensiero": 15089
+   },
+   "paginazione": {
+    "successo": 1.0,
+    "sec": 124.4,
+    "passi": 5,
+    "car_pensiero": 11235
+   },
+   "dati_ordini": {
+    "successo": 1.0,
+    "sec": 225.9,
+    "passi": 13,
+    "car_pensiero": 18984
+   },
+   "rapporto": {
+    "successo": 1.0,
+    "sec": 130.1,
+    "passi": 13,
+    "car_pensiero": 8233
+   }
+  }
+ },
+ "summary": "Stessa configurazione di G11 ma con il ragionamento acceso: 838 s (+22%), 4/6, parziale 93%. Sui compiti di codice il ragionamento non aggiunge qualita e costa tempo, anche con DFlash che accelera il testo di pensiero.",
+ "notes": "64.000 caratteri di pensiero in totale. Nessuna risposta da modelli cloud.",
+ "tags": [
+  "agente-mini",
+  "agents-a1",
+  "harness",
+  "omp",
+  "onyx"
+ ]
+}

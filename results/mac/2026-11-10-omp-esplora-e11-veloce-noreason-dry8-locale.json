@@ -1,0 +1,103 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-omp-esplora-e11-veloce-noreason-dry8-locale",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-10",
+ "category": "harness",
+ "status": "ok",
+ "title": "OMP + ONYX-224r veloce, ragionamento spento, DRY 8, omp-locale, esplorazione",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-224r.gguf",
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja",
+   "-c",
+   "65536",
+   "--spec-type",
+   "draft-dflash,ngram-mod",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99",
+   "--reasoning",
+   "off",
+   "--dry-multiplier",
+   "0.5",
+   "--dry-allowed-length",
+   "8"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "esplora-mini via omp",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/omp_agente.py (omp --snello --profile=locale: output dei comandi 4+4 KB / 120 righe, compattazione al 50%, nessun modello di riserva; regole-locale.md v2 (dati con Python, verifica prima di finire, non concludere da output tagliati)), tempo massimo 600 s per compito"
+ },
+ "metrics": {
+  "esplora_mini": 33.3,
+  "esplora_mini_parziale": 55.6,
+  "sec_totali": 896,
+  "sec_mediana": 235.2,
+  "passi_medi": 12.7,
+  "token_out_totali": 6448,
+  "per_compito": {
+   "errori_log": {
+    "successo": 0.0,
+    "sec": 600.1,
+    "passi": 3,
+    "car_pensiero": 0
+   },
+   "chiave_config": {
+    "successo": 1.0,
+    "sec": 235.2,
+    "passi": 26,
+    "car_pensiero": 0
+   },
+   "import_rotto": {
+    "successo": 0.667,
+    "sec": 61.0,
+    "passi": 9,
+    "car_pensiero": 0
+   }
+  }
+ },
+ "summary": "896 s, 1/3: il registro lungo va in tempo massimo (600 s) con 3 passi, perche un comando ha prodotto un output da 31.000 token letto in 250 s. Senza ragionamento il modello non pianifica il comando aggregato.",
+ "notes": "Conferma di E8: per i compiti di analisi su dati grandi serve il ragionamento. Nessuna risposta da modelli cloud.",
+ "tags": [
+  "agents-a1",
+  "esplora-mini",
+  "esplorazione",
+  "harness",
+  "omp",
+  "onyx",
+  "regole-v2"
+ ]
+}

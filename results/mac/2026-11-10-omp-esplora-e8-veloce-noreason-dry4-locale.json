@@ -1,0 +1,103 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-omp-esplora-e8-veloce-noreason-dry4-locale",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-10",
+ "category": "harness",
+ "status": "ok",
+ "title": "OMP + ONYX-224r veloce, ragionamento spento, DRY 4, omp-locale, esplorazione",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-224r.gguf",
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja",
+   "-c",
+   "65536",
+   "--spec-type",
+   "draft-dflash,ngram-mod",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99",
+   "--reasoning",
+   "off",
+   "--dry-multiplier",
+   "0.5",
+   "--dry-allowed-length",
+   "4"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "esplora-mini via omp",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/omp_agente.py (omp --snello --profile=locale: output dei comandi 4+4 KB / 120 righe, compattazione al 50%, nessun modello di riserva; regole-locale.md v2 (dati con Python, verifica prima di finire, non concludere da output tagliati)), tempo massimo 600 s per compito"
+ },
+ "metrics": {
+  "esplora_mini": 33.3,
+  "esplora_mini_parziale": 55.6,
+  "sec_totali": 229,
+  "sec_mediana": 70.8,
+  "passi_medi": 13.0,
+  "token_out_totali": 4509,
+  "per_compito": {
+   "errori_log": {
+    "successo": 0.0,
+    "sec": 70.8,
+    "passi": 7,
+    "car_pensiero": 430
+   },
+   "chiave_config": {
+    "successo": 1.0,
+    "sec": 106.0,
+    "passi": 20,
+    "car_pensiero": 0
+   },
+   "import_rotto": {
+    "successo": 0.667,
+    "sec": 52.6,
+    "passi": 12,
+    "car_pensiero": 0
+   }
+  }
+ },
+ "summary": "229 s ma 1/3: senza ragionamento il modello conclude il conteggio del registro da un output tagliato (risponde 'sync 3' invece di 'storage 70').",
+ "notes": "La velocita qui non vale: il compito di analisi richiede di aggregare con un comando, cosa che il modello senza ragionamento non ha fatto. Nessuna risposta da modelli cloud.",
+ "tags": [
+  "agents-a1",
+  "esplora-mini",
+  "esplorazione",
+  "harness",
+  "omp",
+  "onyx",
+  "regole-v2"
+ ]
+}

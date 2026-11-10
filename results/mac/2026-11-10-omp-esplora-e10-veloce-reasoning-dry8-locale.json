@@ -1,0 +1,101 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-omp-esplora-e10-veloce-reasoning-dry8-locale",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-10",
+ "category": "harness",
+ "status": "ok",
+ "title": "OMP + ONYX-224r veloce, ragionamento acceso, DRY 8, omp-locale, esplorazione (migliore)",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-224r.gguf",
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja",
+   "-c",
+   "65536",
+   "--spec-type",
+   "draft-dflash,ngram-mod",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99",
+   "--dry-multiplier",
+   "0.5",
+   "--dry-allowed-length",
+   "8"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "esplora-mini via omp",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/omp_agente.py (omp --snello --profile=locale: output dei comandi 4+4 KB / 120 righe, compattazione al 50%, nessun modello di riserva; regole-locale.md v2 (dati con Python, verifica prima di finire, non concludere da output tagliati)), tempo massimo 600 s per compito"
+ },
+ "metrics": {
+  "esplora_mini": 66.7,
+  "esplora_mini_parziale": 88.9,
+  "sec_totali": 766,
+  "sec_mediana": 196.0,
+  "passi_medi": 35.7,
+  "token_out_totali": 14104,
+  "per_compito": {
+   "errori_log": {
+    "successo": 1.0,
+    "sec": 196.0,
+    "passi": 11,
+    "car_pensiero": 12589
+   },
+   "chiave_config": {
+    "successo": 1.0,
+    "sec": 522.7,
+    "passi": 87,
+    "car_pensiero": 16748
+   },
+   "import_rotto": {
+    "successo": 0.667,
+    "sec": 47.8,
+    "passi": 9,
+    "car_pensiero": 2179
+   }
+  }
+ },
+ "summary": "Migliore per l'esplorazione: 766 s, 2/3, parziale 89%, come la base (884 s) ma tutto in locale e -13% di tempo. Il registro lungo e risolto in 196 s (base 459).",
+ "notes": "chiave_config ha richiesto 87 passi (523 s): molte letture di singoli file invece di un grep unico. Nessuna risposta da modelli cloud.",
+ "tags": [
+  "agents-a1",
+  "esplora-mini",
+  "esplorazione",
+  "harness",
+  "omp",
+  "onyx",
+  "regole-v2"
+ ]
+}

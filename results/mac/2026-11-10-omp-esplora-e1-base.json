@@ -1,0 +1,92 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-omp-esplora-e1-base",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-10",
+ "category": "harness",
+ "status": "ok",
+ "title": "OMP + ONYX-224r, impostazioni di partenza, compiti di esplorazione",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-224r.gguf",
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja",
+   "-c",
+   "262144",
+   "--spec-type",
+   "ngram-mod"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "esplora-mini via omp",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/omp_agente.py (omp con le impostazioni di partenza: profilo predefinito, tutti gli strumenti, catena di riserva verso modelli cloud attiva), tempo massimo 600 s per compito"
+ },
+ "metrics": {
+  "esplora_mini": 66.7,
+  "esplora_mini_parziale": 88.9,
+  "sec_totali": 884,
+  "sec_mediana": 333.2,
+  "passi_medi": 17.3,
+  "token_out_totali": 21604,
+  "per_compito": {
+   "errori_log": {
+    "successo": 1.0,
+    "sec": 459.4,
+    "passi": 7,
+    "car_pensiero": 30858
+   },
+   "chiave_config": {
+    "successo": 1.0,
+    "sec": 333.2,
+    "passi": 35,
+    "car_pensiero": 18291
+   },
+   "import_rotto": {
+    "successo": 0.667,
+    "sec": 91.1,
+    "passi": 10,
+    "car_pensiero": 5693
+   }
+  }
+ },
+ "summary": "Esplorazione (registro da 24.000 righe, 80 config, 120 moduli): 2/3 in 884 s. Nel compito delle config OMP e passato per 1 risposta a un modello cloud (nvidia/nemotron-3.5-lightning-30b-a3b) per la catena di riserva del profilo predefinito: la corsa NON e tutta locale.",
+ "notes": "Il registro lungo e risolto grazie al ragionamento (459 s, 30.000 caratteri di pensiero). import_rotto 2/3 in tutte le configurazioni: il controllo passa ma la correzione non e quella minima attesa.",
+ "tags": [
+  "agents-a1",
+  "esplora-mini",
+  "esplorazione",
+  "harness",
+  "omp",
+  "onyx"
+ ]
+}

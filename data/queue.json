@@ -90,14 +90,6 @@
   {
    "order": 2,
    "platform": "mac",
-   "name": "mac-omp-esplorazione",
-   "kind": "agente reale (omp)",
-   "why": "compito di esplorazione di una cartella grande (la sessione lenta da 45 minuti): misura il peso dei limiti di output del profilo omp-locale",
-   "repo": "el4/Agents-A1-ONYX-GGUF (ricetta)"
-  },
-  {
-   "order": 3,
-   "platform": "mac",
    "name": "mac-lungo-64k-veloce",
    "kind": "contesto lungo",
    "why": "lungo.py a 64K sul profilo veloce: DFlash + ngram-mod + ragionamento spento non deve peggiorare il richiamo",

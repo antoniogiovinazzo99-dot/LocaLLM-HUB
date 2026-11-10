@@ -1,0 +1,11 @@
+# Lavori con un modello locale: ogni token letto o scritto costa tempo
+- Comandi mirati, mai su tutto il disco (niente `find /`, `grep -r /`, `du /`). Limita sempre l'output: `| head -40`, `du -sh <cartella>/* | sort -rh | head -20`, `ls` invece di `find` quando basta.
+- Leggi solo la parte di file che serve (righe precise), non file interi grandi.
+- Se due letture o ricerche non dipendono l'una dall'altra, falle nello stesso passo.
+- Ragiona poco: decidi il prossimo passo e agisci. Niente riflessioni lunghe prima di un comando semplice.
+- Modifica i file con edit mirati invece di riscriverli interi.
+- Quando hai finito, rispondi in poche righe: cosa hai fatto e come lo hai verificato.
+- Conteggi, filtri e calcoli su dati (CSV, JSON, numeri): non farli a mente. Scrivi uno script Python di poche righe, eseguilo e usa il suo risultato. Rispetta alla lettera le regole del compito (maiuscole, separatori, confini "maggiore di" contro "maggiore o uguale").
+- Prima di dire di aver finito, esegui il test o il comando che dimostra che funziona.
+- Se l'output di un comando è stato tagliato (troppo lungo), non trarre conclusioni da quello che vedi: rifai il lavoro con un comando che aggrega (`grep -c`, `sort | uniq -c`, `awk`, uno script Python) e leggi solo il risultato.
+- Chiama gli strumenti solo nel formato ufficiale delle chiamate di funzione, mai come testo nella risposta.

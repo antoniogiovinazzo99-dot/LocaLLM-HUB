@@ -1,0 +1,120 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-omp-agente-mini-g9b-veloce-noreason-dry4-regole2-ripetizione",
+ "platform": "mac",
+ "author": "Pietro",
+ "date": "2026-11-10",
+ "category": "harness",
+ "status": "ok",
+ "title": "OMP + ONYX-224r veloce, DRY 4, omp-locale regole v2 (ripetizione)",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-35B-A3B ONYX",
+  "file": "Agents-A1-ONYX-224r.gguf",
+  "quant": "ONYX mix IQ2_XXS/IQ3_XXS, potato a 224 expert",
+  "size_gb": 10.21
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "--jinja",
+   "-c",
+   "65536",
+   "--spec-type",
+   "draft-dflash,ngram-mod",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99",
+   "--reasoning",
+   "off",
+   "--dry-multiplier",
+   "0.5",
+   "--dry-allowed-length",
+   "4"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M4 (10-core GPU)",
+  "ram_gb": 16,
+  "os": "macOS 26.6"
+ },
+ "benchmark": {
+  "suite": "agente-mini via omp",
+  "version": "1",
+  "harness": "benchmarks/mac-pietro/omp_agente.py (omp --snello --profile=locale: output dei comandi 4+4 KB / 120 righe, compattazione al 50%, nessun modello di riserva; regole-locale.md v2 (dati con Python, verifica prima di finire, non concludere da output tagliati)), tempo massimo 600 s per compito"
+ },
+ "metrics": {
+  "agente_mini": 66.7,
+  "agente_mini_parziale": 66.7,
+  "sec_totali": 725,
+  "sec_mediana": 85.1,
+  "passi_medi": 16.3,
+  "token_out_totali": 17000,
+  "per_compito": {
+   "bug_prezzi": {
+    "successo": 1.0,
+    "sec": 77.5,
+    "passi": 8,
+    "car_pensiero": 0
+   },
+   "config_loader": {
+    "successo": 1.0,
+    "sec": 362.5,
+    "passi": 55,
+    "car_pensiero": 0
+   },
+   "rinomina": {
+    "successo": 1.0,
+    "sec": 85.1,
+    "passi": 11,
+    "car_pensiero": 0
+   },
+   "paginazione": {
+    "successo": 1.0,
+    "sec": 156.8,
+    "passi": 17,
+    "car_pensiero": 0
+   },
+   "dati_ordini": {
+    "successo": 0.0,
+    "sec": 36.9,
+    "passi": 6,
+    "car_pensiero": 0
+   },
+   "rapporto": {
+    "successo": 0.0,
+    "sec": 6.5,
+    "passi": 1,
+    "car_pensiero": 0
+   }
+  }
+ },
+ "summary": "Ripetizione di G9: 725 s, 4/6, parziale 67%. 'rapporto' fallisce al primo passo: il modello scrive la chiamata di strumento come testo (<function>read ...) invece che nel formato delle chiamate di funzione, e OMP si ferma. Media G9: 620 s contro 1006 di G8.",
+ "notes": "Sospetto: il campionatore DRY con lunghezza ammessa 4 penalizza i tag ripetuti delle chiamate di strumento. Verificato in G11 con lunghezza 8. Nessuna risposta da modelli cloud.",
+ "tags": [
+  "agente-mini",
+  "agents-a1",
+  "harness",
+  "omp",
+  "onyx",
+  "regole-v2"
+ ]
+}
