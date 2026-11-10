@@ -356,7 +356,7 @@ def main():
             "troncate_pct": round(100 * bench2.STATS["troncate"] / max(1, bench2.STATS["chiamate"]), 1),
             "think": think, "tools": tools, "votes": votes, "budget": budget, "selfdebug": selfdebug, "politica": opt("politica", ""), "classi": {f"{a}->{b}": n for (a, b), n in classi.items()}, "forza": forza, "arex": arex, "forzate": forzate, "ripetizione_troncate": round(sum(rip) / len(rip), 2) if rip else None, "extra": bench2.EXTRA,
             "sys": opt("sys", ""), "cheatsheet": bool(sheet), "errori": errs[:40]}
-    open(OUT, "a").write(json.dumps(summ, ensure_ascii=False) + "\n")
+    open(OUT, "a", encoding="utf-8").write(json.dumps(summ, ensure_ascii=False) + "\n")
     print(json.dumps({k: v for k, v in summ.items() if k != "errori"}, ensure_ascii=False))
 
 

@@ -1,0 +1,46 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-n8-a1-4b-duro",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "quality-tiny",
+ "status": "failed",
+ "title": "n8-a1-4b-duro",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-4B-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-4B-Q4_K_M-GGUF",
+  "file": "Agents-A1-4B-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 2.7
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {},
+ "notes": "STESSO MODELLO del Mac (Agents-A1-4B Q4_K_M): duro n=8 + agente. E il confronto incrociato che chiede Motti",
+ "tags": [],
+ "summary": "Test fallito o non valido: 'utf-8' codec can't decode byte 0xe8 in position 1176: invalid continuation byte."
+}

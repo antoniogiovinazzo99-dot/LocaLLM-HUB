@@ -28,16 +28,16 @@
   function modelLine(x) { return [x.model, x.quant, x.size_gb ? x.size_gb + ' GB' : null, x.engine].filter(Boolean).join(' · '); }
   function has(v) { return typeof v === 'number' && isFinite(v); }
 
-  // QI: un numero solo, ma con la fonte e il livello di affidabilità accanto.
-  // tier 0 = duro/omp (hard, confrontabile), 1 = suite S/agente, 2 = tiny (legacy, saturo).
+  // QI: un numero solo, con la fonte e il livello di affidabilità accanto.
+  // rank 0 = duro (set pubblici, il benchmark comune), 1 = omp (harness reale), 2 = suite S, 3 = agente, 4 = tiny (legacy).
   function qiFrom(m) {
-    var order = [['duro_pct', 'duro', 0], ['harness_omp_pieno_pct', 'omp', 0], ['indice_uso', 'suite S', 1], ['agente_pct', 'agente', 1], ['agente_mini', 'agente', 1], ['q_medio', 'tiny', 2]];
-    for (var i = 0; i < order.length; i++) { if (has(m[order[i][0]])) return { v: m[order[i][0]], src: order[i][1], tier: order[i][2] }; }
+    var order = [['duro_pct', 'duro', 0], ['harness_omp_pieno_pct', 'omp', 1], ['indice_uso', 'suite S', 2], ['agente_pct', 'agente', 3], ['agente_mini', 'agente', 3], ['q_medio', 'tiny', 4]];
+    for (var i = 0; i < order.length; i++) { if (has(m[order[i][0]])) return { v: m[order[i][0]], src: order[i][1], tier: order[i][2] <= 1 ? 0 : order[i][2] <= 3 ? 1 : 2, rank: order[i][2] }; }
     return null;
   }
   function byQi(a, b, dir) {
-    var ta = a.qi ? a.qi.tier : 9, tb = b.qi ? b.qi.tier : 9;
-    if (ta !== tb) return ta - tb;
+    var ra = a.qi ? a.qi.rank : 9, rb = b.qi ? b.qi.rank : 9;
+    if (ra !== rb) return ra - rb;
     var x = a.qi ? a.qi.v : -Infinity, y = b.qi ? b.qi.v : -Infinity;
     return (dir || -1) * (x - y);
   }
@@ -78,7 +78,7 @@
       var q = qiFrom(m);
       if (q) {
         qiModels[x.model] = 1;
-        if (!best || q.tier < best.tier || (q.tier === best.tier && q.v > best.v)) best = { model: x.model, v: q.v, src: q.src, tier: q.tier, plat: x.platform };
+        if (!best || q.rank < best.rank || (q.rank === best.rank && q.v > best.v)) best = { model: x.model, v: q.v, src: q.src, rank: q.rank, tier: q.tier, plat: x.platform };
       }
       if (has(m.decode_tps_1) && (!fastest || m.decode_tps_1 > fastest.tps)) fastest = { model: x.model, tps: m.decode_tps_1, plat: x.platform };
     });

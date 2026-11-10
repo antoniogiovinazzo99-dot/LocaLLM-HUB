@@ -60,7 +60,22 @@ Lezione: **il 35B non e' piu' lento del 4B sui compiti agentici veri.** Il 4B sc
 `-cmoe --moe-cache-mib 6000` su A1-35B Q4: **17,3 t/s** contro 47,5 della config senza cache. Causa: i 21 GB di esperti non stanno nei 16 GB di RAM, quindi i "miss" della cache leggono dal disco. Il PR e' ottimo, ma serve RAM >= modello (come il desktop da 128 GB dell'esempio). Da riprovare solo con un modello <= 14 GB (es. A1 IQ3_XXS 13,6 GB).
 Nota: la build **b12244** ha anche `--moe-cache-cpu-share`, ma su CUDA Windows e' risultata **~9 t/s** sulla stessa config (b12141: 47,5). Restiamo su b12141.
 
-### GLM-5.3-Flash — non e' "condensabile" qui
+### Benchmark comune (duro + agente) — ora funziona anche su Windows (10/11 pomeriggio)
+`duro.py` falliva su Windows per **WinError 206** (la riga di comando con i test EvalPlus supera i 32 KB), non per numpy. Copia `benchmarks/windows-fabbrica/duro_win.py` (test su file temporaneo) e stessi set di Pietro. Primo confronto **stesso modello, due macchine**:
+
+| modello | Windows duro | Mac duro | Windows agente | Mac agente |
+|---|---:|---:|---:|---:|
+| Agents-A1-4B Q4_K_M | **71,1** (27/38, n=8) | **73,7** (28/38) | **91,7** (11/12) | **75,0** (9/12) |
+| **AREX-Turbo 4B Q4_K_M** | **76,3** (29/38) | non misurato | 75,0 (9/12) | non misurato |
+
+- Sul `duro` la differenza A1-4B Windows/Mac (71,1 vs 73,7) e **dentro il rumore** (n=38): le due macchine sono allineate.
+- Sull'`agente` (n=12) il divario 91,7 vs 75 e grande ma con 12 compiti vale ±1 compito ≈ 8 punti: **da ripetere**, non e una conclusione.
+- **AREX-Turbo 4B e la base migliore trovata finora**: 76,3 duro, 75 agente, 5/6 su omp, **76 t/s**. Batte A1-4B sul benchmark pubblico ed e 2,9 GB.
+- **Nemotron 3.5 Bolt 74B: 6/6 su omp** (tutti i compiti, incluso `dati_ordini` dove A1 fallisce), 18,3 t/s, 19,8 min. E il "cervello profondo" della cascata; il duro e in corso.
+
+Il **QI** della dashboard usa ora il benchmark comune come prima fonte: `duro` (rank 0) → `omp` (1) → suite S (2) → agente (3) → tiny (4), con la fonte scritta accanto. Cosi i modelli misurati sugli stessi set pubblici stanno davanti, e i 100 "omp" non mascherano un duro piu basso.
+
+### GLM-5.3-Flash - non e' "condensabile" qui
 BF16 ~700 GB (14 parti da ~50 GB), Q8 ~390 GB, e anche la versione **REAP50** (potata al 50%) e' **72-99 GB**. Non entra in 16+12 GB in nessuna quantizzazione. "Trapiantare il cervello" in un altro modello e' tecnicamente impossibile tra architetture diverse: cio' che si trasferisce e' il **comportamento** (distillazione di tracce), non i pesi. Vedi `docs/RICERCA-2026-11-10-DISTILLAZIONE-4B.md`.
 
 

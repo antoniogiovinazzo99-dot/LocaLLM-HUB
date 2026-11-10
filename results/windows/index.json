@@ -1,7 +1,7 @@
 {
  "platform": "windows",
- "count": 71,
- "hidden_failed": 26,
+ "count": 73,
+ "hidden_failed": 27,
  "experiments": [
   {
    "id": "2026-11-10-underdog-saluki-27b-1.0",
@@ -617,6 +617,52 @@
     "q_medio": 78.4,
     "humaneval": 85.4,
     "prompt_tps": 624.4
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-10-n8a-a1-4b-duro2",
+   "file": "results/windows/2026-11-10-n8a-a1-4b-duro2.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "other",
+   "status": "ok",
+   "title": "n8a-a1-4b-duro2",
+   "summary": "Duro 71.1%, agente 91.7%, 75.8 t/s a un flusso.",
+   "model": "Agents-A1-4B-Q4_K_M-GGUF",
+   "repo": "InternScience/Agents-A1-4B-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 2.7,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 75.8,
+    "duro_pct": 71.1,
+    "agente_pct": 91.7
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-10-n8-arex-turbo-duro",
+   "file": "results/windows/2026-11-10-n8-arex-turbo-duro.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "other",
+   "status": "ok",
+   "title": "n8-arex-turbo-duro",
+   "summary": "Duro 76.3%, agente 75.0%, 74.0 t/s a un flusso.",
+   "model": "BAAI_AREX-Turbo-GGUF",
+   "repo": "bartowski/BAAI_AREX-Turbo-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 2.9,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 74.0,
+    "duro_pct": 76.3,
+    "agente_pct": 75.0
    },
    "tags": []
   },
