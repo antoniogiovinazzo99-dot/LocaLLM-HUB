@@ -62,4 +62,6 @@ Sono **speculative decoding**: accelerano il **decode**, non il prefill. Per il 
 
 ## 10. Cosa significa per l'intelligenza
 
-Il 4B AREX-Turbo (duro 76,3, 76 t/s) resta la base veloce; il 74B Nemotron (6/6 su omp) è il cervello profondo; A1-35B è l'ibrido da 256K. La combinazione giusta non è un modello solo: **4B per il turno veloce + pack 256K per la memoria + 74B per i compiti difficili**. La cascata decide; il pack evita di ripagare il contesto.
+Il 4B AREX-Turbo (duro 76,3, 76 t/s) resta la base veloce; il 74B Nemotron (6/6 su omp) è il cervello profondo; A1-35B è l'ibrido da 256K. La combinazione giusta non è un modello solo: **4B per il turno veloce + pack 256K per la memoria + 74B per i compiti difficili**. La cascata decide; il pack evita di ripagare il contesto.\n
+## 11. Dato misurato il 10/11 (1M): il muro è il working set
+Il test 1M (YaRN x4, KV q4_0) dopo 56 min era al **59% del prefill** con l'ultimo batch a **22,7 t/s** (contro 264 t/s a 256K). Causa: 21 GB di modello + 5,7 GB di KV superano i 12 GB VRAM + 16 GB RAM, quindi il sistema pagina. **256K è il limite pratico su questa macchina.** Per 1M bisogna ridurre la KV di ~4-10x (RotorQuant/TurboQuant) *e* restare con il working set sotto la RAM; il KV pack da solo non basta.
