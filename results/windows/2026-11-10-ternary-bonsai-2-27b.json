@@ -1,0 +1,37 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-ternary-bonsai-2-27b",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "quality-tiny",
+ "status": "failed",
+ "title": "ternary-bonsai-2-27b",
+ "reference": false,
+ "model": {
+  "name": "Ternary-Bonsai-2-27B-gguf",
+  "repo": "prism-ml/Ternary-Bonsai-2-27B-gguf",
+  "file": "Ternary-Bonsai-2-27B-Q2_0.gguf",
+  "quant": "Q2_0",
+  "size_gb": 7.6
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {},
+ "notes": "",
+ "tags": [],
+ "summary": "Test fallito o non valido: HTTP Error 500: Internal Server Error."
+}

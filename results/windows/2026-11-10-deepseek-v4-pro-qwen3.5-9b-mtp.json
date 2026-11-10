@@ -1,0 +1,50 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-deepseek-v4-pro-qwen3.5-9b-mtp",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "quality-tiny",
+ "status": "ok",
+ "title": "deepseek-v4-pro-qwen3.5-9b-mtp",
+ "reference": false,
+ "model": {
+  "name": "DeepSeek-V4-Pro-Qwen3.5-9B-MTP-GGUF",
+  "repo": "Jackrong/DeepSeek-V4-Pro-Qwen3.5-9B-MTP-GGUF",
+  "file": "DeepSeek-V4-Pro-Qwen3.5-9B-MTP-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 5.8
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 51.9,
+  "decode_tps_4": 26.6,
+  "prompt_tps": 384.7,
+  "mmlu": 66.0,
+  "arc": 92.0,
+  "gsm": 91.0,
+  "code12": 50.0,
+  "humaneval": 46.3,
+  "q_medio": 74.8,
+  "invented_words_pct": 0.92,
+  "needle_64k": 1,
+  "load_s": 6.6
+ },
+ "notes": "",
+ "tags": [],
+ "summary": "Qualita tiny 74.8, 51.9 t/s a un flusso."
+}

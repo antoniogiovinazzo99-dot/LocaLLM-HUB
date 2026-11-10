@@ -1,0 +1,50 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-underdog-saluki-27b-1.0",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "quality-tiny",
+ "status": "ok",
+ "title": "underdog-saluki-27b-1.0",
+ "reference": false,
+ "model": {
+  "name": "Underdog-Saluki-27B-1.0",
+  "repo": "ConwayResearch/Underdog-Saluki-27B-1.0",
+  "file": "Underdog-Saluki-27B-1.0-IQ2-mix.gguf",
+  "quant": "IQ2",
+  "size_gb": 7.9
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 13.5,
+  "decode_tps_4": 5.1,
+  "prompt_tps": 76.5,
+  "mmlu": 78.1,
+  "arc": 96.8,
+  "gsm": 100.0,
+  "code12": 66.7,
+  "humaneval": 89.0,
+  "q_medio": 85.4,
+  "invented_words_pct": 1.21,
+  "needle_64k": 1,
+  "load_s": 9.6
+ },
+ "notes": "",
+ "tags": [],
+ "summary": "Qualita tiny 85.4, 13.5 t/s a un flusso."
+}

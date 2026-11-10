@@ -1,0 +1,49 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-n3-arex-turbo-q4k",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "quality-tiny",
+ "status": "ok",
+ "title": "n3-arex-turbo-q4k",
+ "reference": false,
+ "model": {
+  "name": "BAAI_AREX-Turbo-GGUF",
+  "repo": "bartowski/BAAI_AREX-Turbo-GGUF",
+  "file": "BAAI_AREX-Turbo-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 2.9
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 76.1,
+  "load_s": 4.0
+ },
+ "notes": "AREX-Turbo 4B (BAAI): self-improvement nel modello, 4B a ~75 t/s. Prima misura: qualita duro/agente + lungo 64K",
+ "tags": [],
+ "summary": "76.1 t/s a un flusso."
+}

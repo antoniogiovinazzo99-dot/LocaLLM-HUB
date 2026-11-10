@@ -1,0 +1,60 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-sp-a1q4-ncmoe24",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "speed",
+ "status": "ok",
+ "title": "sp-a1q4-ncmoe24",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+  "file": "Agents-A1-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 21.2
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "8192",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0",
+   "-ngl",
+   "99",
+   "--n-cpu-moe",
+   "24"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "speed-4-prompts",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 37.0,
+  "tps_media": 36.0,
+  "load_s": 12.6,
+  "tps_by_type": {
+   "codice": 35.2,
+   "storia": 35.2,
+   "ragionamento": 37.0,
+   "json": 36.7
+  }
+ },
+ "notes": "MoE: 24/48 strati di esperti in RAM: dovrebbe essere il punto in cui il modello entra in 12 GB senza memoria condivisa",
+ "tags": [],
+ "summary": "37.0 t/s a un flusso, 36.0 t/s medi su 4 tipi di prompt."
+}

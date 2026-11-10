@@ -1,0 +1,71 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-sp-a1q4-dflash-n3-c64k-q8",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "speculative",
+ "status": "ok",
+ "title": "sp-a1q4-dflash-n3-c64k-q8",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+  "file": "Agents-A1-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 21.2
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0",
+   "--spec-type",
+   "draft-dflash",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "speed-4-prompts",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 51.8,
+  "tps_media": 44.8,
+  "load_s": 16.1,
+  "tps_by_type": {
+   "codice": 43.5,
+   "storia": 32.2,
+   "ragionamento": 49.5,
+   "json": 54.1
+  },
+  "draft_acceptance_by_type": {
+   "codice": 66.8,
+   "storia": 34.9,
+   "ragionamento": 76.8,
+   "json": 90.8
+  },
+  "draft_acceptance_pct": 66.8
+ },
+ "notes": "controllo: DFlash n3 a 64K con KV q8_0 e batch default -> se recupera i 44 t/s, il calo era KV/batch e non il contesto",
+ "tags": [
+  "speculative"
+ ],
+ "summary": "51.8 t/s a un flusso, 44.8 t/s medi su 4 tipi di prompt, accettazione drafter sul codice 66.8%."
+}

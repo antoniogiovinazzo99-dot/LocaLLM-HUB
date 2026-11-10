@@ -1,0 +1,37 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-qwen3.8-27b-coder390-efficientthink-opus",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "quality-tiny",
+ "status": "failed",
+ "title": "qwen3.8-27b-coder390-efficientthink-opus",
+ "reference": false,
+ "model": {
+  "name": "Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2",
+  "repo": "nerkyor/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2",
+  "file": "Qwen3.8-27B-Coder390-EfficientThink-Q6_K-MTP.gguf",
+  "quant": "Q6_K",
+  "size_gb": 23.2
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {},
+ "notes": "",
+ "tags": [],
+ "summary": "Test fallito o non valido: spazio insufficiente (17 GB liberi)."
+}

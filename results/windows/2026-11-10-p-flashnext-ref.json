@@ -1,0 +1,39 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-p-flashnext-ref",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "quality-tiny",
+ "status": "failed",
+ "title": "p-flashnext-ref",
+ "reference": true,
+ "model": {
+  "name": "p-flashnext-ref",
+  "repo": null,
+  "file": null,
+  "quant": null,
+  "size_gb": null
+ },
+ "engine": {
+  "name": "strata",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {},
+ "notes": "Benchmark di Pietro sul riferimento Flash-Next (Strata), stessi parametri di p-a1-35b-q4",
+ "tags": [
+  "reference"
+ ],
+ "summary": "Test fallito o non valido: 'utf-8' codec can't decode byte 0xe8 in position 1176: invalid continuation byte."
+}

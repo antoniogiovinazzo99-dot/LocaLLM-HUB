@@ -1,0 +1,50 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-nvidia-nemotron-3.5-bolt-e4b-4gb",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "quality-tiny",
+ "status": "ok",
+ "title": "nvidia-nemotron-3.5-bolt-e4b-4gb",
+ "reference": false,
+ "model": {
+  "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
+  "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
+  "file": "Nemotron-3.5-Bolt-E4B-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 6.2
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 67.0,
+  "decode_tps_4": 36.9,
+  "prompt_tps": 602.8,
+  "mmlu": 74.0,
+  "arc": 87.0,
+  "gsm": 95.0,
+  "code12": 50.0,
+  "humaneval": 82.9,
+  "q_medio": 76.5,
+  "invented_words_pct": 0.48,
+  "needle_64k": 1,
+  "load_s": 3.5
+ },
+ "notes": "",
+ "tags": [],
+ "summary": "Qualita tiny 76.5, 67.0 t/s a un flusso."
+}

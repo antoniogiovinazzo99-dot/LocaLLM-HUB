@@ -1,0 +1,67 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-n3-arex-turbo-omp",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "harness",
+ "status": "ok",
+ "title": "n3-arex-turbo-omp",
+ "reference": false,
+ "model": {
+  "name": "BAAI_AREX-Turbo-GGUF",
+  "repo": "bartowski/BAAI_AREX-Turbo-GGUF",
+  "file": "BAAI_AREX-Turbo-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 2.9
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--cache-ram",
+   "512",
+   "--cache-reuse",
+   "256"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "agente-mini-harness-reali",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 76.1,
+  "decode_tps_4": 75.8,
+  "prompt_tps": 1417.3,
+  "mmlu": 12.5,
+  "arc": 60.0,
+  "gsm": 86.7,
+  "code12": 25.0,
+  "q_medio": 46.0,
+  "invented_words_pct": 1.25,
+  "load_s": 3.5,
+  "harness_omp_pieno_pct": 83.3,
+  "harness_omp_parziale_pct": 93.9
+ },
+ "notes": "AREX-Turbo su omp: confronto diretto con opencode",
+ "tags": [],
+ "summary": "Qualita tiny 46.0, 76.1 t/s a un flusso."
+}

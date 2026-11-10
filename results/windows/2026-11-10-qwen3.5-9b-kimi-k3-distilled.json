@@ -1,0 +1,50 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-qwen3.5-9b-kimi-k3-distilled",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "quality-tiny",
+ "status": "ok",
+ "title": "qwen3.5-9b-kimi-k3-distilled",
+ "reference": false,
+ "model": {
+  "name": "Qwen3.5-9B-Kimi-k3-Distilled-GGUF",
+  "repo": "mradermacher/Qwen3.5-9B-Kimi-k3-Distilled-GGUF",
+  "file": "Qwen3.5-9B-Kimi-k3-Distilled.Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 5.8
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 51.7,
+  "decode_tps_4": 25.6,
+  "prompt_tps": 449.9,
+  "mmlu": 74.0,
+  "arc": 95.0,
+  "gsm": 93.0,
+  "code12": 58.3,
+  "humaneval": 82.9,
+  "q_medio": 80.1,
+  "invented_words_pct": 0.39,
+  "needle_64k": 0,
+  "load_s": 7.1
+ },
+ "notes": "",
+ "tags": [],
+ "summary": "Qualita tiny 80.1, 51.7 t/s a un flusso."
+}

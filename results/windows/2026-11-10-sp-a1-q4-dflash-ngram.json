@@ -1,0 +1,73 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-sp-a1-q4-dflash-ngram",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "speculative",
+ "status": "ok",
+ "title": "sp-a1-q4-dflash-ngram",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+  "file": "Agents-A1-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 21.2
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "8192",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0",
+   "--spec-type",
+   "draft-dflash,ngram-mod",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99",
+   "--spec-draft-n-max",
+   "8"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "speed-4-prompts",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 59.3,
+  "tps_media": 37.8,
+  "load_s": 19.1,
+  "tps_by_type": {
+   "codice": 41.9,
+   "storia": 21.6,
+   "ragionamento": 34.5,
+   "json": 53.1
+  },
+  "draft_acceptance_by_type": {
+   "codice": 50.0,
+   "storia": 17.5,
+   "ragionamento": 49.8,
+   "json": 72.7
+  },
+  "draft_acceptance_pct": 50.0
+ },
+ "notes": "ricetta di Pietro: drafter z-lab Qwen3.5-35B-A3B-DFlash Q4_K_M (0,24 GB sul Mac) + ngram-mod: sul Mac 51 vs 26,5 t/s a 64K",
+ "tags": [
+  "speculative"
+ ],
+ "summary": "59.3 t/s a un flusso, 37.8 t/s medi su 4 tipi di prompt, accettazione drafter sul codice 50.0%."
+}

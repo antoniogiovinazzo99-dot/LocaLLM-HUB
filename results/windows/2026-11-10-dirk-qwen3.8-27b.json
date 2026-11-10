@@ -1,0 +1,37 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-dirk-qwen3.8-27b",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "quality-tiny",
+ "status": "failed",
+ "title": "dirk-qwen3.8-27b",
+ "reference": false,
+ "model": {
+  "name": "Dirk-Qwen3.8-27B-GGUF",
+  "repo": "peculiar-ragdoll/Dirk-Qwen3.8-27B-GGUF",
+  "file": "Dirk-Qwen3.8-27B-UD-Q4_K_M.gguf",
+  "quant": "UD-Q4_K_M",
+  "size_gb": 16.5
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {},
+ "notes": "",
+ "tags": [],
+ "summary": "Test fallito o non valido: spazio insufficiente (17 GB liberi)."
+}

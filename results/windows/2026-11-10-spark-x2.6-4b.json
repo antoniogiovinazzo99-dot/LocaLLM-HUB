@@ -1,0 +1,48 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-spark-x2.6-4b",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "quality-tiny",
+ "status": "ok",
+ "title": "spark-x2.6-4b",
+ "reference": false,
+ "model": {
+  "name": "Spark-X2.6-4B-GGUF",
+  "repo": "XHToken/Spark-X2.6-4B-GGUF",
+  "file": "Spark-X2.6-4B-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 3.5
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": []
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 74.8,
+  "decode_tps_4": 38.4,
+  "prompt_tps": 600.6,
+  "mmlu": 65.0,
+  "arc": 83.0,
+  "gsm": 88.0,
+  "code12": 33.3,
+  "q_medio": 67.3,
+  "invented_words_pct": 0.66,
+  "load_s": 3.5
+ },
+ "notes": "",
+ "tags": [],
+ "summary": "Qualita tiny 67.3, 74.8 t/s a un flusso."
+}

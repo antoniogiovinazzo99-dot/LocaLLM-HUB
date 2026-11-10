@@ -1,0 +1,60 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-sp-a1q4-base-c64k",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "speed",
+ "status": "ok",
+ "title": "sp-a1q4-base-c64k",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+  "file": "Agents-A1-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 21.2
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "speed-4-prompts",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 38.4,
+  "tps_media": 36.2,
+  "load_s": 19.1,
+  "tps_by_type": {
+   "codice": 35.6,
+   "storia": 36.1,
+   "ragionamento": 36.8,
+   "json": 36.3
+  }
+ },
+ "notes": "base appaiata alla ricetta 64K: serve per dire se il guadagno e della speculativa o del contesto",
+ "tags": [],
+ "summary": "38.4 t/s a un flusso, 36.2 t/s medi su 4 tipi di prompt."
+}
