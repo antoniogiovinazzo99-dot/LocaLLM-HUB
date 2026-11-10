@@ -1,0 +1,50 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-n9-arex-iq2m-duro",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "other",
+ "status": "ok",
+ "title": "n9-arex-iq2m-duro",
+ "reference": false,
+ "model": {
+  "name": "BAAI_AREX-Turbo-GGUF",
+  "repo": "bartowski/BAAI_AREX-Turbo-GGUF",
+  "file": "BAAI_AREX-Turbo-IQ2_M.gguf",
+  "quant": "IQ2_M",
+  "size_gb": 1.8
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "pietro-duro+agente+lungo",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 79.5,
+  "load_s": 4.0,
+  "duro_pct": 52.6
+ },
+ "notes": "AREX-Turbo a IQ2_M (1,8 GB, 80 t/s): quanto costa in intelligenza la quantizzazione aggressiva, stessi set",
+ "tags": [],
+ "summary": "Duro 52.6%, 79.5 t/s a un flusso."
+}

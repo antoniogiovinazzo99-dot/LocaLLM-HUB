@@ -1,0 +1,51 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-n9-nemotron-e4b-duro",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "other",
+ "status": "ok",
+ "title": "n9-nemotron-e4b-duro",
+ "reference": false,
+ "model": {
+  "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF",
+  "repo": "unsloth/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF",
+  "file": "NVIDIA-Nemotron-3.5-Bolt-E4B-UD-IQ3_XXS.gguf",
+  "quant": "UD-IQ3_XXS",
+  "size_gb": 3.7
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "pietro-duro+agente+lungo",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 68.4,
+  "load_s": 3.5,
+  "duro_pct": 78.9,
+  "agente_pct": 50.0
+ },
+ "notes": "Nemotron Bolt E4B (3,7 GB, 64,8 t/s): il piccolo della famiglia del 74B, stesso benchmark",
+ "tags": [],
+ "summary": "Duro 78.9%, agente 50.0%, 68.4 t/s a un flusso."
+}

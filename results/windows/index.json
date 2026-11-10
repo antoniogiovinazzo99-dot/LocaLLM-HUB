@@ -1,6 +1,6 @@
 {
  "platform": "windows",
- "count": 73,
+ "count": 77,
  "hidden_failed": 27,
  "experiments": [
   {
@@ -617,6 +617,97 @@
     "q_medio": 78.4,
     "humaneval": 85.4,
     "prompt_tps": 624.4
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-10-n9-qwen35-4b-3dcoder-duro",
+   "file": "results/windows/2026-11-10-n9-qwen35-4b-3dcoder-duro.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "other",
+   "status": "ok",
+   "title": "n9-qwen35-4b-3dcoder-duro",
+   "summary": "Duro 60.5%, agente 75.0%, 78.6 t/s a un flusso.",
+   "model": "Qwen3.5-4B-3D-Coder",
+   "repo": "ccore/Qwen3.5-4B-3D-Coder",
+   "quant": "Q4_K_M",
+   "size_gb": 2.7,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 78.6,
+    "duro_pct": 60.5,
+    "agente_pct": 75.0
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-10-n9-nemotron-e4b-duro",
+   "file": "results/windows/2026-11-10-n9-nemotron-e4b-duro.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "other",
+   "status": "ok",
+   "title": "n9-nemotron-e4b-duro",
+   "summary": "Duro 78.9%, agente 50.0%, 68.4 t/s a un flusso.",
+   "model": "NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF",
+   "repo": "unsloth/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF",
+   "quant": "UD-IQ3_XXS",
+   "size_gb": 3.7,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 68.4,
+    "duro_pct": 78.9,
+    "agente_pct": 50.0
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-10-n9-arex-iq2m-duro",
+   "file": "results/windows/2026-11-10-n9-arex-iq2m-duro.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "other",
+   "status": "ok",
+   "title": "n9-arex-iq2m-duro",
+   "summary": "Duro 52.6%, 79.5 t/s a un flusso.",
+   "model": "BAAI_AREX-Turbo-GGUF",
+   "repo": "bartowski/BAAI_AREX-Turbo-GGUF",
+   "quant": "IQ2_M",
+   "size_gb": 1.8,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 79.5,
+    "duro_pct": 52.6
+   },
+   "tags": []
+  },
+  {
+   "id": "2026-11-10-n8b-nemotron-duro",
+   "file": "results/windows/2026-11-10-n8b-nemotron-duro.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "other",
+   "status": "ok",
+   "title": "n8b-nemotron-duro",
+   "summary": "Duro 62.5%, agente 91.7%, 18.2 t/s a un flusso.",
+   "model": "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+   "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+   "quant": null,
+   "size_gb": 22.0,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 18.2,
+    "duro_pct": 62.5,
+    "agente_pct": 91.7
    },
    "tags": []
   },
