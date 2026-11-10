@@ -1,0 +1,56 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-sp-a1-q4-base",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "speed",
+ "status": "ok",
+ "title": "sp-a1-q4-base",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+  "file": "Agents-A1-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 21.2
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "8192",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "speed-4-prompts",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 37.8,
+  "tps_media": 36.4,
+  "load_s": 22.6,
+  "tps_by_type": {
+   "codice": 35.4,
+   "storia": 36.3,
+   "ragionamento": 37.1,
+   "json": 36.9
+  }
+ },
+ "notes": "A1-35B Q4 senza drafter, stesso protocollo core-speed: base per i confronti",
+ "tags": [],
+ "summary": "37.8 t/s a un flusso, 36.4 t/s medi su 4 tipi di prompt."
+}

@@ -1,0 +1,73 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-sp-a1-q4-dflash-n3",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "speculative",
+ "status": "ok",
+ "title": "sp-a1-q4-dflash-n3",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+  "file": "Agents-A1-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 21.2
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "8192",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0",
+   "--spec-type",
+   "draft-dflash",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99",
+   "--spec-draft-n-max",
+   "3"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "speed-4-prompts",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 50.7,
+  "tps_media": 44.0,
+  "load_s": 19.1,
+  "tps_by_type": {
+   "codice": 42.7,
+   "storia": 31.9,
+   "ragionamento": 45.5,
+   "json": 56.0
+  },
+  "draft_acceptance_by_type": {
+   "codice": 68.0,
+   "storia": 34.6,
+   "ragionamento": 71.6,
+   "json": 90.8
+  },
+  "draft_acceptance_pct": 68.0
+ },
+ "notes": "DFlash da solo, n_max 3 (default llama.cpp): e il drafter che Pietro usa",
+ "tags": [
+  "speculative"
+ ],
+ "summary": "50.7 t/s a un flusso, 44.0 t/s medi su 4 tipi di prompt, accettazione drafter sul codice 68.0%."
+}

@@ -1,7 +1,120 @@
 {
  "platform": "windows",
- "count": 39,
+ "count": 44,
  "experiments": [
+  {
+   "id": "2026-11-10-sp-a1-q4-ngram-mod",
+   "file": "results/windows/2026-11-10-sp-a1-q4-ngram-mod.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "quality-tiny",
+   "status": "failed",
+   "title": "sp-a1-q4-ngram-mod",
+   "summary": "Test fallito o non valido: timed out.",
+   "model": "Agents-A1-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.2,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "tags": [
+    "speculative"
+   ]
+  },
+  {
+   "id": "2026-11-10-sp-a1-q4-dflash-n8",
+   "file": "results/windows/2026-11-10-sp-a1-q4-dflash-n8.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "speculative",
+   "status": "ok",
+   "title": "sp-a1-q4-dflash-n8",
+   "summary": "39.3 t/s a un flusso, 36.2 t/s medi su 4 tipi di prompt, accettazione drafter sul codice 36.4%.",
+   "model": "Agents-A1-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.2,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 39.3,
+    "tps_media": 36.2,
+    "draft_acceptance_pct": 36.4
+   },
+   "tags": [
+    "speculative"
+   ]
+  },
+  {
+   "id": "2026-11-10-sp-a1-q4-dflash-n3",
+   "file": "results/windows/2026-11-10-sp-a1-q4-dflash-n3.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "speculative",
+   "status": "ok",
+   "title": "sp-a1-q4-dflash-n3",
+   "summary": "50.7 t/s a un flusso, 44.0 t/s medi su 4 tipi di prompt, accettazione drafter sul codice 68.0%.",
+   "model": "Agents-A1-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.2,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 50.7,
+    "tps_media": 44.0,
+    "draft_acceptance_pct": 68.0
+   },
+   "tags": [
+    "speculative"
+   ]
+  },
+  {
+   "id": "2026-11-10-sp-a1-q4-dflash-n15",
+   "file": "results/windows/2026-11-10-sp-a1-q4-dflash-n15.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "speculative",
+   "status": "ok",
+   "title": "sp-a1-q4-dflash-n15",
+   "summary": "29.4 t/s a un flusso, 27.0 t/s medi su 4 tipi di prompt, accettazione drafter sul codice 17.5%.",
+   "model": "Agents-A1-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.2,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 29.4,
+    "tps_media": 27.0,
+    "draft_acceptance_pct": 17.5
+   },
+   "tags": [
+    "speculative"
+   ]
+  },
+  {
+   "id": "2026-11-10-sp-a1-q4-base",
+   "file": "results/windows/2026-11-10-sp-a1-q4-base.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "speed",
+   "status": "ok",
+   "title": "sp-a1-q4-base",
+   "summary": "37.8 t/s a un flusso, 36.4 t/s medi su 4 tipi di prompt.",
+   "model": "Agents-A1-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.2,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 37.8,
+    "tps_media": 36.4
+   },
+   "tags": []
+  },
   {
    "id": "2026-11-09-yt-qwen38-27b-iq2xxs",
    "file": "results/windows/2026-11-09-yt-qwen38-27b-iq2xxs.json",

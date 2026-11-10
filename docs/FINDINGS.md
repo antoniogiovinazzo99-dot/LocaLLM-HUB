@@ -29,3 +29,20 @@ Vedi [`data/ideas.json`](../data/ideas.json) (35 voci). Priorita Windows: drafte
 
 ## Ricerca di partenza
 [`docs/RICERCA-WINDOWS-2026-11-08.md`](RICERCA-WINDOWS-2026-11-08.md) (scritta lato Windows; dove un dato non e verificato lo dice).
+
+## Notte 10/11/2026 (in corso, lato Windows)
+
+Velocita su **Agents-A1-35B Q4** (llama.cpp b12141), stesso protocollo core-speed (4 tipi di prompt x 2 seed, 300 token, 1 slot, ctx 8K):
+
+| configurazione | t/s medio | accettazione codice | note |
+|---|---:|---:|---|
+| base, nessuna speculativa | **36,4** | - | conferma i 36,6 di ieri |
+| DFlash, `--spec-draft-n-max` 3 (default) | **44,0 (+21%)** | 68,0% | il drafter Q4 di z-lab funziona anche sul finetune A1 |
+| DFlash, n_max 8 | 36,2 | 36,4% | **peggio del default**: l'accettazione crolla |
+| DFlash, n_max 15 | 27,0 | 17,5% | da non usare |
+| `ngram-mod` da solo, ctx 8K | **fallito** | - | una richiesta si e bloccata (175 token in 150 s) e il test e andato in timeout: sulla build b12141 Windows non e affidabile come sul Mac b12038 |
+
+Guadagno per tipo di prompt con DFlash n3: JSON 56,0 (da 36,9), ragionamento 45,5 (37,1), codice 42,7 (35,4), **storia 31,9 (peggio della base 36,3)**. Come sul Mac, il testo libero e il caso peggiore.
+
+**Non ancora verificato:** la ricetta esatta a 64K (q4_0 KV, b512/ub256), `--n-cpu-moe`, il confronto harness opencode/omp e AREX-Turbo/AREX-2: tutto in coda stanotte. Vedi `C:/Users/motti/llm/fabbrica/NOTTE-2026-11-10-PIANO.md` (fuori dal repo) e i file che arriveranno in `results/windows/`.
+
