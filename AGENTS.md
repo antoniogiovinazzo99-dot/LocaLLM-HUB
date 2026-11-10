@@ -4,7 +4,7 @@ Sei un agente (Claude Code, Codex o altro) che lavora per uno dei due collaborat
 
 | Piattaforma | Persona | Cartella risultati |
 |---|---|---|
-| `windows` | Motti (RTX 3060 12 GB, 16 GB RAM) | `results/windows/` |
+| `windows` | Tommaso (RTX 3060 12 GB, 16 GB RAM) | `results/windows/` |
 | `mac` | Pietro (Mac) | `results/mac/` |
 
 Obiettivo comune: far girare in locale modelli **molto intelligenti, veloci (obiettivo 50+ t/s) e con contesto lungo (256K)**, e capire con test onesti cosa funziona davvero. I numeri devono essere confrontabili tra le due macchine.

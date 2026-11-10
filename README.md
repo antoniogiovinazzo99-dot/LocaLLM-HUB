@@ -4,18 +4,18 @@ Esperimenti e benchmark su **modelli locali**, fatti da due macchine con gli ste
 
 | | Chi | Macchina |
 |---|---|---|
-| Windows | Motti | RTX 3060 12 GB, 16 GB RAM |
+| Windows | Tommaso | RTX 3060 12 GB, 16 GB RAM |
 | Mac | Pietro | Mac (Apple Silicon) |
 
 Obiettivo: un modello locale **molto intelligente, veloce (50+ t/s) e con contesto lungo (256K)**, e capire con test onesti cosa funziona davvero: motori, quantizzazioni, drafter/MTP, armature di ragionamento, harness per agenti.
 
 ## 👉 [Apri la dashboard condivisa](https://mtom123.github.io/LocaLLM-HUB/)
-Esperimenti di Motti (Windows) a sinistra, di Pietro (Mac) a destra, classifica per modello e idee da provare. Si aggiorna da sola a ogni push.
+Esperimenti di Tommaso (Windows) a sinistra, di Pietro (Mac) a destra, classifica per modello e idee da provare. Si aggiorna da sola a ogni push.
 
 ## Cosa c'e dentro
 ```
 index.html, assets/        il sito (legge i file JSON, nessuna build)
-results/windows/*.json     un esperimento per file (Motti)   + index.json generato
+results/windows/*.json     un esperimento per file (Tommaso)   + index.json generato
 results/mac/*.json         un esperimento per file (Pietro)  + index.json generato
 templates/                 esempio di file risultato
 tools/build.py             valida i risultati e rigenera gli indici
