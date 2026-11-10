@@ -3,12 +3,12 @@
 
   var PLATFORMS = ['windows', 'mac'];
   var PLAT = {
-    windows: { label: 'Windows', sub: 'Motti · RTX 3060 12 GB', color: '#22d3ee', dot: 'win' },
+    windows: { label: 'Windows', sub: 'Tommaso · RTX 3060 12 GB', color: '#22d3ee', dot: 'win' },
     mac: { label: 'Mac', sub: 'Pietro · Apple Silicon', color: '#f59e0b', dot: 'mac' }
   };
   var CAT = { speed: 'Velocità', speculative: 'Speculative', 'quality-tiny': 'Qualità tiny', 'quality-suite-s': 'Suite S', agent: 'Agente', armature: 'Armature', harness: 'Harness', other: 'Altro' };
   var LABEL = { decode_tps_1: 't/s', tps_media: 't/s medi', q_medio: 'tiny', indice_uso: 'suite S', agente: 'agente %', humaneval: 'HumanEval', draft_acceptance_pct: 'accett. %', prompt_tps: 'prompt t/s', duro_pct: 'duro %', agente_pct: 'agente %', harness_omp_pieno_pct: 'omp pieno %', harness_omp_parziale_pct: 'omp parziale %' };
-  var COLS = [['qi', 'QI'], ['decode_tps_1', 't/s'], ['duro_pct', 'duro'], ['agente_pct', 'agente'], ['harness_omp_pieno_pct', 'omp'], ['q_medio', 'tiny'], ['indice_uso', 'suite S'], ['size', 'GB']];
+  var COLS = [['qi', 'QI'], ['decode_tps_1', 't/s'], ['duro_pct', 'duro'], ['agente_pct', 'agente'], ['harness_omp_pieno_pct', 'omp'], ['q_medio', 'tiny'], ['indice_uso', 'suite S'], ['size', 'GB'], ['ctx', 'ctx']];
   var REPO = 'https://github.com/mtom123/LocaLLM-HUB/blob/main/';
   var state = {
     exp: [], ideas: [], proj: [], queue: null, cat: 'all', q: '', tab: 'rank', hiddenFailed: 0, detail: {},
@@ -126,8 +126,9 @@
       var nm = normModel(x.model);
       var isOnyx = /onyx/i.test(nm);
       var key = nm + '|' + (isOnyx ? '' : (x.quant || ''));
-      var g = groups[key] || (groups[key] = { model: nm, quant: isOnyx ? '' : x.quant, repo: x.repo, size: x.size_gb, rows: [] });
+      var g = groups[key] || (groups[key] = { model: nm, quant: isOnyx ? '' : x.quant, repo: x.repo, size: x.size_gb, ctx: 0, rows: [] });
       if (!g.repo && x.repo) g.repo = x.repo;
+      if (x.ctx) g.ctx = Math.max(g.ctx || 0, x.ctx);
       g.rows.push(x.headline || {});
     });
     var keys = ['decode_tps_1', 'tps_media', 'duro_pct', 'agente_pct', 'harness_omp_pieno_pct', 'harness_omp_parziale_pct', 'q_medio', 'indice_uso', 'humaneval', 'agente_mini'];
@@ -137,7 +138,7 @@
         var b = null; g.rows.forEach(function (r) { if (has(r[key]) && (b === null || r[key] > b)) b = r[key]; });
         if (b !== null) m[key] = b;
       });
-      return { model: g.model, quant: g.quant, repo: g.repo, size: g.size, metrics: m, qi: qiFrom(m), n: g.rows.length };
+      return { model: g.model, quant: g.quant, repo: g.repo, size: g.size, metrics: m, qi: qiFrom(m), n: g.rows.length, ctx: g.ctx || null };
     });
     // ricerca globale + filtri per parametro
     var f = state.filt[plat];
@@ -158,7 +159,7 @@
 
   function sortRows(rows, plat) {
     var s = state.sort[plat];
-    function val(r) { if (s.k === 'qi') return r.qi ? r.qi.v : null; if (s.k === 'size') return r.size; if (s.k === 'n') return r.n; return has(r.metrics[s.k]) ? r.metrics[s.k] : null; }
+    function val(r) { if (s.k === 'qi') return r.qi ? r.qi.v : null; if (s.k === 'size') return r.size; if (s.k === 'ctx') return r.ctx; if (s.k === 'n') return r.n; return has(r.metrics[s.k]) ? r.metrics[s.k] : null; }
     rows.sort(function (a, b) {
       if (s.k === 'qi') return byQi(a, b, s.d);
       var x = val(a), y = val(b);
@@ -232,7 +233,7 @@
   function fillTbody(tb, rows, plat) {
     tb.textContent = '';
     if (!rows.length) {
-      var tr = el('tr'); var td = el('td', 'empty-cell', 'Nessun risultato con questi filtri.'); td.colSpan = 10; tr.appendChild(td); tb.appendChild(tr); return;
+      var tr = el('tr'); var td = el('td', 'empty-cell', 'Nessun risultato con questi filtri.'); td.colSpan = 11; tr.appendChild(td); tb.appendChild(tr); return;
     }
     rows.forEach(function (r, i) {
       var tr = el('tr');
@@ -247,6 +248,7 @@
         tr.appendChild(el('td', null, has(r.metrics[c[0]]) ? fmt(r.metrics[c[0]]) : '–'));
       });
       tr.appendChild(el('td', null, r.size ? fmt(r.size) : '–'));
+      tr.appendChild(el('td', null, r.ctx ? fmt(r.ctx) : '–'));
       tb.appendChild(tr);
     });
   }
@@ -298,7 +300,7 @@
     box.appendChild(podium(rows, plat));
     box.appendChild(barsSvg(rows, meta.color));
     box.appendChild(filtersFor(plat));
-    box.appendChild(tableFor(plat));
+    var tw = el('div', 'tablewrap'); tw.appendChild(tableFor(plat)); box.appendChild(tw);
     return box;
   }
 
@@ -371,12 +373,50 @@
       });
       tb.appendChild(tr);
     });
-    t.appendChild(tb); box.appendChild(t);
+    t.appendChild(tb);
+    var tw = el('div', 'tablewrap'); tw.appendChild(t); box.appendChild(tw);
     box.appendChild(el('div', 'meta', 'Confronti solo a parità di modello, benchmark e n. Con n=8 il rumore è ±20 punti: guarda la direzione, non il singolo punto.'));
     return box;
   }
 
   // ---------------------------------------------------------------- desk
+  function fmtCtx(n) { if (!n) return '–'; return n >= 1000 ? Math.round(n / 1024) + 'K' : String(n); }
+
+  function coverageMatrix(all) {
+    var rows = [];
+    all.forEach(function (rs, i) { rs.forEach(function (r) { rows.push({ r: r, plat: PLATFORMS[i] }); }); });
+    rows.sort(function (a, b) { return byQi(a.r, b.r, -1); });
+    var box = el('section', 'panel wide');
+    box.appendChild(el('h2', null, 'Copertura benchmark — tutti i valori'));
+    box.appendChild(el('div', 'meta', 'Una riga per modello. “–” = non misurato su quel benchmark. Il ctx è il massimo dichiarato negli argomenti del server.'));
+    var tw = el('div', 'tablewrap');
+    var t = el('table', 'desk-table cov');
+    var hr = el('tr');
+    ['Modello', 'Macchina', 'duro', 'agente', 'omp', 'ctx', 'tiny', 'GB'].forEach(function (h) { hr.appendChild(el('th', null, h)); });
+    var thead = el('thead'); thead.appendChild(hr); t.appendChild(thead);
+    var tb = el('tbody');
+    rows.forEach(function (x) {
+      var r = x.r, tr = el('tr');
+      tr.appendChild(el('td', 'mname', r.model + (r.quant ? ' ' + r.quant : '')));
+      tr.appendChild(el('td', null, x.plat));
+      var cells = [
+        ['duro', has(r.metrics.duro_pct) ? fmt(r.metrics.duro_pct) : null],
+        ['agente', has(r.metrics.agente_pct) ? fmt(r.metrics.agente_pct) : has(r.metrics.agente_mini) ? fmt(r.metrics.agente_mini) : null],
+        ['omp', has(r.metrics.harness_omp_pieno_pct) ? fmt(r.metrics.harness_omp_pieno_pct) : null],
+        ['ctx', r.ctx ? fmtCtx(r.ctx) : null],
+        ['tiny', has(r.metrics.q_medio) ? fmt(r.metrics.q_medio) : null]
+      ];
+      cells.forEach(function (c) {
+        var td = el('td', c[1] === null ? 'miss' : 'on', c[1] === null ? '–' : c[1]);
+        tr.appendChild(td);
+      });
+      tr.appendChild(el('td', null, r.size ? fmt(r.size) : '–'));
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb); tw.appendChild(t); box.appendChild(tw);
+    return box;
+  }
+
   function renderDesk() {
     var t = document.getElementById('desk');
     var all = PLATFORMS.map(function (p) { return buildRows(p); });
@@ -386,6 +426,7 @@
     t.appendChild(grid);
     t.appendChild(scatter(all));
     t.appendChild(comparisonBlock());
+    t.appendChild(coverageMatrix(all));
     var foot = el('div', 'meta deskfoot');
     foot.textContent = 'QI = duro (set pubblici) → omp (harness reale) → suite S → agente → tiny: si usa il migliore disponibile e la fonte è scritta accanto. Non confrontare QI con fonti diverse. ' + (state.hiddenFailed ? state.hiddenFailed + ' test falliti restano nel repo ma non in dashboard.' : '');
     t.appendChild(foot);
@@ -420,7 +461,7 @@
       body.textContent = '';
       var rows = [];
       function add(k, v) { if (v !== undefined && v !== null && v !== '') rows.push([k, v]); }
-      add('autore', e.author); add('hardware', e.hardware && Object.keys(e.hardware).map(function (k) { return e.hardware[k]; }).join(', '));
+      add('autore', e.author === 'Motti' ? 'Tommaso' : e.author); add('hardware', e.hardware && Object.keys(e.hardware).map(function (k) { return e.hardware[k]; }).join(', '));
       add('motore', e.engine && [e.engine.name, e.engine.version].filter(Boolean).join(' '));
       add('argomenti', e.engine && (e.engine.args || []).join(' '));
       add('file', e.model && e.model.file); add('repo modello', e.model && e.model.repo);

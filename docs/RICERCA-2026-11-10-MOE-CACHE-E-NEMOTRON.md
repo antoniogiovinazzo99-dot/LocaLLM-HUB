@@ -26,12 +26,12 @@ Fatti dalla model card NVIDIA:
 **Verdetto onesto:** e' il candidato numero uno per **intelligenza** (se regge anche a 2 bit, ed e' progettato per quello), non per velocita'. Se fa 20-25 t/s con 5/6 su omp, vale piu' di un 4B a 76 t/s con 4/6.
 
 ## 3. "repo vkke" — presumo vLLM
-vLLM e' il motore di serving ad alta produttivita' (PagedAttention, continuous batching, DFlash/n-gram/EAGLE, prefix caching). **Non e' la scelta giusta qui:** su Windows con 12 GB e modelli GGUF serve WSL/Linux, pesa GB di dipendenze e la sua forza e' servire molte richieste in parallelo, non un singolo utente. llama.cpp resta il motore giusto. Da tenere in considerazione solo se un domani Motti mette un secondo PC/server Linux con piu' VRAM.
+vLLM e' il motore di serving ad alta produttivita' (PagedAttention, continuous batching, DFlash/n-gram/EAGLE, prefix caching). **Non e' la scelta giusta qui:** su Windows con 12 GB e modelli GGUF serve WSL/Linux, pesa GB di dipendenze e la sua forza e' servire molte richieste in parallelo, non un singolo utente. llama.cpp resta il motore giusto. Da tenere in considerazione solo se un domani Tommaso mette un secondo PC/server Linux con piu' VRAM.
 
 ## 4. NVIDIA Kubernetes — non serve (per ora)
 Kubernetes serve per orchestrare container su piu' nodi/GPU (device plugin, MIG, scheduling). Su **un solo desktop Windows con una 3060** aggiunge solo complessita' e overhead. NVIDIA NIM/container sono utili quando c'e' un server dedicato o piu' GPU. Risposta secca: **no adesso**, si' il giorno in cui il "modello di casa" gira su una macchina dedicata.
 
-## 5. Prossimi esperimenti (in ordine, da lanciare quando Motti da' l'ok)
+## 5. Prossimi esperimenti (in ordine, da lanciare quando Tommaso da' l'ok)
 1. **MoE cache su A1-35B Q4** (nessun download): tuning script + 3 config con DFlash n3 a 8K e 64K; controllo appaiato con la config attuale (47,5 / 44,8). Atteso 55-65 t/s se il PR mantiene le promesse.
 2. **Harness solo omp** su A1-35B (riferimento 35B) e cascata 4B→35B. Niente opencode: la sua TUI sporca la console e riavvia la sessione.
 3. **Nemotron 3.5 Bolt 74B 24GB** dopo aver liberato A1: speed + omp + tiny. Se l'intelligenza e' quella dichiarata, diventa il "modello intelligente" della cascata, con il 4B come fronte veloce.

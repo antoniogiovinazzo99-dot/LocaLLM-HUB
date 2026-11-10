@@ -41,7 +41,7 @@ Regole che ne derivano: nessuna conclusione su differenze entro il rumore; per c
 Per misurare l'intelligenza si usano **`duro.py` + `lungo.py` + `agente.py` di Pietro** (`benchmarks/mac-pietro/`): set pubblici con margine, seed fissi, rumore dichiarato. La Suite S e il tiny di Windows restano solo come storia e per `agente_mini` (compiti di codice con test nascosti) e harness reali. Dettagli e motivi: [`docs/ALLINEAMENTO-2026-11-09.md`](ALLINEAMENTO-2026-11-09.md).
 
 ## Unificazione
-Obiettivo: che Motti e Pietro eseguano **lo stesso identico benchmark** e i punteggi siano confrontabili. Piano proposto:
+Obiettivo: che Tommaso e Pietro eseguano **lo stesso identico benchmark** e i punteggi siano confrontabili. Piano proposto:
 
 1. **Subito:** `core-speed` per la velocita (fatto). Tutti dichiarano `benchmark.suite` e `version` nei loro file.
 2. **Prossimo passo:** estrarre da `fabbrica.py` un runner portabile `benchmarks/core/run.py` che parla solo con un server OpenAI-compatibile (porta e URL come argomenti, nessun avvio di processi), con la Suite S e agente-mini. Il lancio dei server resta alla persona.

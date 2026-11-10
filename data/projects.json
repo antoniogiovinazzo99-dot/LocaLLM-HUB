@@ -5,7 +5,7 @@
     {
       "id": "fabbrica",
       "title": "Fabbrica: runner di benchmark Windows",
-      "owner": "Motti",
+      "owner": "Tommaso",
       "platform": "windows",
       "status": "attivo",
       "summary": "Runner che scarica un modello, avvia il server (llama.cpp o Strata), misura velocita, tiny, Suite S e agente-mini con budget di tempo e scrive un record per modello. Ha una coda (coda.json) e uno scout che aggiunge modelli nuovi.",
@@ -24,7 +24,7 @@
     {
       "id": "suite-s",
       "title": "Suite S + agente-mini",
-      "owner": "Motti",
+      "owner": "Tommaso",
       "platform": "windows",
       "status": "attivo",
       "summary": "Benchmark pensato per l'uso reale: MATH, BBH, HumanEval+, LiveCodeBench, 8 lavori con test nascosti, contesto lungo; piu 6 compiti da agente con strumenti. Indice d'uso = media pesata. I punteggi sulle parti con pochi campioni non valgono: guardare suite_s_samples.",
@@ -44,7 +44,7 @@
     {
       "id": "agents-a1",
       "title": "Agents-A1 35B-A3B (candidato)",
-      "owner": "Motti",
+      "owner": "Tommaso",
       "platform": "windows",
       "status": "attivo",
       "summary": "MoE 35B con 3B attivi. Q4 21 GB: indice d'uso 69,1 e agente 83%, pari a Flash-Next (68,4 / 83%) a 36,6 t/s. IQ2_M 11,7 GB: 52 t/s ma indice 60,6 e agente 50%. Esiste una versione 4B (77 t/s, tiny 77,6) come primo stadio di una cascata.",
@@ -63,7 +63,7 @@
     {
       "id": "strata-flash-next",
       "title": "Strata + Qwen3.8-Flash-Next 125B",
-      "owner": "Motti",
+      "owner": "Tommaso",
       "platform": "windows",
       "status": "attivo",
       "summary": "Motore Strata (0.2.11) che tiene gli esperimenti piu usati in VRAM: da 5,8 a 28-31 t/s a qualita piena, 23 t/s a 253K di contesto. STRATA_ROUTE_PRIOR=1.5 da +50% di velocita ma peggiora matematica e agente. E il riferimento di tutti i confronti.",
@@ -82,7 +82,7 @@
     {
       "id": "speculative",
       "title": "Decodifica speculativa: MTP, DFlash2, DSpine",
-      "owner": "Motti",
+      "owner": "Tommaso",
       "platform": "windows",
       "status": "attivo",
       "summary": "Un drafter propone token, il modello grande li verifica. 27B IQ2_XXS: base 20,2 t/s, DFlash2 33,0 (+63%), DSpine 31,4: DSpine (fork llama-dspine) ora gira ma non batte DFlash2 (accettazione codice 36,8% vs 37,8%); il blocco precedente era memoria piena con n_max 15. MTP su Ornith35 piu lento del no-MTP. Dal Mac (Pietro): DFlash z-lab Qwen3.5-35B-A3B (0,24 GB) + ngram-mod su Agents-A1 raddoppia la velocita (51 vs 26,5 t/s a 64K): in coda su A1-35B Q4 Windows.",
@@ -104,7 +104,7 @@
     {
       "id": "armature",
       "title": "Armature di ragionamento",
-      "owner": "Motti",
+      "owner": "Tommaso",
       "platform": "windows",
       "status": "provato",
       "summary": "Voto su N campioni, programma eseguito (PAL), verifica, escalation condizionata, MCQ. Sul tiny non guadagnano nulla. Sulla matematica Ornith-9B: voto su 5 98% in 10,8 min vs PAL 83-86% in 0,8 min; manca la base senza armatura.",
@@ -123,7 +123,7 @@
     {
       "id": "harness-reali",
       "title": "Agenti reali: opencode, Claude Code, omp",
-      "owner": "Motti",
+      "owner": "Tommaso",
       "platform": "windows",
       "status": "attivo",
       "summary": "Gli stessi 6 compiti di agente-mini guidati da agenti veri su un server a 64K. Primo giro opencode NON VALIDO (opencode v2 con servizio in background ignorava la config): corretto con --standalone, rifatto. Claude Code in corso. Il Mac ha gia OMP 18.15 con Agents-A1 (primo compito reale risolto in 2,5 min).",
@@ -143,7 +143,7 @@
     {
       "id": "contesto-lungo",
       "title": "Contesto lungo (obiettivo 256K+, raddoppiare)",
-      "owner": "Motti",
+      "owner": "Tommaso",
       "platform": "windows",
       "status": "attivo",
       "summary": "Il test 'lungo' valeva 0 per tutti i modelli: bug del server (4 slot da 8K ricevevano un prompt da 41K token), non dei modelli. Rifatto con slot da 49K. Strata offre KV int8/q4_0/k8v4 e KV in streaming su RAM (13,7 KB/token) per allungare il contesto.",
@@ -160,7 +160,7 @@
     {
       "id": "infinity-runtime",
       "title": "Infinity (AWS/Berkeley): runtime per agenti concorrenti",
-      "owner": "Motti",
+      "owner": "Tommaso",
       "platform": "windows",
       "status": "idea",
       "summary": "Runtime Rust che sospende gli agenti in attesa di tool (solo la storia resta, ~100 KB ciascuno): 75k agenti in 8 GB e una stima, misurata su un modello simulato. Non aumenta la velocita di inferenza. Idea: usarlo come scheduler davanti a un llama-server con 1-2 slot, cosi molti agenti condividono la GPU mentre aspettano i tool.",
@@ -177,7 +177,7 @@
     {
       "id": "gyro",
       "title": "Gyro (quantizzazione trellis) per Flash-Next",
-      "owner": "Motti",
+      "owner": "Tommaso",
       "platform": "windows",
       "status": "idea",
       "summary": "Gyro-S: 27,6 GiB di pesi in GPU, metodo QTIP/trellis, qualita migliore di IQ2/IQ3 a pari memoria (dati del venditore). Richiede Strata >= 0.2.0. Con 12 GB di VRAM + 16 GB di RAM non entra: serve ~32 GB di memoria utile.",
@@ -195,7 +195,7 @@
     {
       "id": "knowledge-pack",
       "title": "Knowledge pack (KV precalcolata)",
-      "owner": "Motti",
+      "owner": "Tommaso",
       "platform": "windows",
       "status": "idea",
       "summary": "Si legge una volta un documento, si salva la KV e la si ricarica: il modello 'sa' il documento senza rileggerlo. Strata ha file di sessione e checkpoint di prompt (~118 MB l'uno).",
@@ -209,7 +209,7 @@
     {
       "id": "training",
       "title": "QLoRA / distillazione",
-      "owner": "Motti",
+      "owner": "Tommaso",
       "platform": "windows",
       "status": "idea",
       "summary": "Fine-tuning leggero (4B-9B sulla 3060) o distillazione da un modello grande per un compito stretto (codice/agente). Non rende un modello piu intelligente in generale.",

@@ -1,5 +1,5 @@
 # Ricerca completa — LLM locale forte e veloce su RTX 3060 12 GB / 16 GB RAM
-Data: 8 novembre 2026. Scritta da Claude per Motti. Dove un dato non è verificato lo scrivo esplicitamente.
+Data: 8 novembre 2026. Scritta da Claude per Tommaso. Dove un dato non è verificato lo scrivo esplicitamente.
 
 ---
 ## 1. Sintesi in 12 righe

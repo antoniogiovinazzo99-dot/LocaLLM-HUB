@@ -52,6 +52,21 @@ def validate(e, path):
     return err
 
 
+
+def ctx_of(e):
+    c = (e.get('metrics') or {}).get('contesto')
+    if isinstance(c, (int, float)):
+        return int(c)
+    a = (e.get('engine') or {}).get('args') or []
+    for i, x in enumerate(a):
+        if str(x) in ('-c', '--ctx-size', '--max-context') and i + 1 < len(a):
+            try:
+                return int(a[i + 1])
+            except Exception:
+                pass
+    return None
+
+
 def headline(metrics):
     out = {}
     for k in HEADLINE:
@@ -91,7 +106,7 @@ def main(check_only=False):
                 'date': e.get('date'), 'category': e.get('category'), 'status': e.get('status'), 'title': e.get('title'),
                 'summary': e.get('summary'), 'model': m.get('name'), 'repo': m.get('repo'), 'quant': m.get('quant'), 'size_gb': m.get('size_gb'),
                 'engine': (e.get('engine') or {}).get('name'), 'ref': bool(e.get('reference')),
-                'headline': headline(e.get('metrics') or {}), 'tags': e.get('tags', []),
+                'headline': headline(e.get('metrics') or {}), 'ctx': ctx_of(e), 'tags': e.get('tags', []),
             })
         index.sort(key=lambda x: (x['date'] or '', x['id'] or ''), reverse=True)
         if not check_only:

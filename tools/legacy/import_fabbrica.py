@@ -58,6 +58,14 @@ def convert(r):
     name = r['name']
     date = (r.get('ts') or '2026-11-09')[:10]
     cat = 'quality-tiny'
+    # contesto dichiarato negli argomenti del server (-c N): confronti a pari contesto
+    _a = it.get('args') or []
+    for _i, _x in enumerate(_a):
+        if _x in ('-c', '--ctx-size', '--max-context') and _i + 1 < len(_a):
+            try:
+                m['contesto'] = int(_a[_i + 1])
+            except Exception:
+                pass
     if r.get('tps_tipi'):
         cat = 'speed'
     elif r.get('harness'):

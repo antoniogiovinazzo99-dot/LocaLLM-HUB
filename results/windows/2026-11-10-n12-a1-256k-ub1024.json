@@ -1,0 +1,56 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-n12-a1-256k-ub1024",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "other",
+ "status": "ok",
+ "title": "n12-a1-256k-ub1024",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+  "file": "Agents-A1-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 21.2
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "262144",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "2048",
+   "-ub",
+   "1024"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "pietro-duro+agente+lungo",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 32.1,
+  "load_s": 13.0,
+  "lungo_pct": 100.0,
+  "lungo_decode_tps": 11.8,
+  "lungo_prefill_tps": 264.4
+ },
+ "notes": "256K con ubatch 1024: conferma il +52% di prefill visto a 64K, misura decode e 5 aghi",
+ "tags": [],
+ "summary": "Lungo 100.0%, 32.1 t/s a un flusso."
+}

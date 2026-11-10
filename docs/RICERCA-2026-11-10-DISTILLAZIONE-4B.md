@@ -1,6 +1,6 @@
 # Piano "4B intelligente come un modello grande" — distillazione, quantizzazione, cascata (10/11/2026)
 
-Richiesta di Motti: un 4B a 80 t/s con intelligenza alta; "passargli i parametri in modo ultra-condensato"; quantizzazioni sperimentali; distillare conoscenza. Qui c'e cosa e **vero**, cosa e **fattibile su RTX 3060 12 GB + 16 GB RAM**, e cosa invece e **fisicamente impossibile** (scritto, non nascosto).
+Richiesta di Tommaso: un 4B a 80 t/s con intelligenza alta; "passargli i parametri in modo ultra-condensato"; quantizzazioni sperimentali; distillare conoscenza. Qui c'e cosa e **vero**, cosa e **fattibile su RTX 3060 12 GB + 16 GB RAM**, e cosa invece e **fisicamente impossibile** (scritto, non nascosto).
 
 ## 1. La parte impossibile (da dire subito)
 Non posso "passare i miei parametri" a un 4B: sono un modello remoto via API, i pesi non sono accessibili ne' scaricabili. Non esiste un modo legale o tecnico di comprimere un modello da centinaia di miliardi di parametri in 4B "senza perdita". Chi lo promette vende fumo.
@@ -42,7 +42,7 @@ Prefillare una volta un corpus di conoscenza e salvare la KV (`--slot-save-path`
 
 ## 4. Cosa faccio stanotte (dentro il loop)
 - [in corso] Velocita' A1-35B Q4: DFlash n3 = **44,0 t/s** (+21% sulla base 36,4); n8/n15 peggiori.
-- [in coda] Ricetta 64K di Pietro, `--n-cpu-moe`, **harness opencode vs omp** su A1 (misura di intelligenza richiesta da Motti).
+- [in coda] Ricetta 64K di Pietro, `--n-cpu-moe`, **harness opencode vs omp** su A1 (misura di intelligenza richiesta da Tommaso).
 - [in coda] AREX-Turbo 4B Q4: `duro` + harness. E' il candidato "80 t/s".
 - [aggiunto] AREX-Turbo 4B **IQ2_XXS**: se regge l'intelligenza, e' il modello della svolta (1,8 GB, contesto lungo, >100 t/s).
 - [aggiunto] `--cache-ram 512 --cache-reuse 256` sugli harness: riuso del prefisso, il "knowledge pack" che si puo' fare oggi.

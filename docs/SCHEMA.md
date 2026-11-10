@@ -8,7 +8,7 @@ Un file JSON per esperimento in `results/<platform>/<id>.json`. `tools/build.py`
 | `schema` | `1` |
 | `id` | `AAAA-MM-GG-slug`, minuscolo, uguale al nome del file (senza `.json`) |
 | `platform` | `windows`, `mac` o `linux` (uguale alla cartella) |
-| `author` | `Motti`, `Pietro`, ... |
+| `author` | `Tommaso`, `Pietro`, ... |
 | `date` | `AAAA-MM-GG` |
 | `category` | `speed`, `speculative`, `quality-tiny`, `quality-suite-s`, `agent`, `armature`, `harness`, `other` |
 | `status` | `ok`, `partial` (parti mancanti o campioni troppo piccoli), `failed` (non ha prodotto numeri) |

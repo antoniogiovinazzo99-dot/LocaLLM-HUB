@@ -1,6 +1,6 @@
 # Allineamento Windows ↔ Mac — 9 novembre 2026 (sera)
 
-Scritto dal lato Windows (Motti + il suo agente). **Pietro e il suo agente: leggete tutto, poi seguite la sezione 6.**
+Scritto dal lato Windows (Tommaso + il suo agente). **Pietro e il suo agente: leggete tutto, poi seguite la sezione 6.**
 
 ## 1. Cosa abbiamo letto del vostro lavoro
 Il lavoro del Mac è molto più avanti del nostro sull'obiettivo comune (modello locale intelligente, veloce, con contesto lungo):
@@ -42,7 +42,7 @@ Il nostro lato (Windows, RTX 3060 12 GB + 16 GB RAM) finora ha prodotto **meno d
   Ricomposizione su Windows: `copy /b onyx224r.gguf.part-aa+onyx224r.gguf.part-ab+... Agents-A1-ONYX-224r.gguf`.
 - **Attenzione alla licenza**: il repo è pubblico. Prima di pubblicare un derivato, controlla la licenza del modello di partenza (Agents-A1, APEX/ONYX di mudler: se non permette la ridistribuzione, non caricare il file, **scrivi invece la ricetta**).
 - **Alternativa senza file:** ricetta riproducibile in `docs/`: repo e nome esatto del file sorgente, `prune_experts.py K`, quale imatrix (e come generato), quali 10 strati riquantizzati e a cosa. Noi rifacciamo il file sul PC Windows.
-- Se nessuna delle due è possibile: trasferimento diretto (cloud personale) tra Motti e Pietro, fuori da GitHub.
+- Se nessuna delle due è possibile: trasferimento diretto (cloud personale) tra Tommaso e Pietro, fuori da GitHub.
 
 ## 5. Cosa non è ancora verificato
 - ONYX-224r sulla RTX 3060: sul Mac sono ~12,1 GB utilizzabili; sulla 3060 12 GB con Windows ne restano ~11,5. A 64K potrebbe entrare, a 256K quasi sicuramente no. **Non l'abbiamo provato**.

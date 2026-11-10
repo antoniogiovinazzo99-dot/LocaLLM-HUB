@@ -238,7 +238,7 @@
   "cat": "Motori",
   "titolo": "Strata 0.2.12 (7/11) in cartella separata",
   "descr": "Drafter DFlash2 rifinito (0,34 GB) e prompt 3x piu veloci su 3060 con UD-IQ4_XS-v31. Installare accanto, non sopra, il fork; poi portare il fork su 0.1.58.",
-  "stato": "da fare (serve OK di Motti per scaricare da GitHub)",
+  "stato": "da fare (serve OK di Tommaso per scaricare da GitHub)",
   "fonte": "Release notes Strata 0.2.12",
   "atteso": "prompt nuovi lunghi: 35-55 s -> 12-20 s (stima); decode +0-37%"
  },

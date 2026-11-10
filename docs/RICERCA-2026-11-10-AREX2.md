@@ -1,11 +1,11 @@
 # AREX-2 e AREX-Turbo (BAAI) — vale la pena sulla 3060? (10/11/2026, lato Windows)
 
-Ricerca fatta stanotte su richiesta di Motti ("molti ne parlano, il concetto di harness e interessante").
+Ricerca fatta stanotte su richiesta di Tommaso ("molti ne parlano, il concetto di harness e interessante").
 **Stato: non ancora testato su questa macchina.** I numeri qui sotto sono quelli dichiarati da BAAI (model card + paper), non misure nostre.
 
 ## Cosa sono (fatti verificati sulla model card)
 
-- **AREX-2**: 27B **denso**, base `Qwen/Qwen3.8-27B`, contesto 262.144, licenza Apache-2.0. Addestrato su compiti di programmazione e ML con **feedback verificabile** ("propose, measure, reflect, revise"): il modello impara a fare da solo il ciclo *prova -> misura -> rifletti -> correggi*, invece di lasciarlo tutto all'harness esterno. E' esattamente il concetto che interessa a Motti.
+- **AREX-2**: 27B **denso**, base `Qwen/Qwen3.8-27B`, contesto 262.144, licenza Apache-2.0. Addestrato su compiti di programmazione e ML con **feedback verificabile** ("propose, measure, reflect, revise"): il modello impara a fare da solo il ciclo *prova -> misura -> rifletti -> correggi*, invece di lasciarlo tutto all'harness esterno. E' esattamente il concetto che interessa a Tommaso.
 - **AREX-Turbo**: lo stesso tipo di addestramento su una base **4B**.
 - Pesi: `BAAI/AREX-2` (safetensors), GGUF della comunita: `bartowski/BAAI_AREX-2-GGUF`, `mradermacher/AREX-2-i1-GGUF`, `bartowski/BAAI_AREX-Turbo-GGUF`.
 
