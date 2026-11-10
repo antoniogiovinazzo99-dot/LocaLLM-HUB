@@ -1,0 +1,56 @@
+{
+ "schema": 1,
+ "id": "2026-11-10-n15-a1-1m-tbq3",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-10",
+ "category": "quality-tiny",
+ "status": "failed",
+ "title": "n15-a1-1m-tbq3",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+  "file": "Agents-A1-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 21.2
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "llama.cpp TurboQuant v1.7.0 win sm86",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "1048576",
+   "-ctk",
+   "tbq3",
+   "-ctv",
+   "tbq3",
+   "-b",
+   "2048",
+   "-ub",
+   "1024",
+   "--rope-scaling",
+   "yarn",
+   "--rope-scale",
+   "4",
+   "--yarn-orig-ctx",
+   "262144"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "tiny-fabbrica",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {},
+ "notes": "",
+ "tags": [],
+ "summary": "Test fallito o non valido: chiuso per liberare il PC (call di lavoro 17:15): TBQ3 a 1M non era una strada praticabile (prefill 19 t/s a 256K)."
+}

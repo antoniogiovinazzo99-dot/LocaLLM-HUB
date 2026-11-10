@@ -1,7 +1,7 @@
 {
  "platform": "windows",
- "count": 83,
- "hidden_failed": 30,
+ "count": 84,
+ "hidden_failed": 33,
  "experiments": [
   {
    "id": "2026-11-10-underdog-saluki-27b-1.0",
@@ -1045,6 +1045,28 @@
     "decode_tps_1": 79.9
    },
    "ctx": 65536,
+   "tags": []
+  },
+  {
+   "id": "2026-11-10-n16-arex-4b-256k",
+   "file": "results/windows/2026-11-10-n16-arex-4b-256k.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "other",
+   "status": "ok",
+   "title": "n16-arex-4b-256k",
+   "summary": "Lungo 0.0%, 75.3 t/s a un flusso.",
+   "model": "BAAI_AREX-Turbo-GGUF",
+   "repo": "bartowski/BAAI_AREX-Turbo-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 2.9,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 75.3
+   },
+   "ctx": 262144,
    "tags": []
   },
   {
