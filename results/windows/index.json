@@ -1,8 +1,33 @@
 {
  "platform": "windows",
- "count": 86,
+ "count": 87,
  "hidden_failed": 33,
  "experiments": [
+  {
+   "id": "2026-11-11-n17c-a1-35b-q4-omp",
+   "file": "results/windows/2026-11-11-n17c-a1-35b-q4-omp.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-11",
+   "category": "harness",
+   "status": "ok",
+   "title": "n17c-a1-35b-q4-omp",
+   "summary": "Qualita tiny 95.4, 34.1 t/s a un flusso.",
+   "model": "Agents-A1-Q4_K_M-GGUF",
+   "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.2,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 34.1,
+    "harness_omp_pieno_pct": 83.3,
+    "harness_omp_parziale_pct": 83.3,
+    "q_medio": 95.4
+   },
+   "ctx": 65536,
+   "tags": []
+  },
   {
    "id": "2026-11-11-n17-a1-35b-q4-duro",
    "file": "results/windows/2026-11-11-n17-a1-35b-q4-duro.json",
