@@ -1,0 +1,71 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-n19c-a1-4b-omp-second",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-11",
+ "category": "harness",
+ "status": "ok",
+ "title": "n19c-a1-4b-omp-second",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-4B-Q4_K_M-GGUF",
+  "repo": "InternScience/Agents-A1-4B-Q4_K_M-GGUF",
+  "file": "Agents-A1-4B-Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 2.7
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0",
+   "--chat-template-file",
+   "<PATH>/a1-chat_template-fixed.jinja",
+   "--reasoning",
+   "off",
+   "--dry-multiplier",
+   "0.5",
+   "--dry-allowed-length",
+   "8",
+   "--cache-ram",
+   "512",
+   "--cache-reuse",
+   "256"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "agente-mini-harness-reali",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 73.7,
+  "decode_tps_4": 69.7,
+  "prompt_tps": 1343.9,
+  "mmlu": 70.6,
+  "arc": 82.9,
+  "gsm": 94.1,
+  "code12": 50.0,
+  "q_medio": 74.4,
+  "invented_words_pct": 0.38,
+  "load_s": 3.5,
+  "harness_omp_pieno_pct": 66.7,
+  "harness_omp_parziale_pct": 94.8
+ },
+ "notes": "seconda corsa omp su A1-4B: varianza del harness (n=2)",
+ "tags": [],
+ "summary": "Qualita tiny 74.4, 73.7 t/s a un flusso."
+}

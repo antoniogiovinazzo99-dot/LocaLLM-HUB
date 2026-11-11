@@ -1,0 +1,56 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-n20c-e4b-64k",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-11",
+ "category": "other",
+ "status": "ok",
+ "title": "n20c-e4b-64k",
+ "reference": false,
+ "model": {
+  "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF",
+  "repo": "unsloth/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF",
+  "file": "NVIDIA-Nemotron-3.5-Bolt-E4B-UD-IQ3_XXS.gguf",
+  "quant": "UD-IQ3_XXS",
+  "size_gb": 3.7
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "2048",
+   "-ub",
+   "1024"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "pietro-duro+agente+lungo",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 63.1,
+  "load_s": 3.5,
+  "lungo_pct": 100.0,
+  "lungo_decode_tps": 29.1,
+  "lungo_prefill_tps": 2551.2
+ },
+ "notes": "E4B a 64K: richiamo e velocita del piccolo con duro alto",
+ "tags": [],
+ "summary": "Lungo 100.0%, 63.1 t/s a un flusso."
+}

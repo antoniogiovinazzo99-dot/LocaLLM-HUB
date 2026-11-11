@@ -1,0 +1,56 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-n20-qwen9b-128k",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-11",
+ "category": "other",
+ "status": "ok",
+ "title": "n20-qwen9b-128k",
+ "reference": false,
+ "model": {
+  "name": "Qwen3.5-9B-Kimi-k3-Distilled-GGUF",
+  "repo": "mradermacher/Qwen3.5-9B-Kimi-k3-Distilled-GGUF",
+  "file": "Qwen3.5-9B-Kimi-k3-Distilled.Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 5.8
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "131072",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "2048",
+   "-ub",
+   "1024"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "pietro-duro+agente+lungo",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 49.5,
+  "load_s": 6.5,
+  "lungo_pct": 100.0,
+  "lungo_decode_tps": 25.2,
+  "lungo_prefill_tps": 888.8
+ },
+ "notes": "Qwen3.5-9B distillato a 128K: contesto lungo a velocita 9B",
+ "tags": [],
+ "summary": "Lungo 100.0%, 49.5 t/s a un flusso."
+}

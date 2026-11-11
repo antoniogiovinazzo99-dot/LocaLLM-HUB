@@ -1,0 +1,53 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-n18d-qwen9b-duro",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-11",
+ "category": "other",
+ "status": "ok",
+ "title": "n18d-qwen9b-duro",
+ "reference": false,
+ "model": {
+  "name": "Qwen3.5-9B-Kimi-k3-Distilled-GGUF",
+  "repo": "mradermacher/Qwen3.5-9B-Kimi-k3-Distilled-GGUF",
+  "file": "Qwen3.5-9B-Kimi-k3-Distilled.Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 5.8
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0",
+   "--cache-ram",
+   "512",
+   "--cache-reuse",
+   "256"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "pietro-duro+agente+lungo",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 49.5,
+  "load_s": 6.5
+ },
+ "notes": "Qwen3.5-9B distillato Kimi (5,8 GB, 51 t/s): duro+agente, poi harness sullo stesso file",
+ "tags": [],
+ "summary": "49.5 t/s a un flusso."
+}

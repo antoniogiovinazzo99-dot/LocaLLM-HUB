@@ -1,0 +1,63 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-n18b-e4b-omp2",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-11",
+ "category": "harness",
+ "status": "ok",
+ "title": "n18b-e4b-omp2",
+ "reference": false,
+ "model": {
+  "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF",
+  "repo": "unsloth/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF",
+  "file": "NVIDIA-Nemotron-3.5-Bolt-E4B-UD-IQ3_XXS.gguf",
+  "quant": "UD-IQ3_XXS",
+  "size_gb": 3.7
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0",
+   "--cache-ram",
+   "512",
+   "--cache-reuse",
+   "256"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "agente-mini-harness-reali",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 62.5,
+  "decode_tps_4": 61.1,
+  "prompt_tps": 1753.4,
+  "mmlu": 69.0,
+  "arc": 88.0,
+  "gsm": 100.0,
+  "code12": 66.7,
+  "q_medio": 80.9,
+  "invented_words_pct": 0.68,
+  "load_s": 3.5,
+  "harness_omp_pieno_pct": 33.3,
+  "harness_omp_parziale_pct": 47.0
+ },
+ "notes": "harness omp E4B ripetuto con partial fresca e watchdog corretto (la prima volta aveva letto il parziale di A1)",
+ "tags": [],
+ "summary": "Qualita tiny 80.9, 62.5 t/s a un flusso."
+}

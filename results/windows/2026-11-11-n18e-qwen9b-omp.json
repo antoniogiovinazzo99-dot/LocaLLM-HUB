@@ -1,0 +1,63 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-n18e-qwen9b-omp",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-11",
+ "category": "harness",
+ "status": "ok",
+ "title": "n18e-qwen9b-omp",
+ "reference": false,
+ "model": {
+  "name": "Qwen3.5-9B-Kimi-k3-Distilled-GGUF",
+  "repo": "mradermacher/Qwen3.5-9B-Kimi-k3-Distilled-GGUF",
+  "file": "Qwen3.5-9B-Kimi-k3-Distilled.Q4_K_M.gguf",
+  "quant": "Q4_K_M",
+  "size_gb": 5.8
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0",
+   "--cache-ram",
+   "512",
+   "--cache-reuse",
+   "256"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "agente-mini-harness-reali",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 49.6,
+  "decode_tps_4": 48.3,
+  "prompt_tps": 944.7,
+  "mmlu": 73.8,
+  "arc": 95.2,
+  "gsm": 93.8,
+  "code12": 50.0,
+  "q_medio": 78.2,
+  "invented_words_pct": 0.23,
+  "load_s": 6.5,
+  "harness_omp_pieno_pct": 33.3,
+  "harness_omp_parziale_pct": 63.7
+ },
+ "notes": "harness omp sullo stesso 9B: se il duro e alto ma l agente no, sappiamo dove sta il limite",
+ "tags": [],
+ "summary": "Qualita tiny 78.2, 49.6 t/s a un flusso."
+}
