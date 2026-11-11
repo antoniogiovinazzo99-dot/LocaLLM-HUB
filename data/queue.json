@@ -1,5 +1,48 @@
 {
  "platform": "windows",
  "updated": "2026-11-11",
- "items": []
+ "items": [
+  {
+   "order": 1,
+   "name": "n21b-a1-iq3-omp",
+   "kind": "agente reale (omp)",
+   "why": "harness omp su A1 IQ3: se regge 5/6 come il Q4, e il modello da tenere in RAM per la cascata",
+   "repo": "mradermacher/Agents-A1-i1-GGUF"
+  },
+  {
+   "order": 2,
+   "name": "n22-arex-omp3",
+   "kind": "agente reale (omp)",
+   "why": "terza corsa omp su AREX 4B (tenuto su disco per il router)",
+   "repo": "bartowski/BAAI_AREX-Turbo-GGUF"
+  },
+  {
+   "order": 3,
+   "name": "n25-router-arex",
+   "kind": "agente reale (omp)",
+   "why": "ROUTER per tipo: AREX sui compiti veloci/dati (bug, rinomina, dati_ordini)",
+   "repo": "bartowski/BAAI_AREX-Turbo-GGUF"
+  },
+  {
+   "order": 4,
+   "name": "n25b-router-a1",
+   "kind": "agente reale (omp)",
+   "why": "ROUTER per tipo: A1 sui compiti di specifica (config, paginazione, rapporto). Sommato ad AREX = qualita 6/6 e tempo?",
+   "repo": "mradermacher/Agents-A1-i1-GGUF"
+  },
+  {
+   "order": 5,
+   "name": "n24-a1-iq3-128k",
+   "kind": "benchmark di Pietro: lungo",
+   "why": "A1 IQ3 a 128K: il 35B che entra in RAM regge il contesto lungo? prefill/decode/aghi",
+   "repo": "mradermacher/Agents-A1-i1-GGUF"
+  },
+  {
+   "order": 6,
+   "name": "n24b-a1-iq3-64k",
+   "kind": "benchmark di Pietro: lungo",
+   "why": "A1 IQ3 a 64K: baseline di contesto per il confronto con 128K",
+   "repo": "mradermacher/Agents-A1-i1-GGUF"
+  }
+ ]
 }
