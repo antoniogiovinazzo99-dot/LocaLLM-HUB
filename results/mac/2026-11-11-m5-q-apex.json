@@ -1,0 +1,123 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-m5-q-apex",
+ "platform": "mac",
+ "author": "Lan",
+ "date": "2026-11-11",
+ "category": "other",
+ "status": "partial",
+ "title": "M5 24GB: q-apex",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1 APEX-I-Mini",
+  "repo": "mudler/Agents-A1-APEX-GGUF",
+  "quant": "APEX I-Mini",
+  "size_gb": 13.47
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "2048",
+   "-ub",
+   "2048",
+   "--spec-type",
+   "draft-dflash,ngram-mod"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M5 (10 core, GPU 10 core)",
+  "ram_gb": 24,
+  "os": "macOS 26.2"
+ },
+ "benchmark": {
+  "suite": "m5-notte (core-speed prompts una volta sola + prompt 15k + duro-v1 + agente + agente-mini)",
+  "version": 1,
+  "harness": "notte.py"
+ },
+ "metrics": {
+  "decode_tps_1": 11.9,
+  "tps_by_type": {
+   "codice": 10.3,
+   "storia": 11.4,
+   "ragionamento": 13.0,
+   "json": 12.8
+  },
+  "tps_method": "timings, ogni prompt una volta sola (testo nuovo)",
+  "draft_acceptance_pct": 66.3,
+  "prompt_tps": 668.1,
+  "prompt_token": 15521,
+  "decode_tps_ctx15k": 9.9,
+  "decode_ctx15k_by_type": {
+   "prosa": 8.8,
+   "json": 9.3,
+   "codice": 11.5
+  },
+  "agente_pct": 100.0,
+  "agente_sec_compito": 189.6,
+  "duro_pct": 69.5,
+  "duro_n": 59,
+  "duro_per_categoria": {
+   "code": 86.7,
+   "math": 80.0,
+   "mbpp": 46.7,
+   "mmlu": 64.3
+  },
+  "duro_sec_domanda": 31.5,
+  "duro_esiti": {
+   "math": "111001110111111",
+   "code": "011111111101111",
+   "mbpp": "100110101000101",
+   "mmlu": "11111010100110"
+  },
+  "agente_mini": 100.0,
+  "agente_mini_parziale": 100.0,
+  "agente_mini_sec": 536,
+  "agente_mini_dettaglio": {
+   "bug_prezzi": [
+    1.0,
+    64.8
+   ],
+   "config_loader": [
+    1.0,
+    168.9
+   ],
+   "rinomina": [
+    1.0,
+    88.4
+   ],
+   "paginazione": [
+    1.0,
+    93.9
+   ],
+   "dati_ordini": [
+    1.0,
+    26.7
+   ],
+   "rapporto": [
+    1.0,
+    93.5
+   ]
+  }
+ },
+ "summary": "11.9 t/s su testo nuovo (accettazione 66.3%); lettura 668.1 t/s su 15521 token, scrittura 9.9 t/s con quel contesto; agente 12/12; duro --n=15: 69.5% (41/59); agente-mini 100.0% pieni in 536 s.",
+ "notes": "ATTENZIONE velocita: in questa corsa 11,9 t/s e 31,5 s/domanda con swap 3,9->5,1 GB e batteria sotto il 40%: da rifare a corrente, non e la velocita del modello. La qualita (duro, agente, agente-mini) non dipende dalla velocita.",
+ "tags": [
+  "m5",
+  "24gb"
+ ]
+}

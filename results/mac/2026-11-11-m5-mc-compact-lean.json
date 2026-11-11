@@ -1,0 +1,74 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-m5-mc-compact-lean",
+ "platform": "mac",
+ "author": "Lan",
+ "date": "2026-11-11",
+ "category": "speed",
+ "status": "ok",
+ "title": "M5 24GB: mc-compact-lean",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1 ONYX-compact",
+  "repo": "el4/Agents-A1-ONYX-GGUF",
+  "quant": "ONYX compact",
+  "size_gb": 17.0
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12262",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "-c",
+   "32768",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "1024",
+   "-ub",
+   "512"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M5 (10 core, GPU 10 core)",
+  "ram_gb": 24,
+  "os": "macOS 26.2"
+ },
+ "benchmark": {
+  "suite": "m5-notte (core-speed prompts una volta sola + prompt 15k + duro-v1 + agente + agente-mini)",
+  "version": 1,
+  "harness": "notte.py"
+ },
+ "metrics": {
+  "decode_tps_1": 45.6,
+  "tps_by_type": {
+   "codice": 45.5,
+   "storia": 45.6,
+   "ragionamento": 45.7,
+   "json": 45.6
+  },
+  "tps_method": "timings, ogni prompt una volta sola (testo nuovo)",
+  "prompt_tps": 793.9,
+  "prompt_token": 15518,
+  "decode_tps_ctx15k": 38.4,
+  "decode_ctx15k_by_type": {
+   "prosa": 37.6,
+   "json": 38.8,
+   "codice": 38.8
+  }
+ },
+ "summary": "45.6 t/s su testo nuovo; lettura 793.9 t/s su 15518 token, scrittura 38.4 t/s con quel contesto.",
+ "notes": "Misure su batteria e con scaricamenti in corso per parte della notte: velocita indicative. swap 4511->3101 MB, OOM GPU 0.",
+ "tags": [
+  "m5",
+  "24gb"
+ ]
+}

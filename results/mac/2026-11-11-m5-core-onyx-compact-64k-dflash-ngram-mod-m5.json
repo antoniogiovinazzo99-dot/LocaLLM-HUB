@@ -1,0 +1,76 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-m5-core-onyx-compact-64k-dflash-ngram-mod-m5",
+ "platform": "mac",
+ "author": "Lan",
+ "date": "2026-11-11",
+ "category": "speculative",
+ "status": "ok",
+ "title": "M5 24GB: onyx-compact-64k DFlash+ngram-mod (core-speed)",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1 ONYX-compact",
+  "repo": "el4/Agents-A1-ONYX-GGUF",
+  "quant": "ONYX compact",
+  "size_gb": 17.0
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12038",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "--cache-ram",
+   "512",
+   "-c",
+   "65536",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "512",
+   "-ub",
+   "256",
+   "--spec-type",
+   "draft-dflash,ngram-mod",
+   "-md",
+   "<PATH>/Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
+   "-ngld",
+   "99"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M5 (10 core, GPU 10 core)",
+  "ram_gb": 24,
+  "os": "macOS 26.2"
+ },
+ "benchmark": {
+  "suite": "core-speed",
+  "version": 1,
+  "harness": "tools/speedtest.py"
+ },
+ "metrics": {
+  "decode_tps_1": 14.9,
+  "tps_media": 30.5,
+  "tps_by_type": {
+   "codice": 48.3,
+   "storia": 11.7,
+   "ragionamento": 44.4,
+   "json": 17.7
+  },
+  "tps_method": "timings",
+  "draft_acceptance_pct": 70.1
+ },
+ "notes": "Protocollo core-speed identico (2 seed a temperatura 0): con ngram-mod il secondo seed ripete la risposta del primo a 80-90 t/s e alza la media; su testo sempre nuovo la stessa configurazione fa 60-65 t/s (vedi m5-v-df-q4-ub256). Compact con drafter a 64K: memoria GPU oltre il tetto, prompt nuovi a 11-14 t/s.",
+ "tags": [
+  "m5",
+  "24gb"
+ ],
+ "summary": "30.5 t/s medi su 4 tipi di prompt (core-speed v1), 14.9 t/s mediana. Accettazione drafter 70.1%."
+}
