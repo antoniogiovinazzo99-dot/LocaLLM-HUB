@@ -1,0 +1,51 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-n21-a1-iq3-duro",
+ "platform": "windows",
+ "author": "Motti",
+ "date": "2026-11-11",
+ "category": "other",
+ "status": "ok",
+ "title": "n21-a1-iq3-duro",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1-i1-GGUF",
+  "repo": "mradermacher/Agents-A1-i1-GGUF",
+  "file": "Agents-A1.i1-IQ3_XXS.gguf",
+  "quant": "IQ3_XXS",
+  "size_gb": 13.6
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "built with Clang 20.1.8 for Windows x86_64",
+  "args": [
+   "-np",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0"
+  ]
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX 3060 12GB",
+  "ram_gb": 16,
+  "os": "Windows 11",
+  "cpu": "Ryzen 5 5600G"
+ },
+ "benchmark": {
+  "suite": "pietro-duro+agente+lungo",
+  "harness": "fabbrica-runner"
+ },
+ "metrics": {
+  "decode_tps_1": 38.9,
+  "load_s": 22.7,
+  "duro_pct": 76.3,
+  "agente_pct": 91.7
+ },
+ "notes": "A1-35B IQ3_XXS (13,6 GB, entra in RAM): quanto perde rispetto al Q4 (duro 89,5) e quanto guadagna in spazio/velocita",
+ "tags": [],
+ "summary": "Duro 76.3%, agente 91.7%, 38.9 t/s a un flusso."
+}

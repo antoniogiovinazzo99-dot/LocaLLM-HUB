@@ -1,8 +1,32 @@
 {
  "platform": "windows",
- "count": 98,
+ "count": 99,
  "hidden_failed": 33,
  "experiments": [
+  {
+   "id": "2026-11-11-n21-a1-iq3-duro",
+   "file": "results/windows/2026-11-11-n21-a1-iq3-duro.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-11",
+   "category": "other",
+   "status": "ok",
+   "title": "n21-a1-iq3-duro",
+   "summary": "Duro 76.3%, agente 91.7%, 38.9 t/s a un flusso.",
+   "model": "Agents-A1-i1-GGUF",
+   "repo": "mradermacher/Agents-A1-i1-GGUF",
+   "quant": "IQ3_XXS",
+   "size_gb": 13.6,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 38.9,
+    "duro_pct": 76.3,
+    "agente_pct": 91.7
+   },
+   "ctx": 65536,
+   "tags": []
+  },
   {
    "id": "2026-11-11-n20c-e4b-64k",
    "file": "results/windows/2026-11-11-n20c-e4b-64k.json",
