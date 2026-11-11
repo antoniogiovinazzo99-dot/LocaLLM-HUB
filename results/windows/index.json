@@ -1,8 +1,32 @@
 {
  "platform": "windows",
- "count": 84,
+ "count": 86,
  "hidden_failed": 33,
  "experiments": [
+  {
+   "id": "2026-11-11-n17-a1-35b-q4-duro",
+   "file": "results/windows/2026-11-11-n17-a1-35b-q4-duro.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-11",
+   "category": "other",
+   "status": "ok",
+   "title": "n17-a1-35b-q4-duro",
+   "summary": "Duro 89.5%, agente 100.0%, 34.5 t/s a un flusso.",
+   "model": "Agents-A1-Q4_K_M-GGUF",
+   "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.2,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 34.5,
+    "duro_pct": 89.5,
+    "agente_pct": 100.0
+   },
+   "ctx": 65536,
+   "tags": []
+  },
   {
    "id": "2026-11-10-underdog-saluki-27b-1.0",
    "file": "results/windows/2026-11-10-underdog-saluki-27b-1.0.json",
@@ -1045,6 +1069,29 @@
     "decode_tps_1": 79.9
    },
    "ctx": 65536,
+   "tags": []
+  },
+  {
+   "id": "2026-11-10-n17b-a1-35b-q4-omp-smoke",
+   "file": "results/windows/2026-11-10-n17b-a1-35b-q4-omp-smoke.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-10",
+   "category": "harness",
+   "status": "ok",
+   "title": "n17b-a1-35b-q4-omp-smoke",
+   "summary": "Risultato registrato.",
+   "model": "Agents-A1-Q4_K_M-GGUF",
+   "repo": "InternScience/Agents-A1-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 21.2,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "harness_omp_pieno_pct": 100.0,
+    "harness_omp_parziale_pct": 100.0
+   },
+   "ctx": null,
    "tags": []
   },
   {
