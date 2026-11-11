@@ -1,8 +1,58 @@
 {
  "platform": "windows",
- "count": 87,
+ "count": 89,
  "hidden_failed": 33,
  "experiments": [
+  {
+   "id": "2026-11-11-n18c-a1-4b-omp",
+   "file": "results/windows/2026-11-11-n18c-a1-4b-omp.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-11",
+   "category": "harness",
+   "status": "ok",
+   "title": "n18c-a1-4b-omp",
+   "summary": "Qualita tiny 74.1, 72.6 t/s a un flusso.",
+   "model": "Agents-A1-4B-Q4_K_M-GGUF",
+   "repo": "InternScience/Agents-A1-4B-Q4_K_M-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 2.7,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 72.6,
+    "harness_omp_pieno_pct": 50.0,
+    "harness_omp_parziale_pct": 78.1,
+    "q_medio": 74.1
+   },
+   "ctx": 65536,
+   "tags": []
+  },
+  {
+   "id": "2026-11-11-n18-arex-omp2",
+   "file": "results/windows/2026-11-11-n18-arex-omp2.json",
+   "platform": "windows",
+   "author": "Motti",
+   "date": "2026-11-11",
+   "category": "harness",
+   "status": "ok",
+   "title": "n18-arex-omp2",
+   "summary": "Qualita tiny 41.2, 70.6 t/s a un flusso.",
+   "model": "BAAI_AREX-Turbo-GGUF",
+   "repo": "bartowski/BAAI_AREX-Turbo-GGUF",
+   "quant": "Q4_K_M",
+   "size_gb": 2.9,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 70.6,
+    "harness_omp_pieno_pct": 66.7,
+    "harness_omp_parziale_pct": 93.3,
+    "q_medio": 41.2
+   },
+   "ctx": 65536,
+   "tags": []
+  },
   {
    "id": "2026-11-11-n17c-a1-35b-q4-omp",
    "file": "results/windows/2026-11-11-n17c-a1-35b-q4-omp.json",
