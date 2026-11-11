@@ -1,0 +1,77 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-m5-q-compact-80k",
+ "platform": "mac",
+ "author": "Lan",
+ "date": "2026-11-11",
+ "category": "other",
+ "status": "ok",
+ "title": "M5 24GB: q-compact-80k",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1 ONYX-compact",
+  "repo": "el4/Agents-A1-ONYX-GGUF",
+  "quant": "ONYX compact",
+  "size_gb": 17.0
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12262",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "-c",
+   "81920",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "1024",
+   "-ub",
+   "512"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M5 (10 core, GPU 10 core)",
+  "ram_gb": 24,
+  "os": "macOS 26.2"
+ },
+ "benchmark": {
+  "suite": "m5-notte (core-speed prompts una volta sola + prompt 15k + duro-v1 + agente + agente-mini)",
+  "version": 1,
+  "harness": "notte.py"
+ },
+ "metrics": {
+  "bench4_pct": 95.7,
+  "bench4_corrette": "67/70",
+  "bench4_per_categoria": {
+   "codice": 90.0,
+   "conoscenza": 100.0,
+   "contesto_3passi": 100.0,
+   "logica": 100.0,
+   "matematica": 90.0,
+   "output_codice": 87.5
+  },
+  "bench4_sec_domanda": 5.1,
+  "prompt_tps": 803.1,
+  "prompt_token": 15995,
+  "decode_tps_ctx15k": 38.1,
+  "decode_ctx15k_by_type": {
+   "prosa": 38.0,
+   "json": 38.1,
+   "codice": 38.1
+  }
+ },
+ "summary": "bench4: 95.7% (67/70); lettura 803.1 t/s su 15995 token, scrittura 38.1 t/s con quel contesto.",
+ "notes": "Misure dell 11/11 a corrente (o batteria >60%). swap 3367->3207 MB, OOM GPU 0.",
+ "tags": [
+  "m5",
+  "24gb"
+ ]
+}

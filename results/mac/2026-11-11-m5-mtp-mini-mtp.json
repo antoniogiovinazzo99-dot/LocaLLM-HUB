@@ -1,0 +1,84 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-m5-mtp-mini-mtp",
+ "platform": "mac",
+ "author": "Lan",
+ "date": "2026-11-11",
+ "category": "speculative",
+ "status": "ok",
+ "title": "M5 24GB: mtp-mini-mtp",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1 MTP APEX-I-Mini",
+  "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+  "quant": "APEX I-Mini + teste MTP",
+  "size_gb": 14.34
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12262",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "1024",
+   "-ub",
+   "512",
+   "--spec-type",
+   "draft-mtp"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M5 (10 core, GPU 10 core)",
+  "ram_gb": 24,
+  "os": "macOS 26.2"
+ },
+ "benchmark": {
+  "suite": "m5-notte (core-speed prompts una volta sola + prompt 15k + duro-v1 + agente + agente-mini)",
+  "version": 1,
+  "harness": "notte.py"
+ },
+ "metrics": {
+  "decode_tps_1": 62.5,
+  "tps_by_type": {
+   "codice": 59.5,
+   "storia": 59.0,
+   "ragionamento": 65.5,
+   "json": 65.9
+  },
+  "tps_method": "timings, ogni prompt una volta sola (testo nuovo)",
+  "draft_acceptance_pct": 73.4,
+  "decode_tps_giri": [
+   62.5,
+   62.5,
+   62.4
+  ],
+  "decode_tps_min": 62.4,
+  "decode_tps_max": 62.5,
+  "prompt_tps": 788.1,
+  "prompt_token": 15994,
+  "decode_tps_ctx15k": 40.9,
+  "decode_ctx15k_by_type": {
+   "prosa": 40.0,
+   "json": 40.9,
+   "codice": 41.7
+  }
+ },
+ "summary": "62.5 t/s su testo nuovo (3 giri: 62.4-62.5) (accettazione 73.4%); lettura 788.1 t/s su 15994 token, scrittura 40.9 t/s con quel contesto.",
+ "notes": "Misure dell 11/11 a corrente (o batteria >60%). swap 3888->3752 MB, OOM GPU 0.",
+ "tags": [
+  "m5",
+  "24gb"
+ ]
+}

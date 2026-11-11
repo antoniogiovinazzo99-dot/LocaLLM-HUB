@@ -76,16 +76,25 @@ def chat(msgs, max_tokens, extra=None, timeout=1800):
 
 
 def t_speed(exp, args):
-    """Scrittura su testo nuovo: i 4 prompt di core-speed una volta sola (niente ripetizioni per ngram-mod)."""
+    """Scrittura su testo nuovo: i 4 prompt di core-speed una volta sola (niente ripetizioni per ngram-mod).
+    --rip=N ripete il giro N volte (solo per config senza ngram-mod: a temperatura 0 il testo e lo stesso) e da media, min, max."""
+    rip = int(next((a.split('=')[1] for a in args if a.startswith('--rip=')), 1))
     chat([{'role': 'user', 'content': 'Say hi.'}], 8)
-    r, dn, da = {}, 0, 0
-    for k, q in CORE.items():
-        t, _, _ = chat([{'role': 'user', 'content': q}], 300)
-        r[k] = round(t.get('predicted_per_second', 0), 1)
-        dn += t.get('draft_n') or 0
-        da += t.get('draft_n_accepted') or 0
-    v = list(r.values())
-    out = {'tps': round(sum(v) / len(v), 1), 'per_tipo': r}
+    giri, r, dn, da = [], {}, 0, 0
+    for g in range(rip):
+        rg = {}
+        for k, q in CORE.items():
+            t, _, _ = chat([{'role': 'user', 'content': q}], 300)
+            rg[k] = round(t.get('predicted_per_second', 0), 1)
+            dn += t.get('draft_n') or 0
+            da += t.get('draft_n_accepted') or 0
+        giri.append(round(sum(rg.values()) / len(rg), 1))
+        for k, v in rg.items():
+            r.setdefault(k, []).append(v)
+    r = {k: round(sum(v) / len(v), 1) for k, v in r.items()}
+    out = {'tps': round(sum(giri) / len(giri), 1), 'per_tipo': r}
+    if rip > 1:
+        out.update({'giri': giri, 'min': min(giri), 'max': max(giri)})
     if dn:
         out['acc'] = round(100 * da / dn, 1)
     return out
@@ -206,15 +215,60 @@ def t_lungo(exp, args):
     return last
 
 
-def t_ufficiale(exp, args):
-    tag = re.sub(r'[^a-z0-9]+', '', ''.join(args).lower())[:40]
-    rc, txt, last, sec = run_script([PY, '-I', os.path.join(MP, 'bench_ufficiale.py'), exp['id'], URL] + args, f"{exp['id']}.ufficiale-{tag}.log", 3 * 3600)
-    if not last:
-        return {'errore': txt[-300:]}
-    return {k: v for k, v in last.items() if k not in ('label', 'errori', 'sbagliate', 'dettaglio')} | {'sec': sec}
+def t_bench(name):
+    """bench2/bench3/bench4/ufficiale degli amici (suite usate per il confronto con Flash-Next). Legge il riepilogo dal loro file .jsonl."""
+    def f(exp, args):
+        script = {'ufficiale': 'bench_ufficiale.py'}.get(name, name + '.py')
+        outf = os.path.join(MP, name + '-risultati.jsonl')
+        tag = re.sub(r'[^a-z0-9]+', '', ''.join(a for a in args if not a.startswith('--timeout=')).lower())[:40]
+        tmo = int(next((a.split('=')[1] for a in args if a.startswith('--timeout=')), 3 * 3600))
+        a2 = [a for a in args if not a.startswith('--timeout=')]
+        label = exp['id'] + ('-' + tag if tag else '')
+        off = os.path.getsize(outf) if os.path.exists(outf) else 0
+        rc, txt, last, sec = run_script([PY, '-I', os.path.join(MP, script), label, URL] + a2, f"{exp['id']}.{name}-{tag}.log", tmo, {'PYV': PY})
+        summ = None
+        if os.path.exists(outf):
+            with open(outf, errors='replace') as fh:
+                fh.seek(off)
+                for line in fh:
+                    try:
+                        r = json.loads(line)
+                    except Exception:
+                        continue
+                    if r.get('summary') and r.get('label') == label:
+                        summ = r
+        summ = summ or (last if last and last.get('summary') else None)
+        if not summ:
+            return {'errore': txt[-300:], 'rc': rc, 'sec': sec}
+        if summ.get('errori'):
+            json.dump(summ['errori'], open(os.path.join(LOG, f"{exp['id']}.{name}-{tag}.errori.json"), 'w'), ensure_ascii=False, indent=1)
+        return {'pct': summ.get('totale_pct'), 'corrette': summ.get('corrette'), 'cat': summ.get('per_categoria_pct'),
+                'sec_domanda': summ.get('secondi_per_domanda'), 'token': summ.get('token'), 'sec': sec, 'rc': rc}
+    return f
 
 
-TESTS = {'durodev': lambda e, a: t_duro(e, a, os.path.join(D, 'duro_dev.py')), 'ufficiale': t_ufficiale, 'speed': t_speed, 'long': t_long, 'core': t_core, 'agente': t_agente, 'duro': t_duro, 'agentemini': t_agentemini, 'lungo': t_lungo}
+def t_hermes(exp, args):
+    """Hermes vero (profilo lo-zio-tom, hermes -z): N domande una dopo l'altra, ognuna un processo nuovo. Misura i secondi a
+    domanda e quanti token di prompt il server ha dovuto rileggere ogni volta (dal registro del server)."""
+    qs = ['Quanto fa 17 per 23? Rispondi solo con il numero.', "Qual e la capitale dell'Australia? Rispondi con una parola.",
+          'Scrivi una frase di cinque parole sul mare.', 'Quanti giorni ha febbraio in un anno bisestile? Solo il numero.']
+    out = {'sec': [], 'risposte': []}
+    for q in qs:
+        t0 = time.time()
+        try:
+            r = subprocess.run([os.path.expanduser('~/.local/bin/lo-zio-tom'), '-z', q], capture_output=True, text=True, timeout=900)
+            out['risposte'].append(r.stdout.strip()[-80:])
+        except subprocess.TimeoutExpired:
+            out['risposte'].append('TIMEOUT')
+        out['sec'].append(round(time.time() - t0, 1))
+    txt = open(os.path.join(LOG, exp['id'] + '.server.log'), errors='replace').read()
+    out['prompt_letti'] = [int(x) for x in re.findall(r'prompt eval time =\s+[\d.]+ ms /\s+(\d+) tokens', txt)]
+    out['cache_scartata'] = len(re.findall('removing oldest entry', txt))
+    out['cache_saltata'] = len(re.findall('exceeds cache size limit', txt))
+    return out
+
+
+TESTS = {'hermes': t_hermes, 'durodev': lambda e, a: t_duro(e, a, os.path.join(D, 'duro_dev.py')), 'ufficiale': t_bench('ufficiale'), 'bench2': t_bench('bench2'), 'bench3': t_bench('bench3'), 'bench4': t_bench('bench4'), 'speed': t_speed, 'long': t_long, 'core': t_core, 'agente': t_agente, 'duro': t_duro, 'agentemini': t_agentemini, 'lungo': t_lungo}
 
 
 def server_cmd(exp):

@@ -1,0 +1,66 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-m5-nemo-gpu",
+ "platform": "mac",
+ "author": "Lan",
+ "date": "2026-11-11",
+ "category": "other",
+ "status": "ok",
+ "title": "M5 24GB: nemo-gpu",
+ "reference": false,
+ "model": {
+  "name": "Nemotron-3.5-Bolt-74B-A9B",
+  "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+  "quant": "24GB (2 bit QAT)",
+  "size_gb": 22.02
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12262",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "-c",
+   "32768",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "1024",
+   "-ub",
+   "512"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M5 (10 core, GPU 10 core)",
+  "ram_gb": 24,
+  "os": "macOS 26.2"
+ },
+ "benchmark": {
+  "suite": "m5-notte (core-speed prompts una volta sola + prompt 15k + duro-v1 + agente + agente-mini)",
+  "version": 1,
+  "harness": "notte.py"
+ },
+ "metrics": {
+  "prompt_tps": 39.0,
+  "prompt_token": 16432,
+  "decode_tps_ctx15k": 0.2,
+  "decode_ctx15k_by_type": {
+   "prosa": 0.2,
+   "json": 0.2,
+   "codice": 0.2
+  }
+ },
+ "summary": "lettura 39.0 t/s su 16432 token, scrittura 0.2 t/s con quel contesto.",
+ "notes": "Misure dell 11/11 a corrente (o batteria >60%). swap 1925->2448 MB, OOM GPU 0.",
+ "tags": [
+  "m5",
+  "24gb"
+ ]
+}

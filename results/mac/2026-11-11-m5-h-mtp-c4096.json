@@ -1,0 +1,87 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-m5-h-mtp-c4096",
+ "platform": "mac",
+ "author": "Lan",
+ "date": "2026-11-11",
+ "category": "other",
+ "status": "ok",
+ "title": "M5 24GB: h-mtp-c4096",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1 MTP APEX-I-Compact",
+  "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+  "quant": "APEX I-Compact + teste MTP",
+  "size_gb": 17.33
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12262",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "1024",
+   "-ub",
+   "512",
+   "--spec-type",
+   "draft-mtp",
+   "--spec-draft-n-max",
+   "2"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M5 (10 core, GPU 10 core)",
+  "ram_gb": 24,
+  "os": "macOS 26.2"
+ },
+ "benchmark": {
+  "suite": "m5-notte (core-speed prompts una volta sola + prompt 15k + duro-v1 + agente + agente-mini)",
+  "version": 1,
+  "harness": "notte.py"
+ },
+ "metrics": {
+  "hermes": {
+   "sec": [
+    30.3,
+    4.8,
+    3.4,
+    5.5
+   ],
+   "risposte": [
+    "391",
+    "Canberra",
+    "Il mare canta sotto il sole.",
+    "29"
+   ],
+   "prompt_letti": [
+    19274,
+    272,
+    25,
+    27,
+    20,
+    22,
+    26
+   ],
+   "cache_scartata": 0,
+   "cache_saltata": 0
+  }
+ },
+ "summary": "Fallito: ",
+ "notes": "Misure dell 11/11 a corrente (o batteria >60%). swap 3396->3388 MB, OOM GPU 0.",
+ "tags": [
+  "m5",
+  "24gb"
+ ]
+}

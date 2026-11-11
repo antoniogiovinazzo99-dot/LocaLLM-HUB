@@ -1,7 +1,7 @@
 {
  "platform": "mac",
- "count": 66,
- "hidden_failed": 3,
+ "count": 121,
+ "hidden_failed": 7,
  "experiments": [
   {
    "id": "2026-11-11-m5-v-df-q8-ub2048",
@@ -85,6 +85,87 @@
    ]
   },
   {
+   "id": "2026-11-11-m5-v-df-n3",
+   "file": "results/mac/2026-11-11-m5-v-df-n3.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: v-df-n3",
+   "summary": "70.0 t/s su testo nuovo (2 giri: 69.9-70.1) (accettazione 73.5%); lettura 711.5 t/s su 15993 token, scrittura 38.1 t/s con quel contesto.",
+   "model": "Agents-A1 ONYX-mini",
+   "repo": "el4/Agents-A1-ONYX-GGUF",
+   "quant": "ONYX mini (256 expert, non potato)",
+   "size_gb": 11.83,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 70.0,
+    "draft_acceptance_pct": 73.5,
+    "prompt_tps": 711.5
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-v-df-n2",
+   "file": "results/mac/2026-11-11-m5-v-df-n2.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: v-df-n2",
+   "summary": "67.7 t/s su testo nuovo (2 giri: 66.4-68.9) (accettazione 81.7%); lettura 768.9 t/s su 15997 token, scrittura 42.5 t/s con quel contesto.",
+   "model": "Agents-A1 ONYX-mini",
+   "repo": "el4/Agents-A1-ONYX-GGUF",
+   "quant": "ONYX mini (256 expert, non potato)",
+   "size_gb": 11.83,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 67.7,
+    "draft_acceptance_pct": 81.7,
+    "prompt_tps": 768.9
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-v-df-n1",
+   "file": "results/mac/2026-11-11-m5-v-df-n1.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: v-df-n1",
+   "summary": "53.5 t/s su testo nuovo (2 giri: 53.3-53.8) (accettazione 88.0%); lettura 729.5 t/s su 15991 token, scrittura 42.8 t/s con quel contesto.",
+   "model": "Agents-A1 ONYX-mini",
+   "repo": "el4/Agents-A1-ONYX-GGUF",
+   "quant": "ONYX mini (256 expert, non potato)",
+   "size_gb": 11.83,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 53.5,
+    "draft_acceptance_pct": 88.0,
+    "prompt_tps": 729.5
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
    "id": "2026-11-11-m5-v-base-q4-ub256",
    "file": "results/mac/2026-11-11-m5-v-base-q4-ub256.json",
    "platform": "mac",
@@ -111,6 +192,58 @@
    ]
   },
   {
+   "id": "2026-11-11-m5-v-base-ac",
+   "file": "results/mac/2026-11-11-m5-v-base-ac.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speed",
+   "status": "ok",
+   "title": "M5 24GB: v-base-ac",
+   "summary": "52.8 t/s su testo nuovo (3 giri: 52.5-53.0); lettura 842.6 t/s su 15995 token, scrittura 44.8 t/s con quel contesto.",
+   "model": "Agents-A1 ONYX-mini",
+   "repo": "el4/Agents-A1-ONYX-GGUF",
+   "quant": "ONYX mini (256 expert, non potato)",
+   "size_gb": 11.83,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 52.8,
+    "prompt_tps": 842.6
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-q-mtp-compact",
+   "file": "results/mac/2026-11-11-m5-q-mtp-compact.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "other",
+   "status": "ok",
+   "title": "M5 24GB: q-mtp-compact",
+   "summary": "agente 12/12; duro --n=15: 76.3% (45/59); durodev --n=20: 73.8% (59/80); agente-mini 83.3% pieni in 109 s; ufficiale: 74.6% (50/67); bench4: 97.1% (68/70).",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "agente_pct": 100.0,
+    "agente_mini": 83.3
+   },
+   "ctx": 81920,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
    "id": "2026-11-11-m5-q-mini",
    "file": "results/mac/2026-11-11-m5-q-mini.json",
    "platform": "mac",
@@ -131,6 +264,58 @@
     "duro_pct": 69.5,
     "agente_pct": 100.0,
     "agente_mini": 83.3
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-q-compact-80k",
+   "file": "results/mac/2026-11-11-m5-q-compact-80k.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "other",
+   "status": "ok",
+   "title": "M5 24GB: q-compact-80k",
+   "summary": "bench4: 95.7% (67/70); lettura 803.1 t/s su 15995 token, scrittura 38.1 t/s con quel contesto.",
+   "model": "Agents-A1 ONYX-compact",
+   "repo": "el4/Agents-A1-ONYX-GGUF",
+   "quant": "ONYX compact",
+   "size_gb": 17.0,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "prompt_tps": 803.1
+   },
+   "ctx": 81920,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-q-compact-64k",
+   "file": "results/mac/2026-11-11-m5-q-compact-64k.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "other",
+   "status": "ok",
+   "title": "M5 24GB: q-compact-64k",
+   "summary": "44.2 t/s su testo nuovo (3 giri: 43.6-44.9); lettura 781.0 t/s su 15992 token, scrittura 38.2 t/s con quel contesto; durodev --n=20: 76.2% (61/80); agente-mini 83.3% pieni in 146 s; ufficiale: 77.6% (52/67).",
+   "model": "Agents-A1 ONYX-compact",
+   "repo": "el4/Agents-A1-ONYX-GGUF",
+   "quant": "ONYX compact",
+   "size_gb": 17.0,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 44.2,
+    "agente_mini": 83.3,
+    "prompt_tps": 781.0
    },
    "ctx": 65536,
    "tags": [
@@ -167,6 +352,753 @@
    ]
   },
   {
+   "id": "2026-11-11-m5-nemo-reap50",
+   "file": "results/mac/2026-11-11-m5-nemo-reap50.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "other",
+   "status": "ok",
+   "title": "M5 24GB: nemo-reap50",
+   "summary": "8.0 t/s su testo nuovo (3 giri: 7.5-8.4); lettura 120.1 t/s su 16428 token, scrittura 8.3 t/s con quel contesto; duro --n=15: 50.8% (30/59); durodev --n=20: 65.0% (52/80); agente-mini 66.7% pieni in 384 s; ufficiale: 52.2% (35/67); bench4: 58.6% (41/70).",
+   "model": "Nemotron-3.5-Bolt-74B-A9B REAP50",
+   "repo": "anik-jha/Nemotron-3.5-Bolt-74B-A9B-16GB-GGUF",
+   "quant": "IQ2_XXS, 50% expert",
+   "size_gb": 13.38,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 8.0,
+    "agente_mini": 66.7,
+    "prompt_tps": 120.1
+   },
+   "ctx": 81920,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-nemo-gpu",
+   "file": "results/mac/2026-11-11-m5-nemo-gpu.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "other",
+   "status": "ok",
+   "title": "M5 24GB: nemo-gpu",
+   "summary": "lettura 39.0 t/s su 16432 token, scrittura 0.2 t/s con quel contesto.",
+   "model": "Nemotron-3.5-Bolt-74B-A9B",
+   "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+   "quant": "24GB (2 bit QAT)",
+   "size_gb": 22.02,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "prompt_tps": 39.0
+   },
+   "ctx": 32768,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtpc-96k",
+   "file": "results/mac/2026-11-11-m5-mtpc-96k.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtpc-96k",
+   "summary": "13.2 t/s su testo nuovo (accettazione 82.4%); lettura 643.6 t/s su 15990 token, scrittura 11.0 t/s con quel contesto; contesto lungo: {\"target\": 90000, \"prompt_tok\": 90064, \"richiamo\": \"2/2\", \"prefill_tps\": 260.9, \"prefill_nuovi\": 26549, \"decode_tps\": 8.0, \"s\": 104.0, \"risposta\": \"1. girasole-.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 13.2,
+    "draft_acceptance_pct": 82.4,
+    "prompt_tps": 643.6
+   },
+   "ctx": 98304,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtpc-80k",
+   "file": "results/mac/2026-11-11-m5-mtpc-80k.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtpc-80k",
+   "summary": "58.5 t/s su testo nuovo (accettazione 82.4%); lettura 753.2 t/s su 15993 token, scrittura 43.5 t/s con quel contesto; contesto lungo: {\"target\": 75920, \"prompt_tok\": 75937, \"richiamo\": \"2/2\", \"prefill_tps\": 298.4, \"prefill_nuovi\": 12422, \"decode_tps\": 23.5, \"s\": 42.4, \"risposta\": \"1. girasole-.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 58.5,
+    "draft_acceptance_pct": 82.4,
+    "prompt_tps": 753.2
+   },
+   "ctx": 81920,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtpc-72k",
+   "file": "results/mac/2026-11-11-m5-mtpc-72k.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtpc-72k",
+   "summary": "59.7 t/s su testo nuovo (accettazione 82.4%); lettura 757.0 t/s su 15992 token, scrittura 43.2 t/s con quel contesto; contesto lungo: {\"target\": 67728, \"prompt_tok\": 67746, \"richiamo\": \"2/2\", \"prefill_tps\": 310.5, \"prefill_nuovi\": 4231, \"decode_tps\": 25.0, \"s\": 14.4, \"risposta\": \"1. girasole-7.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 59.7,
+    "draft_acceptance_pct": 82.4,
+    "prompt_tps": 757.0
+   },
+   "ctx": 73728,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtpc-64k-pieno",
+   "file": "results/mac/2026-11-11-m5-mtpc-64k-pieno.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "other",
+   "status": "ok",
+   "title": "M5 24GB: mtpc-64k-pieno",
+   "summary": "contesto lungo: {\"target\": 59000, \"prompt_tok\": 59002, \"richiamo\": \"1/1\", \"prefill_tps\": 522.5, \"prefill_nuovi\": 59002, \"decode_tps\": 26.4, \"s\": 113.3, \"risposta\": \"1. girasole.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-mini-none",
+   "file": "results/mac/2026-11-11-m5-mtp-mini-none.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speed",
+   "status": "ok",
+   "title": "M5 24GB: mtp-mini-none",
+   "summary": "54.1 t/s su testo nuovo (3 giri: 53.8-54.3); lettura 831.7 t/s su 15994 token, scrittura 44.4 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Mini",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Mini + teste MTP",
+   "size_gb": 14.34,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 54.1,
+    "prompt_tps": 831.7
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-mini-mtp-n2",
+   "file": "results/mac/2026-11-11-m5-mtp-mini-mtp-n2.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-mini-mtp-n2",
+   "summary": "62.4 t/s su testo nuovo (2 giri: 62.0-62.8) (accettazione 81.8%); lettura 704.6 t/s su 15995 token, scrittura 41.8 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Mini",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Mini + teste MTP",
+   "size_gb": 14.34,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 62.4,
+    "draft_acceptance_pct": 81.8,
+    "prompt_tps": 704.6
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-mini-mtp",
+   "file": "results/mac/2026-11-11-m5-mtp-mini-mtp.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-mini-mtp",
+   "summary": "62.5 t/s su testo nuovo (3 giri: 62.4-62.5) (accettazione 73.4%); lettura 788.1 t/s su 15994 token, scrittura 40.9 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Mini",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Mini + teste MTP",
+   "size_gb": 14.34,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 62.5,
+    "draft_acceptance_pct": 73.4,
+    "prompt_tps": 788.1
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-none-f16-32k",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-none-f16-32k.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speed",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-none-f16-32k",
+   "summary": "49.4 t/s su testo nuovo; lettura 809.6 t/s su 15994 token, scrittura 41.8 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 49.4,
+    "prompt_tps": 809.6
+   },
+   "ctx": 32768,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-none",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-none.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speed",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-none",
+   "summary": "48.6 t/s su testo nuovo (3 giri: 48.3-48.8); lettura 804.5 t/s su 15996 token, scrittura 40.8 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 48.6,
+    "prompt_tps": 804.5
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-n2-q8-64k",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-n2-q8-64k.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-n2-q8-64k",
+   "summary": "14.8 t/s su testo nuovo (2 giri: 14.7-14.9) (accettazione 78.1%); lettura 652.9 t/s su 15993 token, scrittura 12.6 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 14.8,
+    "draft_acceptance_pct": 78.1,
+    "prompt_tps": 652.9
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-n2-kq8-vq4-64k",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-n2-kq8-vq4-64k.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-n2-kq8-vq4-64k",
+   "summary": "56.0 t/s su testo nuovo (accettazione 78.0%); lettura 56.6 t/s su 15992 token, scrittura 16.9 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 56.0,
+    "draft_acceptance_pct": 78.0,
+    "prompt_tps": 56.6
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-n2-kq4-vq8-64k",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-n2-kq4-vq8-64k.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-n2-kq4-vq8-64k",
+   "summary": "54.7 t/s su testo nuovo (accettazione 80.4%); lettura 61.4 t/s su 15992 token, scrittura 17.5 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 54.7,
+    "draft_acceptance_pct": 80.4,
+    "prompt_tps": 61.4
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-n2-f16-48k",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-n2-f16-48k.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-n2-f16-48k",
+   "summary": "15.7 t/s su testo nuovo (accettazione 80.0%).",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 15.7,
+    "draft_acceptance_pct": 80.0
+   },
+   "ctx": 49152,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-n2-f16-32k",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-n2-f16-32k.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-n2-f16-32k",
+   "summary": "59.5 t/s su testo nuovo (2 giri: 59.5-59.6) (accettazione 80.0%); lettura 760.0 t/s su 15995 token, scrittura 47.1 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 59.5,
+    "draft_acceptance_pct": 80.0,
+    "prompt_tps": 760.0
+   },
+   "ctx": 32768,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-mtp-q8-32k",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-mtp-q8-32k.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-mtp-q8-32k",
+   "summary": "58.0 t/s su testo nuovo (accettazione 70.6%); lettura 754.7 t/s su 15996 token, scrittura 40.2 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 58.0,
+    "draft_acceptance_pct": 70.6,
+    "prompt_tps": 754.7
+   },
+   "ctx": 32768,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-mtp-q4-32k",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-mtp-q4-32k.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-mtp-q4-32k",
+   "summary": "58.5 t/s su testo nuovo (accettazione 72.3%); lettura 755.5 t/s su 15995 token, scrittura 38.2 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 58.5,
+    "draft_acceptance_pct": 72.3,
+    "prompt_tps": 755.5
+   },
+   "ctx": 32768,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-mtp-ngram",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-mtp-ngram.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-mtp-ngram",
+   "summary": "57.2 t/s su testo nuovo (accettazione 68.9%); lettura 756.3 t/s su 15992 token, scrittura 39.7 t/s con quel contesto; agente-mini 83.3% pieni in 110 s.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 57.2,
+    "agente_mini": 83.3,
+    "draft_acceptance_pct": 68.9,
+    "prompt_tps": 756.3
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-mtp-n5",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-mtp-n5.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-mtp-n5",
+   "summary": "52.2 t/s su testo nuovo (2 giri: 52.1-52.2) (accettazione 58.2%); lettura 756.7 t/s su 15990 token, scrittura 32.8 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 52.2,
+    "draft_acceptance_pct": 58.2,
+    "prompt_tps": 756.7
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-mtp-n4-p08",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-mtp-n4-p08.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-mtp-n4-p08",
+   "summary": "59.6 t/s su testo nuovo (2 giri: 59.5-59.7) (accettazione 96.6%); lettura 756.9 t/s su 15992 token, scrittura 42.8 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 59.6,
+    "draft_acceptance_pct": 96.6,
+    "prompt_tps": 756.9
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-mtp-n3-p07",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-mtp-n3-p07.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-mtp-n3-p07",
+   "summary": "59.5 t/s su testo nuovo (2 giri: 59.2-59.7) (accettazione 94.7%); lettura 757.9 t/s su 15997 token, scrittura 44.0 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 59.5,
+    "draft_acceptance_pct": 94.7,
+    "prompt_tps": 757.9
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-mtp-n2-p06",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-mtp-n2-p06.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-mtp-n2-p06",
+   "summary": "59.5 t/s su testo nuovo (2 giri: 59.4-59.6) (accettazione 91.7%); lettura 755.5 t/s su 15994 token, scrittura 44.1 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 59.5,
+    "draft_acceptance_pct": 91.7,
+    "prompt_tps": 755.5
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-mtp-n2",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-mtp-n2.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-mtp-n2",
+   "summary": "59.1 t/s su testo nuovo (2 giri: 59.0-59.3) (accettazione 82.4%); lettura 755.9 t/s su 15993 token, scrittura 44.2 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 59.1,
+    "draft_acceptance_pct": 82.4,
+    "prompt_tps": 755.9
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-mtp-n1",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-mtp-n1.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-mtp-n1",
+   "summary": "57.5 t/s su testo nuovo (2 giri: 57.3-57.6) (accettazione 90.3%); lettura 749.4 t/s su 15990 token, scrittura 44.0 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 57.5,
+    "draft_acceptance_pct": 90.3,
+    "prompt_tps": 749.4
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-mtp-f16-32k",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-mtp-f16-32k.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-mtp-f16-32k",
+   "summary": "58.5 t/s su testo nuovo (accettazione 71.9%); lettura 766.2 t/s su 15995 token, scrittura 45.6 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 58.5,
+    "draft_acceptance_pct": 71.9,
+    "prompt_tps": 766.2
+   },
+   "ctx": 32768,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mtp-compact-mtp",
+   "file": "results/mac/2026-11-11-m5-mtp-compact-mtp.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mtp-compact-mtp",
+   "summary": "58.0 t/s su testo nuovo (3 giri: 57.8-58.1) (accettazione 72.3%); lettura 745.0 t/s su 15993 token, scrittura 38.7 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 58.0,
+    "draft_acceptance_pct": 72.3,
+    "prompt_tps": 745.0
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-mini-128k",
+   "file": "results/mac/2026-11-11-m5-mini-128k.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: mini-128k",
+   "summary": "68.4 t/s su testo nuovo (accettazione 76.3%); lettura 777.4 t/s su 15992 token, scrittura 44.3 t/s con quel contesto; contesto lungo: {\"target\": 120000, \"prompt_tok\": 120081, \"richiamo\": \"2/2\", \"prefill_tps\": 249.9, \"prefill_nuovi\": 58098, \"decode_tps\": 12.8, \"s\": 233.9, \"risposta\": \"1. giraso.",
+   "model": "Agents-A1 ONYX-mini",
+   "repo": "el4/Agents-A1-ONYX-GGUF",
+   "quant": "ONYX mini (256 expert, non potato)",
+   "size_gb": 11.83,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 68.4,
+    "draft_acceptance_pct": 76.3,
+    "prompt_tps": 777.4
+   },
+   "ctx": 131072,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
    "id": "2026-11-11-m5-mc-compact-lean",
    "file": "results/mac/2026-11-11-m5-mc-compact-lean.json",
    "platform": "mac",
@@ -187,6 +1119,383 @@
     "prompt_tps": 793.9
    },
    "ctx": 32768,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-h-mtp-c512",
+   "file": "results/mac/2026-11-11-m5-h-mtp-c512.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "other",
+   "status": "ok",
+   "title": "M5 24GB: h-mtp-c512",
+   "summary": "Fallito: ",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-h-mtp-c4096",
+   "file": "results/mac/2026-11-11-m5-h-mtp-c4096.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "other",
+   "status": "ok",
+   "title": "M5 24GB: h-mtp-c4096",
+   "summary": "Fallito: ",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-h-mtp-c2048",
+   "file": "results/mac/2026-11-11-m5-h-mtp-c2048.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "other",
+   "status": "ok",
+   "title": "M5 24GB: h-mtp-c2048",
+   "summary": "Fallito: ",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-fn-qualita",
+   "file": "results/mac/2026-11-11-m5-fn-qualita.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "agent",
+   "status": "ok",
+   "title": "M5 24GB: fn-qualita",
+   "summary": "agente 10/12; ufficiale: 82.1% (55/67).",
+   "model": "Qwen3.8-Flash-Next",
+   "repo": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+   "quant": "GSQ-RCO Q2_0 (2 parti, expert in streaming da SSD)",
+   "size_gb": 66.4,
+   "engine": "Strata",
+   "ref": false,
+   "headline": {
+    "agente_pct": 83.3
+   },
+   "ctx": null,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-fn-lungo2",
+   "file": "results/mac/2026-11-11-m5-fn-lungo2.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "other",
+   "status": "ok",
+   "title": "M5 24GB: fn-lungo2",
+   "summary": "lettura 252.8 t/s su 16439 token, scrittura 17.4 t/s con quel contesto.",
+   "model": "Qwen3.8-Flash-Next",
+   "repo": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+   "quant": "GSQ-RCO Q2_0 (2 parti, expert in streaming da SSD)",
+   "size_gb": 66.4,
+   "engine": "Strata",
+   "ref": false,
+   "headline": {
+    "prompt_tps": 252.8
+   },
+   "ctx": null,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-fn-default",
+   "file": "results/mac/2026-11-11-m5-fn-default.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: fn-default",
+   "summary": "16.9 t/s su testo nuovo (accettazione 77.9%).",
+   "model": "Qwen3.8-Flash-Next",
+   "repo": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+   "quant": "GSQ-RCO Q2_0 (2 parti, expert in streaming da SSD)",
+   "size_gb": 66.4,
+   "engine": "Strata",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 16.9,
+    "draft_acceptance_pct": 77.9
+   },
+   "ctx": null,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-cur-mtpc-n3",
+   "file": "results/mac/2026-11-11-m5-cur-mtpc-n3.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: cur-mtpc-n3",
+   "summary": "57.9 t/s su testo nuovo (accettazione 72.3%); lettura 830.0 t/s su 2043 token, scrittura 55.4 t/s con quel contesto; lettura 748.7 t/s su 15992 token, scrittura 37.9 t/s con quel contesto; lettura 560.9 t/s su 50000 token, scrittura 24.8 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 57.9,
+    "draft_acceptance_pct": 72.3
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-cur-mtpc-n2",
+   "file": "results/mac/2026-11-11-m5-cur-mtpc-n2.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: cur-mtpc-n2",
+   "summary": "59.6 t/s su testo nuovo (accettazione 82.4%); lettura 830.1 t/s su 2042 token, scrittura 56.2 t/s con quel contesto; lettura 750.5 t/s su 15995 token, scrittura 43.6 t/s con quel contesto; lettura 559.7 t/s su 50002 token, scrittura 28.8 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 59.6,
+    "draft_acceptance_pct": 82.4
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-cur-mtpc-n0",
+   "file": "results/mac/2026-11-11-m5-cur-mtpc-n0.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speed",
+   "status": "ok",
+   "title": "M5 24GB: cur-mtpc-n0",
+   "summary": "48.7 t/s su testo nuovo; lettura 882.7 t/s su 2046 token, scrittura 47.6 t/s con quel contesto; lettura 793.0 t/s su 15994 token, scrittura 40.9 t/s con quel contesto; lettura 599.5 t/s su 49996 token, scrittura 30.6 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 48.7
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-cur-mini-n3",
+   "file": "results/mac/2026-11-11-m5-cur-mini-n3.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: cur-mini-n3",
+   "summary": "75.3 t/s su testo nuovo (accettazione 73.5%); lettura 843.7 t/s su 2043 token, scrittura 66.1 t/s con quel contesto; lettura 804.3 t/s su 15994 token, scrittura 44.0 t/s con quel contesto; lettura 600.2 t/s su 49994 token, scrittura 27.4 t/s con quel contesto.",
+   "model": "Agents-A1 ONYX-mini",
+   "repo": "el4/Agents-A1-ONYX-GGUF",
+   "quant": "ONYX mini (256 expert, non potato)",
+   "size_gb": 11.83,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 75.3,
+    "draft_acceptance_pct": 73.5
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-cur-mini-n2",
+   "file": "results/mac/2026-11-11-m5-cur-mini-n2.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: cur-mini-n2",
+   "summary": "69.3 t/s su testo nuovo (accettazione 81.7%); lettura 819.8 t/s su 2044 token, scrittura 61.9 t/s con quel contesto; lettura 804.6 t/s su 15991 token, scrittura 47.4 t/s con quel contesto; lettura 601.3 t/s su 49998 token, scrittura 31.1 t/s con quel contesto.",
+   "model": "Agents-A1 ONYX-mini",
+   "repo": "el4/Agents-A1-ONYX-GGUF",
+   "quant": "ONYX mini (256 expert, non potato)",
+   "size_gb": 11.83,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 69.3,
+    "draft_acceptance_pct": 81.7
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-cur-mini-n0",
+   "file": "results/mac/2026-11-11-m5-cur-mini-n0.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speed",
+   "status": "ok",
+   "title": "M5 24GB: cur-mini-n0",
+   "summary": "53.8 t/s su testo nuovo; lettura 889.9 t/s su 2042 token, scrittura 52.4 t/s con quel contesto; lettura 844.6 t/s su 15994 token, scrittura 44.7 t/s con quel contesto; lettura 618.3 t/s su 49996 token, scrittura 32.6 t/s con quel contesto.",
+   "model": "Agents-A1 ONYX-mini",
+   "repo": "el4/Agents-A1-ONYX-GGUF",
+   "quant": "ONYX mini (256 expert, non potato)",
+   "size_gb": 11.83,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 53.8
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-ctx-mtpc-n3-s4k2",
+   "file": "results/mac/2026-11-11-m5-ctx-mtpc-n3-s4k2.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: ctx-mtpc-n3-s4k2",
+   "summary": "58.4 t/s su testo nuovo (accettazione 72.3%); lettura 835.1 t/s su 2044 token, scrittura 55.1 t/s con quel contesto; lettura 749.9 t/s su 15994 token, scrittura 40.2 t/s con quel contesto; lettura 561.9 t/s su 49998 token, scrittura 26.6 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 58.4,
+    "draft_acceptance_pct": 72.3
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-ctx-mtpc-n3-base",
+   "file": "results/mac/2026-11-11-m5-ctx-mtpc-n3-base.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: ctx-mtpc-n3-base",
+   "summary": "58.7 t/s su testo nuovo (accettazione 72.3%); lettura 842.3 t/s su 2044 token, scrittura 55.9 t/s con quel contesto; lettura 754.1 t/s su 15995 token, scrittura 39.2 t/s con quel contesto; lettura 559.5 t/s su 49996 token, scrittura 24.1 t/s con quel contesto.",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 58.7,
+    "draft_acceptance_pct": 72.3
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-ctx-mini-n3-s4k2",
+   "file": "results/mac/2026-11-11-m5-ctx-mini-n3-s4k2.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: ctx-mini-n3-s4k2",
+   "summary": "72.7 t/s su testo nuovo (accettazione 70.9%); lettura 825.0 t/s su 2043 token, scrittura 68.4 t/s con quel contesto; lettura 798.4 t/s su 15991 token, scrittura 44.2 t/s con quel contesto; lettura 594.5 t/s su 49995 token, scrittura 29.9 t/s con quel contesto.",
+   "model": "Agents-A1 ONYX-mini",
+   "repo": "el4/Agents-A1-ONYX-GGUF",
+   "quant": "ONYX mini (256 expert, non potato)",
+   "size_gb": 11.83,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 72.7,
+    "draft_acceptance_pct": 70.9
+   },
+   "ctx": 65536,
    "tags": [
     "m5",
     "24gb"
@@ -266,6 +1575,129 @@
     "decode_tps_1": 14.9,
     "tps_media": 30.5,
     "draft_acceptance_pct": 70.1
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-b-mtpc-strumenti",
+   "file": "results/mac/2026-11-11-m5-b-mtpc-strumenti.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "armature",
+   "status": "ok",
+   "title": "M5 24GB: b-mtpc-strumenti",
+   "summary": "ufficiale --tools --cheatsheet=pack-strumenti-v1.md: 94.0% (63/67); bench2: 94.9% (56/59); bench2 --tools --cheatsheet=pack-strumenti-v1.md: 94.9% (56/59); bench3: 97.4% (74/76); bench3 --tools --cheatsheet=pack-strumenti-v1.md: 97.4% (74/76); bench4 --tools --cheatsheet=pack-strumenti-v1.md: 98.6% (69/70).",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "ctx": 81920,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-b-mtpc-dev2",
+   "file": "results/mac/2026-11-11-m5-b-mtpc-dev2.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "armature",
+   "status": "ok",
+   "title": "M5 24GB: b-mtpc-dev2",
+   "summary": "durodev --n=20 --cheatsheet=pack-v1.md: 82.5% (66/80); durodev --n=10 --think: 65.9% (29/44).",
+   "model": "Agents-A1 MTP APEX-I-Compact",
+   "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+   "quant": "APEX I-Compact + teste MTP",
+   "size_gb": 17.33,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "ctx": 81920,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-b-mini-strumenti",
+   "file": "results/mac/2026-11-11-m5-b-mini-strumenti.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "armature",
+   "status": "ok",
+   "title": "M5 24GB: b-mini-strumenti",
+   "summary": "ufficiale --tools --cheatsheet=pack-strumenti-v1.md: 91.0% (61/67); bench4 --tools --cheatsheet=pack-strumenti-v1.md: 97.1% (68/70); durodev --n=20 --cheatsheet=pack-v1.md: 72.5% (58/80); durodev --n=10 --think: 38.6% (17/44).",
+   "model": "Agents-A1 ONYX-mini",
+   "repo": "el4/Agents-A1-ONYX-GGUF",
+   "quant": "ONYX mini (256 expert, non potato)",
+   "size_gb": 11.83,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {},
+   "ctx": 81920,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-ab-mini-df-b12262",
+   "file": "results/mac/2026-11-11-m5-ab-mini-df-b12262.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: ab-mini-df-b12262",
+   "summary": "73.2 t/s su testo nuovo (3 giri: 72.8-73.4) (accettazione 70.9%); lettura 796.8 t/s su 15991 token, scrittura 41.9 t/s con quel contesto.",
+   "model": "Agents-A1 ONYX-mini",
+   "repo": "el4/Agents-A1-ONYX-GGUF",
+   "quant": "ONYX mini (256 expert, non potato)",
+   "size_gb": 11.83,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 73.2,
+    "draft_acceptance_pct": 70.9,
+    "prompt_tps": 796.8
+   },
+   "ctx": 65536,
+   "tags": [
+    "m5",
+    "24gb"
+   ]
+  },
+  {
+   "id": "2026-11-11-m5-ab-mini-df-b12038",
+   "file": "results/mac/2026-11-11-m5-ab-mini-df-b12038.json",
+   "platform": "mac",
+   "author": "Lan",
+   "date": "2026-11-11",
+   "category": "speculative",
+   "status": "ok",
+   "title": "M5 24GB: ab-mini-df-b12038",
+   "summary": "74.4 t/s su testo nuovo (3 giri: 74.0-74.9) (accettazione 73.5%); lettura 774.6 t/s su 15995 token, scrittura 42.0 t/s con quel contesto.",
+   "model": "Agents-A1 ONYX-mini",
+   "repo": "el4/Agents-A1-ONYX-GGUF",
+   "quant": "ONYX mini (256 expert, non potato)",
+   "size_gb": 11.83,
+   "engine": "llama.cpp",
+   "ref": false,
+   "headline": {
+    "decode_tps_1": 74.4,
+    "draft_acceptance_pct": 73.5,
+    "prompt_tps": 774.6
    },
    "ctx": 65536,
    "tags": [

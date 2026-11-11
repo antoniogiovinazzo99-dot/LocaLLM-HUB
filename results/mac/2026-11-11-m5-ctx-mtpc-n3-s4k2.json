@@ -1,0 +1,95 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-m5-ctx-mtpc-n3-s4k2",
+ "platform": "mac",
+ "author": "Lan",
+ "date": "2026-11-11",
+ "category": "speculative",
+ "status": "ok",
+ "title": "M5 24GB: ctx-mtpc-n3-s4k2",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1 MTP APEX-I-Compact",
+  "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+  "quant": "APEX I-Compact + teste MTP",
+  "size_gb": 17.33
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12262ctx",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "1024",
+   "-ub",
+   "512",
+   "--spec-type",
+   "draft-mtp",
+   "--spec-draft-n-max",
+   "3"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M5 (10 core, GPU 10 core)",
+  "ram_gb": 24,
+  "os": "macOS 26.2"
+ },
+ "benchmark": {
+  "suite": "m5-notte (core-speed prompts una volta sola + prompt 15k + duro-v1 + agente + agente-mini)",
+  "version": 1,
+  "harness": "notte.py"
+ },
+ "metrics": {
+  "decode_tps_1": 58.4,
+  "tps_by_type": {
+   "codice": 57.2,
+   "storia": 53.1,
+   "ragionamento": 60.3,
+   "json": 62.9
+  },
+  "tps_method": "timings, ogni prompt una volta sola (testo nuovo)",
+  "draft_acceptance_pct": 72.3,
+  "prompt_tps_char6000": 835.1,
+  "prompt_token_char6000": 2044,
+  "decode_tps_ctx_char6000": 55.1,
+  "decode_ctx15k_by_type_char6000": {
+   "prosa": 53.5,
+   "json": 56.5,
+   "codice": 55.4
+  },
+  "prompt_tps_char44000": 749.9,
+  "prompt_token_char44000": 15994,
+  "decode_tps_ctx_char44000": 40.2,
+  "decode_ctx15k_by_type_char44000": {
+   "prosa": 39.9,
+   "json": 39.8,
+   "codice": 40.9
+  },
+  "prompt_tps_char140000": 561.9,
+  "prompt_token_char140000": 49998,
+  "decode_tps_ctx_char140000": 26.6,
+  "decode_ctx15k_by_type_char140000": {
+   "prosa": 25.8,
+   "json": 27.2,
+   "codice": 26.8
+  }
+ },
+ "summary": "58.4 t/s su testo nuovo (accettazione 72.3%); lettura 835.1 t/s su 2044 token, scrittura 55.1 t/s con quel contesto; lettura 749.9 t/s su 15994 token, scrittura 40.2 t/s con quel contesto; lettura 561.9 t/s su 49998 token, scrittura 26.6 t/s con quel contesto.",
+ "notes": "Misure dell 11/11 a corrente (o batteria >60%). swap 3376->3280 MB, OOM GPU 0.",
+ "tags": [
+  "m5",
+  "24gb"
+ ]
+}

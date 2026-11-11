@@ -1,0 +1,73 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-m5-mtpc-64k-pieno",
+ "platform": "mac",
+ "author": "Lan",
+ "date": "2026-11-11",
+ "category": "other",
+ "status": "ok",
+ "title": "M5 24GB: mtpc-64k-pieno",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1 MTP APEX-I-Compact",
+  "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+  "quant": "APEX I-Compact + teste MTP",
+  "size_gb": 17.33
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12262",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "1024",
+   "-ub",
+   "512",
+   "--spec-type",
+   "draft-mtp",
+   "--spec-draft-n-max",
+   "2"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M5 (10 core, GPU 10 core)",
+  "ram_gb": 24,
+  "os": "macOS 26.2"
+ },
+ "benchmark": {
+  "suite": "m5-notte (core-speed prompts una volta sola + prompt 15k + duro-v1 + agente + agente-mini)",
+  "version": 1,
+  "harness": "notte.py"
+ },
+ "metrics": {
+  "lungo": {
+   "target": 59000,
+   "prompt_tok": 59002,
+   "richiamo": "1/1",
+   "prefill_tps": 522.5,
+   "prefill_nuovi": 59002,
+   "decode_tps": 26.4,
+   "s": 113.3,
+   "risposta": "1. girasole-7319",
+   "sec": 113
+  }
+ },
+ "summary": "contesto lungo: {\"target\": 59000, \"prompt_tok\": 59002, \"richiamo\": \"1/1\", \"prefill_tps\": 522.5, \"prefill_nuovi\": 59002, \"decode_tps\": 26.4, \"s\": 113.3, \"risposta\": \"1. girasole.",
+ "notes": "Misure dell 11/11 a corrente (o batteria >60%). swap 3180->2924 MB, OOM GPU 0.",
+ "tags": [
+  "m5",
+  "24gb"
+ ]
+}

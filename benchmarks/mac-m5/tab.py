@@ -13,15 +13,17 @@ for line in open(os.path.join(D, 'risultati', 'notte.jsonl')):
         if 'errore' in v:
             parts.append(f"{k}: ERR {v['errore'][-60:]!r}")
         elif n == 'speed':
-            parts.append(f"nuovo {v['tps']} (acc {v.get('acc', '-')})")
+            parts.append(f"nuovo {v['tps']}" + (f" [{v['min']}-{v['max']}]" if v.get('giri') else '') + f" (acc {v.get('acc', '-')})")
         elif n == 'long':
             parts.append(f"lungo15k: legge {v['lettura_tps']} scrive {v['tps']} [prosa {v['prosa']} json {v['json']} cod {v['codice']}] acc {v.get('acc', '-')}")
         elif n == 'core':
             parts.append(f"core {v.get('tps')} acc {v.get('acc')}")
         elif n == 'agente':
             parts.append(f"agente {v.get('corrette')} {v.get('sec_compito')}s")
-        elif n == 'duro':
-            parts.append(f"{k}: {v.get('pct')}% ({v.get('ok')}/{v.get('n')}) {v.get('cat')} {v.get('sec_domanda')}s/d tronc {v.get('troncate')}")
+        elif n in ('ufficiale', 'bench2', 'bench3', 'bench4'):
+            parts.append(f"{k.split(' --timeout')[0]}: {v.get('pct')}% ({v.get('corrette')}) {v.get('sec_domanda')}s/d")
+        elif n in ('duro', 'durodev'):
+            parts.append(f"{k.split(' --timeout')[0].replace('', '').replace('', '')}: {v.get('pct')}% ({v.get('ok')}/{v.get('n')}) {v.get('cat')} {v.get('sec_domanda')}s/d tronc {v.get('troncate')}")
         elif n == 'agentemini':
             parts.append(f"amini pieni {v.get('pieni_pct')}% parz {v.get('parziale_pct')}% {v.get('sec')}s nv {v.get('non_valide')}")
         else:

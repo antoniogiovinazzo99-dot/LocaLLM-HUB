@@ -1,0 +1,148 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-m5-q-mtp-compact",
+ "platform": "mac",
+ "author": "Lan",
+ "date": "2026-11-11",
+ "category": "other",
+ "status": "ok",
+ "title": "M5 24GB: q-mtp-compact",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1 MTP APEX-I-Compact",
+  "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+  "quant": "APEX I-Compact + teste MTP",
+  "size_gb": 17.33
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12262",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "-c",
+   "81920",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "1024",
+   "-ub",
+   "512",
+   "--spec-type",
+   "draft-mtp",
+   "--spec-draft-n-max",
+   "2"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M5 (10 core, GPU 10 core)",
+  "ram_gb": 24,
+  "os": "macOS 26.2"
+ },
+ "benchmark": {
+  "suite": "m5-notte (core-speed prompts una volta sola + prompt 15k + duro-v1 + agente + agente-mini)",
+  "version": 1,
+  "harness": "notte.py"
+ },
+ "metrics": {
+  "agente_pct": 100.0,
+  "agente_sec_compito": 9.4,
+  "duro_n_15_timeout_3600_pct": 76.3,
+  "duro_n_15_timeout_3600_n": 59,
+  "duro_n_15_timeout_3600_per_categoria": {
+   "code": 100.0,
+   "math": 86.7,
+   "mbpp": 53.3,
+   "mmlu": 64.3
+  },
+  "duro_n_15_timeout_3600_sec_domanda": 10.5,
+  "duro_n_15_timeout_3600_esiti": {
+   "math": "111011111011111",
+   "code": "111111111111111",
+   "mbpp": "100110101100101",
+   "mmlu": "11111010100110"
+  },
+  "durodev_n_20_timeout_4500_pct": 73.8,
+  "durodev_n_20_timeout_4500_n": 80,
+  "durodev_n_20_timeout_4500_per_categoria": {
+   "code": 80.0,
+   "math": 75.0,
+   "mbpp": 60.0,
+   "mmlu": 80.0
+  },
+  "durodev_n_20_timeout_4500_sec_domanda": 9.2,
+  "durodev_n_20_timeout_4500_esiti": {
+   "math": "11100011110111110111",
+   "code": "11101101011110111111",
+   "mbpp": "10111001111111100000",
+   "mmlu": "11111110110111011011"
+  },
+  "agente_mini": 83.3,
+  "agente_mini_parziale": 83.3,
+  "agente_mini_sec": 109,
+  "agente_mini_dettaglio": {
+   "bug_prezzi": [
+    1.0,
+    13.1
+   ],
+   "config_loader": [
+    1.0,
+    24.8
+   ],
+   "rinomina": [
+    1.0,
+    18.5
+   ],
+   "paginazione": [
+    1.0,
+    22.2
+   ],
+   "dati_ordini": [
+    0.0,
+    10.5
+   ],
+   "rapporto": [
+    1.0,
+    19.8
+   ]
+  },
+  "ufficiale_pct": 74.6,
+  "ufficiale_corrette": "50/67",
+  "ufficiale_per_categoria": {
+   "aritmetica": 100.0,
+   "codice": 50.0,
+   "comprensione": 100.0,
+   "conoscenza": 87.5,
+   "contesto": 100.0,
+   "date": 25.0,
+   "istruzioni": 100.0,
+   "lettere": 50.0,
+   "logica": 87.5
+  },
+  "ufficiale_sec_domanda": 2.5,
+  "bench4_pct": 97.1,
+  "bench4_corrette": "68/70",
+  "bench4_per_categoria": {
+   "codice": 90.0,
+   "conoscenza": 100.0,
+   "contesto_3passi": 100.0,
+   "logica": 100.0,
+   "matematica": 100.0,
+   "output_codice": 87.5
+  },
+  "bench4_sec_domanda": 4.4
+ },
+ "summary": "agente 12/12; duro --n=15: 76.3% (45/59); durodev --n=20: 73.8% (59/80); agente-mini 83.3% pieni in 109 s; ufficiale: 74.6% (50/67); bench4: 97.1% (68/70).",
+ "notes": "Misure dell 11/11 a corrente (o batteria >60%). swap 3998->4327 MB, OOM GPU 0.",
+ "tags": [
+  "m5",
+  "24gb"
+ ]
+}

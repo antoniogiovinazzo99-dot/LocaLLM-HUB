@@ -1,0 +1,92 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-m5-b-mtpc-dev2",
+ "platform": "mac",
+ "author": "Lan",
+ "date": "2026-11-11",
+ "category": "armature",
+ "status": "ok",
+ "title": "M5 24GB: b-mtpc-dev2",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1 MTP APEX-I-Compact",
+  "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+  "quant": "APEX I-Compact + teste MTP",
+  "size_gb": 17.33
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12262",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "-c",
+   "81920",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "1024",
+   "-ub",
+   "512",
+   "--spec-type",
+   "draft-mtp",
+   "--spec-draft-n-max",
+   "2"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M5 (10 core, GPU 10 core)",
+  "ram_gb": 24,
+  "os": "macOS 26.2"
+ },
+ "benchmark": {
+  "suite": "m5-notte (core-speed prompts una volta sola + prompt 15k + duro-v1 + agente + agente-mini)",
+  "version": 1,
+  "harness": "notte.py"
+ },
+ "metrics": {
+  "durodev_n_20_cheatsheet_pack_v1_md_timeout_4500_pct": 82.5,
+  "durodev_n_20_cheatsheet_pack_v1_md_timeout_4500_n": 80,
+  "durodev_n_20_cheatsheet_pack_v1_md_timeout_4500_per_categoria": {
+   "code": 80.0,
+   "math": 90.0,
+   "mbpp": 80.0,
+   "mmlu": 80.0
+  },
+  "durodev_n_20_cheatsheet_pack_v1_md_timeout_4500_sec_domanda": 8.2,
+  "durodev_n_20_cheatsheet_pack_v1_md_timeout_4500_esiti": {
+   "math": "11101011111111111111",
+   "code": "11101111010111110111",
+   "mbpp": "10111011111111111001",
+   "mmlu": "11111111010111110011"
+  },
+  "durodev_n_10_think_timeout_7200_pct": 65.9,
+  "durodev_n_10_think_timeout_7200_n": 44,
+  "durodev_n_10_think_timeout_7200_per_categoria": {
+   "code": 90.0,
+   "math": 50.0,
+   "mbpp": 50.0,
+   "mmlu": 71.4
+  },
+  "durodev_n_10_think_timeout_7200_sec_domanda": 39.7,
+  "durodev_n_10_think_timeout_7200_esiti": {
+   "math": "1100100101",
+   "code": "1111011111",
+   "mbpp": "1100100110",
+   "mmlu": "01111110110011"
+  }
+ },
+ "summary": "durodev --n=20 --cheatsheet=pack-v1.md: 82.5% (66/80); durodev --n=10 --think: 65.9% (29/44).",
+ "notes": "Misure dell 11/11 a corrente (o batteria >60%). swap 4164->4324 MB, OOM GPU 0.",
+ "tags": [
+  "m5",
+  "24gb"
+ ]
+}

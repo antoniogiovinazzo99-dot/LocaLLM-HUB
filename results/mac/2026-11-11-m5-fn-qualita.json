@@ -1,0 +1,62 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-m5-fn-qualita",
+ "platform": "mac",
+ "author": "Lan",
+ "date": "2026-11-11",
+ "category": "agent",
+ "status": "ok",
+ "title": "M5 24GB: fn-qualita",
+ "reference": false,
+ "model": {
+  "name": "Qwen3.8-Flash-Next",
+  "repo": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+  "quant": "GSQ-RCO Q2_0 (2 parti, expert in streaming da SSD)",
+  "size_gb": 66.4
+ },
+ "engine": {
+  "name": "Strata",
+  "version": "0.2.13 (Metal, compilato da sorgente)",
+  "args": [
+   "--engine",
+   "strata",
+   "--port",
+   "8080",
+   "ctx 32768, expert in streaming da SSD"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M5 (10 core, GPU 10 core)",
+  "ram_gb": 24,
+  "os": "macOS 26.2"
+ },
+ "benchmark": {
+  "suite": "m5-notte (core-speed prompts una volta sola + prompt 15k + duro-v1 + agente + agente-mini)",
+  "version": 1,
+  "harness": "notte.py"
+ },
+ "metrics": {
+  "agente_pct": 83.3,
+  "agente_sec_compito": 27.1,
+  "ufficiale_pct": 82.1,
+  "ufficiale_corrette": "55/67",
+  "ufficiale_per_categoria": {
+   "aritmetica": 100.0,
+   "codice": 80.0,
+   "comprensione": 100.0,
+   "conoscenza": 100.0,
+   "contesto": 100.0,
+   "date": 25.0,
+   "istruzioni": 83.3,
+   "lettere": 62.5,
+   "logica": 100.0
+  },
+  "ufficiale_sec_domanda": 15.2
+ },
+ "summary": "agente 10/12; ufficiale: 82.1% (55/67).",
+ "notes": "Misure dell 11/11 a corrente (o batteria >60%). swap 2860->2412 MB, OOM GPU 0.",
+ "tags": [
+  "m5",
+  "24gb"
+ ]
+}

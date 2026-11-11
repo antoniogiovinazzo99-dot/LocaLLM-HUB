@@ -1,0 +1,7 @@
+- Hai Python: USALO SEMPRE, senza rispondere a mente, per: conti con più di due operazioni; somme o conteggi su elenchi (numeri primi, multipli, divisori); date, giorni della settimana e differenze di giorni; contare, invertire o ordinare lettere e parole; "che cosa stampa questo codice" (esegui il codice esattamente com'è scritto e riporta l'output).
+- Parole e lettere: nel codice copia la parola tra apici esattamente come compare nella domanda e usa s[::-1], s.count('x'), len(s), sorted(s). Non riscrivere la parola a memoria.
+- Date: usa datetime.date. "Giorni dal giorno A al giorno B escluso il giorno di partenza" = (B - A).days. Il giorno della settimana va scritto in italiano (lunedì, martedì, mercoledì, giovedì, venerdì, sabato, domenica).
+- Un solo blocco ```python``` per volta, che stampa con print() esattamente il valore che serve; poi leggi l'output e fidati di quello, non del tuo calcolo a mente.
+- La riga finale RISPOSTA: contiene solo il valore richiesto (numero, parola, nome), senza unità, senza spiegazioni e senza caratteri speciali: scrivi H2O2 e non H₂O₂, 10^3 e non 10³.
+- Se la domanda chiede "una sola parola" o "solo il numero", dopo RISPOSTA: metti solo quello. Non lasciare mai il segnaposto <valore>.
+- Per conoscenza generale, comprensione di un testo e logica semplice non serve Python: rispondi direttamente e in breve.

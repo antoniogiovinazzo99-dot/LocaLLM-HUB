@@ -1,0 +1,139 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-m5-q-compact-64k",
+ "platform": "mac",
+ "author": "Lan",
+ "date": "2026-11-11",
+ "category": "other",
+ "status": "ok",
+ "title": "M5 24GB: q-compact-64k",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1 ONYX-compact",
+  "repo": "el4/Agents-A1-ONYX-GGUF",
+  "quant": "ONYX compact",
+  "size_gb": 17.0
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12262",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "-c",
+   "65536",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "1024",
+   "-ub",
+   "512"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M5 (10 core, GPU 10 core)",
+  "ram_gb": 24,
+  "os": "macOS 26.2"
+ },
+ "benchmark": {
+  "suite": "m5-notte (core-speed prompts una volta sola + prompt 15k + duro-v1 + agente + agente-mini)",
+  "version": 1,
+  "harness": "notte.py"
+ },
+ "metrics": {
+  "decode_tps_1": 44.2,
+  "tps_by_type": {
+   "codice": 44.0,
+   "storia": 44.2,
+   "ragionamento": 44.3,
+   "json": 44.2
+  },
+  "tps_method": "timings, ogni prompt una volta sola (testo nuovo)",
+  "decode_tps_giri": [
+   44.9,
+   44.0,
+   43.6
+  ],
+  "decode_tps_min": 43.6,
+  "decode_tps_max": 44.9,
+  "prompt_tps": 781.0,
+  "prompt_token": 15992,
+  "decode_tps_ctx15k": 38.2,
+  "decode_ctx15k_by_type": {
+   "prosa": 38.2,
+   "json": 38.3,
+   "codice": 38.2
+  },
+  "durodev_n_20_timeout_4500_pct": 76.2,
+  "durodev_n_20_timeout_4500_n": 80,
+  "durodev_n_20_timeout_4500_per_categoria": {
+   "code": 85.0,
+   "math": 70.0,
+   "mbpp": 70.0,
+   "mmlu": 80.0
+  },
+  "durodev_n_20_timeout_4500_sec_domanda": 11.4,
+  "durodev_n_20_timeout_4500_esiti": {
+   "math": "11101001100111110111",
+   "code": "11001111011111111111",
+   "mbpp": "10111011110111111000",
+   "mmlu": "11111111110111110001"
+  },
+  "agente_mini": 83.3,
+  "agente_mini_parziale": 97.0,
+  "agente_mini_sec": 146,
+  "agente_mini_dettaglio": {
+   "bug_prezzi": [
+    1.0,
+    13.4
+   ],
+   "config_loader": [
+    0.818,
+    44.5
+   ],
+   "rinomina": [
+    1.0,
+    16.2
+   ],
+   "paginazione": [
+    1.0,
+    31.5
+   ],
+   "dati_ordini": [
+    1.0,
+    17.6
+   ],
+   "rapporto": [
+    1.0,
+    23.0
+   ]
+  },
+  "ufficiale_pct": 77.6,
+  "ufficiale_corrette": "52/67",
+  "ufficiale_per_categoria": {
+   "aritmetica": 90.0,
+   "codice": 50.0,
+   "comprensione": 100.0,
+   "conoscenza": 87.5,
+   "contesto": 100.0,
+   "date": 62.5,
+   "istruzioni": 83.3,
+   "lettere": 50.0,
+   "logica": 100.0
+  },
+  "ufficiale_sec_domanda": 2.9
+ },
+ "summary": "44.2 t/s su testo nuovo (3 giri: 43.6-44.9); lettura 781.0 t/s su 15992 token, scrittura 38.2 t/s con quel contesto; durodev --n=20: 76.2% (61/80); agente-mini 83.3% pieni in 146 s; ufficiale: 77.6% (52/67).",
+ "notes": "Misure dell 11/11 a corrente (o batteria >60%). swap 2688->3415 MB, OOM GPU 0.",
+ "tags": [
+  "m5",
+  "24gb"
+ ]
+}

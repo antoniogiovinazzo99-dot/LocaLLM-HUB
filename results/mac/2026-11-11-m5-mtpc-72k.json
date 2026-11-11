@@ -1,0 +1,90 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-m5-mtpc-72k",
+ "platform": "mac",
+ "author": "Lan",
+ "date": "2026-11-11",
+ "category": "speculative",
+ "status": "ok",
+ "title": "M5 24GB: mtpc-72k",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1 MTP APEX-I-Compact",
+  "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+  "quant": "APEX I-Compact + teste MTP",
+  "size_gb": 17.33
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12262",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "-c",
+   "73728",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "1024",
+   "-ub",
+   "512",
+   "--spec-type",
+   "draft-mtp",
+   "--spec-draft-n-max",
+   "2"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M5 (10 core, GPU 10 core)",
+  "ram_gb": 24,
+  "os": "macOS 26.2"
+ },
+ "benchmark": {
+  "suite": "m5-notte (core-speed prompts una volta sola + prompt 15k + duro-v1 + agente + agente-mini)",
+  "version": 1,
+  "harness": "notte.py"
+ },
+ "metrics": {
+  "decode_tps_1": 59.7,
+  "tps_by_type": {
+   "codice": 60.7,
+   "storia": 55.1,
+   "ragionamento": 61.4,
+   "json": 61.7
+  },
+  "tps_method": "timings, ogni prompt una volta sola (testo nuovo)",
+  "draft_acceptance_pct": 82.4,
+  "prompt_tps": 757.0,
+  "prompt_token": 15992,
+  "decode_tps_ctx15k": 43.2,
+  "decode_ctx15k_by_type": {
+   "prosa": 43.0,
+   "json": 43.1,
+   "codice": 43.6
+  },
+  "lungo": {
+   "target": 67728,
+   "prompt_tok": 67746,
+   "richiamo": "2/2",
+   "prefill_tps": 310.5,
+   "prefill_nuovi": 4231,
+   "decode_tps": 25.0,
+   "s": 14.4,
+   "risposta": "1. girasole-7319\n2. ilaria fontebasso",
+   "sec": 144
+  }
+ },
+ "summary": "59.7 t/s su testo nuovo (accettazione 82.4%); lettura 757.0 t/s su 15992 token, scrittura 43.2 t/s con quel contesto; contesto lungo: {\"target\": 67728, \"prompt_tok\": 67746, \"richiamo\": \"2/2\", \"prefill_tps\": 310.5, \"prefill_nuovi\": 4231, \"decode_tps\": 25.0, \"s\": 14.4, \"risposta\": \"1. girasole-7.",
+ "notes": "Misure dell 11/11 a corrente (o batteria >60%). swap 3340->3188 MB, OOM GPU 0.",
+ "tags": [
+  "m5",
+  "24gb"
+ ]
+}

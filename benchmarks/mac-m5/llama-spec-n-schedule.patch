@@ -1,0 +1,45 @@
+diff --git a/tools/server/server-context.cpp b/tools/server/server-context.cpp
+index 5d97267..33221c6 100644
+--- a/tools/server/server-context.cpp
++++ b/tools/server/server-context.cpp
+@@ -595,6 +595,40 @@ struct server_slot {
+             n_draft_max = std::min(n_draft_max, n_remaining() - 1);
+         }
+ 
++        // context-aware draft length (experiment, M5 24GB notes 2026-11-11):
++        // verifying a rejected draft token gets more expensive as the context grows, so the best draft length
++        // shrinks with the context. LLAMA_SPEC_N_SCHEDULE="8000:2,40000:1" caps the draft at 2 tokens once the
++        // slot holds >= 8000 tokens and at 1 token from 40000 (0 = no draft). Unset = unchanged behaviour.
++        {
++            static const std::vector<std::pair<int, int>> sched = []() {
++                std::vector<std::pair<int, int>> res;
++                const char * env = std::getenv("LLAMA_SPEC_N_SCHEDULE");
++                if (env != nullptr) {
++                    std::string str(env);
++                    size_t pos = 0;
++                    while (pos < str.size()) {
++                        size_t end = str.find(',', pos);
++                        if (end == std::string::npos) {
++                            end = str.size();
++                        }
++                        const std::string item = str.substr(pos, end - pos);
++                        const size_t colon = item.find(':');
++                        if (colon != std::string::npos) {
++                            res.emplace_back(std::atoi(item.substr(0, colon).c_str()), std::atoi(item.substr(colon + 1).c_str()));
++                        }
++                        pos = end + 1;
++                    }
++                }
++                return res;
++            }();
++
++            for (const auto & entry : sched) {
++                if (prompt.n_tokens() >= entry.first) {
++                    n_draft_max = std::min(n_draft_max, entry.second);
++                }
++            }
++        }
++
+         SLT_DBG(*this, "max possible draft: %d\n", n_draft_max);
+ 
+         return n_draft_max;

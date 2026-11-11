@@ -1,0 +1,165 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-m5-nemo-reap50",
+ "platform": "mac",
+ "author": "Lan",
+ "date": "2026-11-11",
+ "category": "other",
+ "status": "ok",
+ "title": "M5 24GB: nemo-reap50",
+ "reference": false,
+ "model": {
+  "name": "Nemotron-3.5-Bolt-74B-A9B REAP50",
+  "repo": "anik-jha/Nemotron-3.5-Bolt-74B-A9B-16GB-GGUF",
+  "quant": "IQ2_XXS, 50% expert",
+  "size_gb": 13.38
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12262",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "-c",
+   "81920",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "2048",
+   "-ub",
+   "1024"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M5 (10 core, GPU 10 core)",
+  "ram_gb": 24,
+  "os": "macOS 26.2"
+ },
+ "benchmark": {
+  "suite": "m5-notte (core-speed prompts una volta sola + prompt 15k + duro-v1 + agente + agente-mini)",
+  "version": 1,
+  "harness": "notte.py"
+ },
+ "metrics": {
+  "decode_tps_1": 8.0,
+  "tps_by_type": {
+   "codice": 8.4,
+   "storia": 8.2,
+   "ragionamento": 8.3,
+   "json": 7.3
+  },
+  "tps_method": "timings, ogni prompt una volta sola (testo nuovo)",
+  "decode_tps_giri": [
+   7.5,
+   8.2,
+   8.4
+  ],
+  "decode_tps_min": 7.5,
+  "decode_tps_max": 8.4,
+  "prompt_tps": 120.1,
+  "prompt_token": 16428,
+  "decode_tps_ctx15k": 8.3,
+  "decode_ctx15k_by_type": {
+   "prosa": 8.1,
+   "json": 8.3,
+   "codice": 8.4
+  },
+  "duro_n_15_timeout_3600_pct": 50.8,
+  "duro_n_15_timeout_3600_n": 59,
+  "duro_n_15_timeout_3600_per_categoria": {
+   "code": 86.7,
+   "math": 60.0,
+   "mbpp": 40.0,
+   "mmlu": 14.3
+  },
+  "duro_n_15_timeout_3600_sec_domanda": 39.1,
+  "duro_n_15_timeout_3600_esiti": {
+   "math": "111001110000111",
+   "code": "111111111101110",
+   "mbpp": "100000101001101",
+   "mmlu": "10010000000000"
+  },
+  "durodev_n_20_timeout_4500_pct": 65.0,
+  "durodev_n_20_timeout_4500_n": 80,
+  "durodev_n_20_timeout_4500_per_categoria": {
+   "code": 85.0,
+   "math": 55.0,
+   "mbpp": 65.0,
+   "mmlu": 55.0
+  },
+  "durodev_n_20_timeout_4500_sec_domanda": 33.5,
+  "durodev_n_20_timeout_4500_esiti": {
+   "math": "10100000110111010111",
+   "code": "01101111011111111111",
+   "mbpp": "10111011110110111000",
+   "mmlu": "11001011010111010100"
+  },
+  "agente_mini": 66.7,
+  "agente_mini_parziale": 80.3,
+  "agente_mini_sec": 384,
+  "agente_mini_dettaglio": {
+   "bug_prezzi": [
+    1.0,
+    55.1
+   ],
+   "config_loader": [
+    0.818,
+    110.2
+   ],
+   "rinomina": [
+    1.0,
+    57.1
+   ],
+   "paginazione": [
+    1.0,
+    52.9
+   ],
+   "dati_ordini": [
+    0.0,
+    31.2
+   ],
+   "rapporto": [
+    1.0,
+    77.7
+   ]
+  },
+  "ufficiale_pct": 52.2,
+  "ufficiale_corrette": "35/67",
+  "ufficiale_per_categoria": {
+   "aritmetica": 40.0,
+   "codice": 40.0,
+   "comprensione": 100.0,
+   "conoscenza": 75.0,
+   "contesto": 80.0,
+   "date": 25.0,
+   "istruzioni": 66.7,
+   "lettere": 25.0,
+   "logica": 62.5
+  },
+  "ufficiale_sec_domanda": 13.9,
+  "bench4_pct": 58.6,
+  "bench4_corrette": "41/70",
+  "bench4_per_categoria": {
+   "codice": 60.0,
+   "conoscenza": 46.7,
+   "contesto_3passi": 100.0,
+   "logica": 87.5,
+   "matematica": 40.0,
+   "output_codice": 75.0
+  },
+  "bench4_sec_domanda": 26.7
+ },
+ "summary": "8.0 t/s su testo nuovo (3 giri: 7.5-8.4); lettura 120.1 t/s su 16428 token, scrittura 8.3 t/s con quel contesto; duro --n=15: 50.8% (30/59); durodev --n=20: 65.0% (52/80); agente-mini 66.7% pieni in 384 s; ufficiale: 52.2% (35/67); bench4: 58.6% (41/70).",
+ "notes": "Misure dell 11/11 a corrente (o batteria >60%). swap 3889->1925 MB, OOM GPU 0.",
+ "tags": [
+  "m5",
+  "24gb"
+ ]
+}

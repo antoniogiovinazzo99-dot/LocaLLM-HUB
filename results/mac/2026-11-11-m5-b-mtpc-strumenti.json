@@ -1,0 +1,139 @@
+{
+ "schema": 1,
+ "id": "2026-11-11-m5-b-mtpc-strumenti",
+ "platform": "mac",
+ "author": "Lan",
+ "date": "2026-11-11",
+ "category": "armature",
+ "status": "ok",
+ "title": "M5 24GB: b-mtpc-strumenti",
+ "reference": false,
+ "model": {
+  "name": "Agents-A1 MTP APEX-I-Compact",
+  "repo": "SC117/Agents-A1-MTP-APEX-GGUF",
+  "quant": "APEX I-Compact + teste MTP",
+  "size_gb": 17.33
+ },
+ "engine": {
+  "name": "llama.cpp",
+  "version": "b12262",
+  "args": [
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "--jinja",
+   "--parallel",
+   "1",
+   "-c",
+   "81920",
+   "-ctk",
+   "q4_0",
+   "-ctv",
+   "q4_0",
+   "-b",
+   "1024",
+   "-ub",
+   "512",
+   "--spec-type",
+   "draft-mtp",
+   "--spec-draft-n-max",
+   "2"
+  ]
+ },
+ "hardware": {
+  "chip": "Apple M5 (10 core, GPU 10 core)",
+  "ram_gb": 24,
+  "os": "macOS 26.2"
+ },
+ "benchmark": {
+  "suite": "m5-notte (core-speed prompts una volta sola + prompt 15k + duro-v1 + agente + agente-mini)",
+  "version": 1,
+  "harness": "notte.py"
+ },
+ "metrics": {
+  "ufficiale_tools_cheatsheet_pack_strumenti_v1_md_pct": 94.0,
+  "ufficiale_tools_cheatsheet_pack_strumenti_v1_md_corrette": "63/67",
+  "ufficiale_tools_cheatsheet_pack_strumenti_v1_md_per_categoria": {
+   "aritmetica": 100.0,
+   "codice": 90.0,
+   "comprensione": 100.0,
+   "conoscenza": 100.0,
+   "contesto": 100.0,
+   "date": 100.0,
+   "istruzioni": 83.3,
+   "lettere": 75.0,
+   "logica": 100.0
+  },
+  "ufficiale_tools_cheatsheet_pack_strumenti_v1_md_sec_domanda": 2.8,
+  "bench2_pct": 94.9,
+  "bench2_corrette": "56/59",
+  "bench2_per_categoria": {
+   "aritmetica": 100.0,
+   "codice": 100.0,
+   "conoscenza": 100.0,
+   "contesto": 100.0,
+   "istruzioni": 100.0,
+   "lettere": 83.3,
+   "logica": 90.0,
+   "unita": 83.3
+  },
+  "bench2_sec_domanda": null,
+  "bench2_tools_cheatsheet_pack_strumenti_v1_md_pct": 94.9,
+  "bench2_tools_cheatsheet_pack_strumenti_v1_md_corrette": "56/59",
+  "bench2_tools_cheatsheet_pack_strumenti_v1_md_per_categoria": {
+   "aritmetica": 100.0,
+   "codice": 90.0,
+   "conoscenza": 100.0,
+   "contesto": 100.0,
+   "istruzioni": 100.0,
+   "lettere": 83.3,
+   "logica": 90.0,
+   "unita": 100.0
+  },
+  "bench2_tools_cheatsheet_pack_strumenti_v1_md_sec_domanda": null,
+  "bench3_pct": 97.4,
+  "bench3_corrette": "74/76",
+  "bench3_per_categoria": {
+   "buon_senso": 100.0,
+   "codice": 100.0,
+   "conoscenza": 96.7,
+   "contesto_lungo": 100.0,
+   "formato": 83.3,
+   "italiano": 100.0,
+   "piu_passaggi": 100.0,
+   "tabelle": 100.0
+  },
+  "bench3_sec_domanda": 3.2,
+  "bench3_tools_cheatsheet_pack_strumenti_v1_md_pct": 97.4,
+  "bench3_tools_cheatsheet_pack_strumenti_v1_md_corrette": "74/76",
+  "bench3_tools_cheatsheet_pack_strumenti_v1_md_per_categoria": {
+   "buon_senso": 100.0,
+   "codice": 100.0,
+   "conoscenza": 100.0,
+   "contesto_lungo": 75.0,
+   "formato": 100.0,
+   "italiano": 100.0,
+   "piu_passaggi": 90.0,
+   "tabelle": 100.0
+  },
+  "bench3_tools_cheatsheet_pack_strumenti_v1_md_sec_domanda": 3.2,
+  "bench4_tools_cheatsheet_pack_strumenti_v1_md_pct": 98.6,
+  "bench4_tools_cheatsheet_pack_strumenti_v1_md_corrette": "69/70",
+  "bench4_tools_cheatsheet_pack_strumenti_v1_md_per_categoria": {
+   "codice": 100.0,
+   "conoscenza": 100.0,
+   "contesto_3passi": 75.0,
+   "logica": 100.0,
+   "matematica": 100.0,
+   "output_codice": 100.0
+  },
+  "bench4_tools_cheatsheet_pack_strumenti_v1_md_sec_domanda": 5.1
+ },
+ "summary": "ufficiale --tools --cheatsheet=pack-strumenti-v1.md: 94.0% (63/67); bench2: 94.9% (56/59); bench2 --tools --cheatsheet=pack-strumenti-v1.md: 94.9% (56/59); bench3: 97.4% (74/76); bench3 --tools --cheatsheet=pack-strumenti-v1.md: 97.4% (74/76); bench4 --tools --cheatsheet=pack-strumenti-v1.md: 98.6% (69/70).",
+ "notes": "Misure dell 11/11 a corrente (o batteria >60%). swap 3398->3905 MB, OOM GPU 0.",
+ "tags": [
+  "m5",
+  "24gb"
+ ]
+}
